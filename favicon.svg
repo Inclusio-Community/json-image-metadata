@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 100 100">
+  <title>Inclusio Logo</title>
+
+  <style>
+    path,
+    circle {
+      stroke: none; 
+      fill: url(#inclusio-gradient);; 
+    }
+
+    .stop-0 {
+      stop-color: #71e2f9;
+    }
+
+    .stop-1 {
+      stop-color: #173ef5;
+    }
+  </style>
+
+<defs>
+  <linearGradient id="inclusio-gradient" gradientUnits="userSpaceOnUse">
+    <stop class="stop-0" offset="0%" />
+    <stop class="stop-1" offset="100%" />
+  </linearGradient>
+</defs>
+
+  <path d="M20,57 H80 
+    V26.5 C80,19.5 70,19.5 70,26.5 
+    V78.5 C70,85.5 60,85.5 60,78.5
+    V38.5 C60,31.5 50,31.5 50,38.5
+    V87.5 C50,94.5 40,94.5 40,87.5 
+    V51.5 C40,44.5 30,44.5 30,51.5
+    V62.5 C30,69.5 20,69.5 20,62.5 Z"/>
+
+  <circle cx="35" cy="37.5" r="5" />
+  <circle cx="55" cy="24.5" r="5" />
+  <circle cx="75" cy="12.5" r="5" /> 
+</svg>

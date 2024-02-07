@@ -1,0 +1,2463 @@
+<!doctype html><html lang="en">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>Technical Image Metadata</title>
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+<style data-fill-with="stylesheet">/******************************************************************************
+ *                   Style sheet for the W3C specifications                   *
+ *
+ * Special classes handled by this style sheet include:
+ *
+ * Indices
+ *   - .toc for the Table of Contents (<ol class="toc">)
+ *     + <span class="secno"> for the section numbers
+ *   - #toc for the Table of Contents (<nav id="toc">)
+ *   - ul.index for Indices (<a href="#ref">term</a><span>, in § N.M</span>)
+ *   - table.index for Index Tables (e.g. for properties or elements)
+ *
+ * Structural Markup
+ *   - table.data for general data tables
+ *     -> use 'scope' attribute, <colgroup>, <thead>, and <tbody> for best results !
+ *     -> use <table class='complex data'> for extra-complex tables
+ *     -> use <td class='long'> for paragraph-length cell content
+ *     -> use <td class='pre'> when manual line breaks/indentation would help readability
+ *   - dl.switch for switch statements
+ *   - ol.algorithm for algorithms (helps to visualize nesting)
+ *   - .figure and .caption (HTML4) and figure and figcaption (HTML5)
+ *     -> .sidefigure for right-floated figures
+ *   - ins/del
+ *     -> ins/del.c### for candidate and proposed changes (amendments)
+ *
+ * Code
+ *   - pre and code
+ *
+ * Special Sections
+ *   - .note       for informative notes             (div, p, span, aside, details)
+ *   - .example    for informative examples          (div, p, pre, span)
+ *   - .issue      for issues                        (div, p, span)
+ *   - .advisement for loud normative statements     (div, p, strong)
+ *   - .annoying-warning for spec obsoletion notices (div, aside, details)
+ *   - .correction for "candidate corrections"       (div, aside, details, section)
+ *   - .addition   for "candidate additions"         (div, aside, details, section)
+ *   - .correction.proposed for "proposed corrections" (div, aside, details, section)
+ *   - .addition.proposed   for "proposed additions"   (div, aside, details, section)
+ *
+ * Definition Boxes
+ *   - pre.def   for WebIDL definitions
+ *   - table.def for tables that define other entities (e.g. CSS properties)
+ *   - dl.def    for definition lists that define other entitles (e.g. HTML elements)
+ *
+ * Numbering
+ *   - .secno for section numbers in .toc and headings (<span class='secno'>3.2</span>)
+ *   - .marker for source-inserted example/figure/issue numbers (<span class='marker'>Issue 4</span>)
+ *   - ::before styled for CSS-generated issue/example/figure numbers:
+ *     -> Documents wishing to use this only need to add
+ *        figcaption::before,
+ *        .caption::before { content: "Figure "  counter(figure) " ";  }
+ *        .example::before { content: "Example " counter(example) " "; }
+ *        .issue::before   { content: "Issue "   counter(issue) " ";   }
+ *
+ * Header Stuff (ignore, just don't conflict with these classes)
+ *   - .head for the header
+ *   - .copyright for the copyright
+ *
+ * Outdated warning for old specs
+ *
+ * Miscellaneous
+ *   - .overlarge for things that should be as wide as possible, even if
+ *     that overflows the body text area. This can be used on an item or
+ *     on its container, depending on the effect desired.
+ *     Note that this styling basically doesn't help at all when printing,
+ *     since A4 paper isn't much wider than the max-width here.
+ *     It's better to design things to fit into a narrower measure if possible.
+ *
+ *   - js-added ToC jump links (see fixup.js)
+ *
+ ******************************************************************************/
+
+/* color variables included separately for reliability */
+
+/******************************************************************************/
+/*                                    Body                                    */
+/******************************************************************************/
+
+	html {
+	}
+
+	body {
+		counter-reset: example figure issue;
+
+		/* Layout */
+		max-width: 50em;			  /* limit line length to 50em for readability   */
+		margin: 0 auto;				/* center text within page                    */
+		padding: 1.6em 1.5em 2em 50px; /* assume 16px font size for downlevel clients */
+		padding: 1.6em 1.5em 2em calc(26px + 1.5em); /* leave space for status flag    */
+
+		/* Typography */
+		line-height: 1.5;
+		font-family: sans-serif;
+		widows: 2;
+		orphans: 2;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		hyphens: auto;
+
+		color: black;
+		color: var(--text);
+		background: white top left fixed no-repeat;
+		background: var(--bg) top left fixed no-repeat;
+		background-size: 25px auto;
+	}
+
+
+/******************************************************************************/
+/*                         Front Matter & Navigation                          */
+/******************************************************************************/
+
+/** Header ********************************************************************/
+
+	div.head { margin-bottom: 1em; }
+	div.head hr { border-style: solid; }
+
+	div.head h1 {
+		font-weight: bold;
+		margin: 0 0 .1em;
+		font-size: 220%;
+	}
+
+	div.head h2 { margin-bottom: 1.5em;}
+
+/** W3C Logo ******************************************************************/
+
+	.head .logo {
+		float: right;
+		margin: 0.4rem 0 0.2rem .4rem;
+	}
+
+	.head img[src*="logos/W3C"] {
+		display: block;
+		border: solid #1a5e9a;
+		border: solid var(--logo-bg);
+		border-width: .65rem .7rem .6rem;
+		border-radius: .4rem;
+		background: #1a5e9a;
+		background: var(--logo-bg);
+		color: white;
+		color: var(--logo-text);
+		font-weight: bold;
+	}
+
+	.head a:hover > img[src*="logos/W3C"],
+	.head a:focus > img[src*="logos/W3C"] {
+		opacity: .8;
+	}
+
+	.head a:active > img[src*="logos/W3C"] {
+		background: #c00;
+		background: var(--logo-active-bg);
+		border-color: #c00;
+		border-color: var(--logo-active-bg);
+	}
+
+	/* see also additional rules in Link Styling section */
+
+/** Copyright *****************************************************************/
+
+	p.copyright,
+	p.copyright small { font-size: small; }
+
+/** Back to Top / ToC Toggle **************************************************/
+
+	@media print {
+		#toc-nav {
+			display: none;
+		}
+	}
+	@media not print {
+		#toc-nav {
+			position: fixed;
+			z-index: 3;
+			bottom: 0; left: 0;
+			margin: 0;
+			min-width: 1.33em;
+			border-top-right-radius: 2rem;
+			box-shadow: 0 0 2px;
+			font-size: 1.5em;
+		}
+		#toc-nav > a {
+			display: block;
+			white-space: nowrap;
+
+			height: 1.33em;
+			padding: .1em 0.3em;
+			margin: 0;
+
+			box-shadow: 0 0 2px;
+			border: none;
+			border-top-right-radius: 1.33em;
+
+			color: #707070;
+			color: var(--tocnav-normal-text);
+			background: white;
+			background: var(--tocnav-normal-bg);
+		}
+		#toc-nav > a:hover,
+		#toc-nav > a:focus {
+			color: black;
+			color: var(--tocnav-hover-text);
+			background: #f8f8f8;
+			background: var(--tocnav-hover-bg);
+		}
+		#toc-nav > a:active {
+			color: #c00;
+			color: var(--tocnav-active-text);
+			background: white;
+			background: var(--tocnav-active-bg);
+		}
+
+		#toc-nav > #toc-jump {
+			padding-bottom: 2em;
+			margin-bottom: -1.9em;
+		}
+
+		/* statusbar gets in the way on keyboard focus; remove once browsers fix */
+		#toc-nav > a[href="#toc"]:not(:hover):focus:last-child {
+			padding-bottom: 1.5rem;
+		}
+
+		#toc-nav:not(:hover) > a:not(:focus) > span + span {
+			/* Ideally this uses :focus-within on #toc-nav */
+			display: none;
+		}
+		#toc-nav > a > span + span {
+			padding-right: 0.2em;
+		}
+	}
+
+/** ToC Sidebar ***************************************************************/
+
+	/* Floating sidebar */
+	@media screen {
+		body.toc-sidebar #toc {
+			position: fixed;
+			top: 0; bottom: 0;
+			left: 0;
+			width: 23.5em;
+			max-width: 80%;
+			max-width: calc(100% - 2em - 26px);
+			overflow: auto;
+			padding: 0 1em;
+			padding-left: 42px;
+			padding-left: calc(1em + 26px);
+			color: black;
+			color: var(--tocsidebar-text);
+			background: inherit;
+			background-color: #f7f8f9;
+			background-color: var(--tocsidebar-bg);
+			z-index: 1;
+			box-shadow: -.1em 0 .25em rgba(0,0,0,.1) inset;
+			box-shadow: -.1em 0 .25em var(--tocsidebar-shadow) inset;
+		}
+		body.toc-sidebar #toc h2 {
+			margin-top: .8rem;
+			font-variant: small-caps;
+			font-variant: all-small-caps;
+			text-transform: lowercase;
+			font-weight: bold;
+			color: gray;
+			color: hsla(203,20%,40%,.7);
+			color: var(--tocsidebar-heading-text);
+		}
+		body.toc-sidebar #toc-jump:not(:focus) {
+			width: 0;
+			height: 0;
+			padding: 0;
+			position: absolute;
+			overflow: hidden;
+		}
+	}
+	/* Hide main scroller when only the ToC is visible anyway */
+	@media screen and (max-width: 28em) {
+		body.toc-sidebar {
+			overflow: hidden;
+		}
+	}
+
+	/* Sidebar with its own space */
+	@media screen and (min-width: 78em) {
+		body:not(.toc-inline) #toc {
+			position: fixed;
+			top: 0; bottom: 0;
+			left: 0;
+			width: 23.5em;
+			overflow: auto;
+			padding: 0 1em;
+			padding-left: 42px;
+			padding-left: calc(1em + 26px);
+			color: black;
+			color: var(--tocsidebar-text);
+			background: inherit;
+			background-color: #f7f8f9;
+			background-color: var(--tocsidebar-bg);
+			z-index: 1;
+			box-shadow: -.1em 0 .25em rgba(0,0,0,.1) inset;
+			box-shadow: -.1em 0 .25em var(--tocsidebar-shadow) inset;
+		}
+		body:not(.toc-inline) #toc h2 {
+			margin-top: .8rem;
+			font-variant: small-caps;
+			font-variant: all-small-caps;
+			text-transform: lowercase;
+			font-weight: bold;
+			color: gray;
+			color: hsla(203,20%,40%,.7);
+			color: var(--tocsidebar-heading-text);
+		}
+
+		body:not(.toc-inline) {
+			padding-left: 29em;
+		}
+		/* See also Overflow section at the bottom */
+
+		body:not(.toc-inline) #toc-jump:not(:focus) {
+			width: 0;
+			height: 0;
+			padding: 0;
+			position: absolute;
+			overflow: hidden;
+		}
+	}
+	@media screen and (min-width: 90em) {
+		body:not(.toc-inline) {
+			margin: 0 4em;
+		}
+	}
+
+/******************************************************************************/
+/*                                Sectioning                                  */
+/******************************************************************************/
+
+/** Headings ******************************************************************/
+
+	h1, h2, h3, h4, h5, h6, dt {
+		page-break-after: avoid;
+		page-break-inside: avoid;
+		font: 100% sans-serif;   /* Reset all font styling to clear out UA styles */
+		font-family: inherit;	/* Inherit the font family. */
+		line-height: 1.2;		/* Keep wrapped headings compact */
+		hyphens: manual;		/* Hyphenated headings look weird */
+	}
+
+	h2, h3, h4, h5, h6 {
+		margin-top: 3rem;
+	}
+
+	h1, h2, h3 {
+		color: #005A9C;
+		color: var(--heading-text);
+	}
+
+	h1 { font-size: 170%; }
+	h2 { font-size: 140%; }
+	h3 { font-size: 120%; }
+	h4 { font-weight: bold; }
+	h5 { font-style: italic; }
+	h6 { font-variant: small-caps; }
+	dt { font-weight: bold; }
+
+/** Subheadings ***************************************************************/
+
+	h1 + h2,
+	#profile-and-date {
+		/* #profile-and-date is a subtitle in an H2 under the H1 */
+		margin-top: 0;
+	}
+	h2 + h3,
+	h3 + h4,
+	h4 + h5,
+	h5 + h6 {
+		margin-top: 1.2em; /* = 1 x line-height */
+	}
+
+/** Section divider ***********************************************************/
+
+	:not(.head) > :not(.head) + hr {
+		font-size: 1.5em;
+		text-align: center;
+		margin: 1em auto;
+		height: auto;
+		color: black;
+		color: var(--hr-text);
+		border: transparent solid 0;
+		background: transparent;
+	}
+	:not(.head) > hr::before {
+		content: "\2727\2003\2003\2727\2003\2003\2727";
+	}
+
+/******************************************************************************/
+/*                            Paragraphs and Lists                            */
+/******************************************************************************/
+
+	p {
+		margin: 1em 0;
+	}
+
+	dd > p:first-child,
+	li > p:first-child {
+		margin-top: 0;
+	}
+
+	ul, ol {
+		margin-left: 0;
+		padding-left: 2em;
+	}
+
+	li {
+		margin: 0.25em 0 0.5em;
+		padding: 0;
+	}
+
+	dl dd {
+		margin: 0 0 .5em 2em;
+	}
+
+	.head dd + dd { /* compact for header */
+		margin-top: -.5em;
+	}
+
+	/* Style for algorithms */
+	ol.algorithm ol:not(.algorithm),
+	.algorithm > ol ol:not(.algorithm) {
+	border-left: 0.5em solid #DEF;
+	border-left: 0.5em solid var(--algo-border);
+	}
+
+	/* Put nice boxes around each algorithm. */
+	[data-algorithm]:not(.heading) {
+	 padding: .5em;
+	 border: thin solid #ddd;
+	 border: thin solid var(--algo-border);
+	 border-radius: .5em;
+	 margin: .5em calc(-0.5em - 1px);
+	}
+	[data-algorithm]:not(.heading) > :first-child {
+	 margin-top: 0;
+	}
+	[data-algorithm]:not(.heading) > :last-child {
+	 margin-bottom: 0;
+	}
+
+	/* Style for switch/case <dl>s */
+	dl.switch > dd > ol.only,
+	dl.switch > dd > .only > ol {
+	margin-left: 0;
+	}
+	dl.switch > dd > ol.algorithm,
+	dl.switch > dd > .algorithm > ol {
+	margin-left: -2em;
+	}
+	dl.switch {
+	padding-left: 2em;
+	}
+	dl.switch > dt {
+	text-indent: -1.5em;
+	margin-top: 1em;
+	}
+	dl.switch > dt + dt {
+	margin-top: 0;
+	}
+	dl.switch > dt::before {
+	content: '\21AA';
+	padding: 0 0.5em 0 0;
+	display: inline-block;
+	width: 1em;
+	text-align: right;
+	line-height: 0.5em;
+	}
+
+/** Terminology Markup ********************************************************/
+
+
+/******************************************************************************/
+/*                                 Inline Markup                              */
+/******************************************************************************/
+
+/** Terminology Markup ********************************************************/
+	dfn   { /* Defining instance */
+		font-weight: bolder;
+	}
+	a > i { /* Instance of term */
+		font-style: normal;
+	}
+	dt dfn code, code.idl {
+		font-size: inherit;
+	}
+	dfn var {
+		font-style: normal;
+	}
+
+/** Change Marking ************************************************************/
+
+	del {
+		color: #aa0000;
+		color: var(--del-text);
+		background: transparent;
+		background: var(--del-bg);
+		text-decoration: line-through;
+	}
+	ins {
+		color: #006100;
+		color: var(--ins-text);
+		background: transparent;
+		background: var(--ins-bg);
+		text-decoration: underline;
+	}
+
+	/* for amendments (candidate/proposed changes) */
+
+	.amendment ins, .correction ins, .addition ins,
+	ins[class^=c] {
+		text-decoration-style: dotted;
+	}
+	.amendment del, .correction del, .addition del,
+	del[class^=c] {
+		text-decoration-style: dotted;
+	}
+	.amendment.proposed ins, .correction.proposed ins, .addition.proposed ins,
+	ins[class^=c].proposed {
+		text-decoration-style: double;
+	}
+	.amendment.proposed del, .correction.proposed del, .addition.proposed del,
+	del[class^=c].proposed {
+		text-decoration-style: double;
+	}
+
+/** Miscellaneous improvements to inline formatting ***************************/
+
+	sup {
+		vertical-align: super;
+		font-size: 80%
+	}
+
+/******************************************************************************/
+/*                                    Code                                    */
+/******************************************************************************/
+
+/** General monospace/pre rules ***********************************************/
+
+	pre, code, samp {
+		font-family: Menlo, Consolas, "DejaVu Sans Mono", Monaco, monospace;
+		font-size: .9em;
+		hyphens: none;
+		text-transform: none;
+		text-align: left;
+		text-align: start;
+		font-variant: normal;
+		orphans: 3;
+		widows: 3;
+		page-break-before: avoid;
+	}
+	pre code,
+	code code {
+		font-size: 100%;
+	}
+
+	pre {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		overflow: auto;
+	}
+
+/** Inline Code fragments *****************************************************/
+
+	/* Do something nice. */
+
+/******************************************************************************/
+/*                                    Links                                   */
+/******************************************************************************/
+
+/** General Hyperlinks ********************************************************/
+
+	/* We hyperlink a lot, so make it less intrusive */
+	a[href] {
+		color: #034575;
+		color: var(--a-normal-text);
+		text-decoration: underline #707070;
+		text-decoration: underline var(--a-normal-underline);
+		text-decoration-skip-ink: none;
+	}
+	a:visited {
+		color: #034575;
+		color: var(--a-visited-text);
+		text-decoration-color: #bbb;
+		text-decoration-color: var(--a-visited-underline);
+	}
+
+	/* Indicate interaction with the link */
+	a[href]:focus,
+	a[href]:hover {
+		text-decoration-thickness: 2px;
+	}
+	a[href]:active {
+		color: #c00;
+		color: var(--a-active-text);
+		text-decoration-color: #c00;
+		text-decoration-color: var(--a-active-underline);
+	}
+
+	/* Backout above styling for W3C logo */
+	.head .logo,
+	.head .logo a {
+		border: none;
+		text-decoration: none;
+		background: transparent;
+	}
+
+/******************************************************************************/
+/*                                    Images                                  */
+/******************************************************************************/
+
+	img {
+		border-style: none;
+	}
+
+	img, svg {
+		/* Intentionally not color-scheme aware. */
+		background: white;
+	}
+
+	/* For autogen numbers, add
+	  .caption::before, figcaption::before { content: "Figure " counter(figure) ". "; }
+	*/
+
+	figure, .figure, .sidefigure {
+		page-break-inside: avoid;
+		text-align: center;
+		margin: 2.5em 0;
+	}
+	.figure img,	.sidefigure img,	figure img,
+	.figure object, .sidefigure object, figure object {
+		max-width: 100%;
+		margin: auto;
+		height: auto;
+	}
+	.figure pre, .sidefigure pre, figure pre {
+		text-align: left;
+		display: table;
+		margin: 1em auto;
+	}
+	.figure table, figure table {
+		margin: auto;
+	}
+	@media screen and (min-width: 20em) {
+		.sidefigure {
+			float: right;
+			width: 50%;
+			margin: 0 0 0.5em 0.5em;
+		}
+	}
+	.caption, figcaption, caption {
+		font-style: italic;
+		font-size: 90%;
+	}
+	.caption::before, figcaption::before, figcaption > .marker {
+		font-weight: bold;
+	}
+	.caption, figcaption {
+		counter-increment: figure;
+	}
+
+	/* DL list is indented 2em, but figure inside it is not */
+	dd > .figure, dd > figure { margin-left: -2em; }
+
+/******************************************************************************/
+/*                             Colored Boxes                                  */
+/******************************************************************************/
+
+	.issue, .note, .example, .assertion, .advisement, blockquote,
+	.amendment, .correction, .addition {
+		margin: 1em auto;
+		padding: .5em;
+		border: .5em;
+		border-left-style: solid;
+		page-break-inside: avoid;
+	}
+	span.issue, span.note {
+		padding: .1em .5em .15em;
+		border-right-style: solid;
+	}
+
+	blockquote > :first-child,
+	.note  > p:first-child,
+	.issue > p:first-child,
+	.amendment > p:first-child,
+	.correction > p:first-child,
+	.addition > p:first-child {
+		margin-top: 0;
+	}
+	blockquote > :last-child,
+	.note  > p:last-child,
+	.issue > p:last-child,
+	.amendment > p:last-child,
+	.correction > p:last-child,
+	.addition > p:last-child {
+		margin-bottom: 0;
+	}
+
+
+	.issue::before, .issue > .marker,
+	.example::before, .example > .marker,
+	.note::before, .note > .marker,
+	details.note > summary > .marker,
+	.amendment::before, .amendment > .marker,
+	details.amendment > summary > .marker,
+	.addition::before, .addition > .marker,
+	addition.amendment > summary > .marker,
+	.correction::before, .correction > .marker,
+	correction.amendment > summary > .marker
+	{
+		text-transform: uppercase;
+		padding-right: 1em;
+	}
+
+	.example::before, .example > .marker {
+		display: block;
+		padding-right: 0em;
+	}
+
+/** Blockquotes ***************************************************************/
+
+	blockquote {
+		border-color: silver;
+		border-color: var(--blockquote-border);
+		background: transparent;
+		background: var(--blockquote-bg);
+		color: currentcolor;
+		color: var(--blockquote-text);
+	}
+
+/** Open issue ****************************************************************/
+
+	.issue {
+		border-color: #e05252;
+		border-color: var(--issue-border);
+		background: #fbe9e9;
+		background: var(--issue-bg);
+		color: black;
+		color: var(--issue-text);
+		counter-increment: issue;
+		overflow: auto;
+	}
+	.issue::before, .issue > .marker {
+		color: #831616;
+		color: var(--issueheading-text);
+	}
+	/* Add .issue::before { content: "Issue " counter(issue) " "; } for autogen numbers,
+	  or use class="marker" to mark up the issue number in source. */
+
+/** Example *******************************************************************/
+
+	.example {
+		border-color: #e0cb52;
+		border-color: var(--example-border);
+		background: #fcfaee;
+		background: var(--example-bg);
+		color: black;
+		color: var(--example-text);
+		counter-increment: example;
+		overflow: auto;
+		clear: both;
+	}
+	.example::before, .example > .marker {
+		color: #574b0f;
+		color: var(--exampleheading-text);
+	}
+	/* Add .example::before { content: "Example " counter(example) " "; } for autogen numbers,
+	  or use class="marker" to mark up the example number in source. */
+
+/** Non-normative Note ********************************************************/
+
+	.note {
+		border-color: #52e052;
+		border-color: var(--note-border);
+		background: #e9fbe9;
+		background: var(--note-bg);
+		color: black;
+		color: var(--note-text);
+		overflow: auto;
+	}
+
+	.note::before, .note > .marker,
+	details.note > summary {
+		color: hsl(120, 70%, 30%);
+		color: var(--noteheading-text);
+	}
+	/* Add .note::before { content: "Note "; } for autogen label,
+	  or use class="marker" to mark up the label in source. */
+
+	details.note[open] > summary {
+		border-bottom: 1px silver solid;
+		border-bottom: 1px var(--notesummary-underline) solid;
+	}
+
+/** Assertion Box *************************************************************/
+	/*  for assertions in algorithms */
+
+	.assertion {
+		border-color: #AAA;
+		border-color: var(--assertion-border);
+		background: #EEE;
+		background: var(--assertion-bg);
+		color: black;
+		color: var(--assertion-text);
+	}
+
+/** Advisement Box ************************************************************/
+	/*  for attention-grabbing normative statements */
+
+	.advisement {
+		border-color: orange;
+		border-color: var(--advisement-border);
+		border-style: none solid;
+		background: #fec;
+		background: var(--advisement-bg);
+		color: black;
+		color: var(--advisement-text);
+	}
+	strong.advisement {
+		display: block;
+		text-align: center;
+	}
+	.advisement::before, .advisement > .marker {
+		color: #b35f00;
+		color: var(--advisementheading-text);
+	}
+
+/** Amendment Box *************************************************************/
+
+	.amendment, .correction, .addition {
+		border-color: #330099;
+		border-color: var(--amendment-border);
+		background: #F5F0FF;
+		background: var(--amendment-bg);
+		color: black;
+		color: var(--amendment-text);
+	}
+	.amendment.proposed, .correction.proposed, .addition.proposed {
+		border-style: solid;
+		border-block-width: 0.25em;
+	}
+	.amendment::before, .amendment > .marker,
+	details.amendment > summary::before, details.amendment > summary > .marker,
+	.correction::before, .correction > .marker,
+	details.correction > summary::before, details.correction > summary > .marker,
+	.addition::before, .addition > .marker,
+	details.addition > summary::before, details.addition > summary > .marker {
+		color: #220066;
+		color: var(--amendmentheading-text);
+	}
+	.amendment.proposed::before, .amendment.proposed > .marker,
+	details.amendment.proposed > summary::before, details.amendment.proposed > summary > .marker,
+	.correction.proposed::before, .correction.proposed > .marker,
+	details.correction.proposed > summary::before, details.correction.proposed > summary > .marker,
+	.addition.proposed::before, .addition.proposed > .marker,
+	details.addition.proposed > summary::before, details.addition.proposed > summary > .marker {
+		font-weight: bold;
+	}
+
+/** Spec Obsoletion Notice ****************************************************/
+	/* obnoxious obsoletion notice for older/abandoned specs. */
+
+	details {
+		display: block;
+	}
+	summary {
+		font-weight: bolder;
+	}
+
+	.annoying-warning:not(details),
+	details.annoying-warning:not([open]) > summary,
+	details.annoying-warning[open] {
+		background: hsla(40,100%,50%,0.95);
+		background: var(--warning-bg);
+		color: black;
+		color: var(--warning-text);
+		padding: .75em 1em;
+		border: red;
+		border: var(--warning-border);
+		border-style: solid none;
+		box-shadow: 0 2px 8px black;
+		text-align: center;
+	}
+	.annoying-warning :last-child {
+		margin-bottom: 0;
+	}
+
+@media not print {
+	details.annoying-warning[open] {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 2em;
+		z-index: 1000;
+	}
+}
+
+	details.annoying-warning:not([open]) > summary {
+		text-align: center;
+	}
+
+/** Entity Definition Boxes ***************************************************/
+
+	.def {
+		padding: .5em 1em;
+		background: #def;
+		background: var(--def-bg);
+		margin: 1.2em 0;
+		border-left: 0.5em solid #8ccbf2;
+		border-left: 0.5em solid var(--def-border);
+		color: black;
+		color: var(--def-text);
+	}
+
+/******************************************************************************/
+/*                                    Tables                                  */
+/******************************************************************************/
+
+	th, td {
+		text-align: left;
+		text-align: start;
+	}
+
+/** Property/Descriptor Definition Tables *************************************/
+
+	table.def {
+		/* inherits .def box styling, see above */
+		width: 100%;
+		border-spacing: 0;
+	}
+
+	table.def td,
+	table.def th {
+		padding: 0.5em;
+		vertical-align: baseline;
+		border-bottom: 1px solid #bbd7e9;
+		border-bottom: 1px solid var(--defrow-border);
+	}
+
+	table.def > tbody > tr:last-child th,
+	table.def > tbody > tr:last-child td {
+		border-bottom: 0;
+	}
+
+	table.def th {
+		font-style: italic;
+		font-weight: normal;
+		padding-left: 1em;
+		width: 3em;
+	}
+
+	/* For when values are extra-complex and need formatting for readability */
+	table td.pre {
+		white-space: pre-wrap;
+	}
+
+	/* A footnote at the bottom of a def table */
+	table.def td.footnote {
+		padding-top: 0.6em;
+	}
+	table.def td.footnote::before {
+		content: " ";
+		display: block;
+		height: 0.6em;
+		width: 4em;
+		border-top: thin solid;
+	}
+
+/** Data tables (and properly marked-up index tables) *************************/
+	/*
+		<table class="data"> highlights structural relationships in a table
+		when correct markup is used (e.g. thead/tbody, th vs. td, scope attribute)
+
+		Use class="complex data" for particularly complicated tables --
+		(This will draw more lines: busier, but clearer.)
+
+		Use class="long" on table cells with paragraph-like contents
+		(This will adjust text alignment accordingly.)
+		Alternately use class="longlastcol" on tables, to have the last column assume "long".
+	*/
+
+	table {
+		word-wrap: normal;
+		overflow-wrap: normal;
+		hyphens: manual;
+	}
+
+	table.data,
+	table.index {
+		margin: 1em auto;
+		border-collapse: collapse;
+		border: hidden;
+		width: 100%;
+	}
+	table.data caption,
+	table.index caption {
+		max-width: 50em;
+		margin: 0 auto 1em;
+	}
+
+	table.data td,  table.data th,
+	table.index td, table.index th {
+		padding: 0.5em 1em;
+		border-width: 1px;
+		border-color: silver;
+		border-color: var(--datacell-border);
+		border-top-style: solid;
+	}
+
+	table.data thead td:empty {
+		padding: 0;
+		border: 0;
+	}
+
+	table.data  thead,
+	table.index thead,
+	table.data  tbody,
+	table.index tbody {
+		border-bottom: 2px solid;
+	}
+
+	table.data colgroup,
+	table.index colgroup {
+		border-left: 2px solid;
+	}
+
+	table.data  tbody th:first-child,
+	table.index tbody th:first-child  {
+		border-right: 2px solid;
+		border-top: 1px solid silver;
+		border-top: 1px solid var(--datacell-border);
+		padding-right: 1em;
+	}
+
+	table.data th[colspan],
+	table.data td[colspan] {
+		text-align: center;
+	}
+
+	table.complex.data th,
+	table.complex.data td {
+		border: 1px solid silver;
+		border: 1px solid var(--datacell-border);
+		text-align: center;
+	}
+
+	table.data.longlastcol td:last-child,
+	table.data td.long {
+		vertical-align: baseline;
+		text-align: left;
+	}
+
+	table.data img {
+		vertical-align: middle;
+	}
+
+
+/*
+Alternate table alignment rules
+
+	table.data,
+	table.index {
+		text-align: center;
+	}
+
+	table.data  thead th[scope="row"],
+	table.index thead th[scope="row"] {
+		text-align: right;
+	}
+
+	table.data  tbody th:first-child,
+	table.index tbody th:first-child  {
+		text-align: right;
+	}
+
+Possible extra rowspan handling
+
+	table.data  tbody th[rowspan]:not([rowspan='1']),
+	table.index tbody th[rowspan]:not([rowspan='1']),
+	table.data  tbody td[rowspan]:not([rowspan='1']),
+	table.index tbody td[rowspan]:not([rowspan='1']) {
+		border-left: 1px solid silver;
+	}
+
+	table.data  tbody th[rowspan]:first-child,
+	table.index tbody th[rowspan]:first-child,
+	table.data  tbody td[rowspan]:first-child,
+	table.index tbody td[rowspan]:first-child{
+		border-left: 0;
+		border-right: 1px solid silver;
+	}
+*/
+
+/******************************************************************************/
+/*                                  Indices                                   */
+/******************************************************************************/
+
+
+/** Table of Contents *********************************************************/
+
+	.toc a {
+		/* More spacing; use padding to make it part of the click target. */
+		padding: 0.1rem 1px 0;
+		/* Larger, more consistently-sized click target */
+		display: block;
+		/* Switch to using border-bottom for underlines */
+		text-decoration: none;
+		border-bottom: 1px solid;
+		/* Reverse color scheme */
+		color: black;
+		color: var(--toclink-text);
+		border-color: #3980b5;
+		border-color: var(--toclink-underline);
+	}
+	.toc a:visited {
+		color: black;
+		color: var(--toclink-visited-text);
+		border-color: #054572;
+		border-color: var(--toclink-visited-underline);
+	}
+	.toc a:focus,
+	.toc a:hover {
+		background: rgba(75%, 75%, 75%, .25);
+		background: var(--a-hover-bg);
+		border-bottom-width: 3px;
+		margin-bottom: -2px;
+	}
+	.toc a:not(:focus):not(:hover) {
+		/* Allow colors to cascade through from link styling */
+		border-bottom-color: transparent;
+	}
+
+	.toc, .toc ol, .toc ul, .toc li {
+		list-style: none; /* Numbers must be inlined into source */
+		/* because generated content isn't search/selectable and markers can't do multilevel yet */
+		margin:  0;
+		padding: 0;
+	}
+	.toc {
+		line-height: 1.1em;
+	}
+
+	/* ToC not indented until third level, but font style & margins show hierarchy */
+	.toc > li			{ font-weight: bold;   }
+	.toc > li li		 { font-weight: normal; }
+	.toc > li li li	  { font-size:   95%;	}
+	.toc > li li li li	{ font-size:   90%;	}
+	.toc > li li li li li { font-size:   85%;	}
+
+	/* @supports not (display:grid) { */
+		.toc > li			{ margin: 1.5rem 0;	}
+		.toc > li li		 { margin: 0.3rem 0;	}
+		.toc > li li li	  { margin-left: 2rem;   }
+
+		/* Section numbers in a column of their own */
+		.toc .secno {
+			float: left;
+			width: 4rem;
+			white-space: nowrap;
+		}
+		.toc > li li li li .secno { font-size: 85%; }
+		.toc > li li li li li .secno { font-size: 100%; }
+
+		.toc li {
+			clear: both;
+		}
+
+		:not(li) > .toc			 { margin-left:  5rem; }
+		.toc .secno				 { margin-left: -5rem; }
+		.toc > li li li .secno	  { margin-left: -7rem; }
+		.toc > li li li li .secno	{ margin-left: -9rem; }
+		.toc > li li li li li .secno { margin-left: -11rem; }
+
+		/* Tighten up indentation in narrow ToCs */
+		@media (max-width: 30em) {
+			:not(li) > .toc			 { margin-left:  4rem; }
+			.toc .secno				 { margin-left: -4rem; }
+			.toc > li li li			 { margin-left:  1rem; }
+			.toc > li li li .secno	  { margin-left: -5rem; }
+			.toc > li li li li .secno	{ margin-left: -6rem; }
+			.toc > li li li li li .secno { margin-left: -7rem; }
+		}
+		/* Loosen it on wide screens */
+		@media screen and (min-width: 78em) {
+			body:not(.toc-inline) :not(li) > .toc			 { margin-left:  4rem; }
+			body:not(.toc-inline) .toc .secno				 { margin-left: -4rem; }
+			body:not(.toc-inline) .toc > li li li			 { margin-left:  1rem; }
+			body:not(.toc-inline) .toc > li li li .secno	  { margin-left: -5rem; }
+			body:not(.toc-inline) .toc > li li li li .secno	{ margin-left: -6rem; }
+			body:not(.toc-inline) .toc > li li li li li .secno { margin-left: -7rem; }
+	}
+	/* } */
+
+	@supports (display:grid) and (display:contents) {
+		/* Use #toc over .toc to override non-@supports rules. */
+		#toc {
+			display: grid;
+			align-content: start;
+			grid-template-columns: auto 1fr;
+			grid-column-gap: 1rem;
+			column-gap: 1rem;
+			grid-row-gap: .6rem;
+			row-gap: .6rem;
+		}
+		#toc h2 {
+			grid-column: 1 / -1;
+			margin-bottom: 0;
+		}
+		#toc ol,
+		#toc li,
+		#toc a {
+			display: contents;
+			/* Switch <a> to subgrid when supported */
+		}
+		#toc span {
+			margin: 0;
+		}
+		#toc > .toc > li > a > span {
+			/* The spans of the top-level list,
+			  comprising the first items of each top-level section. */
+			margin-top: 1.1rem;
+		}
+		#toc#toc .secno { /* Ugh, need more specificity to override base.css */
+			grid-column: 1;
+			width: auto;
+			margin-left: 0;
+		}
+		#toc .content {
+			grid-column: 2;
+			width: auto;
+			margin-right: 1rem;
+			border-bottom: 3px solid transparent;
+			margin-bottom: -3px;
+		}
+		#toc .content:hover,
+		#toc .content:focus {
+			background: rgba(75%, 75%, 75%, .25);
+			background: var(--a-hover-bg);
+			border-bottom-color: #054572;
+			border-bottom-color: var(--toclink-underline);
+		}
+		#toc li li li .content {
+			margin-left: 1rem;
+		}
+		#toc li li li li .content {
+			margin-left: 2rem;
+		}
+	}
+
+
+/** Index *********************************************************************/
+
+	/* Index Lists: Layout */
+	ul.index	  { margin-left: 0; columns: 15em; text-indent: 1em hanging; }
+	ul.index li	{ margin-left: 0; list-style: none; break-inside: avoid; }
+	ul.index li li { margin-left: 1em; }
+	ul.index dl	{ margin-top: 0; }
+	ul.index dt	{ margin: .2em 0 .2em 20px;}
+	ul.index dd	{ margin: .2em 0 .2em 40px;}
+	/* Index Lists: Typography */
+	ul.index ul,
+	ul.index dl { font-size: smaller; }
+	@media not print {
+		ul.index li a + span {
+			white-space: nowrap;
+			color: transparent; }
+		ul.index li a:hover + span,
+		ul.index li a:focus + span {
+			color: #707070;
+			color: var(--indexinfo-text);
+		}
+	}
+
+/** Index Tables *****************************************************/
+	/* See also the data table styling section, which this effectively subclasses */
+
+	table.index {
+		font-size: small;
+		border-collapse: collapse;
+		border-spacing: 0;
+		text-align: left;
+		margin: 1em 0;
+	}
+
+	table.index td,
+	table.index th {
+		padding: 0.4em;
+	}
+
+	table.index tr:hover td:not([rowspan]),
+	table.index tr:hover th:not([rowspan]) {
+		color: black;
+		color: var(--indextable-hover-text);
+		background: #f7f8f9;
+		background: var(--indextable-hover-bg);
+	}
+
+	/* The link in the first column in the property table (formerly a TD) */
+	table.index th:first-child a {
+		font-weight: bold;
+	}
+
+/** Outdated warning **********************************************************/
+
+.outdated-spec {
+	color: black;
+	color: var(--outdatedspec-text);
+	background-color: rgba(0,0,0,0.5);
+	background-color: var(--outdatedspec-bg);
+}
+
+.outdated-warning {
+	position: fixed;
+	bottom: 50%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 50%;
+	background: maroon;
+	background: var(--outdated-bg);
+	color: white;
+	color: var(--outdated-text);
+	border-radius: 1em;
+	box-shadow: 0 0 1em red;
+	box-shadow: 0 0 1em var(--outdated-shadow);
+	padding: 2em;
+	text-align: center;
+	z-index: 2;
+}
+
+.outdated-warning a {
+	color: currentcolor;
+	background: transparent;
+}
+
+.edited-rec-warning {
+	background: darkorange;
+	background: var(--editedrec-bg);
+	box-shadow: 0 0 1em;
+}
+
+.outdated-warning button {
+	color: var(--outdated-text);
+	border-radius: 1em;
+	box-shadow: 0 0 1em red;
+	box-shadow: 0 0 1em var(--outdated-shadow);
+	padding: 2em;
+	text-align: center;
+	z-index: 2;
+}
+
+.outdated-warning a {
+	color: currentcolor;
+	background: transparent;
+}
+
+.edited-rec-warning {
+	background: darkorange;
+	background: var(--editedrec-bg);
+	box-shadow: 0 0 1em;
+}
+
+.outdated-warning button {
+	position: absolute;
+	top: 0;
+	right:0;
+	margin: 0;
+	border: 0;
+	padding: 0.25em 0.5em;
+	background: transparent;
+	color: white;
+	color: var(--outdated-text);
+	font:1em sans-serif;
+	text-align:center;
+}
+
+.outdated-warning span {
+	display: block;
+}
+
+.outdated-collapsed {
+	bottom: 0;
+	border-radius: 0;
+	width: 100%;
+	padding: 0;
+}
+
+/******************************************************************************/
+/*                                    Print                                   */
+/******************************************************************************/
+
+	@media print {
+		/* Pages have their own margins. */
+		html {
+			margin: 0;
+		}
+		/* Serif for print. */
+		body {
+			font-family: serif;
+		}
+
+		.outdated-warning {
+			position: absolute;
+			border-style: solid;
+			border-color: red;
+		}
+
+		.outdated-warning input {
+			display: none;
+		}
+	}
+	@page {
+		margin: 1.5cm 1.1cm;
+	}
+
+
+
+/******************************************************************************/
+/*                             Overflow Control                               */
+/******************************************************************************/
+
+	.figure .caption, .sidefigure .caption, figcaption {
+		/* in case figure is overlarge, limit caption to 50em */
+		max-width: 50rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.overlarge {
+		/* Magic to create good item positioning:
+		  "content column" is 50ems wide at max; less on smaller screens.
+		  Extra space (after ToC + content) is empty on the right.
+
+		  1. When item < content column, centers item in column.
+		  2. When content < item < available, left-aligns.
+		  3. When item > available, fills available + scroll bar.
+		*/
+		display: grid;
+		grid-template-columns: minmax(0, 50em);
+	}
+	.overlarge > table {
+		/* limit preferred width of table */
+		max-width: 50em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@media (min-width: 55em) {
+		.overlarge {
+			margin-right: calc(13px + 26.5rem - 50vw);
+			max-width: none;
+		}
+	}
+	@media screen and (min-width: 78em) {
+		body:not(.toc-inline) .overlarge {
+			/* 30.5em body padding 50em content area */
+			margin-right: calc(40em - 50vw) !important;
+		}
+	}
+	@media screen and (min-width: 90em) {
+		body:not(.toc-inline) .overlarge {
+			/* 4em html margin 30.5em body padding 50em content area */
+			margin-right: calc(84.5em - 100vw) !important;
+		}
+	}
+
+	@media not print {
+		.overlarge {
+			overflow-x: auto;
+			/* See Lea Verou's explanation background-attachment:
+			* http://lea.verou.me/2012/04/background-attachment-local/
+			*
+			background: top left  / 4em 100% linear-gradient(to right,  #ffffff, rgba(255, 255, 255, 0)) local,
+						top right / 4em 100% linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0)) local,
+						top left  / 1em 100% linear-gradient(to right,  #c3c3c5, rgba(195, 195, 197, 0)) scroll,
+						top right / 1em 100% linear-gradient(to left, #c3c3c5, rgba(195, 195, 197, 0)) scroll,
+						white;
+			background-repeat: no-repeat;
+			*/
+		}
+	}
+</style>
+  <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
+  <link href="https://fizzstudio.github.io/technical-image-metadata/" rel="canonical">
+  <link href="./favicon.svg" rel="icon">
+  <meta content="4687687b802ece907574437047231922f59763f5" name="revision">
+<style>/* Boilerplate: style-autolinks */
+.css.css, .property.property, .descriptor.descriptor {
+    color: var(--a-normal-text);
+    font-size: inherit;
+    font-family: inherit;
+}
+.css::before, .property::before, .descriptor::before {
+    content: "‘";
+}
+.css::after, .property::after, .descriptor::after {
+    content: "’";
+}
+.property, .descriptor {
+    /* Don't wrap property and descriptor names */
+    white-space: nowrap;
+}
+.type { /* CSS value <type> */
+    font-style: italic;
+}
+pre .property::before, pre .property::after {
+    content: "";
+}
+[data-link-type="property"]::before,
+[data-link-type="propdesc"]::before,
+[data-link-type="descriptor"]::before,
+[data-link-type="value"]::before,
+[data-link-type="function"]::before,
+[data-link-type="at-rule"]::before,
+[data-link-type="selector"]::before,
+[data-link-type="maybe"]::before {
+    content: "‘";
+}
+[data-link-type="property"]::after,
+[data-link-type="propdesc"]::after,
+[data-link-type="descriptor"]::after,
+[data-link-type="value"]::after,
+[data-link-type="function"]::after,
+[data-link-type="at-rule"]::after,
+[data-link-type="selector"]::after,
+[data-link-type="maybe"]::after {
+    content: "’";
+}
+
+[data-link-type].production::before,
+[data-link-type].production::after,
+.prod [data-link-type]::before,
+.prod [data-link-type]::after {
+    content: "";
+}
+
+[data-link-type=element],
+[data-link-type=element-attr] {
+    font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-size: .9em;
+}
+[data-link-type=element]::before { content: "<" }
+[data-link-type=element]::after  { content: ">" }
+
+[data-link-type=biblio] {
+    white-space: pre;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
+/* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
+:root {
+    color-scheme: light dark;
+
+    --text: black;
+    --bg: white;
+
+    --unofficial-watermark: url(https://www.w3.org/StyleSheets/TR/2016/logos/UD-watermark);
+
+    --logo-bg: #1a5e9a;
+    --logo-active-bg: #c00;
+    --logo-text: white;
+
+    --tocnav-normal-text: #707070;
+    --tocnav-normal-bg: var(--bg);
+    --tocnav-hover-text: var(--tocnav-normal-text);
+    --tocnav-hover-bg: #f8f8f8;
+    --tocnav-active-text: #c00;
+    --tocnav-active-bg: var(--tocnav-normal-bg);
+
+    --tocsidebar-text: var(--text);
+    --tocsidebar-bg: #f7f8f9;
+    --tocsidebar-shadow: rgba(0,0,0,.1);
+    --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+    --toclink-text: var(--text);
+    --toclink-underline: #3980b5;
+    --toclink-visited-text: var(--toclink-text);
+    --toclink-visited-underline: #054572;
+
+    --heading-text: #005a9c;
+
+    --hr-text: var(--text);
+
+    --algo-border: #def;
+
+    --del-text: red;
+    --del-bg: transparent;
+    --ins-text: #080;
+    --ins-bg: transparent;
+
+    --a-normal-text: #034575;
+    --a-normal-underline: #bbb;
+    --a-visited-text: var(--a-normal-text);
+    --a-visited-underline: #707070;
+    --a-hover-bg: rgba(75%, 75%, 75%, .25);
+    --a-active-text: #c00;
+    --a-active-underline: #c00;
+
+    --blockquote-border: silver;
+    --blockquote-bg: transparent;
+    --blockquote-text: currentcolor;
+
+    --issue-border: #e05252;
+    --issue-bg: #fbe9e9;
+    --issue-text: var(--text);
+    --issueheading-text: #831616;
+
+    --example-border: #e0cb52;
+    --example-bg: #fcfaee;
+    --example-text: var(--text);
+    --exampleheading-text: #574b0f;
+
+    --note-border: #52e052;
+    --note-bg: #e9fbe9;
+    --note-text: var(--text);
+    --noteheading-text: hsl(120, 70%, 30%);
+    --notesummary-underline: silver;
+
+    --assertion-border: #aaa;
+    --assertion-bg: #eee;
+    --assertion-text: black;
+
+    --advisement-border: orange;
+    --advisement-bg: #fec;
+    --advisement-text: var(--text);
+    --advisementheading-text: #b35f00;
+
+    --warning-border: red;
+    --warning-bg: hsla(40,100%,50%,0.95);
+    --warning-text: var(--text);
+
+    --amendment-border: #330099;
+    --amendment-bg: #F5F0FF;
+    --amendment-text: var(--text);
+    --amendmentheading-text: #220066;
+
+    --def-border: #8ccbf2;
+    --def-bg: #def;
+    --def-text: var(--text);
+    --defrow-border: #bbd7e9;
+
+    --datacell-border: silver;
+
+    --indexinfo-text: #707070;
+
+    --indextable-hover-text: black;
+    --indextable-hover-bg: #f7f8f9;
+
+    --outdatedspec-bg: rgba(0, 0, 0, .5);
+    --outdatedspec-text: black;
+    --outdated-bg: maroon;
+    --outdated-text: white;
+    --outdated-shadow: red;
+
+    --editedrec-bg: darkorange;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #ddd;
+        --bg: black;
+
+        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
+
+        --logo-bg: #1a5e9a;
+        --logo-active-bg: #c00;
+        --logo-text: white;
+
+        --tocnav-normal-text: #999;
+        --tocnav-normal-bg: var(--bg);
+        --tocnav-hover-text: var(--tocnav-normal-text);
+        --tocnav-hover-bg: #080808;
+        --tocnav-active-text: #f44;
+        --tocnav-active-bg: var(--tocnav-normal-bg);
+
+        --tocsidebar-text: var(--text);
+        --tocsidebar-bg: #080808;
+        --tocsidebar-shadow: rgba(255,255,255,.1);
+        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+        --toclink-text: var(--text);
+        --toclink-underline: #6af;
+        --toclink-visited-text: var(--toclink-text);
+        --toclink-visited-underline: #054572;
+
+        --heading-text: #8af;
+
+        --hr-text: var(--text);
+
+        --algo-border: #456;
+
+        --del-text: #f44;
+        --del-bg: transparent;
+        --ins-text: #4a4;
+        --ins-bg: transparent;
+
+        --a-normal-text: #6af;
+        --a-normal-underline: #555;
+        --a-visited-text: var(--a-normal-text);
+        --a-visited-underline: var(--a-normal-underline);
+        --a-hover-bg: rgba(25%, 25%, 25%, .2);
+        --a-active-text: #f44;
+        --a-active-underline: var(--a-active-text);
+
+        --borderedblock-bg: rgba(255, 255, 255, .05);
+
+        --blockquote-border: silver;
+        --blockquote-bg: var(--borderedblock-bg);
+        --blockquote-text: currentcolor;
+
+        --issue-border: #e05252;
+        --issue-bg: var(--borderedblock-bg);
+        --issue-text: var(--text);
+        --issueheading-text: hsl(0deg, 70%, 70%);
+
+        --example-border: hsl(50deg, 90%, 60%);
+        --example-bg: var(--borderedblock-bg);
+        --example-text: var(--text);
+        --exampleheading-text: hsl(50deg, 70%, 70%);
+
+        --note-border: hsl(120deg, 100%, 35%);
+        --note-bg: var(--borderedblock-bg);
+        --note-text: var(--text);
+        --noteheading-text: hsl(120, 70%, 70%);
+        --notesummary-underline: silver;
+
+        --assertion-border: #444;
+        --assertion-bg: var(--borderedblock-bg);
+        --assertion-text: var(--text);
+
+        --advisement-border: orange;
+        --advisement-bg: #222218;
+        --advisement-text: var(--text);
+        --advisementheading-text: #f84;
+
+        --warning-border: red;
+        --warning-bg: hsla(40,100%,20%,0.95);
+        --warning-text: var(--text);
+
+        --amendment-border: #330099;
+        --amendment-bg: #080010;
+        --amendment-text: var(--text);
+        --amendmentheading-text: #cc00ff;
+
+        --def-border: #8ccbf2;
+        --def-bg: #080818;
+        --def-text: var(--text);
+        --defrow-border: #136;
+
+        --datacell-border: silver;
+
+        --indexinfo-text: #aaa;
+
+        --indextable-hover-text: var(--text);
+        --indextable-hover-bg: #181818;
+
+        --outdatedspec-bg: rgba(255, 255, 255, .5);
+        --outdatedspec-text: black;
+        --outdated-bg: maroon;
+        --outdated-text: white;
+        --outdated-shadow: red;
+
+        --editedrec-bg: darkorange;
+    }
+    /* In case a transparent-bg image doesn't expect to be on a dark bg,
+       which is quite common in practice... */
+    img { background: white; }
+}
+</style>
+<style>/* Boilerplate: style-counters */
+body {
+    counter-reset: example figure issue;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
+}
+
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}
+</style>
+<style>/* Boilerplate: style-issues */
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+<style>/* Boilerplate: style-md-lists */
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}
+</style>
+<style>/* Boilerplate: style-selflinks */
+:root {
+    --selflink-text: white;
+    --selflink-bg: gray;
+    --selflink-hover-text: black;
+}
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--selflink-bg);
+    color: var(--selflink-text);
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: var(--selflink-hover-text);
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }
+</style>
+<style>/* Boilerplate: style-syntax-highlighting */
+code.highlight { padding: .1em; border-radius: .3em; }
+pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
+
+.highlight:not(.idl) { background: rgba(0, 0, 0, .03); }
+c-[a] { color: #990055 } /* Keyword.Declaration */
+c-[b] { color: #990055 } /* Keyword.Type */
+c-[c] { color: #708090 } /* Comment */
+c-[d] { color: #708090 } /* Comment.Multiline */
+c-[e] { color: #0077aa } /* Name.Attribute */
+c-[f] { color: #669900 } /* Name.Tag */
+c-[g] { color: #222222 } /* Name.Variable */
+c-[k] { color: #990055 } /* Keyword */
+c-[l] { color: #000000 } /* Literal */
+c-[m] { color: #000000 } /* Literal.Number */
+c-[n] { color: #0077aa } /* Name */
+c-[o] { color: #999999 } /* Operator */
+c-[p] { color: #999999 } /* Punctuation */
+c-[s] { color: #a67f59 } /* Literal.String */
+c-[t] { color: #a67f59 } /* Literal.String.Single */
+c-[u] { color: #a67f59 } /* Literal.String.Double */
+c-[cp] { color: #708090 } /* Comment.Preproc */
+c-[c1] { color: #708090 } /* Comment.Single */
+c-[cs] { color: #708090 } /* Comment.Special */
+c-[kc] { color: #990055 } /* Keyword.Constant */
+c-[kn] { color: #990055 } /* Keyword.Namespace */
+c-[kp] { color: #990055 } /* Keyword.Pseudo */
+c-[kr] { color: #990055 } /* Keyword.Reserved */
+c-[ld] { color: #000000 } /* Literal.Date */
+c-[nc] { color: #0077aa } /* Name.Class */
+c-[no] { color: #0077aa } /* Name.Constant */
+c-[nd] { color: #0077aa } /* Name.Decorator */
+c-[ni] { color: #0077aa } /* Name.Entity */
+c-[ne] { color: #0077aa } /* Name.Exception */
+c-[nf] { color: #0077aa } /* Name.Function */
+c-[nl] { color: #0077aa } /* Name.Label */
+c-[nn] { color: #0077aa } /* Name.Namespace */
+c-[py] { color: #0077aa } /* Name.Property */
+c-[ow] { color: #999999 } /* Operator.Word */
+c-[mb] { color: #000000 } /* Literal.Number.Bin */
+c-[mf] { color: #000000 } /* Literal.Number.Float */
+c-[mh] { color: #000000 } /* Literal.Number.Hex */
+c-[mi] { color: #000000 } /* Literal.Number.Integer */
+c-[mo] { color: #000000 } /* Literal.Number.Oct */
+c-[sb] { color: #a67f59 } /* Literal.String.Backtick */
+c-[sc] { color: #a67f59 } /* Literal.String.Char */
+c-[sd] { color: #a67f59 } /* Literal.String.Doc */
+c-[se] { color: #a67f59 } /* Literal.String.Escape */
+c-[sh] { color: #a67f59 } /* Literal.String.Heredoc */
+c-[si] { color: #a67f59 } /* Literal.String.Interpol */
+c-[sx] { color: #a67f59 } /* Literal.String.Other */
+c-[sr] { color: #a67f59 } /* Literal.String.Regex */
+c-[ss] { color: #a67f59 } /* Literal.String.Symbol */
+c-[vc] { color: #0077aa } /* Name.Variable.Class */
+c-[vg] { color: #0077aa } /* Name.Variable.Global */
+c-[vi] { color: #0077aa } /* Name.Variable.Instance */
+c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
+
+@media (prefers-color-scheme: dark) {
+    .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
+
+    c-[a] { color: #d33682 } /* Keyword.Declaration */
+    c-[b] { color: #d33682 } /* Keyword.Type */
+    c-[c] { color: #2aa198 } /* Comment */
+    c-[d] { color: #2aa198 } /* Comment.Multiline */
+    c-[e] { color: #268bd2 } /* Name.Attribute */
+    c-[f] { color: #b58900 } /* Name.Tag */
+    c-[g] { color: #cb4b16 } /* Name.Variable */
+    c-[k] { color: #d33682 } /* Keyword */
+    c-[l] { color: #657b83 } /* Literal */
+    c-[m] { color: #657b83 } /* Literal.Number */
+    c-[n] { color: #268bd2 } /* Name */
+    c-[o] { color: #657b83 } /* Operator */
+    c-[p] { color: #657b83 } /* Punctuation */
+    c-[s] { color: #6c71c4 } /* Literal.String */
+    c-[t] { color: #6c71c4 } /* Literal.String.Single */
+    c-[u] { color: #6c71c4 } /* Literal.String.Double */
+    c-[ch] { color: #2aa198 } /* Comment.Hashbang */
+    c-[cp] { color: #2aa198 } /* Comment.Preproc */
+    c-[cpf] { color: #2aa198 } /* Comment.PreprocFile */
+    c-[c1] { color: #2aa198 } /* Comment.Single */
+    c-[cs] { color: #2aa198 } /* Comment.Special */
+    c-[kc] { color: #d33682 } /* Keyword.Constant */
+    c-[kn] { color: #d33682 } /* Keyword.Namespace */
+    c-[kp] { color: #d33682 } /* Keyword.Pseudo */
+    c-[kr] { color: #d33682 } /* Keyword.Reserved */
+    c-[ld] { color: #657b83 } /* Literal.Date */
+    c-[nc] { color: #268bd2 } /* Name.Class */
+    c-[no] { color: #268bd2 } /* Name.Constant */
+    c-[nd] { color: #268bd2 } /* Name.Decorator */
+    c-[ni] { color: #268bd2 } /* Name.Entity */
+    c-[ne] { color: #268bd2 } /* Name.Exception */
+    c-[nf] { color: #268bd2 } /* Name.Function */
+    c-[nl] { color: #268bd2 } /* Name.Label */
+    c-[nn] { color: #268bd2 } /* Name.Namespace */
+    c-[py] { color: #268bd2 } /* Name.Property */
+    c-[ow] { color: #657b83 } /* Operator.Word */
+    c-[mb] { color: #657b83 } /* Literal.Number.Bin */
+    c-[mf] { color: #657b83 } /* Literal.Number.Float */
+    c-[mh] { color: #657b83 } /* Literal.Number.Hex */
+    c-[mi] { color: #657b83 } /* Literal.Number.Integer */
+    c-[mo] { color: #657b83 } /* Literal.Number.Oct */
+    c-[sa] { color: #6c71c4 } /* Literal.String.Affix */
+    c-[sb] { color: #6c71c4 } /* Literal.String.Backtick */
+    c-[sc] { color: #6c71c4 } /* Literal.String.Char */
+    c-[dl] { color: #6c71c4 } /* Literal.String.Delimiter */
+    c-[sd] { color: #6c71c4 } /* Literal.String.Doc */
+    c-[se] { color: #6c71c4 } /* Literal.String.Escape */
+    c-[sh] { color: #6c71c4 } /* Literal.String.Heredoc */
+    c-[si] { color: #6c71c4 } /* Literal.String.Interpol */
+    c-[sx] { color: #6c71c4 } /* Literal.String.Other */
+    c-[sr] { color: #6c71c4 } /* Literal.String.Regex */
+    c-[ss] { color: #6c71c4 } /* Literal.String.Symbol */
+    c-[fm] { color: #268bd2 } /* Name.Function.Magic */
+    c-[vc] { color: #cb4b16 } /* Name.Variable.Class */
+    c-[vg] { color: #cb4b16 } /* Name.Variable.Global */
+    c-[vi] { color: #cb4b16 } /* Name.Variable.Instance */
+    c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
+    c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
+}
+</style>
+ <body class="h-entry">
+  <div class="head">
+   <p data-fill-with="logo"></p>
+   <h1 class="p-name no-ref" id="title">Technical Image Metadata</h1>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-02-07">7 February 2024</time></span></h2>
+   <div data-fill-with="spec-metadata">
+    <dl>
+     <dt>This version:
+     <dd><a class="u-url" href="https://fizzstudio.github.io/technical-image-metadata/">https://fizzstudio.github.io/technical-image-metadata/</a>
+     <dt>Issue Tracking:
+     <dd><a href="https://github.com/fizzstudio/technical-image-metadata/issues/">GitHub</a>
+     <dt class="editor">Editor:
+     <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
+    </dl>
+   </div>
+   <div data-fill-with="warning"></div>
+   <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
+and related or neighboring rights to this work.
+In addition, as of 7 February 2024,
+the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
+which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
+Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
+   <hr title="Separator for header">
+  </div>
+  <div class="p-summary" data-fill-with="abstract">
+   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
+   <p>A specifiction for expressing technical image metadata, with an emphasis on accessibility of data visualizations.</p>
+  </div>
+  <div data-fill-with="at-risk"></div>
+  <nav data-fill-with="table-of-contents" id="toc">
+   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
+   <ol class="toc" role="directory">
+    <li>
+     <a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
+     <ol class="toc">
+      <li><a href="#motivation"><span class="secno">1.1</span> <span class="content">Motivation</span></a>
+     </ol>
+    <li>
+     <a href="#goals"><span class="secno">2</span> <span class="content">Goals</span></a>
+     <ol class="toc">
+      <li><a href="#interoperability"><span class="secno">2.1</span> <span class="content">Interoperability</span></a>
+      <li><a href="#personalization"><span class="secno">2.2</span> <span class="content">Personalization</span></a>
+      <li><a href="#security"><span class="secno">2.3</span> <span class="content">Security</span></a>
+      <li><a href="#privacy"><span class="secno">2.4</span> <span class="content">Privacy</span></a>
+      <li><a href="#portability"><span class="secno">2.5</span> <span class="content">Portability</span></a>
+      <li><a href="#reuseability"><span class="secno">2.6</span> <span class="content">Reuseability</span></a>
+      <li><a href="#familiarity"><span class="secno">2.7</span> <span class="content">Familiarity</span></a>
+      <li><a href="#flexibility"><span class="secno">2.8</span> <span class="content">Flexibility</span></a>
+      <li><a href="#searching_categorization"><span class="secno">2.9</span> <span class="content">Searching and categorization</span></a>
+      <li><a href="#provenance_expression"><span class="secno">2.10</span> <span class="content">Provenance expression</span></a>
+      <li>
+       <a href="#nongoals"><span class="secno">2.11</span> <span class="content">Non-goals</span></a>
+       <ol class="toc">
+        <li><a href="#formal_semantics_namespaces"><span class="secno">2.11.1</span> <span class="content">Formal semantics and namespaces</span></a>
+        <li><a href="#generic_styling"><span class="secno">2.11.2</span> <span class="content">Generic styling</span></a>
+       </ol>
+     </ol>
+    <li>
+     <a href="#schema"><span class="secno">3</span> <span class="content">Schema</span></a>
+     <ol class="toc">
+      <li><a href="#external_files"><span class="secno">3.1</span> <span class="content">External files</span></a>
+      <li>
+       <a href="#data"><span class="secno">3.2</span> <span class="content">Data</span></a>
+       <ol class="toc">
+        <li><a href="#href_data_block"><span class="secno">3.2.1</span> <span class="content">The <code>href</code> key in a <code>data</code> block</span></a>
+        <li>
+         <a href="#inline_data"><span class="secno">3.2.2</span> <span class="content">Inline data</span></a>
+         <ol class="toc">
+          <li><a href="#linking_data"><span class="secno">3.2.2.1</span> <span class="content">Linking data and representational elements</span></a>
+         </ol>
+        <li><a href="#external_re"><span class="secno">3.2.3</span> <span class="content">External reference</span></a>
+       </ol>
+      <li>
+       <a href="#provenance"><span class="secno">3.3</span> <span class="content">Provenance</span></a>
+       <ol class="toc">
+        <li><a href="#notes"><span class="secno">3.3.1</span> <span class="content">Notes</span></a>
+       </ol>
+      <li>
+       <a href="#tags"><span class="secno">3.4</span> <span class="content">Tags</span></a>
+       <ol class="toc">
+        <li><a href="#keywords"><span class="secno">3.4.1</span> <span class="content">Keywords</span></a>
+        <li><a href="#capabilities_ratings"><span class="secno">3.4.2</span> <span class="content">Capabilities and ratings</span></a>
+       </ol>
+      <li>
+       <a href="#behaviors"><span class="secno">3.5</span> <span class="content">Behaviors</span></a>
+       <ol class="toc">
+        <li><a href="#haptics"><span class="secno">3.5.1</span> <span class="content">Haptics</span></a>
+        <li><a href="#sonification"><span class="secno">3.5.2</span> <span class="content">Sonification</span></a>
+        <li><a href="#high_contrast"><span class="secno">3.5.3</span> <span class="content">High contrast</span></a>
+        <li><a href="#voicing"><span class="secno">3.5.4</span> <span class="content">Voicing</span></a>
+        <li>
+         <a href="#tactiles"><span class="secno">3.5.5</span> <span class="content">Tactiles</span></a>
+         <ol class="toc">
+          <li><a href="#refreshable_displays"><span class="secno">3.5.5.1</span> <span class="content">Refreshable displays</span></a>
+          <li><a href="#embossing"><span class="secno">3.5.5.2</span> <span class="content">Embossing</span></a>
+         </ol>
+       </ol>
+     </ol>
+    <li>
+     <a href="#tech_relationship"><span class="secno">4</span> <span class="content">Relationship to other technologies</span></a>
+     <ol class="toc">
+      <li><a href="#svg"><span class="secno">4.1</span> <span class="content">Scalable Vector Graphics (SVG)</span></a>
+      <li>
+       <a href="#css"><span class="secno">4.2</span> <span class="content">Cascading Style Sheets (CSS)</span></a>
+       <ol class="toc">
+        <li><a href="#css_format"><span class="secno">4.2.1</span> <span class="content">CSS format</span></a>
+        <li><a href="#css_selectors"><span class="secno">4.2.2</span> <span class="content">CSS selectors</span></a>
+        <li><a href="#intended_authoring"><span class="secno">4.2.3</span> <span class="content">Intended authoring usage</span></a>
+        <li><a href="#css_conflicts"><span class="secno">4.2.4</span> <span class="content">Conflicts</span></a>
+        <li><a href="#future_css"><span class="secno">4.2.5</span> <span class="content">Future adoption and integration into CSS</span></a>
+       </ol>
+     </ol>
+    <li>
+     <a href="#definitions"><span class="secno">5</span> <span class="content">Definitions</span></a>
+     <ol class="toc">
+      <li><a href="#rule"><span class="secno">5.1</span> <span class="content">rule</span></a>
+      <li><a href="#media_query"><span class="secno">5.2</span> <span class="content">media query</span></a>
+      <li><a href="#selector"><span class="secno">5.3</span> <span class="content">selector</span></a>
+      <li><a href="#user"><span class="secno">5.4</span> <span class="content">user</span></a>
+      <li><a href="#end_user"><span class="secno">5.5</span> <span class="content">end user</span></a>
+      <li><a href="#user_agent"><span class="secno">5.6</span> <span class="content">user agent</span></a>
+     </ol>
+    <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
+    <li>
+     <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
+     <ol class="toc">
+      <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
+      <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
+     </ol>
+   </ol>
+  </nav>
+  <main>
+   <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
+   <p>This specification defines a structured metadata schema for image documents to express information, data, and behaviors related to the visual image, with a particular emphasis on accessibility. The metadata includes raw data, provenance information, and predefined behaviors for assistive technology techniques, such as haptics, sonification, tactiles, high contrast, voicing, braille, and more.</p>
+   <p>The metadata is aimed primarily at data visualizations such as charts, graphs, diagrams and other information graphics, but can also be used for related purposes in any image.</p>
+   <p>It is intended for use with a structured graphics markup such as Scalable Vector Graphics (SVG), but could be embedded in and applied to any image format, including raster images and 3D-printed objects and scenes.</p>
+   <h3 class="heading settled" data-level="1.1" id="motivation"><span class="secno">1.1. </span><span class="content">Motivation</span><a class="self-link" href="#motivation"></a></h3>
+   <p>This specification was written to help unify and standardize accessible graphics, and to enable systemic experimentation with assistive technology techniques. By defining the way techniques such as haptics, sonification, and tactiles are expressed in a declarative way, the parameters can be explored and tested with users to ensure ease of consistent authoring and interoperable behavior across different assistive technology readers and devices.</p>
+   <p>By standardizing the accessibility features of a document, we enable users (such as people with disabilities, or teachers or caregivers of people with disabilities) to easily find content that matches their needs, or to find content they want to adapt or have adapted for their needs. This provides a meaningful path towards the curation, creation, and adaptation of accessible content, which is one of the primary gaps in accessibility today, particularly in education.</p>
+   <p>Of particular note is support for hybrid physical-digital documents, such as printed or embossed images that are overlaid on a touch screen where the digital equivalent is mirrored, so that a tactile experience can be enhanced with haptics or voicing. Similarly, a 3D-printed object could be used with a camera scanner to associate sections of the object with specific metadata.</p>
+   <p>This specification uses familiar technologies such as JSON <a data-link-type="biblio" href="#biblio-json-schema" title="JSON Schema: A Media Type for Describing JSON Documents">[JSON-Schema]</a> and CSS Selectors <a data-link-type="biblio" href="#biblio-selectors-4" title="Selectors Level 4">[Selectors-4]</a>, for ease of implementation and authoring.</p>
+   <h2 class="heading settled" data-level="2" id="goals"><span class="secno">2. </span><span class="content">Goals</span><a class="self-link" href="#goals"></a></h2>
+   <h3 class="heading settled" data-level="2.1" id="interoperability"><span class="secno">2.1. </span><span class="content">Interoperability</span><a class="self-link" href="#interoperability"></a></h3>
+   <p>This specification should be complete and definitive with the state of the art, to prevent the need for additional or competing specifications that would decrease interoperability.</p>
+   <h3 class="heading settled" data-level="2.2" id="personalization"><span class="secno">2.2. </span><span class="content">Personalization</span><a class="self-link" href="#personalization"></a></h3>
+   <p>This assistive technology must enable the user to select which of the available accomodations are enabled at any time, and at which available effect level. This must be able to set as a default in the user agent, and must be overrideable by the user to meet their specific need at any time.</p>
+   <p>Any given end-user might have multiple disabilities, with varying degrees of effect at any given time; any given document might have multiple accomodations enabled and encoded in it; any given user agent might suport multiple assistive technologies; any given environment might have different affordances and constraints.</p>
+   <div class="example" id="xmp_low_vision_high_contrast"><a class="self-link" href="#xmp_low_vision_high_contrast"></a> A low vision user might wish to enable very high contrast in a bright environment or when they are tired, and lower contrast when they are in a more moderately lighted environment and well-rested. </div>
+   <div class="example" id="xmp_blind_env_conditions"><a class="self-link" href="#xmp_blind_env_conditions"></a> A blind user might wish to enable haptics and braille output when they are in a quiet zone or noisy environment, and sonification and spoken output when they are in a private, quiet environment. </div>
+   <h3 class="heading settled" data-level="2.3" id="security"><span class="secno">2.3. </span><span class="content">Security</span><a class="self-link" href="#security"></a></h3>
+   <p>The distribution of interactive content presents a conflict between innovative capabilities and user security. In the web platform, most advanced interactivity can only be achieved through JavaScript, but allowing JavaScript in a file opens the user’s system up to possible security holes.</p>
+   <p>This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as conent management systems or email servers) might strip out the script element, disabling the interactivity of the content.</p>
+   <p>By defining a set of declarative syntaxes for different assistive technologies, including parameters and conditional execution triggers, this specification enables the user agent to provide the interactivity defined by the author, without compromising security. This specification refers to such declarative capabilities as "behaviors".</p>
+   <h3 class="heading settled" data-level="2.4" id="privacy"><span class="secno">2.4. </span><span class="content">Privacy</span><a class="self-link" href="#privacy"></a></h3>
+   <p>By enabling security through declarative behaviors, this specification ensures the privacy of the user from third parties. Note that data collection might still be performed through some primary user agents and content providers, but this should be done only with the user’s consent.</p>
+   <h3 class="heading settled" data-level="2.5" id="portability"><span class="secno">2.5. </span><span class="content">Portability</span><a class="self-link" href="#portability"></a></h3>
+   <p>Data visualizations can often lose their association with their context, including the article they were published in or the data they represent. This specification must define a way to include the raw data and the provenance in the image file, so the context can be preserved as the document is shared through various means.</p>
+   <h3 class="heading settled" data-level="2.6" id="reuseability"><span class="secno">2.6. </span><span class="content">Reuseability</span><a class="self-link" href="#reuseability"></a></h3>
+   <p>This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, creaste different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.</p>
+   <p>In addition, a visual image can be enhanced with different metadata to serve a different purpose, such as providing a different set of descriptions for an audience at different reading levels, or translating the document into another language.</p>
+   <h3 class="heading settled" data-level="2.7" id="familiarity"><span class="secno">2.7. </span><span class="content">Familiarity</span><a class="self-link" href="#familiarity"></a></h3>
+   <p>Document technologies are most useful when the syntax and model is familiar and unambiguous. This allows for ease of implementation, increased interoperability, and ease of authoring. This specification should use common technologies like JSON and CSS as its underpinnings.</p>
+   <h3 class="heading settled" data-level="2.8" id="flexibility"><span class="secno">2.8. </span><span class="content">Flexibility</span><a class="self-link" href="#flexibility"></a></h3>
+   <p>This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accomodate other techniques in the future.</p>
+   <p>At the same time, this specification should establish defaults and baselines based on best practices, wherever possible, to encourage good authoring and normalize user experience.</p>
+   <h3 class="heading settled" data-level="2.9" id="searching_categorization"><span class="secno">2.9. </span><span class="content">Searching and categorization</span><a class="self-link" href="#searching_categorization"></a></h3>
+   <p>This specification must define easy ways to enable the distribution and discovery of content based on user needs and accomodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.</p>
+   <h3 class="heading settled" data-level="2.10" id="provenance_expression"><span class="secno">2.10. </span><span class="content">Provenance expression</span><a class="self-link" href="#provenance_expression"></a></h3>
+   <p>Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more cotent by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be share, wile also providing credit to the original author or publisher.</p>
+   <h3 class="heading settled" data-level="2.11" id="nongoals"><span class="secno">2.11. </span><span class="content">Non-goals</span><a class="self-link" href="#nongoals"></a></h3>
+   <h4 class="heading settled" data-level="2.11.1" id="formal_semantics_namespaces"><span class="secno">2.11.1. </span><span class="content">Formal semantics and namespaces</span><a class="self-link" href="#formal_semantics_namespaces"></a></h4>
+   <p>While namespaces allow a flexible extensibility and modularity, they also hamper and complicate authoring and reading. This document will avoid the use of namespaces, and related technologies such as JSON-LD. Future supplements to this specification might define a JSON-LD schema, if demand exists for it.</p>
+   <h4 class="heading settled" data-level="2.11.2" id="generic_styling"><span class="secno">2.11.2. </span><span class="content">Generic styling</span><a class="self-link" href="#generic_styling"></a></h4>
+   <p>While this specification does includes some accessibility-specific extensions of CSS, such as a finer control of color contrast settings, it must not define or be used to supercede CSS.</p>
+   <h2 class="heading settled" data-level="3" id="schema"><span class="secno">3. </span><span class="content">Schema</span><a class="self-link" href="#schema"></a></h2>
+   <div class="note" role="note"> Note that the examples below are notional, and intended for illustrative purposes. They are not a formal definition. The final definitions will likely be expressed in <a data-link-type="biblio" href="#biblio-json-schema" title="JSON Schema: A Media Type for Describing JSON Documents">[JSON-Schema]</a>, and will include data types for each member. </div>
+   <p>This vocabulary is defined in terms of "blocks", or objects identified by a key with a defined set of optional sub-keys. This includes the <code>data</code>, <code>provenance</code>, <code>tags</code>, and <code>behaviors</code> blocks.</p>
+<pre class="language-json highlight"><c- p>{</c->
+  <c- f>"data"</c-><c- p>:</c-> <c- p>{</c->
+  <c- p>},</c->
+  <c- f>"provenance"</c-><c- p>:</c-> <c- p>{</c->
+  <c- p>},</c->
+  <c- f>"tags"</c-><c- p>:</c-> <c- p>{</c->
+  <c- p>},</c->
+  <c- f>"behaviors"</c-><c- p>:</c-> <c- p>{</c->
+  <c- p>},</c->
+  <c- f>"href"</c-><c- p>:</c-> <c- p>{</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   <h3 class="heading settled" data-level="3.1" id="external_files"><span class="secno">3.1. </span><span class="content">External files</span><a class="self-link" href="#external_files"></a></h3>
+   <p>A metadata object can be inline in the file, or referenced as an external file, in whole or in part. There are several reasons to support external metadata files. Two major use cases include size restrictions and shared resources.</p>
+   <p>Size restrictions: While including the raw data in the image is a best practice, sometimes a dataset is simply too large to pragmatically include inline. In this case, referencing a raw data file is the best practical approach.</p>
+   <p>Shared resources: An author might wish to share a common metadata file or set of files for a set of image documents. This allows the metadata files to be updated independently, reduces duplication and file size, enables cacheing in the user agent, and allows for a modular approach with well-tested rules.</p>
+   <p>The <code>href</code> key defines an object that refers to an external file. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file, with the exception of the <code>data</code> block.</p>
+   <p>If an external metadata file contains rules that duplicate or conflict with rules defined in the inline metadata, the inline metadata takes precendence. This allows for customization of specific images while relying on generic common rules.</p>
+   <p>An <code>href</code> key may be included at any level of the metadata, with the relevant key string as the attribute key and a valid URL string as the value for that attribute.</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"href"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"data"</c-><c- p>:</c-> <c- u>"https://path.to.data"</c-><c- p>,</c->
+    <c- f>"provenance"</c-><c- p>:</c-> <c- u>"https://path.to.provenance"</c-><c- p>,</c->
+    <c- f>"tags"</c-><c- p>:</c-> <c- u>"https://path.to.tags"</c-><c- p>,</c->
+    <c- f>"behaviors"</c-><c- p>:</c-> <c- u>"https://path.to.behaviors"</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   <p>An additional default key is defined for referring to a single external metadata file that contains all the metadata blocks. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file.</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"href"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"default"</c-><c- p>:</c-> <c- u>"https://path.to.metadata"</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   <h3 class="heading settled" data-level="3.2" id="data"><span class="secno">3.2. </span><span class="content">Data</span><a class="self-link" href="#data"></a></h3>
+   <p>Data refers to the raw data which the image represents.</p>
+   <p>There are two ways to link the data to the image file: inline; and external reference. These methods can be used together in some ways, defined below.</p>
+   <p>A <code>data</code> block is an object with the key <code>data</code>.</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"data"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"title"</c-><c- p>:</c-> <c- p>{</c->
+    <c- p>},</c->
+    <c- f>"subtitle"</c-><c- p>:</c-> <c- p>{</c->
+    <c- p>},</c->
+    <c- f>"source"</c-><c- p>:</c-> <c- p>{</c->
+    <c- p>},</c->
+    <c- f>"axes"</c-><c- p>:</c-> <c- p>{</c->
+    <c- p>},</c->
+    <c- f>"series"</c-><c- p>:</c-> <c- p>{</c->
+    <c- p>},</c->
+    <c- f>"href"</c-><c- p>:</c-> <c- p>{</c->
+    <c- p>}</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   <p>The individual entries of the <code>data</code> block are defined in [Inline data].</p>
+   <h4 class="heading settled" data-level="3.2.1" id="href_data_block"><span class="secno">3.2.1. </span><span class="content">The <code>href</code> key in a <code>data</code> block</span><a class="self-link" href="#href_data_block"></a></h4>
+   <p>The <code>href</code> key defines an object that refers to an external data file. The content model and processing of the <code>href</code> key are different in the <code>data</code> block than in other metadata blocks.</p>
+   <p>This external file can be used to link data to graphical elements, as defined in [Inline data].</p>
+   <h4 class="heading settled" data-level="3.2.2" id="inline_data"><span class="secno">3.2.2. </span><span class="content">Inline data</span><a class="self-link" href="#inline_data"></a></h4>
+   <p>If a dataset is fairly small, it is best to include it in the image file directly.</p>
+   <h5 class="heading settled" data-level="3.2.2.1" id="linking_data"><span class="secno">3.2.2.1. </span><span class="content">Linking data and representational elements</span><a class="self-link" href="#linking_data"></a></h5>
+   <div class="note" role="note"> <b>Note:<b> We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data. </b></b></div>
+   <b><b> <h4 class="heading settled" data-level="3.2.3" id="external_re"><span class="secno">3.2.3. </span><span class="content">External reference</span><a class="self-link" href="#external_re"></a></h4> <div class="note" role="note"> <b>Note:<b> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data that is being represented is the metadata. </b></b></div><b><b> <h3 class="heading settled" data-level="3.3" id="provenance"><span class="secno">3.3. </span><span class="content">Provenance</span><a class="self-link" href="#provenance"></a></h3> <p>Provenance describes where a document came from. This includes entries such as authors, organizations, data and time created or modified, where it was first published, the title of the paper or article it supplemented, or the original work on which it was based.</p> <p>A <code>provenance</code> block is an object with the key <code>provenance</code>.</p> <pre class="highlight"><c- p>{</c->
+  <c- f>"provenance"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"notes"</c-><c- p>:</c-> <c- p>{</c->
+      <c- u>"item 1"</c-><c- p>,</c->
+      <c- u>"item 2"</c->
+    <c- p>}</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre> <h4 class="heading settled" data-level="3.3.1" id="notes"><span class="secno">3.3.1. </span><span class="content">Notes</span><a class="self-link" href="#notes"></a></h4> <p>The notes key defines an array where any details not covered by specific keys can be identified. This might include the name of the organization or individuals who sponsored the work, a dedications to a meaningful person in the author’s life, and so on.</p> <p>Each item should be a quoted string separated by a comma.</p> <pre class="highlight"><c- p>{</c->
+  <c- f>"provenance"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"notes"</c-><c- p>:</c-> <c- p>[</c->
+      <c- u>"item 1"</c-><c- p>,</c->
+      <c- u>"item 2"</c->
+    <c- p>]</c->
+  <c- p>}</c->
+<c- p>}</c->  
+</pre> <h3 class="heading settled" data-level="3.4" id="tags"><span class="secno">3.4. </span><span class="content">Tags</span><a class="self-link" href="#tags"></a></h3> <p>Tags are a way to categorize the file, either by the the content, by the capabilities, or by a rating system, or some combination thereof.</p> <p>Tags are used to aid in the filtering and searching for content.</p> <h4 class="heading settled" data-level="3.4.1" id="keywords"><span class="secno">3.4.1. </span><span class="content">Keywords</span><a class="self-link" href="#keywords"></a></h4> <p>The keywords key denotes an array of user-defined strings. Examples of keywords include labels from a folksonomy, terms defined in a formal document, steps in a workflow process, short descriptions of items depicted in the image, or any other strings.</p> <pre class="highlight"><c- p>{</c->
+  <c- f>"tags"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"keywords"</c-><c- p>:</c-> <c- p>[</c->
+      <c- u>"barchart"</c-><c- p>,</c->
+      <c- u>"design_phase"</c-><c- p>,</c->
+      <c- u>"unreviewed"</c-><c- p>,</c->
+      <c- u>"needs_braille"</c->
+    <c- p>]</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre> <h4 class="heading settled" data-level="3.4.2" id="capabilities_ratings"><span class="secno">3.4.2. </span><span class="content">Capabilities and ratings</span><a class="self-link" href="#capabilities_ratings"></a></h4> <div class="note" role="note"> <b>Note:<b> This is a rough notion of how we might define </b></b></div><b><b> <p>The capabilities key denotes an object that includes which accomodations have been defined in the image document, and some system of rating that scores the effectiveness of that accomodation.</p> <p>Each capability defines an array of capability instances, each of which consists of a least a condition of applicability, and a rating.</p> <pre class="highlight"><c- p>{</c->
+  <c- f>"capabilities"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"haptic"</c-><c- p>:</c-> <c- p>[</c->
+      <c- p>{</c->
+        <c- f>"condition"</c-><c- p>:</c-> <c- u>"(insert haptic device capability here)"</c-><c- p>,</c->
+        <c- f>"ratings"</c-><c- p>:</c-> <c- p>[</c->
+          <c- p>{</c->
+            <c- f>"user"</c-><c- p>:</c-> <c- u>"Devin C."</c-><c- p>,</c->
+            <c- f>"username"</c-><c- p>:</c-> <c- u>"dev"</c-><c- p>,</c->
+            <c- f>"rating"</c-><c- p>:</c-> <c- u>"7"</c-><c- p>,</c->
+            <c- f>"comments"</c-><c- p>:</c-> <c- u>"Works well on device X, but not device Y"</c->
+          <c- p>}</c->
+        <c- p>]</c->
+      <c- p>}</c->
+    <c- p>],</c->
+    <c- f>"tactile"</c-><c- p>:</c-> <c- p>[</c->
+      <c- p>{</c->
+        <c- f>"condition"</c-><c- p>:</c-> <c- u>"@media print and (min-resolution: 300dpi)"</c-><c- p>,</c->
+        <c- f>"ratings"</c-><c- p>:</c-> <c- p>[]</c->
+      <c- p>},</c->
+      <c- p>{</c->
+        <c- f>"condition"</c-><c- p>:</c-> <c- u>"@media (min-resolution: 100dpi)"</c-><c- p>,</c->
+        <c- f>"ratings"</c-><c- p>:</c-> <c- p>[]</c->
+      <c- p>}</c->    
+    <c- p>]</c->
+  <c- p>}</c->
+<c- p>}</c->  
+</pre> <div class="note" role="note"> <b>Note:<b> Consider splitting out capabilities and ratings into seperate entries. </b></b></div><b><b> <div class="note" role="note"> <b>Note:<b> To be defined further. </b></b></div><b><b> <h3 class="heading settled" data-level="3.5" id="behaviors"><span class="secno">3.5. </span><span class="content">Behaviors</span><a class="self-link" href="#behaviors"></a></h3> <h4 class="heading settled" data-level="3.5.1" id="haptics"><span class="secno">3.5.1. </span><span class="content">Haptics</span><a class="self-link" href="#haptics"></a></h4> <p>Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.</p> <h4 class="heading settled" data-level="3.5.2" id="sonification"><span class="secno">3.5.2. </span><span class="content">Sonification</span><a class="self-link" href="#sonification"></a></h4> <h4 class="heading settled" data-level="3.5.3" id="high_contrast"><span class="secno">3.5.3. </span><span class="content">High contrast</span><a class="self-link" href="#high_contrast"></a></h4> <div class="todo"> <b>TODO:</b> Reference and expand on CSS prefers-dark-mode media query. </div> <h4 class="heading settled" data-level="3.5.4" id="voicing"><span class="secno">3.5.4. </span><span class="content">Voicing</span><a class="self-link" href="#voicing"></a></h4> <h4 class="heading settled" data-level="3.5.5" id="tactiles"><span class="secno">3.5.5. </span><span class="content">Tactiles</span><a class="self-link" href="#tactiles"></a></h4> <h5 class="heading settled" data-level="3.5.5.1" id="refreshable_displays"><span class="secno">3.5.5.1. </span><span class="content">Refreshable displays</span><a class="self-link" href="#refreshable_displays"></a></h5> <h5 class="heading settled" data-level="3.5.5.2" id="embossing"><span class="secno">3.5.5.2. </span><span class="content">Embossing</span><a class="self-link" href="#embossing"></a></h5> <h2 class="heading settled" data-level="4" id="tech_relationship"><span class="secno">4. </span><span class="content">Relationship to other technologies</span><a class="self-link" href="#tech_relationship"></a></h2> <h3 class="heading settled" data-level="4.1" id="svg"><span class="secno">4.1. </span><span class="content">Scalable Vector Graphics (SVG)</span><a class="self-link" href="#svg"></a></h3> <p>This specification is designed specifically with SVG in mind, though the metadata format can be used in other image types.</p> <p>The SVG <a data-link-type="biblio" href="#biblio-svg11" title="Scalable Vector Graphics (SVG) 1.1 (Second Edition)">[SVG11]</a> specification defines a metadata element (or "tag"), which can contain this metadata format. In the SVG 2.0 specification, defined in the late 1990s, it was expected that metadata would be expressed in XML; the SVG 2.0 specification lifts this restriction, and defines the metadata</p> <p>It is important to note that currently, SVG does not define a processing algorithm or behavior for metadata. A user agent may process the metadata in any manner it supports. Currently, no general purpose web browser processes the contents of the metadata element.</p> <p>Because the SVG metadata element does not have any defined attributes (such as an <code>href</code> attribute), there is no defined way to link to external resources; this contrasts with the style element in SVG, which can contain CSS rules as the child content of the element, or can reference external CSS files through the <code>href</code> attribute. Thus, this specification defines a linking syntax to allow external metadata files to be applied in whole or part to the referring image document.</p> <h3 class="heading settled" data-level="4.2" id="css"><span class="secno">4.2. </span><span class="content">Cascading Style Sheets (CSS)</span><a class="self-link" href="#css"></a></h3> <p>Some features of this specification, such as contrast control, overlap with capabilities of CSS, such as the prefers-high-contrast media query. This specification is designed to complement and extend such capabilities.</p> <h4 class="heading settled" data-level="4.2.1" id="css_format"><span class="secno">4.2.1. </span><span class="content">CSS format</span><a class="self-link" href="#css_format"></a></h4> <p>CSS defines its own syntax, processing model, and format, initially define in the 1990s. IT requires a custome processor.</p> <p>This specification uses the common JSON format, which can be processed by any JSON tools, including web browser contexts, JavaScript, and many other tools.</p> <p>This specification attempts to define its rules in a way that CSS might be expresssed in JSON.</p> <h4 class="heading settled" data-level="4.2.2" id="css_selectors"><span class="secno">4.2.2. </span><span class="content">CSS selectors</span><a class="self-link" href="#css_selectors"></a></h4> <p>This specification uses the CSS selector synta to link specific metadata entries to specific markup elements, to classes on markup elements, or other linking mechanisms. Unlike CSS, however, it does not use selectors as an "object key", but rather as a value for a selector attribute, to fit the JSON schema and allow multiple rules to use the same selector.</p> <h4 class="heading settled" data-level="4.2.3" id="intended_authoring"><span class="secno">4.2.3. </span><span class="content">Intended authoring usage</span><a class="self-link" href="#intended_authoring"></a></h4> <p>To enable a CSS feature that is extended in this specification, the author can include the rule in either the metadata definition or the CSS definition.</p> <p>If the rule is defined in the metadata, a user agent must apply in the same manner as if it were defined in the CSS. For a user agent that supports this specification, this can provide a greater degree of user control, ease authoring and maintenance, and decrease synchronization conflicts.</p> <p>The author does not need to define it in both the metadata and the CSS, but might wish to do so for a user agent (such as a general-purpose web browser) that supports the feature in CSS but does not support this specification.</p> <h4 class="heading settled" data-level="4.2.4" id="css_conflicts"><span class="secno">4.2.4. </span><span class="content">Conflicts</span><a class="self-link" href="#css_conflicts"></a></h4> <p>If a rule in a document’s metadata conflicts with a hard-coded CSS rule, the CSS rule should take precedence, unless the user has made a preference selection, through a default settting or a specific selection at the time of viewing.</p> <h4 class="heading settled" data-level="4.2.5" id="future_css"><span class="secno">4.2.5. </span><span class="content">Future adoption and integration into CSS</span><a class="self-link" href="#future_css"></a></h4> <p>This specification defines some of its functionality in a way that could be integrated into future versions of CSS. Among other examples, the features that involve timing, such as haptics or sonification, are modeled after the animation syntax in CSS.</p> <h2 class="heading settled" data-level="5" id="definitions"><span class="secno">5. </span><span class="content">Definitions</span><a class="self-link" href="#definitions"></a></h2> <h3 class="heading settled" data-level="5.1" id="rule"><span class="secno">5.1. </span><span class="content">rule</span><a class="self-link" href="#rule"></a></h3> <p>A rule is a combination of a selector and a behavior or data entry, which applies to an element or set of elements.</p> <h3 class="heading settled" data-level="5.2" id="media_query"><span class="secno">5.2. </span><span class="content">media query</span><a class="self-link" href="#media_query"></a></h3> <p>A conditional meta-rule that applies rules based on the capabilities and environment of a user agent or device. Defined by the W3C Media Queries Level 4 specification. Syntactically, they consist of an @ token operator followed by a string, followed by an optional condition set, where the string is one keyword from a pre-defined set of keywords denoting a capability or environmental variable, and the optional condition set is a value or range of values for that capability or environmental variable.</p> <div class="example" id="xmp_media_query_print"><a class="self-link" href="#xmp_media_query_print"></a> For example, the following media query expresses that a rule is used on printing devices only, with a resolution greater than 300 dots per CSS: <pre class="highlight"><c- n>@media</c-> print and <c- p>(</c->min-resolution: <c- m>300</c-><c- k>dpi</c-><c- p>)</c->
+</pre></div> <h3 class="heading settled" data-level="5.3" id="selector"><span class="secno">5.3. </span><span class="content">selector</span><a class="self-link" href="#selector"></a></h3> <p>A pattern that matches against elements in a tree. Defined by the W3C CSS Selectors specification. Syntactically, they normally consist of a token followed by a string, where the token is the operator, and the string is an user-defined alphanumeric "word" assigned to an element in the markup.</p> <p>The most common examples are the id selector (#), which matches the id of a single element (e.g. #bar-1, which matches the element with the id "bar-1"), and the class selector (.), which matches all instances of a string declared as the value of a class attribute (e.g. .bar, which matches all elements with the class including "bar").</p> <h3 class="heading settled" data-level="5.4" id="user"><span class="secno">5.4. </span><span class="content">user</span><a class="self-link" href="#user"></a></h3> <h3 class="heading settled" data-level="5.5" id="end_user"><span class="secno">5.5. </span><span class="content">end user</span><a class="self-link" href="#end_user"></a></h3> <p>The person experiencing or interacting with the image content, through whatever medium.</p> <h3 class="heading settled" data-level="5.6" id="user_agent"><span class="secno">5.6. </span><span class="content">user agent</span><a class="self-link" href="#user_agent"></a></h3> <p>The software that processes and presents the document to the end user.</p> </b></b></b></b></b></b></b></b></b></b>
+  </main>
+  <b><b><b><b><b><b><b><b><b><b> <div data-fill-with="conformance"> <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2> <p> Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
+            The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL”
+            in the normative parts of this document
+            are to be interpreted as described in RFC 2119.
+            However, for readability,
+            these words do not appear in all uppercase letters in this specification. </p><p> All of the text of this specification is normative
+            except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p><p> Examples in this specification are introduced with the words “for example”
+            or are set apart from the normative text with <code>class="example"</code>, like this: </p><div class="example" id="example-example"><a class="self-link" href="#example-example"></a> This is an example of an informative example. </div> <p> Informative notes begin with the word “Note”
+            and are set apart from the normative text with <code>class="note"</code>, like this: </p><p class="note" role="note"> Note, this is an informative note.</p> </div> <script>
+(function() {
+  "use strict";
+  var collapseSidebarText = '<span aria-hidden="true">←</span> '
+                          + '<span>Collapse Sidebar</span>';
+  var expandSidebarText   = '<span aria-hidden="true">→</span> '
+                          + '<span>Pop Out Sidebar</span>';
+  var tocJumpText         = '<span aria-hidden="true">↑</span> '
+                          + '<span>Jump to Table of Contents</span>';
+
+  var sidebarMedia = window.matchMedia('screen and (min-width: 78em)');
+  var autoToggle   = function(e){ toggleSidebar(e.matches) };
+  if(sidebarMedia.addListener) {
+    sidebarMedia.addListener(autoToggle);
+  }
+
+  function toggleSidebar(on) {
+    if (on == undefined) {
+      on = !document.body.classList.contains('toc-sidebar');
+    }
+
+    /* Don't scroll to compensate for the ToC if we're above it already. */
+    var headY = 0;
+    var head = document.querySelector('.head');
+    if (head) {
+      // terrible approx of "top of ToC"
+      headY += head.offsetTop + head.offsetHeight;
+    }
+    var skipScroll = window.scrollY < headY;
+
+    var toggle = document.getElementById('toc-toggle');
+    var tocNav = document.getElementById('toc');
+    if (on) {
+      var tocHeight = tocNav.offsetHeight;
+      document.body.classList.add('toc-sidebar');
+      document.body.classList.remove('toc-inline');
+      toggle.innerHTML = collapseSidebarText;
+      if (!skipScroll) {
+        window.scrollBy(0, 0 - tocHeight);
+      }
+      tocNav.focus();
+      sidebarMedia.addListener(autoToggle); // auto-collapse when out of room
+    }
+    else {
+      document.body.classList.add('toc-inline');
+      document.body.classList.remove('toc-sidebar');
+      toggle.innerHTML = expandSidebarText;
+      if (!skipScroll) {
+        window.scrollBy(0, tocNav.offsetHeight);
+      }
+      if (toggle.matches(':hover')) {
+        /* Unfocus button when not using keyboard navigation,
+           because I don't know where else to send the focus. */
+        toggle.blur();
+      }
+    }
+  }
+
+  function createSidebarToggle() {
+    /* Create the sidebar toggle in JS; it shouldn't exist when JS is off. */
+    var toggle = document.createElement('a');
+      /* This should probably be a button, but appearance isn't standards-track.*/
+    toggle.id = 'toc-toggle';
+    toggle.class = 'toc-toggle';
+    toggle.href = '#toc';
+    toggle.innerHTML = collapseSidebarText;
+
+    sidebarMedia.addListener(autoToggle);
+    var toggler = function(e) {
+      e.preventDefault();
+      sidebarMedia.removeListener(autoToggle); // persist explicit off states
+      toggleSidebar();
+      return false;
+    }
+    toggle.addEventListener('click', toggler, false);
+
+
+    /* Get <nav id=toc-nav>, or make it if we don't have one. */
+    var tocNav = document.getElementById('toc-nav');
+    if (!tocNav) {
+      tocNav = document.createElement('p');
+      tocNav.id = 'toc-nav';
+      /* Prepend for better keyboard navigation */
+      document.body.insertBefore(tocNav, document.body.firstChild);
+    }
+    /* While we're at it, make sure we have a Jump to Toc link. */
+    var tocJump = document.getElementById('toc-jump');
+    if (!tocJump) {
+      tocJump = document.createElement('a');
+      tocJump.id = 'toc-jump';
+      tocJump.href = '#toc';
+      tocJump.innerHTML = tocJumpText;
+      tocNav.appendChild(tocJump);
+    }
+
+    tocNav.appendChild(toggle);
+  }
+
+  var toc = document.getElementById('toc');
+  if (toc) {
+    createSidebarToggle();
+    toggleSidebar(sidebarMedia.matches);
+
+    /* If the sidebar has been manually opened and is currently overlaying the text
+       (window too small for the MQ to add the margin to body),
+       then auto-close the sidebar once you click on something in there. */
+    toc.addEventListener('click', function(e) {
+      if(e.target.tagName.toLowerCase() == "a" && document.body.classList.contains('toc-sidebar') && !sidebarMedia.matches) {
+        toggleSidebar(false);
+      }
+    }, false);
+  }
+  else {
+    console.warn("Can't find Table of Contents. Please use <nav id='toc'> around the ToC.");
+  }
+
+  /* Wrap tables in case they overflow */
+  var tables = document.querySelectorAll(':not(.overlarge) > table.data, :not(.overlarge) > table.index');
+  var numTables = tables.length;
+  for (var i = 0; i < numTables; i++) {
+    var table = tables[i];
+    var wrapper = document.createElement('div');
+    wrapper.className = 'overlarge';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  }
+
+})();
+</script> </b></b></b></b></b></b></b></b></b></b>
+  <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
+  <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
+  <dl>
+   <dt id="biblio-rfc2119">[RFC2119]
+   <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
+  </dl>
+  <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
+  <dl>
+   <dt id="biblio-json-schema">[JSON-Schema]
+   <dd>Austin Wright; et al. <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema"><cite>JSON Schema: A Media Type for Describing JSON Documents</cite></a>. 8 December 2020. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema">https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema</a>
+   <dt id="biblio-selectors-4">[Selectors-4]
+   <dd>Elika Etemad; Tab Atkins Jr.. <a href="https://drafts.csswg.org/selectors/"><cite>Selectors Level 4</cite></a>. URL: <a href="https://drafts.csswg.org/selectors/">https://drafts.csswg.org/selectors/</a>
+   <dt id="biblio-svg11">[SVG11]
+   <dd>Erik Dahlström; et al. <a href="https://www.w3.org/TR/SVG11/"><cite>Scalable Vector Graphics (SVG) 1.1 (Second Edition)</cite></a>. 16 August 2011. REC. URL: <a href="https://www.w3.org/TR/SVG11/">https://www.w3.org/TR/SVG11/</a>
+  </dl>
