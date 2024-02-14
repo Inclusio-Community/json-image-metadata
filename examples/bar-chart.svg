@@ -1,0 +1,212 @@
+<svg id="chart-bar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 332">
+  <title />
+  <rect id="fizz_chart_frame" fill="none" pointer-events="all" x="0" y="0" width="600" height="332" />
+  <g>
+    <text class="chart_title" transform="translate(300.00,29.40)">Respondant by Satisfaction</text>
+    <g id="x-axis" data-axistype="category" tabindex="-1" transform="translate(69.60,296.00)">
+      <path id="x_Satisfaction_line-4" class="x_axis_line" d="M-10,0 H515.4" />
+      <title class="axis_title" transform="translate(256,39)">Satisfaction</title>
+      <g transform="translate(55,0)" class="tick_group_x">
+        <text class="axis_label" transform="translate(0,16)">Very Dissatisfied</text>
+      </g>
+      <g transform="translate(156,0)" class="tick_group_x">
+        <text class="axis_label" transform="translate(0,16)">Dissatisfied</text>
+      </g>
+      <g transform="translate(258,0)" class="tick_group_x">
+        <text class="axis_label" transform="translate(0,16)">Neutral</text>
+      </g>
+      <g transform="translate(359,0)" class="tick_group_x">
+        <text class="axis_label" transform="translate(0,16)">Satisfied</text>
+      </g>
+      <g transform="translate(460,0)" class="tick_group_x">
+        <text class="axis_label" transform="translate(0,16)">Very Satisfied</text>
+      </g>
+    </g>
+    <g id="y-axis" data-axistype="numeric" tabindex="-1" transform="translate(69.60,43.00)">
+      <path id="y_Respondant_line-4" class="y_axis_line" d="M0,253 V0" />
+      <g transform="translate(0,253.00)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-13,4)">0</text>
+        <use href="#x_Satisfaction_line-4" class="tickmark_y_0" />
+      </g>
+      <g transform="translate(0,202.40)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-13,4)">10</text>
+        <use href="#x_Satisfaction_line-4" class="tickmark_y" />
+      </g>
+      <g transform="translate(0,151.80)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-13,4)">20</text>
+        <use href="#x_Satisfaction_line-4" class="tickmark_y" />
+      </g>
+      <g transform="translate(0,101.20)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-13,4)">30</text>
+        <use href="#x_Satisfaction_line-4" class="tickmark_y" />
+      </g>
+      <g transform="translate(0,50.60)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-13,4)">40</text>
+        <use href="#x_Satisfaction_line-4" class="tickmark_y" />
+      </g>
+      <g transform="translate(0,0.00)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-13,4)">50</text>
+        <use href="#x_Satisfaction_line-4" class="tickmark_y" />
+      </g>
+      <text class="axis_title" transform="translate(-36.6,126.5) rotate(-90)">Respondant</text>
+    </g>
+    <g role="dataset" transform="translate(69.6,43)">
+      <g id="datapoint-x_Very_Dissatisfied-4">
+        <g class="datapoint bar series_0 respondant" transform="translate(55.14,0)">
+          <path d="M-22,231 V252 H22 V231 Z" />
+        </g>
+      </g>
+      <g id="datapoint-x_Dissatisfied-4">
+        <g class="datapoint bar series_0 respondant" transform="translate(156.42,0)">
+          <path d="M-22,176 V252 H22 V176 Z" />
+        </g>
+      </g>
+      <g id="datapoint-x_Neutral-4">
+        <g class="datapoint bar series_0 respondant" transform="translate(257.70,0)">
+          <path d="M-22,166 V252 H22 V166 Z" />
+        </g>
+      </g>
+      <g id="datapoint-x_Satisfied-4">
+        <g class="datapoint bar series_0 respondant" transform="translate(358.98,0)">
+          <path d="M-22,60 V252 H22 V60 Z" />
+        </g>
+      </g>
+      <g id="datapoint-x_Very_Satisfied-4">
+        <g class="datapoint bar series_0 respondant" transform="translate(460.26,0)">
+          <path d="M-22,20 V252 H22 V20 Z" />
+        </g>
+      </g>
+    </g>
+  </g>
+  <style>
+    svg {
+      font-family: "Open Sans", Arial, sans-serif;
+      font-size: 15px
+    }
+
+    #fizz_chart_frame {
+      fill: none;
+      stroke: none
+    }
+
+    .y_axis_line {
+      fill: none;
+      stroke: hsl(0, 0%, 0%);
+      stroke-width: 2px;
+      stroke-linecap: round
+    }
+
+    .x_axis_line {
+      fill: none;
+      stroke: hsl(0, 0%, 0%);
+      opacity: 1;
+      stroke-width: 2px;
+      stroke-linecap: round
+    }
+
+    .axis_label {
+      text-anchor: middle;
+      fill: hsl(0, 0%, 0%);
+      stroke: none;
+      font-size: 12px;
+    }
+
+    .axis_title {
+      font-size: 15px;
+    }
+
+    .axis_label_y {
+      text-anchor: end;
+      fill: hsl(0, 0%, 0%);
+      stroke: none;
+      font-size: 13px;
+    }
+
+    .tickmark_y {
+      opacity: 0.2
+    }
+
+    .tickmark_y_0 {
+      fill: hsl(270, 50%, 50%);
+      stroke: hsl(270, 50%, 50%);
+      opacity: 1;
+      stroke-width: 2px;
+      stroke-linecap: round
+    }
+
+    .tick_group_y:hover,
+    .tick_group_y:hover .tickmark_y {
+      font-weight: bold;
+      opacity: 1
+    }
+
+    .tickmark_x {
+      opacity: 0.2
+    }
+
+    .tickmark_x_0 {
+      fill: hsl(270, 50%, 50%);
+      stroke: hsl(270, 50%, 50%);
+      opacity: 1;
+      stroke-width: 2px;
+      stroke-linecap: round
+    }
+
+    .radial_label_right {
+      text-anchor: start
+    }
+
+    .radial_label_left {
+      text-anchor: end
+    }
+
+    .datapoint_background {
+      fill: none;
+      stroke: none;
+      pointer-events: all;
+      outline: none
+    }
+
+    .data_line {
+      fill: none;
+      stroke: hsl(270, 50%, 50%);
+      stroke-width: 3px;
+      stroke-linecap: round
+    }
+
+    .data_area {
+      stroke: hsl(270, 50%, 50%);
+      stroke-width: 3px;
+      stroke-linecap: round;
+      fill: none
+    }
+
+    .data_area_background {
+      stroke: none;
+      fill: hsl(270, 50%, 50%);
+      fill-opacity: 0.8
+    }
+
+    .trendline {
+      stroke: red;
+      stroke-width: 3px;
+      fill: none
+    }
+
+    .center_label tspan.subtext {
+      font-size: 2rem;
+      text-anchor: middle
+    }
+
+    .chart_title {
+      font-size: 18px;
+      text-anchor: middle;
+      fill: black;
+    }
+
+    .respondant {
+      fill: hsl(12, 69%, 35%);
+      stroke: hsl(12, 69%, 35%);
+    }
+  </style>
+</svg>

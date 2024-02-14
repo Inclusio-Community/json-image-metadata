@@ -20,7 +20,7 @@ This specification defines a structured metadata schema for image documents to e
 
 The metadata is aimed primarily at data visualizations such as charts, graphs, diagrams and other information graphics, but can also be used for related purposes in any image.
 
-It is intended for use with a structured graphics markup such as Scalable Vector Graphics (SVG), but could be embedded in and applied to any image format, including raster images and 3D-printed objects and scenes.
+It is intended for use with a structured graphics markup such as Scalable Vector Graphics (SVG), but could be embedded in and applied to any image format, including raster images and 3D objects and scenes.
 
 ## Motivation ## {#motivation}
 
@@ -30,7 +30,7 @@ By standardizing the accessibility features of a document, we enable users (such
 
 Of particular note is support for hybrid physical-digital documents, such as printed or embossed images that are overlaid on a touch screen where the digital equivalent is mirrored, so that a tactile experience can be enhanced with haptics or voicing. Similarly, a 3D-printed object could be used with a camera scanner to associate sections of the object with specific metadata.
 
-This specification uses familiar technologies such as JSON [[JSON-Schema]] and CSS Selectors [[Selectors-4]], for ease of implementation and authoring.
+This specification uses familiar technologies such as JSON and CSS Selectors, for ease of implementation and authoring.
 
 <!--
 <pre class='railroad'>
@@ -66,7 +66,7 @@ A blind user might wish to enable haptics and braille output when they are in a 
 
 The distribution of interactive content presents a conflict between innovative capabilities and user security. In the web platform, most advanced interactivity can only be achieved through JavaScript, but allowing JavaScript in a file opens the user's system up to possible security holes.
 
-This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as conent management systems or email servers) might strip out the script element, disabling the interactivity of the content.
+This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as conent management systems or email servers) might strip out the `script` element, disabling the interactivity of the content.
 
 By defining a set of declarative syntaxes for different assistive technologies, including parameters and conditional execution triggers, this specification enables the user agent to provide the interactivity defined by the author, without compromising security. This specification refers to such declarative capabilities as "behaviors".
 
@@ -102,6 +102,13 @@ This specification must define easy ways to enable the distribution and discover
 
 Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more cotent by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be share, wile also providing credit to the original author or publisher.
 
+## Encapsulation ## {#encapsulation}
+
+Through encapsulation, more than one metadata profile can be included for any given image document, much like a stylesheet can change the appearance of the same HMTL file. This specification should not require any changes to the markup of SVG or other files, with 2 exceptions:
+
+1. The inclusion of a `metadata` element and its contents.
+2. The encouragement of the use of `id` attributes on key elements. This is not necessary, since selector syntax can target any point in a DOM tree, but the inclusion of `id`s makes creating and maintaining the markup easier.
+
 ## Non-goals ## {#nongoals}
 ### Formal semantics and namespaces ### {#formal_semantics_namespaces}
 
@@ -111,16 +118,32 @@ While namespaces allow a flexible extensibility and modularity, they also hamper
 
 While this specification does includes some accessibility-specific extensions of CSS, such as a finer control of color contrast settings, it must not define or be used to supercede CSS.
 
+### ARIA Syntax for Data Visualization ### {#aria_syntax}
+
+This specification is complementary and orthogonal to the W3C specifications defining `role` attributes, including the [WAI-ARIA Graphics Module](https://www.w3.org/TR/graphics-aria-1.0/) and the [SVG Accessibility API Mappings](https://www.w3.org/TR/svg-aam-1.0/).
+
+Path Selectors {#path_selectors} 
+=====================
+
+In order to identify and link between the DOM of an SVG document and the JSON metadata, this specification uses CSS Selectors and JSONPath.
+
+CSS Selectors [[Selectors-4]] enables the matching of DOM nodes, such as graphical or textual elements.
+
+JSONPath [[JSONPath]] enables the matching of JSON keys or values in the JSON metadata.
+
+> TODO: include more details about linking
+
+
 Schema {#schema} 
 =====================
 
 <div class='note'>
-Note that the examples below are notional, and intended for illustrative purposes. They are not a formal definition. The final definitions will likely be expressed in [[JSON-Schema]], and will include data types for each member.
+Note that the examples below are notional, and intended for illustrative purposes. They are not a formal definition. The final definitions will be expressed in JSON Schema [[JSON-Schema]], and will include data types for each member.
 </div>
 
-This vocabulary is defined in terms of "blocks", or objects identified by a key with a defined set of optional sub-keys. This includes the <code>data</code>, <code>provenance</code>, <code>tags</code>, and <code>behaviors</code> blocks.
+This vocabulary is defined in terms of "blocks", or objects identified by a key with a defined set of optional sub-keys. This includes the `dataset`, `provenance`, `tags`, and `behaviors` blocks.
 
-```json
+<xmp highlight='json'>
 {
   "data": {
   },
@@ -133,7 +156,7 @@ This vocabulary is defined in terms of "blocks", or objects identified by a key 
   "href": {
   }
 }
-```
+</xmp>
 
 ## External files ## {#external_files}
 
@@ -143,11 +166,11 @@ Size restrictions: While including the raw data in the image is a best practice,
 
 Shared resources: An author might wish to share a common metadata file or set of files for a set of image documents. This allows the metadata files to be updated independently, reduces duplication and file size, enables cacheing in the user agent, and allows for a modular approach with well-tested rules.
 
-The <code>href</code> key defines an object that refers to an external file. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file, with the exception of the <code>data</code> block.
+The `href` key defines an object that refers to an external file. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file, with the exception of the `dataset` block.
 
 If an external metadata file contains rules that duplicate or conflict with rules defined in the inline metadata, the inline metadata takes precendence. This allows for customization of specific images while relying on generic common rules.
 
-An <code>href</code> key may be included at any level of the metadata, with the relevant key string as the attribute key and a valid URL string as the value for that attribute.
+An `href` key `may` be included at any level of the metadata, with the relevant key string as the attribute key and a valid URL string as the value for that attribute.
 
 <xmp highlight='json'>
 {
@@ -160,7 +183,7 @@ An <code>href</code> key may be included at any level of the metadata, with the 
 }
 </xmp>
 
-An additional default key is defined for referring to a single external metadata file that contains all the metadata blocks. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file.
+An additional `default` key is defined for referring to a single external metadata file that contains all the metadata blocks. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file.
 
 <xmp highlight='json'>
 {
@@ -171,39 +194,59 @@ An additional default key is defined for referring to a single external metadata
 </xmp>
 
 
-## Data ## {#data}
+## Dataset ## {#dataset}
 
-Data refers to the raw data which the image represents.
+Dataset refers to the raw data which the image represents.
 
 There are two ways to link the data to the image file: inline; and external reference. These methods can be used together in some ways, defined below.
 
-A <code>data</code> block is an object with the key <code>data</code>.
+A `dataset` block is an object with the key `dataset`.
 
 <xmp highlight='json'>
 {
-  "data": {
-    "title": {
-    },
-    "subtitle": {
-    },
-    "source": {
-    },
-    "axes": {
-    },
-    "series": {
-    },
-    "href": {
-    }
+  "dataset": {
+  }
+}  
+</xmp>
+
+### Dataset structures ### {#dataset_structures}
+
+This specification requires that an inline dataset must be in JSON format, but does not mandate a particular structure for a dataset.
+
+No single dataset structure optimally represents every different kind of data or chart type. Often, an inline dataset might reflect the internal model used by the software that generated the image, diagram, or data visualization.
+
+Instead, this specification defines the `selector` attribute, which can be added to an object in an arbitrary JSON data structure to indicate a link between a data point and its graphical representation element.
+
+This specification does include a notional, non-canonical dataset structure for purposes of clarification and illustration on the use of the `selector` attribute.
+
+> Notes: A future complementary specification might define a canonical dataset structure or set of structures for different types of data visualization.
+
+The notional dataset described in this specification includes exemplar entities which should be included in any inline dataset for optimal correlation to common graphical representation elements.
+
+These entities include
+
+<xmp highlight='json'>
+"dataset": {
+  "title": "",
+  "subtitle": "",
+  "source": {
+  },
+  "axes": [
+  ],
+  "series": [
+  ],
+  "href": {
   }
 }
 </xmp>
   
+> TODO: add example
 
-The individual entries of the <code>data</code> block are defined in [Inline data].
+The individual entries of the `dataset` block are defined in [Inline data].
 
-### The <code>href</code> key in a <code>data</code> block ### {#href_data_block}
+### The `href` key in a `dataset` block ### {#href_data_block}
 
-The <code>href</code> key defines an object that refers to an external data file. The content model and processing of the <code>href</code> key are different in the <code>data</code> block than in other metadata blocks.
+The `href` key defines an object that refers to an external data file. The content model and processing of the `href` key are different in the `dataset` block than in other metadata blocks.
 
 This external file can be used to link data to graphical elements, as defined in [Inline data].
 
@@ -213,23 +256,51 @@ If a dataset is fairly small, it is best to include it in the image file directl
 
 #### Linking data and representational elements #### {#linking_data}
 
+Each data point in the raw data `may` be represented visually in the image. There are multiple benefits in providing a mechanism to link a data point in the dataset to its representation, such as enabling users to drill down into the raw data value for a data element, or selecting a label in a different language than the graphical text label.
+
+This specification defines a `selector` attribute to enable this relationship between a graphical element and the data point it represents.
+
+##### Data model cardinality ##### {#data_model_cardinality}
+
+The relationship between a graphical element and the data it represents might be complex.
+
+Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a bar in a bar chart, where the height of the bar signifies a specific numerical value.
+
+Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where , or a line chart where a , or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)
+
+Rarely, you might have a many-to-many relationship.
+
+> TODO: provide a many-to-many example.
+
+On occassion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.
+
+ ##### The `selector` attribute ##### {#selector_attribute}
+
+Typically, 
+
+> TODO: talk about label elements and their representation.
+
+> TODO: cover rounding and precision in visual labels vs raw data
+
+ or a line segment in a line chart
+
 <div class="note">
 <b>Note:<b> We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data.
 </div>
 
 
-### External reference ### {#external_re}
+### External data reference ### {#external_data_ref}
 
 <div class="note">
-<b>Note:<b> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data that is being represented is the metadata.
+<b>Note:<b> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata.
 </div>
 
 
 ## Provenance ## {#provenance}
 
-Provenance describes where a document came from. This includes entries such as authors, organizations, data and time created or modified, where it was first published, the title of the paper or article it supplemented, or the original work on which it was based.
+Provenance describes where a document came from. This includes entries such as authors, organizations, date and time created or modified, where it was first published, the title of the paper or article it supplemented, or the original work on which it was based.
 
-A <code>provenance</code> block is an object with the key <code>provenance</code>.
+A `provenance` block is an object with the key `provenance`.
 
 <xmp highlight='json'>
 {
@@ -244,7 +315,7 @@ A <code>provenance</code> block is an object with the key <code>provenance</code
 
 ### Notes ### {#notes}
 
-The notes key defines an array where any details not covered by specific keys can be identified. This might include the name of the organization or individuals who sponsored the work, a dedications to a meaningful person in the author's life, and so on.
+The `notes` key defines an array where any details not covered by specific keys can be identified. This might include the name of the organization or individuals who sponsored the work, a dedications to a meaningful person in the author's life, and so on.
 
 Each item should be a quoted string separated by a comma.
 
@@ -267,7 +338,7 @@ Tags are used to aid in the filtering and searching for content.
 
 ### Keywords ### {#keywords}
 
-The keywords key denotes an array of user-defined strings. Examples of keywords include labels from a folksonomy, terms defined in a formal document, steps in a workflow process, short descriptions of items depicted in the image, or any other strings.
+The `keywords` key denotes an array of user-defined strings. Examples of keywords include labels from a folksonomy, terms defined in a formal document, steps in a workflow process, short descriptions of items depicted in the image, or any other strings.
 
 <xmp highlight='json'>
 {
@@ -288,7 +359,7 @@ The keywords key denotes an array of user-defined strings. Examples of keywords 
 <b>Note:<b> This is a rough notion of how we might define
 </div>
 
-The capabilities key denotes an object that includes which accomodations have been defined in the image document, and some system of rating that scores the effectiveness of that accomodation.
+The `capabilities` key denotes an object that includes which accomodations have been defined in the image document, and some system of rating that scores the effectiveness of that accomodation.
 
 Each capability defines an array of capability instances, each of which consists of a least a condition of applicability, and a rating.
 
@@ -355,6 +426,31 @@ Haptics is the use of vibration to provide feedback to the user as they interact
 #### Embossing #### {#embossing}
 
 
+# ADSR Envelopes # {#adsr_envelopes}
+
+Timed media, such as haptic or sonification effects, are defined in this specification with the common Attack-Decay-Sustain-Release envelope.
+
+This is the most common kind of envelope generator, and it has four stages: attack, decay, sustain, and release (ADSR). Attack, decay, and release all refer to time, while sustain refers to effect level. Each of these stages is defined by an attribute
+
+- `attack`: `<float>` the time taken for the rise of the effect level from `0` to peak. 
+- `decay`: `<float>` the time taken for the level to reduce from the attack level to the sustain level.
+- `sustain`: `<float>` the effect level maintained until the key is released.
+- `release`: `<float>` the time taken for the level to decrease to `0`.
+
+All time values are expressed in seconds. No unit is necessary.
+
+These attributes are contained in an effect block. The effect key defines the unit type for the `sustain` attribute. Possible values for the effect key are:
+
+- `amplitude`: (or volume) measured in decibels (dB)
+- `frequency`: measured in hertz (Hz)
+- `pitch`: measured in Scientific Pitch Notation (SPN).
+
+> Note: Consider using A-weighted decibels (dBA) instead of dB. The dB scale is based only on sound intensity, while the dBA scale is based on intensity and on how the human ear responds, which better describes when sound can damage your hearing.
+
+> Note: Consider whether or not to include pitch as an effect type. It might be easier for authoring if the author is a musician, but it can be looked up and expressed as frequency. But it's a nice-to-have.
+
+Any given rule can have multiple effect types. For example, a sonification could simultaneously change amplitude and frequency.
+
 
 # Relationship to other technologies # {#tech_relationship}
 
@@ -362,15 +458,22 @@ Haptics is the use of vibration to provide feedback to the user as they interact
 
 This specification is designed specifically with SVG in mind, though the metadata format can be used in other image types.
 
-The SVG [[SVG11]] specification defines a metadata element (or "tag"), which can contain this metadata format. In the SVG 2.0 specification, defined in the late 1990s, it was expected that metadata would be expressed in XML; the SVG 2.0 specification lifts this restriction, and defines the metadata
+### The SVG `metadata` element ### {#svg_metadata_element}
 
-It is important to note that currently, SVG does not define a processing algorithm or behavior for metadata. A user agent may process the metadata in any manner it supports. Currently, no general purpose web browser processes the contents of the metadata element.
 
-Because the SVG metadata element does not have any defined attributes (such as an <code>href</code> attribute), there is no defined way to link to external resources; this contrasts with the style element in SVG, which can contain CSS rules as the child content of the element, or can reference external CSS files through the <code>href</code> attribute. Thus, this specification defines a linking syntax to allow external metadata files to be applied in whole or part to the referring image document.
+The SVG [[SVG11]] specification defines a `metadata` element (or "tag"), which can contain this metadata format. In the SVG 2.0 specification, defined in the late 1990s, it was expected that metadata would be expressed in XML; the SVG 2.0 [[SVG2]] specification lifts this restriction, and defines the `metadata` child content model as text content. This allows any structured or unstructured text, including structured content like JSON.
+
+> Note: The SVG 2.0 specification is not yet approved, and has not yet reached W3C Recommentation status. 
+
+Parts of it are implemented in browsers and other user agents, but some validation tools might still flag non-XML content in the `metadata` element as a violation. This might impact some organizational strictures that all HTML or SVG documents are required to pass validation in order to be accessible. These tools <span class=allow-2119>should</span> be urged to update to the SVG 2.0 specification for processing the `metadata` element.
+
+It is important to note that currently, SVG does not define a processing algorithm or behavior for metadata. A user agent `may` process the metadata in any manner it supports. Currently, no general purpose web browser processes the contents of the `metadata` element.
+
+Because the SVG `metadata` element does not have any defined attributes (such as an `href` attribute), there is no defined way to link to external resources; this contrasts with the `style` element in SVG, which can contain CSS rules as the child content of the element, or can reference external CSS files through the `href` attribute. Thus, this specification defines a linking syntax to allow external metadata files to be applied in whole or part to the referring image document.
 
 ## Cascading Style Sheets (CSS) ## {#css}
 
-Some features of this specification, such as contrast control, overlap with capabilities of CSS, such as the prefers-high-contrast media query. This specification is designed to complement and extend such capabilities.
+Some features of this specification, such as contrast control, overlap with capabilities of CSS, such as the `prefers-high-contrast` media query. This specification is designed to complement and extend such capabilities.
 
 ### CSS format ### {#css_format}
 
@@ -382,7 +485,7 @@ This specification attempts to define its rules in a way that CSS might be expre
 
 ### CSS selectors ### {#css_selectors}
 
-This specification uses the CSS selector synta to link specific metadata entries to specific markup elements, to classes on markup elements, or other linking mechanisms. Unlike CSS, however, it does not use selectors as an "object key", but rather as a value for a selector attribute, to fit the JSON schema and allow multiple rules to use the same selector.
+This specification uses the CSS selector synta to link specific metadata entries to specific markup elements, to classes on markup elements, or other linking mechanisms. Unlike CSS, however, it does not use selectors as an "object key", but rather as a value for a `selector` attribute, to fit the JSON schema and allow multiple rules to use the same selector.
 
 ### Intended authoring usage ### {#intended_authoring}
 
@@ -401,8 +504,11 @@ If a rule in a document's metadata conflicts with a hard-coded CSS rule, the CSS
 This specification defines some of its functionality in a way that could be integrated into future versions of CSS. Among other examples, the features that involve timing, such as haptics or sonification, are modeled after the animation syntax in CSS.
 
 
-
 # Definitions # {#definitions}
+
+## inline ## {#inline}
+
+In the context of this specification, "inline" refers to content that is included textually in the document itself, in contrast to external content that is referenced, but not incorporated into the document. This is akin to the concept of inclusion by value versus inclusion by reference.
 
 ## rule ## {#rule}
 
@@ -410,22 +516,24 @@ A rule is a combination of a selector and a behavior or data entry, which applie
 
 ## media query ## {#media_query}
 
-A conditional meta-rule that applies rules based on the capabilities and environment of a user agent or device. Defined by the W3C Media Queries Level 4 specification. Syntactically, they consist of an @ token operator followed by a string, followed by an optional condition set, where the string is one keyword from a pre-defined set of keywords denoting a capability or environmental variable, and the optional condition set is a value or range of values for that capability or environmental variable.
+A conditional meta-rule that applies rules based on the capabilities and environment of a user agent or device. Defined by the W3C Media Queries Level 4 specification. Syntactically, they consist of an `@` token operator followed by a string, followed by an optional condition set, where the string is one keyword from a pre-defined set of keywords denoting a capability or environmental variable, and the optional condition set is a value or range of values for that capability or environmental variable.
 
 <div id='xmp_media_query_print' class='example'>
 For example, the following media query expresses that a rule is used on printing devices only, with a resolution greater than 300 dots per CSS:
 
-  <xmp highlight='css'>
-  @media print and (min-resolution: 300dpi)
-  </xmp>
+```@media print and (min-resolution: 300dpi)```
+
 </div>
 
 ## selector ## {#selector}
 
-A pattern that matches against elements in a tree. Defined by the W3C CSS Selectors specification. Syntactically, they normally consist of a token followed by a string, where the token is the operator, and the string is an user-defined alphanumeric "word" assigned to an element in the markup.
+A pattern that matches against elements in a tree. Defined by the W3C CSS Selectors specification. Syntactically, they normally consist of a token followed by a string, where the token is the operator, and the string is an user-defined alphanumeric "word" assigned to an element in the markup. 
 
-The most common examples are the id selector (#), which matches the id of a single element (e.g. #bar-1, which matches the element with the id "bar-1"), and the class selector (.), which matches all instances of a string declared as the value of a class attribute (e.g. .bar, which matches all elements with the class including "bar").
+The most common examples are the `id` selector (`#`), which matches the `id` of a single element (e.g. `#bar-1`, which matches the element with the `id` "bar-1"), and the class selector (`.`), which matches all instances of a string declared as the value of a `class` attribute (e.g. `.bar`, which matches all elements with the `class` including "bar").
 
+## raw data ## {#raw_data} 
+
+The dataset on which the visualization or image is based. Optimally, this dataset is included in the image file as metadata.
 ## user ## {#user} 
 ## end user ## {#end_user}
 
@@ -434,3 +542,24 @@ The person experiencing or interacting with the image content, through whatever 
 ## user agent ## {#user_agent}
 
 The software that processes and presents the document to the end user.
+
+
+<pre class='biblio'>
+{
+  "jsonpath": {
+    "authors": [
+      "S. Gössner",
+      "G. Normington",
+      "C. Bormann"
+    ],
+    "href": "https://datatracker.ietf.org/doc/html/draft-ietf-jsonpath-base",
+    "title": "JSONPath: Query expressions for JSON",
+    "status": "Internet-Draft",
+    "publisher": "IETF",
+    "deliveredBy": [
+      "https://mailarchive.ietf.org/arch/browse/jsonpath/"
+    ],
+    "biblio-type": "normative"
+  }
+}
+</pre>
