@@ -285,14 +285,14 @@ Typically,
  or a line segment in a line chart
 
 <div class="note">
-<b>Note:<b> We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data.
+<b>Note:</b> We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data.
 </div>
 
 
 ### External data reference ### {#external_data_ref}
 
 <div class="note">
-<b>Note:<b> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata.
+<b>Note:</b> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata.
 </div>
 
 
@@ -356,7 +356,7 @@ The `keywords` key denotes an array of user-defined strings. Examples of keyword
 ### Capabilities and ratings ### {#capabilities_ratings}
 
 <div class="note">
-<b>Note:<b> This is a rough notion of how we might define
+<b>Note:</b> This is a rough notion of how we might define
 </div>
 
 The `capabilities` key denotes an object that includes which accomodations have been defined in the image document, and some system of rating that scores the effectiveness of that accomodation.
@@ -394,11 +394,11 @@ Each capability defines an array of capability instances, each of which consists
 </xmp>
 
 <div class="note">
-<b>Note:<b> Consider splitting out capabilities and ratings into seperate entries.
+<b>Note:</b> Consider splitting out capabilities and ratings into seperate entries.
 </div>
 
 <div class="note">
-<b>Note:<b> To be defined further.
+<b>Note:</b> To be defined further.
 </div>
 
 
@@ -407,6 +407,50 @@ Each capability defines an array of capability instances, each of which consists
 ### Haptics ### {#haptics}
 
 Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.
+
+Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their finger over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API [[vibration]]. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.
+
+Haptic feedback may be accompanied or supplemented by auditory feedback.
+
+Each instance of haptic feedback is composed of a `region`, a `haptic_pattern`, and an optional `audio` block.
+
+The behavior must be triggered when the user moves a finger over the target region, and must stop immediately when the user moves their finger outside the target region.
+
+<div id='xmp_haptic_behavior' class='example'>
+An example of `haptic` block with two haptic object entries in an array. The first haptic object selects an element with the `id`=`bar_1` as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the region is first triggered. 
+
+<xmp highlight='json'>
+{
+  "behaviors": {
+    "haptic": [
+      {
+        "region": {
+          "selector": "#bar_1"
+        },
+        "haptic_pattern": "[50, 100, 150] 250"
+      },
+      {
+        "region": {
+          "shape": {
+            "circle": {
+              "cx": 100,
+              "cy": 121,
+              "r": 32
+            }
+          }
+        },
+        "haptic_pattern": "[150] 250",
+        "audio": {
+          "href": "./assets/example.mp3",
+          "repeat": "none"
+        }
+      },
+    ]
+  }
+}
+</xmp>
+</div>
+
 
 ### Sonification ### {#sonification}
 
@@ -426,7 +470,206 @@ Haptics is the use of vibration to provide feedback to the user as they interact
 #### Embossing #### {#embossing}
 
 
-# ADSR Envelopes # {#adsr_envelopes}
+# Regions # {#regions}
+
+A region is an area of an diagram image that is associated with a particular behavior.
+
+Regions may consist of one of two possible values:
+
+1. **An element link**: a selector indicating a specific element or set of elements in the DOM of a SVG file;
+2. **A `shape` object**: an object that defines a shape to be dynamically represented in the diagram file.
+
+## Region element `selector` ## {#region_element_selector}
+
+A region may consist of a `selector` key with a valid selector pointing to one or more elements in the DOM of an SVG file. The target may be a textual element, a shape element, or a container element. If the selector target is a container element, the shape region is all targetable elements within that container, but not the bounding box of the container element itself.
+
+If the selector is not valid, or if the target element is not found, the `region` definition is ignored.
+
+<div id='xmp_region_selector_single' class='example'>
+A region selector targeting a single shape element.
+
+<xmp highlight='json'>
+{
+  "region": {
+    "selector": "#bar_1"
+  }
+}
+</xmp>
+</div>
+
+<div id='xmp_region_selector_class' class='example'>
+A region selector targeting all elements with the class `line` in the container element `graph_area`.
+
+<xmp highlight='json'>
+{
+  "region": {
+    "selector": "#graph_area .line"
+  }
+}
+</xmp>
+</div>
+
+<div id='xmp_region_selector_container' class='example'>
+A region selector targeting all elements in the container element `graph_area`.
+
+<xmp highlight='json'>
+{
+  "region": {
+    "selector": "#graph_area"
+  }
+}
+</xmp>
+</div>
+
+## Region shape ## {#region_shape}
+
+A shape definition consists of an SVG shape element tag name, with an object of keys representing the required attributes. The definitive list of shapes is defined by the SVG 2.0 [[SVG2]] specification. All SVG shape elements are valid.
+
+Any attributes not defined by the region shape definition default to the SVG lacunae values for that attribute. Any attributes 
+
+<div id='xmp_region_shape_circle' class='example'>
+A region describing a circular area with a centerpoint at `100, 121` and a radius of `32` pixels.
+
+<xmp highlight='json'>
+{
+  "region": {
+    "shape": {
+      "circle": {
+        "cx": 100,
+        "cy": 121,
+        "r": 32
+      }
+    }
+  }
+}
+</xmp>
+</div>
+
+<div id='xmp_region_shape_complex' class='example'>
+A region describing a irregular area using the `path` definition and a rectangle definition, which together make a single region. The rectangle definition elides the "x" attribute, which defaults to `0`, per the SVG 2 specification.
+
+<xmp highlight='json'>
+{
+  "region": {
+    "shape": {
+      "path": {
+        "d": "M0,12 L6.3,9 V15 Z M7.3,9 H17 V15 H7.3 Z M18,9 H18.4 Q21.4,9 21.4,12 Q21.4,15 18.4,15 H18 Z"
+      },
+      "rect": {
+        "y": 44,
+        "width": "130",
+        "height": "25"
+      }
+    }
+  }
+}
+</xmp>
+</div>
+
+# Haptic patterns # {#haptic_patterns}
+
+A haptic pattern consist of a repeating sequence of vibration durations. This pattern is defined as a string with an array containing the sequence of durations in milliseconds, followed by an interval in milliseconds before the pattern repeats.
+
+The sequence of durations is an array of integers describing an alternating pattern of vibrations and pauses.
+
+If no value is provided for the repetition interval, the pattern will execute only ones. If a valid value is provided for the repetition interval, the haptic pattern will repeat until the activating behavior is terminated (such as by the using moving their finger off the target region).
+
+<div id='xmp_haptic_pattern_simple' class='example'>
+A simple haptic pattern that will trigger a single vibration lasting 200 milliseconds.
+
+<xmp highlight='json'>
+{
+  "haptic_pattern": "[200]"
+}
+</xmp>
+</div>
+
+<div id='xmp_haptic_pattern_repeat' class='example'>
+A haptic pattern that will trigger a single vibration lasting 200 milliseconds, once every 500 milliseconds.
+
+<xmp highlight='json'>
+{
+  "haptic_pattern": "[200] 500"
+}
+</xmp>
+</div>
+
+<div id='xmp_haptic_pattern_complex' class='example'>
+A complex haptic pattern that will trigger a sequence of vibrations, the first lasting 50 milliseconds, followed by a pause of 100 milliseconds, followed by a second vibration that lasts 150 milliseconds, with the pattern repeating every 250 milliseconds.
+
+<xmp highlight='json'>
+{
+  "haptic_pattern": "[50, 100, 150] 250"
+}
+</xmp>
+</div>
+
+> **Note:** The W3C Vibration API defines only a simple non-repeating sequence of durations, with no capabilities for the intensity of vibration. This specification extends that with an additional value for repetition of that pattern with a fixed interval between pattern instances. This specification does not currently add capabilities for defining intensity, target region, or other haptic qualities, due to limitations in the W3C Vibration API and device capabilities. 
+
+# Audio # {#audio}
+
+Audio feedback can take one of three forms:
+
+1. Playback of an audio file
+2. Playback of a pre-defined earcon
+3. Dynamic generation of a sound with an ADSR envelope definition
+
+## Audio files ## {#audio_files}
+
+An audio file is a prerecorded external sound file that is referenced through a file path in an `href` key.
+
+An external link may be to a local file or a file on the Web. Local audio files are recommended for lack of latency. This specification does not define how audio files are distributed or packaged with diagram files; a separate specification may define a packaging format.
+
+Conforming user agents must support the following audio formats for audio playback:
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      Name
+      </th>
+      <th>
+      File extension
+      </th>
+      <th>
+      MIME type
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MP3</td>
+      <td>`.mp3`</td>
+      <td>`audio/audio/mpeg`</td>
+    </tr>
+    <tr>
+      <td>Ogg Opus</td>
+      <td>`.opus`</td>
+      <td>`audio/ogg; codecs=opus`</td>
+    </tr>
+    <tr>
+      <td>Ogg Vorbis</td>
+      <td>`.ogg`</td>
+      <td>`audio/ogg; codecs=vorbis`</td>
+    </tr>
+    <tr>
+      <td>Wave</td>
+      <td>`.wav`</td>
+      <td>`audio/wav`</td>
+    </tr>
+  </tbody>
+</table>
+
+
+## Earcons ## {#earcons}
+
+An earcon is a brief, distinctive sound which represents a specific event or conveys other information. It is the audio equivalent of an icon. This specification defines a mechanism for playback of a pre-defined set of earcons that conforming user agents must support. An `earcon` consists of a unique name and an audio definition. A list of earcon definitions will be defined in a separate specification.
+
+## ADSR definitions ## {#adsr_definitions}
+
+See [ADSR envelopes](#adsr_envelopes) for more details.
+
+# ADSR envelopes # {#adsr_envelopes}
 
 Timed media, such as haptic or sonification effects, are defined in this specification with the common Attack-Decay-Sustain-Release envelope.
 
