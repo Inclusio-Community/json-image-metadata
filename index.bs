@@ -100,7 +100,7 @@ This specification must define easy ways to enable the distribution and discover
 
 ## Provenance expression ## {#provenance_expression}
 
-Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more cotent by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be share, wile also providing credit to the original author or publisher.
+Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more cotent by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be shared, while also providing credit to the original author or publisher.
 
 ## Encapsulation ## {#encapsulation}
 
@@ -116,7 +116,7 @@ While namespaces allow a flexible extensibility and modularity, they also hamper
 
 ### Generic styling ### {#generic_styling}
 
-While this specification does includes some accessibility-specific extensions of CSS, such as a finer control of color contrast settings, it must not define or be used to supercede CSS.
+While this specification does include some accessibility-specific extensions of CSS, such as a finer control of color contrast settings, it must not define or be used to supercede CSS.
 
 ### ARIA Syntax for Data Visualization ### {#aria_syntax}
 
@@ -572,7 +572,7 @@ A haptic pattern consist of a repeating sequence of vibration durations. This pa
 
 The sequence of durations is an array of integers describing an alternating pattern of vibrations and pauses.
 
-If no value is provided for the repetition interval, the pattern will execute only ones. If a valid value is provided for the repetition interval, the haptic pattern will repeat until the activating behavior is terminated (such as by the using moving their finger off the target region).
+If no value is provided for the repetition interval, the pattern will execute only ones. If a valid value is provided for the repetition interval, the haptic pattern will repeat until the activating behavior is terminated (such as by the user moving their finger off the target region).
 
 <div id='xmp_haptic_pattern_simple' class='example'>
 A simple haptic pattern that will trigger a single vibration lasting 200 milliseconds.
@@ -708,11 +708,11 @@ The SVG [[SVG11]] specification defines a `metadata` element (or "tag"), which c
 
 > Note: The SVG 2.0 specification is not yet approved, and has not yet reached W3C Recommentation status. 
 
-Parts of it are implemented in browsers and other user agents, but some validation tools might still flag non-XML content in the `metadata` element as a violation. This might impact some organizational strictures that all HTML or SVG documents are required to pass validation in order to be accessible. These tools <span class=allow-2119>should</span> be urged to update to the SVG 2.0 specification for processing the `metadata` element.
+Parts of it are implemented in browsers and other user agents, but some validation tools might still flag non-XML content in the `metadata` element as a violation. This might impact some organizational structures that all HTML or SVG documents are required to pass validation in order to be accessible. These tools <span class=allow-2119>should</span> be urged to update to the SVG 2.0 specification for processing the `metadata` element.
 
 It is important to note that currently, SVG does not define a processing algorithm or behavior for metadata. A user agent `may` process the metadata in any manner it supports. Currently, no general purpose web browser processes the contents of the `metadata` element.
 
-Because the SVG `metadata` element does not have any defined attributes (such as an `href` attribute), there is no defined way to link to external resources; this contrasts with the `style` element in SVG, which can contain CSS rules as the child content of the element, or can reference external CSS files through the `href` attribute. Thus, this specification defines a linking syntax to allow external metadata files to be applied in whole or part to the referring image document.
+Because the SVG `metadata` element does not have any defined attributes (such as an `href` attribute), there is no defined way to link to external resources; this contrasts with the `style` element in SVG, which can contain CSS rules as the child content of the element, or can reference external CSS files through the `href` attribute. Thus, this specification defines a linking syntax to allow external metadata files to be applied in whole or in part to the referring image document.
 
 ## Cascading Style Sheets (CSS) ## {#css}
 
@@ -720,7 +720,7 @@ Some features of this specification, such as contrast control, overlap with capa
 
 ### CSS format ### {#css_format}
 
-CSS defines its own syntax, processing model, and format, initially define in the 1990s. IT requires a custome processor.
+CSS defines its own syntax, processing model, and format, initially define in the 1990s. It requires a custom processor.
 
 This specification uses the common JSON format, which can be processed by any JSON tools, including web browser contexts, JavaScript, and many other tools.
 
@@ -728,7 +728,7 @@ This specification attempts to define its rules in a way that CSS might be expre
 
 ### CSS selectors ### {#css_selectors}
 
-This specification uses the CSS selector synta to link specific metadata entries to specific markup elements, to classes on markup elements, or other linking mechanisms. Unlike CSS, however, it does not use selectors as an "object key", but rather as a value for a `selector` attribute, to fit the JSON schema and allow multiple rules to use the same selector.
+This specification uses the CSS selector syntax to link specific metadata entries to specific markup elements, to classes on markup elements, or other linking mechanisms. Unlike CSS, however, it does not use selectors as an "object key", but rather as a value for a `selector` attribute, to fit the JSON schema and allow multiple rules to use the same selector.
 
 ### Intended authoring usage ### {#intended_authoring}
 
