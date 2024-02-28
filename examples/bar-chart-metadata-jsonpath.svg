@@ -1,0 +1,180 @@
+<svg id="chart-bar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 332">
+  <title></title>
+  <rect fill="none" pointer-events="all" width="100%" height="100%" />
+  <metadata>
+    {
+      "dataset": {
+        "title": "Satisfaction Level",
+        "subtitle": "Results of user survey",
+        "source": {
+          "url": "https://example.com",
+          "name": "Example source"
+        },
+        "axes": {
+          "x": {
+            "label": "Satisfaction scores",
+            "variableType": "independent"
+          },
+          "y": {
+            "label": "Number of respondants",
+            "variableType": "dependent"
+          }
+        },
+        "series": [
+          "name": "2023 Survey",
+          "type": "column",
+          "records": [
+            {
+              "x": "Very Dissatisfied",
+              "y": "4"
+            },
+            {
+              "x": "Dissatisfied",
+              "y": "15"
+            },
+            {
+              "x": "Neutral",
+              "y": "17"
+            },
+            {
+              "x": "Satisfied",
+              "y": "38"
+            },
+            {
+              "x": "Very Satisfied"
+              "y": "46"
+            }
+          ] 
+        ],
+        "href": {
+          "url": "https://example.com/satification-survey",
+          "format": "csv",
+          "type": "extendedDataset"
+        }
+      },
+      "selectors": {
+        "#chart_title": "$.dataset.title",
+
+        "#x-axis-0 .axis_label": "$.dataset.series.records[0].x",
+        "#x-axis-1 .axis_label": "$.dataset.series.records[1].x",
+        "#x-axis-2 .axis_label": "$.dataset.series.records[2].x",
+        "#x-axis-3 .axis_label": "$.dataset.series.records[3].x",
+        "#x-axis-4 .axis_label": "$.dataset.series.records[4].x",
+
+        "#datapoint-x_Very_Dissatisfied": "$.dataset.series.records[0].y",
+        "#datapoint-x_Dissatisfied": "$.dataset.series.records[1].y",
+        "#datapoint-x_Neutral": "$.dataset.series.records[2].y",
+        "#datapoint-x_Satisfied": "$.dataset.series.records[3].y",
+        "#datapoint-x_Very_Satisfied": "$.dataset.series.records[4].y"
+      }
+    }
+  </metadata>
+  <g>
+    <text class="chart_title" transform="translate(300,29.4)">Satisfaction Level</text>
+    <g id="x-axis" transform="translate(69.6,296)">
+      <path id="x_Satisfaction_line-4" class="x_axis_line" d="M-5,0 H515.4" />
+      <title class="axis_title" transform="translate(256,39)">Satisfaction</title>
+      <g id="x-axis-0" transform="translate(55,16)" class="tick_group_x">
+        <text class="axis_label">Very Dissatisfied</text>
+      </g>
+      <g id="x-axis-1" transform="translate(156,16)" class="tick_group_x">
+        <text class="axis_label">Dissatisfied</text>
+      </g>
+      <g id="x-axis-2" transform="translate(258,16)" class="tick_group_x">
+        <text class="axis_label">Neutral</text>
+      </g>
+      <g id="x-axis-3" transform="translate(359,16)" class="tick_group_x">
+        <text class="axis_label">Satisfied</text>
+      </g>
+      <g id="x-axis-4" transform="translate(460,16)" class="tick_group_x">
+        <text class="axis_label">Very Satisfied</text>
+      </g>
+    </g>
+    <g id="y-axis" transform="translate(69.6,43)">
+      <text class="axis_title" transform="translate(-36.6,126.5) rotate(-90)">Respondants</text>
+      <path id="y_Respondant_line-4" class="y_axis_line" d="M0,253 V0" />
+      <g transform="translate(0,253)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-9,4)">0</text>
+        <path class="y_axis_tick" d="M-5,0 H0" />
+      </g>
+      <g transform="translate(0,202.4)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-9,4)">10</text>
+        <path class="y_axis_tick" d="M-5,0 H0" />
+      </g>
+      <g transform="translate(0,151.8)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-9,4)">20</text>
+        <path class="y_axis_tick" d="M-5,0 H0" />
+      </g>
+      <g transform="translate(0,101.2)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-9,4)">30</text>
+        <path class="y_axis_tick" d="M-5,0 H0" />
+      </g>
+      <g transform="translate(0,50.6)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-9,4)">40</text>
+        <path class="y_axis_tick" d="M-5,0 H0" />
+      </g>
+      <g transform="translate(0,0)" class="tick_group_y">
+        <text class="axis_label_y" transform="translate(-9,4)">50</text>
+        <path class="y_axis_tick" d="M-5,0 H0" />
+      </g>
+    </g>
+    <g transform="translate(69.6,43)">
+      <g id="datapoint-x_Very_Dissatisfied">
+        <g class="datapoint bar series_0 respondant" transform="translate(55.14,0)">
+          <path d="M-22,231 V252 H22 V231 Z" />
+        </g>
+      </g>
+      <g id="datapoint-x_Dissatisfied">
+        <g class="datapoint bar series_0 respondant" transform="translate(156.42,0)">
+          <path d="M-22,176 V252 H22 V176 Z" />
+        </g>
+      </g>
+      <g id="datapoint-x_Neutral">
+        <g class="datapoint bar series_0 respondant" transform="translate(257.7,0)">
+          <path d="M-22,166 V252 H22 V166 Z" />
+        </g>
+      </g>
+      <g id="datapoint-x_Satisfied">
+        <g class="datapoint bar series_0 respondant" transform="translate(358.98,0)">
+          <path d="M-22,60 V252 H22 V60 Z" />
+        </g>
+      </g>
+      <g id="datapoint-x_Very_Satisfied">
+        <g class="datapoint bar series_0 respondant" transform="translate(460.26,0)">
+          <path d="M-22,20 V252 H22 V20 Z" />
+        </g>
+      </g>
+    </g>
+  </g>
+  <style>
+    svg {
+      font-family: "Open Sans", Arial, sans-serif;
+      font-size: 11px;
+      text-anchor: middle;
+    }
+
+    .chart_title {
+      font-size: 15px;
+    }
+
+    .axis_title {
+      font-size: 13px;
+    }
+
+    path {
+      fill: none;
+      stroke: hsl(0, 0%, 0%);
+      stroke-width: 2px;
+      stroke-linecap: round;
+    }
+
+    .tick_group_y {
+      text-anchor: end;
+    }
+
+    .bar path {
+      fill: hsl(222, 79%, 55%);
+      stroke: hsl(222, 69%, 55%);
+    }
+  </style>
+</svg>

@@ -1,11 +1,11 @@
 <pre class='metadata'>
-Title: Technical Image Metadata
-Shortname: tim
+Title: JSON Image Metadata
+Shortname: jim
 Level: 1
 Status: fido/ED
 Group: Inclusio Project
-Repository: fizzstudio/technical-image-metadata
-URL: https://fizzstudio.github.io/technical-image-metadata/
+Repository: fizzstudio/json-image-metadata
+URL: https://fizzstudio.github.io/json-image-metadata/
 Editor: Doug Schepers, Fizz Studio http://fizz.studio, doug@fizz.studio
 Abstract: A specifiction for expressing technical image metadata, with an emphasis on accessibility of data visualizations.
 Favicon: ./favicon.svg
@@ -708,7 +708,7 @@ The SVG [[SVG11]] specification defines a `metadata` element (or "tag"), which c
 
 > Note: The SVG 2.0 specification is not yet approved, and has not yet reached W3C Recommentation status. 
 
-Parts of it are implemented in browsers and other user agents, but some validation tools might still flag non-XML content in the `metadata` element as a violation. This might impact some organizational structures that all HTML or SVG documents are required to pass validation in order to be accessible. These tools <span class=allow-2119>should</span> be urged to update to the SVG 2.0 specification for processing the `metadata` element.
+Parts of it are implemented in browsers and other user agents, but some validation tools might still flag non-XML content in the `metadata` element as a violation. This might impact some organizational requirements that all HTML or SVG documents are required to pass validation in order to be accessible. These tools <span class=allow-2119>should</span> be urged to update to the SVG 2.0 specification for processing the `metadata` element.
 
 It is important to note that currently, SVG does not define a processing algorithm or behavior for metadata. A user agent `may` process the metadata in any manner it supports. Currently, no general purpose web browser processes the contents of the `metadata` element.
 

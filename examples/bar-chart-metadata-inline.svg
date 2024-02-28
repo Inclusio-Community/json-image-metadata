@@ -27,7 +27,7 @@
             {
               "x": {
                 "value": "Very Dissatisfied",
-                "selector": ""
+                "selector": "#x-axis-0 .axis_label"
               },
               "y": {
                 "value": "4",
@@ -37,17 +37,17 @@
             {
               "x": {
                 "value": "Dissatisfied",
-                "selector": ""
+                "selector": "#x-axis-1 .axis_label"
               },
               "y": {
                 "value": "15",
-                "selector": "#datapoint-x_Very_Dissatisfied"
+                "selector": "#datapoint-x_Dissatisfied"
               }
             },
             {
               "x": {
                 "value": "Neutral",
-                "selector": ""
+                "selector": "#x-axis-2 .axis_label"
               },
               "y": {
                 "value": "17",
@@ -57,7 +57,7 @@
             {
               "x": {
                 "value": "Satisfied",
-                "selector": ""
+                "selector": "#x-axis-3 .axis_label"
               },
               "y": {
                 "value": "38",
@@ -67,7 +67,7 @@
             {
               "x": {
                 "value": "Very Satisfied",
-                "selector": ""
+                "selector": "#x-axis-4 .axis_label"
               },
               "y": {
                 "value": "46",
@@ -78,7 +78,7 @@
         ],
         "href": {
           "url": "https://example.com/satification-survey",
-          "format": "text/csv",
+          "format": "csv",
           "type": "extendedDataset"
         }
       }
@@ -89,19 +89,19 @@
     <g id="x-axis" transform="translate(69.6,296)">
       <path id="x_Satisfaction_line-4" class="x_axis_line" d="M-5,0 H515.4" />
       <title class="axis_title" transform="translate(256,39)">Satisfaction</title>
-      <g transform="translate(55,16)" class="tick_group_x">
+      <g id="x-axis-0" transform="translate(55,16)" class="tick_group_x">
         <text class="axis_label">Very Dissatisfied</text>
       </g>
-      <g transform="translate(156,16)" class="tick_group_x">
+      <g id="x-axis-1" transform="translate(156,16)" class="tick_group_x">
         <text class="axis_label">Dissatisfied</text>
       </g>
-      <g transform="translate(258,16)" class="tick_group_x">
+      <g id="x-axis-2" transform="translate(258,16)" class="tick_group_x">
         <text class="axis_label">Neutral</text>
       </g>
-      <g transform="translate(359,16)" class="tick_group_x">
+      <g id="x-axis-3" transform="translate(359,16)" class="tick_group_x">
         <text class="axis_label">Satisfied</text>
       </g>
-      <g transform="translate(460,16)" class="tick_group_x">
+      <g id="x-axis-4" transform="translate(460,16)" class="tick_group_x">
         <text class="axis_label">Very Satisfied</text>
       </g>
     </g>

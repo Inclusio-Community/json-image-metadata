@@ -81,132 +81,32 @@
   <style>
     svg {
       font-family: "Open Sans", Arial, sans-serif;
-      font-size: 15px
-    }
-
-    #fizz_chart_frame {
-      fill: none;
-      stroke: none
-    }
-
-    .y_axis_line {
-      fill: none;
-      stroke: hsl(0, 0%, 0%);
-      stroke-width: 2px;
-      stroke-linecap: round
-    }
-
-    .x_axis_line {
-      fill: none;
-      stroke: hsl(0, 0%, 0%);
-      opacity: 1;
-      stroke-width: 2px;
-      stroke-linecap: round
-    }
-
-    .axis_label {
+      font-size: 11px;
       text-anchor: middle;
-      fill: hsl(0, 0%, 0%);
-      stroke: none;
-      font-size: 12px;
-    }
-
-    .axis_title {
-      font-size: 15px;
-    }
-
-    .axis_label_y {
-      text-anchor: end;
-      fill: hsl(0, 0%, 0%);
-      stroke: none;
-      font-size: 13px;
-    }
-
-    .tickmark_y {
-      opacity: 0.2
-    }
-
-    .tickmark_y_0 {
-      fill: hsl(270, 50%, 50%);
-      stroke: hsl(270, 50%, 50%);
-      opacity: 1;
-      stroke-width: 2px;
-      stroke-linecap: round
-    }
-
-    .tick_group_y:hover,
-    .tick_group_y:hover .tickmark_y {
-      font-weight: bold;
-      opacity: 1
-    }
-
-    .tickmark_x {
-      opacity: 0.2
-    }
-
-    .tickmark_x_0 {
-      fill: hsl(270, 50%, 50%);
-      stroke: hsl(270, 50%, 50%);
-      opacity: 1;
-      stroke-width: 2px;
-      stroke-linecap: round
-    }
-
-    .radial_label_right {
-      text-anchor: start
-    }
-
-    .radial_label_left {
-      text-anchor: end
-    }
-
-    .datapoint_background {
-      fill: none;
-      stroke: none;
-      pointer-events: all;
-      outline: none
-    }
-
-    .data_line {
-      fill: none;
-      stroke: hsl(270, 50%, 50%);
-      stroke-width: 3px;
-      stroke-linecap: round
-    }
-
-    .data_area {
-      stroke: hsl(270, 50%, 50%);
-      stroke-width: 3px;
-      stroke-linecap: round;
-      fill: none
-    }
-
-    .data_area_background {
-      stroke: none;
-      fill: hsl(270, 50%, 50%);
-      fill-opacity: 0.8
-    }
-
-    .trendline {
-      stroke: red;
-      stroke-width: 3px;
-      fill: none
-    }
-
-    .center_label tspan.subtext {
-      font-size: 2rem;
-      text-anchor: middle
     }
 
     .chart_title {
-      font-size: 18px;
-      text-anchor: middle;
-      fill: black;
+      font-size: 15px;
     }
 
-    .respondant {
-      fill: hsl(12, 69%, 35%);
-      stroke: hsl(12, 69%, 35%);
+    .axis_title {
+      font-size: 13px;
+    }
+
+    path {
+      fill: none;
+      stroke: hsl(0, 0%, 0%);
+      stroke-width: 2px;
+      stroke-linecap: round;
+    }
+
+    .tick_group_y {
+      text-anchor: end;
+    }
+
+    .bar path {
+      fill: hsl(222, 79%, 55%);
+      stroke: hsl(222, 69%, 55%);
     }
   </style>
 </svg>
