@@ -672,10 +672,9 @@ An amplitude pattern and haptic pattern that will trigger a pair of vibrations l
 
 > **Note:** The W3C Vibration API does not currently define any capabilities for the amplitude of vibration, and will ignore the  `amplitude_pattern`. This specification includes the `amplitude_pattern` to support the Android Vibration API and the iOS Core Haptics API. 
 
-
 > TODO: include more details about amplitude patterns, including the units
 
-
+> TODO: provide examples with the selector, to illustrate authoring
 
 # Audio # {#audio}
 
