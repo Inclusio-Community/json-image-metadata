@@ -122,6 +122,38 @@ While this specification does include some accessibility-specific extensions of 
 
 This specification is complementary and orthogonal to the W3C specifications defining `role` attributes, including the [WAI-ARIA Graphics Module](https://www.w3.org/TR/graphics-aria-1.0/) and the [SVG Accessibility API Mappings](https://www.w3.org/TR/svg-aam-1.0/).
 
+Conforming documents and implementations {#conform_doc_imp}
+=====================
+
+## JIM MIME type ## {#mime_type}
+
+The MIME type for a JSON Image Metadata document is `text/jim+json`.
+
+## Conforming document ## {#conform_doc}
+
+A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty `dataset` block or one non-empty `behavior` block.
+
+This specification assumes the format of the metadata is in a JSON object. Other conforming serializations are possible, such as XML or a binary format, as long as they adhere to the structure of the defined JSON schema, and can be serialized as JSON.
+
+A conforming document must provide a means to discover the metadata block.
+
+### Conforming SVG document ### {#conform_doc_svg}
+
+In SVG, the metadata block must be the content of a `metadata` element with an attribute `data-type` with the attribute value `text/jim+json`, the MIME type for a JIM document.
+
+### Conforming raster document ### {#conform_doc_raster}
+
+For raster image documents, the JIM content block must be included in the metadata section of the raster image file.
+
+## Conforming implementation ## {#conform_imp}
+
+An implementation conforming to this specification must access the contents of the metadata block. For an SVG-capable implementation displaying an SVG document, a conforming implementation must read the JSON data in the indicated `metadata` element.
+
+A conforming implementation must provide a means for the end user to extract the contents of the `dataset` block. 
+
+A conforming implementation must resolve all selectors and execute all supported features of the `behaviors` block.
+
+
 Path Selectors {#path_selectors} 
 =====================
 
@@ -566,20 +598,26 @@ A region describing a irregular area using the `path` definition and a rectangle
 </xmp>
 </div>
 
+For each shape definition, a conforming implementation must instantiate a corresponding shape matching the element type and attributes 
+Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.
+
 # Haptic patterns # {#haptic_patterns}
 
-A haptic pattern consist of a repeating sequence of vibration durations. This pattern is defined as a string with an array containing the sequence of durations in milliseconds, followed by an interval in milliseconds before the pattern repeats.
+A haptic pattern, denoted by a `haptic_pattern` key, is a string consisting of 3 comma-or-space-separated parameters defining a sequence of vibration durations. The sequence of durations is an array of integers describing an alternating pattern of vibrations and pauses, starting with an initial pause before the first vibration starts.
 
-The sequence of durations is an array of integers describing an alternating pattern of vibrations and pauses.
+<pre class=simpledef>
+vibration duration array: The first parameter is an array, enclosed by square brackets (opening bracket `[` and closing bracket `]`) with a comma-or-space-separated list of integers. Each integer represents a time in milliseconds. The even integers in the list (starting with index `0`) must define the number of milliseconds without vibration, and the odd integers in the list must define the number of milliseconds with vibration.
+repetition interval: The second parameter is an integer representing a time in milliseconds before the vibration duration array begins repeating. If the value is `0` or a positive integer, the haptic pattern must repeat until the activating behavior is terminated (such as by the user moving their finger off the target region). If the value is a negative integer, or if the value is omitted, the haptic pattern must not repeat.
+repetition index: The third parameter is an integer indicating the index of the vibration duration array that is the starting duraction for repetiion, if any. If the value is `0` or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the `0` index. Repetition must only occur according to the value of the repetition interval.
+</pre>
 
-If no value is provided for the repetition interval, the pattern will execute only ones. If a valid value is provided for the repetition interval, the haptic pattern will repeat until the activating behavior is terminated (such as by the user moving their finger off the target region).
 
 <div id='xmp_haptic_pattern_simple' class='example'>
 A simple haptic pattern that will trigger a single vibration lasting 200 milliseconds.
 
 <xmp highlight='json'>
 {
-  "haptic_pattern": "[200]"
+  "haptic_pattern": "[0, 200]"
 }
 </xmp>
 </div>
@@ -589,22 +627,55 @@ A haptic pattern that will trigger a single vibration lasting 200 milliseconds, 
 
 <xmp highlight='json'>
 {
-  "haptic_pattern": "[200] 500"
+  "haptic_pattern": "[0 200] 500"
 }
 </xmp>
 </div>
 
 <div id='xmp_haptic_pattern_complex' class='example'>
-A complex haptic pattern that will trigger a sequence of vibrations, the first lasting 50 milliseconds, followed by a pause of 100 milliseconds, followed by a second vibration that lasts 150 milliseconds, with the pattern repeating every 250 milliseconds.
+A complex haptic pattern that will trigger a sequence of vibrations 10 milliseconds after the event (e.g. a touch event), the first vibration lasting 50 milliseconds, followed by a pause of 100 milliseconds, followed by a second vibration that lasts 150 milliseconds, with the pattern repeating every 250 milliseconds starting at the second vibration index (the 50 millisecond vibration).
 
 <xmp highlight='json'>
 {
-  "haptic_pattern": "[50, 100, 150] 250"
+  "haptic_pattern": "[10, 50, 100, 150] 250 1"
 }
 </xmp>
 </div>
 
-> **Note:** The W3C Vibration API defines only a simple non-repeating sequence of durations, with no capabilities for the intensity of vibration. This specification extends that with an additional value for repetition of that pattern with a fixed interval between pattern instances. This specification does not currently add capabilities for defining intensity, target region, or other haptic qualities, due to limitations in the W3C Vibration API and device capabilities. 
+> **Note:** The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with an optional additional value for repetition of that pattern with a fixed interval between pattern instances, and an optional repetiion index. 
+
+<!-- This specification does not currently add capabilities for defining intensity, target region, or other haptic qualities, due to limitations in the W3C Vibration API and device capabilities. -->
+
+# Amplitude patterns # {#amplitude_patterns}
+
+A amplitude pattern, denoted by a `amplitude_pattern` key, is a string consisting of 1 parameter defining a sequence of vibration amplitudes that correspond to the `haptic_pattern` vibration duration array. The sequence of amplitudes is an array of integers describing an alternating pattern of vibration amplitudes and pauses, indexed to the same sequence as the `haptic_pattern` vibration duration array.
+
+If the platform or operating system does not support variable amplitudes, the `amplitude_pattern` key and value must be ignored.
+
+<pre class=simpledef>
+vibration duration array: This parameter is an array, enclosed by square brackets (opening bracket `[` and closing bracket `]`) with a comma-or-space-separated list of integers. Each integer represents an amplitude. The even integers in the list (starting with index `0`) define the pause between vibrations, and the odd integers in the list define the amplitude of the vibration.
+</pre>
+
+> **Note:** The vibration duration array is defined to mirror the vibration duration array, for ease of authoring. The values of "blank" (Even-numbered) indexes have no effect, and can be defined as `0` to avoid confusion. 
+
+
+<div id='xmp_haptic_amplitude_pattern' class='example'>
+An amplitude pattern and haptic pattern that will trigger a pair of vibrations lasting 200 milliseconds with a pause of 100 milliseconds between them, once every 500 milliseconds. The first vibration will have an amplitude of 30, and the second vibration will have an amplitude of 60.
+
+<xmp highlight='json'>
+{
+  "haptic_pattern": "[0 200 100 200] 500 1",
+  "amplitude_pattern": "[0 30 0 60] 500 1"
+}
+</xmp>
+</div>
+
+> **Note:** The W3C Vibration API does not currently define any capabilities for the amplitude of vibration, and will ignore the  `amplitude_pattern`. This specification includes the `amplitude_pattern` to support the Android Vibration API and the iOS Core Haptics API. 
+
+
+> TODO: include more details about amplitude patterns, including the units
+
+
 
 # Audio # {#audio}
 
