@@ -55,17 +55,17 @@
       "selectors": {
         "#chart_title": "$.dataset.title",
 
-        "#x-axis-0 .axis_label": "$.dataset.series.records[0].x",
-        "#x-axis-1 .axis_label": "$.dataset.series.records[1].x",
-        "#x-axis-2 .axis_label": "$.dataset.series.records[2].x",
-        "#x-axis-3 .axis_label": "$.dataset.series.records[3].x",
-        "#x-axis-4 .axis_label": "$.dataset.series.records[4].x",
+        "#x-axis-0 .axis_label": "$.dataset.series[0].records[0].x",
+        "#x-axis-1 .axis_label": "$.dataset.series[0].records[1].x",
+        "#x-axis-2 .axis_label": "$.dataset.series[0].records[2].x",
+        "#x-axis-3 .axis_label": "$.dataset.series[0].records[3].x",
+        "#x-axis-4 .axis_label": "$.dataset.series[0].records[4].x",
 
-        "#datapoint-x_Very_Dissatisfied": "$.dataset.series.records[0].y",
-        "#datapoint-x_Dissatisfied": "$.dataset.series.records[1].y",
-        "#datapoint-x_Neutral": "$.dataset.series.records[2].y",
-        "#datapoint-x_Satisfied": "$.dataset.series.records[3].y",
-        "#datapoint-x_Very_Satisfied": "$.dataset.series.records[4].y"
+        "#datapoint-x_Very_Dissatisfied": "$.dataset.series[0].records[0].y",
+        "#datapoint-x_Dissatisfied": "$.dataset.series[0].records[1].y",
+        "#datapoint-x_Neutral": "$.dataset.series[0].records[2].y",
+        "#datapoint-x_Satisfied": "$.dataset.series[0].records[3].y",
+        "#datapoint-x_Very_Satisfied": "$.dataset.series[0].records[4].y"
       }
     }
   </metadata>
