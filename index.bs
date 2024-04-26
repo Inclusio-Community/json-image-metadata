@@ -249,28 +249,120 @@ No single dataset structure optimally represents every different kind of data or
 
 Instead, this specification defines the `selector` attribute, which can be added to an object in an arbitrary JSON data structure to indicate a link between a data point and its graphical representation element.
 
-This specification does include a notional, non-canonical dataset structure for purposes of clarification and illustration on the use of the `selector` attribute.
+This specification does include a set of canonical dataset structures which may be used. However, conforming implementations may express the dataset in a different JSON structure, so long as it includes the same set of keys as in the schema.
 
-> Notes: A future complementary specification might define a canonical dataset structure or set of structures for different types of data visualization.
+### Structured data ### {#structured_data}
+
+Structured data includes faceted data, whether qualitative or quantitative, that can be represented by a chart or graph.
+
+This data must be included in objects in the `facets` and `series` keys.
+
+Note: A future version of this specification will define schamata for a canonical dataset structure or set of structures for different types of data visualization.
+
+### Unstructured data ### {#unstructured_data}
+
+Unstructured data includes many types of diagrams, illustrations, pictorial graphics, or infographics. There may be some informal structure to such graphics, including hierarchies such as section headings, but they are not formatted in a defined manner.
+
+Labels, descriptions, and other unstructured metadata may optionally be included in objects in the `items` key.
+
+Note: Certain types of diagram that denote steps, stages, or relationships between objects, such as the water evaporation cycle, can be represented as structured data with the `graph` schema.
+
+
+### Dataset keys ### {#ataset_keys}
 
 The notional dataset described in this specification includes exemplar entities which should be included in any inline dataset for optimal correlation to common graphical representation elements.
 
-These entities include
+These entities include the `title`, `subtitle`, `description`, `source`, `facets`, `series`, `items`, and `href` keys and their values.
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`title`</td>
+      <td>string</td>
+      <td>The title of the graphic document</td>
+      <td>required</td>
+    </tr>
+    <tr>
+      <td>`subtitle`</td>
+      <td>string</td>
+      <td>The subtitle of the graphic document</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`description`</td>
+      <td>string</td>
+      <td>A meaningful summary of the graphic document</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`source`</td>
+      <td>object</td>
+      <td>The provenance of the dataset</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`facets`</td>
+      <td>array</td>
+      <td>Details of each facet in the dataset, such as x and y axes or legend keys, for structured data</td>
+      <td>optional for unstructured data, required for structured data</td>
+    </tr>
+    <tr>
+      <td>`series`</td>
+      <td>array</td>
+      <td>Raw data values of each record in each series of the dataset for structured data</td>
+      <td>optional for unstructured data, required for structured data</td>
+    </tr>
+    <tr>
+      <td>`items`</td>
+      <td>array</td>
+      <td>A loosely organized set of items for unstructured data, such as labels, values, and descriptions for diagrams</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`href`</td>
+      <td>array</td>
+      <td>An array of objects containing links to relevant resources, such as the dataset in another format, or an extended dataset</td>
+      <td>optional</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div id='xmp_dataset_structured' class='example'>
+An example of a `dataset` block (with elided values) for a structured data representation, such as a bar chart. 
 
 <xmp highlight='json'>
 "dataset": {
   "title": "",
   "subtitle": "",
+  "description": "",
   "source": {
   },
-  "axes": [
+  "facets": [
   ],
   "series": [
   ],
-  "href": {
-  }
+  "href": [
+  ]
 }
 </xmp>
+</div>
   
 > TODO: add example
 
@@ -758,11 +850,65 @@ These attributes are contained in an effect block. The effect key defines the un
 - `frequency`: measured in hertz (Hz)
 - `pitch`: measured in Scientific Pitch Notation (SPN).
 
-> Note: Consider using A-weighted decibels (dBA) instead of dB. The dB scale is based only on sound intensity, while the dBA scale is based on intensity and on how the human ear responds, which better describes when sound can damage your hearing.
+Note: Consider using A-weighted decibels (dBA) instead of dB. The dB scale is based only on sound intensity, while the dBA scale is based on intensity and on how the human ear responds, which better describes when sound can damage your hearing.
 
-> Note: Consider whether or not to include pitch as an effect type. It might be easier for authoring if the author is a musician, but it can be looked up and expressed as frequency. But it's a nice-to-have.
+Note: Consider whether or not to include pitch as an effect type. It might be easier for authoring if the author is a musician, but it can be looked up and expressed as frequency. But it's a nice-to-have.
 
 Any given rule can have multiple effect types. For example, a sonification could simultaneously change amplitude and frequency.
+
+
+# Selective Device Capabilities # {#select_device}
+
+All devices, including assistive technology devices, have specific capabilities distinct from other similar devices. Some of those capabilities require specific changes to a graphical document's appearance, such as hiding or showing certain objects or layers to simplify a document for embossing vs printing, or rendering a thicker stroke on shapes so there's a larger "hit box" for haptics.
+
+This specification defines a set of device capabilities for assistive technology devices such that the most appropriate stylesheet can be selected for displaying the document on that device.
+
+Note: This is similar to and informed by the CSS Media Queries capabilities, but dedicated specifically to the various capabilities relevant for assistive technology devices, at a finer-grained level of detail than CSS currently defines. A future CSS specification might adopt these device capabilities, especially if the assistive technology device industry adopts this mechanism and enough content uses it.
+
+Note: This specification will not define styles for best practices for these different capabilities, but only the mechanism to switch or select stylesheets. Another companion specification or specifications might define best styling practice guidelines for specific media and devices.
+
+TODO: Add device capabilities for haptics
+
+# Tactile Capabilities # {#tactile_capabilities}
+
+Embossers, swell paper, and other tactile printing technologies each have a different set of capabilities. Some tactile printing technologies may have multiple levels of dot height, while others may have only possible 1 or 2 dot heights. Some technologies rely on the width of a line to determine the height of the raised surface, while others use color to determine surface height and pattern. Some allow fine details, while others require a sparse layout. 
+
+To enable a single document to be applicable to multiple tactile output techniques, this specification defines a capabilities switch with different CSS stylesheets to hide or show different elements, to increase line width, to use particular color palettes, and so forth.
+
+The `tactile` key defines an object that defines conditional device capabilities, each of which is associated with its appropriate external CSS stylesheet file for print media. The appropriate external CSS file must be loaded by the user agent based on the target printer, and applied following the same processing rules as an inline CSS rule set.
+
+
+<div id='xmp_tactile_device_capabilities' class='example'>
+Device capabilities….
+
+<xmp highlight='json'>
+{
+  "tactile": {
+    "dpi > 200": {
+      "href": "https://path.to.high_dpi_stylesheet.css"
+    }
+    "dpi < 200": {
+      "href": "https://path.to.low_dpi_stylesheet.css"
+    }
+  },
+}
+</xmp>
+
+<xmp highlight='json'>
+{
+  "tactile": {
+    "dot_height > 5": {
+      "href": "https://path.to.max_dotheight_stylesheet.css"
+    }
+    "dot_height < 2": {
+      "href": "https://path.to.min_dotheight_stylesheet.css"
+    }
+  },
+}
+</xmp>
+</div>
+
+TODO: Define and describe mechanisms for setting layers on objects (e.g. print only, print and tactile, emboss only, braille)
 
 
 # Relationship to other technologies # {#tech_relationship}
@@ -776,7 +922,7 @@ This specification is designed specifically with SVG in mind, though the metadat
 
 The SVG [[SVG11]] specification defines a `metadata` element (or "tag"), which can contain this metadata format. In the SVG 2.0 specification, defined in the late 1990s, it was expected that metadata would be expressed in XML; the SVG 2.0 [[SVG2]] specification lifts this restriction, and defines the `metadata` child content model as text content. This allows any structured or unstructured text, including structured content like JSON.
 
-> Note: The SVG 2.0 specification is not yet approved, and has not yet reached W3C Recommentation status. 
+Note: The SVG 2.0 specification is not yet approved, and has not yet reached W3C Recommentation status. 
 
 Parts of it are implemented in browsers and other user agents, but some validation tools might still flag non-XML content in the `metadata` element as a violation. This might impact some organizational requirements that all HTML or SVG documents are required to pass validation in order to be accessible. These tools <span class=allow-2119>should</span> be urged to update to the SVG 2.0 specification for processing the `metadata` element.
 
