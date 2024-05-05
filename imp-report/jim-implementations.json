@@ -1,0 +1,868 @@
+{
+  "implementations": [
+    {
+      "jim-spec": {
+        "title": "JIM spec",
+        "org": "Inclusio",
+        "desc": "Draft specification for JSON Image Metadata",
+        "type": "specification"
+      }
+    },
+    {
+      "unar": {
+        "title": "UNAR",
+        "org": "UNAR Labs",
+        "desc": "AI/ML data extractor",
+        "type": "generator"
+      }
+    },
+    {
+      "iveo": {
+        "title": "IVEO",
+        "org": "ViewPlus",
+        "desc": "IVEO graphics viewer",
+        "type": "viewer"
+      }
+    },
+    {
+      "tiger": {
+        "title": "Tiger",
+        "org": "ViewPlus",
+        "desc": "Tiger embosser software and printer driver",
+        "type": "embosser"
+      }
+    },
+    {
+      "vital": {
+        "title": "Vital",
+        "org": "Vital",
+        "desc": "haptic graphics viewer",
+        "type": "viewer"
+      }
+    },
+    {
+      "paracharts": {
+        "title": "ParaCharts",
+        "org": "Fizz Studio",
+        "desc": "ParaCharts dataviz library (external project, active development)",
+        "type": "generator, viewer"
+      }
+    },
+    {
+      "highcharts": {
+        "title": "HighCharts",
+        "org": "HighSoft",
+        "desc": "HighCharts dataviz library (external project, no active development)",
+        "type": "generator, viewer"
+      }
+    }
+  ],
+  "milestone-groups": {
+    "milestone-1": {
+      "title": "Milestone 1",
+      "index": "1",
+      "url": "../milestones/milestone-0001/",
+      "parent_id": null
+    },
+    "milestone-1-bar-chart-metadata-m1-0001": {
+      "title": "Bar Chart Metadata, m1-0001",
+      "index": "1.1",
+      "url": "../milestones/milestone-0001/bar-chart-metadata-m1-0001.svg",
+      "parent_id": "milestone-1"
+    },
+    "milestone-2": {
+      "title": "Milestone 2",
+      "index": "1",
+      "url": "../milestones/milestone-0002/",
+      "parent_id": null
+    },
+    "milestone-2-bar-chart-metadata-m2-0001": {
+      "title": "Bar Chart Metadata, m2-0001",
+      "index": "2.1",
+      "url": "../milestones/milestone-0002/bar-chart-metadata-m2-0001.svg",
+      "parent_id": "milestone-2"
+    }
+  },
+  "milestones": {
+    "milestone-m1-0001-generate-dataset": {
+      "title": "Generate JIM dataset for a bar chart",
+      "index": "1.1.1",
+      "parent_id": "milestone-1-bar-chart-metadata-m1-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m1-0001-generate-selectors": {
+      "title": "Generate JIM selectors for a bar chart to map dataset to rendering",
+      "index": "1.1.2",
+      "parent_id": "milestone-1-bar-chart-metadata-m1-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "none",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m1-0001-embed": {
+      "title": "Embed JIM in SVG bar chart file",
+      "index": "1.1.3",
+      "parent_id": "milestone-1-bar-chart-metadata-m1-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m1-0001-render": {
+      "title": "Render SVG bar chart with JIM",
+      "index": "1.1.4",
+      "parent_id": "milestone-1-bar-chart-metadata-m1-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m1-0001-selectors": {
+      "title": "Apply selectors in SVG bar chart with JIM to map dataset to rendering",
+      "index": "1.1.5",
+      "parent_id": "milestone-1-bar-chart-metadata-m1-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "full",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "none",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m2-0001-generate-dataset": {
+      "title": "Generate revised JIM dataset for a bar chart",
+      "index": "2.1.1",
+      "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m2-0001-generate-selectors": {
+      "title": "Generate revised JIM selectors for a bar chart to map dataset to rendering",
+      "index": "2.1.2",
+      "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m2-0001-generate-haptics": {
+      "title": "Generate JIM haptic behavior for a bar chart to map dataset to rendering",
+      "index": "2.1.3",
+      "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m2-0001-generate-announcements": {
+      "title": "Generate JIM announcement behavior for a bar chart to map rendering to dataset values",
+      "index": "2.1.4",
+      "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m2-0001-apply-selectors": {
+      "title": "Apply revised selectors in SVG bar chart with JIM to map dataset to rendering",
+      "index": "2.1.5",
+      "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m2-0001-apply-haptics": {
+      "title": "Apply haptic behavior in SVG bar chart with JIM",
+      "index": "2.1.6",
+      "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m2-0001-apply-announcements": {
+      "title": "Apply announcement behavior in SVG bar chart with JIM",
+      "index": "2.1.7",
+      "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    }
+  },
+  "use-cases": {
+    "content-author-use-cases": {
+      "title": "Content author use cases",
+      "index": "3.1",
+      "parent_id": null,
+      "milestones": {}
+    },
+    "use-case-author-manually-create-jim": {
+      "title": "Author can manually add JIM to SVG document",
+      "index": "3.1.1",
+      "parent_id": "content-author-use-cases",
+      "milestones": {
+        "": { "notes": "" }
+      }
+    },
+    "use-case-author-auto-create-jim": {
+      "title": "Author can add JIM to SVG document via GUI authoring tool",
+      "index": "3.1.2",
+      "parent_id": "content-author-use-cases",
+      "milestones": {
+        "": { "notes": "" }
+      }
+    },
+    "viewer-use-cases": {
+      "title": "Viewer/reader software use cases",
+      "index": "3.2",
+      "parent_id": null,
+      "milestones": {}
+    },
+    "use-case-interaction": {
+      "title": "Enables user to interact with the behaviors defined in the image JIM",
+      "index": "3.2.1",
+      "parent_id": "viewer-use-cases",
+      "milestones": {
+        "milestone-m2-0001-apply-haptics": { "notes": "" },
+        "milestone-m2-0001-apply-announcements": { "notes": "" }
+      }
+    },
+    "application-use-cases": {
+      "title": "Application developer use cases",
+      "index": "3.3",
+      "parent_id": null,
+      "milestones": {}
+    },
+    "use-case-generate-dataset": {
+      "title": "Generate JIM dataset for image",
+      "index": "3.3.1",
+      "parent_id": "application-use-cases",
+      "milestones": {
+        "milestone-m1-0001-generate-dataset": { "notes": "" }
+      }
+    },
+    "use-case-generate-selectors": {
+      "title": "Generate JIM selector mapping between dataset and representation, for image",
+      "index": "3.3.2",
+      "parent_id": "application-use-cases",
+      "milestones": {
+        "milestone-m1-0001-generate-dataset": { "notes": "" },
+        "milestone-m1-0001-generate-selectors": { "notes": "" }
+      }
+    },
+    "use-case-generate-haptics": {
+      "title": "Generate JIM haptics for image",
+      "index": "3.3.3",
+      "parent_id": "application-use-cases",
+      "milestones": {
+        "milestone-m1-0001-generate-haptics": { "notes": "" }
+      }
+    },
+    "end-user-use-cases": {
+      "title": "End user developer use cases",
+      "index": "3.4",
+      "parent_id": null,
+      "milestones": {}
+    },
+    "use-case-extract-data": {
+      "title": "User can extract JIM dataset for image",
+      "index": "3.4.1",
+      "parent_id": "end-user-use-cases",
+      "milestones": {
+        "": { "notes": "" }
+      }
+    }
+  }
+}

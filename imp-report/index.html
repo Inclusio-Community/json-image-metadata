@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JIM Implementation Report</title>
+  <style>
+
+    body {
+      /* scroll-padding-top: 100px; */
+      margin: 1rem;
+    }
+
+    dl {
+      display: flex;
+      flex-flow: row wrap;
+      /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    dt {
+      flex-basis: 15%;
+      font-weight: bold;
+    }
+
+      dt::after {
+        content: ":";
+      }
+
+    dd {
+      flex-basis: 70%;
+      flex-grow: 1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
+    thead > tr {
+      background-color: gray;
+      color: white;
+    }
+
+      thead th {
+        background-color: gray;
+        position: sticky;
+        top: 0; /* required for stickiness */
+        height: 2.5rem;
+      }
+
+    table td,
+    table th {
+      padding: 0;
+      border: gray 1px solid;
+      font-size: 16px;
+      padding: 0.15rem 0.3rem;
+    }
+
+    table th {
+      text-align: start;
+      vertical-align: top;
+      font-weight: normal;
+    }
+
+    table td {
+      text-align: center;
+    }
+
+    th.ucr-category {
+      font-weight: bold;
+      background-color: aliceblue;
+    }
+
+    th.ucr-group {
+      font-size: larger;
+      font-weight: bold;
+      background-color: gainsboro;
+      padding: 0.5rem 0.3rem;
+    }
+
+    th.capability {
+      max-width: 15rem;
+    }
+
+    span.index {
+      font-size: smaller;
+      text-decoration: none;
+      /* background-color: gray; */
+      color: gray;
+      /* padding: 2px; */
+    }
+
+
+    td.pass,
+    td.full {
+      background-color: hsl(87, 60%, 60%);
+    }
+
+    td.partial,
+    td.limited {
+      background-color: hsl(60, 100%, 87%);
+    }
+
+    td.n_a {
+      background-color: hsl(210, 100%, 93%);
+    }
+
+    td.fail,
+    td.none {
+      background-color: hsl(323, 68%, 83%);
+    }
+
+    td > ul {
+      list-style-position: inside;
+      padding: 0;
+      margin: 0.25rem;
+      text-align: start;
+    }
+
+    tr:target {
+      outline: 3px black solid;
+      /* scroll-padding-top: 2rem; */
+    }
+
+    table.imp_table thead > tr,
+    table.imp_table thead th {
+      background-color: hsl(0, 0%, 100%, 0.9);
+      color: black;
+    }
+
+    table.imp_table td, 
+    table.imp_table th {
+      padding: 0.2rem;
+      border: none;
+      text-align: start;
+      font-size: 1rem;
+    }
+
+    table.imp_table th {
+      font-weight: bold;
+      vertical-align: middle;
+    }
+
+    table.imp_table tbody th {
+      font-size: 1.1rem;
+    }
+
+    /* scroll snapping */
+    html {
+      scroll-snap-type: y mandatory;
+    }
+
+    tr {
+      scroll-snap-align: start;  
+      scroll-padding-top: 2.5rem;
+    }
+
+    .external_link::after,
+    a[href^="http"]::after {
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' fill='cornflowerblue' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath d='M2,2 5,2 5,3 3,3 3,9 9,9 9,7 10,7 10,10 2,10M6.2,2 10,2 10,5.8 8.5,4.3 6.4,6.5 5.5,5.5 7.6,3.4'/%3E%3C/svg%3E");
+      margin: 0 0 0 2px;
+    }
+
+    #proposed_milestones_container {
+      background-color: antiquewhite;
+      opacity: 0.75;
+    }
+
+    img.thumbnail {
+      width: 8rem;
+      margin-right: 2rem;
+      vertical-align: middle;
+    }
+
+
+    /* notes */
+    span.note {
+      cursor: help;
+      /* Will either add a pointer with a question mark or just a question mark */
+      position: relative;
+      /* Relative to the span elements */
+    }
+
+    .note::before, 
+    .note::after {
+      position: absolute;
+      left: 50%;
+      display: block;
+      opacity: 0;
+      z-index: -999;
+      /* This ensures that the tooltips are not visible without user interaction */
+    }
+
+    .note:hover::before,
+    .note:focus::before,
+    .note:hover::after,
+    .note:focus::after {
+      /* Select bother hover and focus to accomodate users without a keyboard */
+      opacity: 1;
+      z-index: 999;
+    }
+
+
+    /* --- Creates a triangle shape with borders ---
+    https://css-tricks.com/animation-css-triangles-work/ */
+    .note::before {
+      content: "";
+      border-style: solid;
+      border-width: 1em 0.75em 0 0.75em;
+      /* Creates a triangle with the point facing down */
+      /* The thinner the left and right borders the sharper the triangle */
+      border-color: rgb(18, 88, 110) transparent transparent transparent;
+      bottom: 100%;
+      /* Bump it up above the span element */
+      margin-left: -0.5em;
+      /* Center the arrow, given that it has been moved left 50% */
+    }
+
+    .note:after {
+      content: attr(data-tip);
+      /* This is where the magic happens. See for more details: 
+      http://tympanus.net/codrops/css_reference/attr/ */
+      background-color: rgb(18, 88, 110);
+      border-radius: 0.25em;
+      bottom: 170%;
+      width: 13.5em;
+      padding: 1em 0.5em;
+      margin-left: -6.75em;
+      /* margin-left is negative and half the width to center the bubble */
+      color: white;
+      text-align: center;
+      font-size: 0.75em;
+    }
+    </style>
+
+  <script type="module" src="./index.js"></script>
+
+</head>
+
+<body>
+  <h1 id="title">JSON Image Metadata (JIM) Implementation Report Matrix</h1>
+  <p>This document compares the implementation status of JIM for each milestones, as specified in the <cite><a href="https://inclusio-community.github.io/json-image-metadata/">JSON Image Metadata (JIM) specification</a></cite>.</p>
+    
+  <p>In addition, this document lists some of the use cases for conformance to JIM.</p>
+  
+  <h2 id="implementations">Implementations</h2>
+  <section id="implementation_container">
+  </section>
+
+  <h2 id="milestones">Milestones</h2>
+
+  <p>Each milestone consists of one or more examplar images, with multiple JIM requirements for each examplar. Some requirements apply to content generators, such as authoring tools or script libararies, while other requirements apply to viewing applications or emobossers and printers. If a requirement does not apply to an implementation, it will be marked as <i>n/a</i> ("not applicable").</p>
+
+  <p>The goal for each milestone is to have at least 2 passing conforming implementations for each requirement.</p>
+
+  <p>The specification is a work in progress. In particular, the schema for the <code>dataset</code> element describing conforming data format and structure is only notionally described in the specification. The specification is being developed in parallel with the exemplar files and the implementations, so if a requirement is not defined in detail in the specification, it will be marked as <i>partial</i>; in this case, the examplar file should be considered canonical.</p>
+
+  <p><i>Note: the links in the milestones table are meant to point to the examplar files and to documentation for that requirement, possibly in a single document or possibly in git issues, TBD. Right now they lead nowhere.</i></p>
+
+
+  <section id="milestone_table_container">
+  </section>
+
+  <section>
+    <h2 id="use-cases">Use Cases</h2>
+
+    <p><i>These are sample use cases to give an idea of how to develop use cases for multiple targets that map back to requirements for the milestones.</i></p>
+
+    <section id="use_case_container">
+    </section>
+  </section>
+
+  <!-- <section>
+    <h2 id="notes">Notes</h2>
+
+    <section id="note-1">
+      <h3 id="notes">Note 1:</h3>
+      <p>No additional JavaScript is require beside the script used in the polyfill</p>
+      <p><a href="#note-1-ref">back</a></p>
+    </section>
+
+  </section> -->
+</body>
+</html>
