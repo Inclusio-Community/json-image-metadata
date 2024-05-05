@@ -3,71 +3,81 @@
   
   <metadata data-type="text/jim+json">
     {
-      "dataset": {
-        "title": "Satisfaction Level",
-        "subtitle": "Results of user survey",
-        "source": {
-          "url": "https://example.com",
-          "name": "Example source"
-        },
-        "facets": {
-          "x": {
-            "label": "Satisfaction scores",
-            "variableType": "independent"
+      "dataset": [
+        {
+          "title": "Satisfaction Level",
+          "subtitle": "Results of user survey",
+          "source": {
+            "url": "https://example.com",
+            "name": "Example source"
           },
-          "y": {
-            "label": "Number of respondants",
-            "variableType": "dependent"
-          }
-        },
-        "series": [
-          "name": "2023 Survey",
-          "type": "column",
-          "records": [
-            {
-              "x": "Very Dissatisfied",
-              "y": "4"
+          "representation": {
+            "chartType": "bar"
+          },
+          "description": "Bar chart showing satifaction scores, with most survey respondants in the 'Very Satisfied' or 'Satisfied' categories.",
+          "facets": {
+            "x": {
+              "label": "Satisfaction scores",
+              "variableType": "independent",
+              "measure": "ordinal"
             },
-            {
-              "x": "Dissatisfied",
-              "y": "15"
-            },
-            {
-              "x": "Neutral",
-              "y": "17"
-            },
-            {
-              "x": "Satisfied",
-              "y": "38"
-            },
-            {
-              "x": "Very Satisfied"
-              "y": "46"
+            "y": {
+              "label": "Number of respondants",
+              "variableType": "dependent",
+              "measure": "ratio",
+              "units": "integer",
+              "multiplier": "1"
             }
-          ] 
-        ],
-        "href": [
-          {
-            "url": "https://example.com/satification-survey",
-            "format": "csv",
-            "type": "extendedDataset"
-          }
-        ]
-      },
+          },
+          "series": [
+            "name": "2023 Survey",
+            "type": "column",
+            "records": [
+              {
+                "x": "Very Dissatisfied",
+                "y": "4"
+              },
+              {
+                "x": "Dissatisfied",
+                "y": "15"
+              },
+              {
+                "x": "Neutral",
+                "y": "17"
+              },
+              {
+                "x": "Satisfied",
+                "y": "38"
+              },
+              {
+                "x": "Very Satisfied"
+                "y": "46"
+              }
+            ] 
+          ],
+          "href": [
+            {
+              "url": "https://example.com/satification-survey",
+              "format": "csv",
+              "type": "extendedDataset"
+            }
+          ]
+        }
+      ],
       "selectors": {
-        "#chart_title": "$.dataset.title",
+        "#chart_title": "$.dataset[0].title",
 
-        "#x-axis-0 .axis_label": "$.dataset.series[0].records[0].x",
-        "#x-axis-1 .axis_label": "$.dataset.series[0].records[1].x",
-        "#x-axis-2 .axis_label": "$.dataset.series[0].records[2].x",
-        "#x-axis-3 .axis_label": "$.dataset.series[0].records[3].x",
-        "#x-axis-4 .axis_label": "$.dataset.series[0].records[4].x",
+        "#x-axis-0 .axis_label": "$.dataset[0].series[0].records[0].x",
+        "#x-axis-1 .axis_label": "$.dataset[0].series[0].records[1].x",
+        "#x-axis-2 .axis_label": "$.dataset[0].series[0].records[2].x",
+        "#x-axis-3 .axis_label": "$.dataset[0].series[0].records[3].x",
+        "#x-axis-4 .axis_label": "$.dataset[0].series[0].records[4].x",
 
-        "#datapoint-x_Very_Dissatisfied": "$.dataset.series[0].records[0].y",
-        "#datapoint-x_Dissatisfied": "$.dataset.series[0].records[1].y",
-        "#datapoint-x_Neutral": "$.dataset.series[0].records[2].y",
-        "#datapoint-x_Satisfied": "$.dataset.series[0].records[3].y",
-        "#datapoint-x_Very_Satisfied": "$.dataset.series[0].records[4].y"
+        "#datapoint-x_Very_Dissatisfied": "$.dataset[0].series[0].records[0].y",
+        "#datapoint-x_Dissatisfied": "$.dataset[0].series[0].records[1].y",
+        "#datapoint-x_Neutral": "$.dataset[0].series[0].records[2].y",
+        "#datapoint-x_Satisfied": "$.dataset[0].series[0].records[3].y",
+        "#datapoint-x_Very_Satisfied": "$.dataset[0].series[0].records[4].y"
       }
     }
   </metadata>
