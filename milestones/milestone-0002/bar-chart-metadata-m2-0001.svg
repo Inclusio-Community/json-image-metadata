@@ -30,30 +30,32 @@
             }
           },
           "series": [
-            "name": "2023 Survey",
-            "type": "column",
-            "records": [
-              {
-                "x": "Very Dissatisfied",
-                "y": "4"
-              },
-              {
-                "x": "Dissatisfied",
-                "y": "15"
-              },
-              {
-                "x": "Neutral",
-                "y": "17"
-              },
-              {
-                "x": "Satisfied",
-                "y": "38"
-              },
-              {
-                "x": "Very Satisfied"
-                "y": "46"
-              }
-            ] 
+            {
+              "name": "2023 Survey",
+              "type": "column",
+              "records": [
+                {
+                  "x": "Very Dissatisfied",
+                  "y": "4"
+                },
+                {
+                  "x": "Dissatisfied",
+                  "y": "15"
+                },
+                {
+                  "x": "Neutral",
+                  "y": "17"
+                },
+                {
+                  "x": "Satisfied",
+                  "y": "38"
+                },
+                {
+                  "x": "Very Satisfied",
+                  "y": "46"
+                }
+              ] 
+            }
           ],
           "href": [
             {
