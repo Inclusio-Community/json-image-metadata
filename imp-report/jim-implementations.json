@@ -93,7 +93,7 @@
       "implementations": [
         {
           "jim-spec": {
-            "support": "full",
+            "support": "partial",
             "notes": "",
             "example_url": ""
           }
@@ -151,7 +151,7 @@
       "implementations": [
         {
           "jim-spec": {
-            "support": "full",
+            "support": "partial",
             "notes": "",
             "example_url": ""
           }
@@ -325,7 +325,7 @@
       "implementations": [
         {
           "jim-spec": {
-            "support": "full",
+            "support": "partial",
             "notes": "",
             "example_url": ""
           }
