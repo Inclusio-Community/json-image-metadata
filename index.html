@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://fizzstudio.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="b6f576a9d94bf1a2e579a179489e429ac0bd6eeb" name="revision">
+  <meta content="2e155e99e0aa25afd81079cea093623626be3740" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-04-25">25 April 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-05-06">6 May 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2029,7 +2029,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 25 April 2024,
+In addition, as of 6 May 2024,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2307,12 +2307,16 @@ Parts of this work may be from another specification document.  If so, those par
    <h3 class="heading settled" data-level="5.2" id="dataset"><span class="secno">5.2. </span><span class="content">Dataset</span><a class="self-link" href="#dataset"></a></h3>
    <p>Dataset refers to the raw data which the image represents.</p>
    <p>There are two ways to link the data to the image file: inline; and external reference. These methods can be used together in some ways, defined below.</p>
-   <p>A <code>dataset</code> block is an object with the key <code>dataset</code>.</p>
+   <p>A <code>dataset</code> block is an array of objects with the key <code>dataset</code>. Each child object represents a discrete dataset represented in the graphic.</p>
 <pre class="highlight"><c- p>{</c->
-  <c- f>"dataset"</c-><c- p>:</c-> <c- p>{</c->
-  <c- p>}</c->
+  <c- f>"dataset"</c-><c- p>:</c-> <c- p>[</c->
+    <c- p>{</c->
+    <c- p>}</c->
+  <c- p>]</c->
 <c- p>}</c->  
 </pre>
+   <p class="note" role="note"><span class="marker">Note:</span> Multiple datasets serve the use cases of: representing more than one type of chart in the same rendered chart, such as a line chart superimposed over a bar chart; representing multiple scales, such as a line chart with 2 series, each of which is on a different scale (e.g. where there are two y-axes, one on each side of the chart); dashboards with multiple charts, especially when two of the charts are closely related or show different aspects of the same data; and data that is comes from disparate sources or provenance.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> As a heuristic, if all of the facets (and sources) are identical between two or more datasets, they can be merged into a single dataset object; but if any of the facets (or sources) is different, they are better represented as different datasets.</p>
    <h4 class="heading settled" data-level="5.2.1" id="dataset_structures"><span class="secno">5.2.1. </span><span class="content">Dataset structures</span><a class="self-link" href="#dataset_structures"></a></h4>
    <p>This specification requires that an inline dataset must be in JSON format, but does not mandate a particular structure for a dataset.</p>
    <p>No single dataset structure optimally represents every different kind of data or chart type. Often, an inline dataset might reflect the internal model used by the software that generated the image, diagram, or data visualization.</p>

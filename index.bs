@@ -232,14 +232,20 @@ Dataset refers to the raw data which the image represents.
 
 There are two ways to link the data to the image file: inline; and external reference. These methods can be used together in some ways, defined below.
 
-A `dataset` block is an object with the key `dataset`.
+A `dataset` block is an array of objects with the key `dataset`. Each child object represents a discrete dataset represented in the graphic.
 
 <xmp highlight='json'>
 {
-  "dataset": {
-  }
+  "dataset": [
+    {
+    }
+  ]
 }  
 </xmp>
+
+Note: Multiple datasets serve the use cases of: representing more than one type of chart in the same rendered chart, such as a line chart superimposed over a bar chart; representing multiple scales, such as a line chart with 2 series, each of which is on a different scale (e.g. where there are two y-axes, one on each side of the chart); dashboards with multiple charts, especially when two of the charts are closely related or show different aspects of the same data; and data that is comes from disparate sources or provenance.
+
+Note: As a heuristic, if all of the facets (and sources) are identical between two or more datasets, they can be merged into a single dataset object; but if any of the facets (or sources) is different, they are better represented as different datasets.
 
 ### Dataset structures ### {#dataset_structures}
 
