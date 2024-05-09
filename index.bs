@@ -4,8 +4,8 @@ Shortname: jim
 Level: 1
 Status: fido/ED
 Group: Inclusio Project
-Repository: fizzstudio/json-image-metadata
-URL: https://fizzstudio.github.io/json-image-metadata/
+Repository: Inclusio-Community/json-image-metadata
+URL: https://Inclusio-Community.github.io/json-image-metadata/
 Editor: Doug Schepers, Fizz Studio http://fizz.studio, doug@fizz.studio
 Abstract: A specifiction for expressing technical image metadata, with an emphasis on accessibility of data visualizations.
 Favicon: ./favicon.svg
