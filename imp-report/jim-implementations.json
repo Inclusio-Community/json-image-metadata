@@ -786,7 +786,7 @@
         }
       ]
     },
-    "milestone-m2-0001-generate-dataset": {
+    "milestone-m2-0002-generate-dataset": {
       "title": "Generate revised JIM dataset for a line chart",
       "index": "2.2.1",
       "parent_id": "milestone-2-line-chart-metadata-m2-0002",
