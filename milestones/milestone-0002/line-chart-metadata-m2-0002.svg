@@ -1,0 +1,280 @@
+<svg tabindex="0" xmlns="http://www.w3.org/2000/svg" aria-charttype="line" viewBox="0 0 579.5 635.1"
+  aria-label="Monthly Rainfall in Chestnut City" role="application" tabIndex="0">
+  <title>Monthly Rainfall in Chestnut City: Line Chart</title>
+  <metadata data-type="text/jim+json">
+    {
+      "dataset": [
+        {
+          "title": "Monthly Rainfall in Chestnut City",
+          "representation": {
+            "chartType": "bar"
+          },
+          "description": "Line chart showing monthly rainfall in Chestnut City, from March to October with a peak in August",
+          "facets": {
+            "x": {
+              "label": "Month",
+              "variableType": "independent",
+              "measure": "ordinal"
+            },
+            "y": {
+              "label": "Rainfall (inches)",
+              "variableType": "dependent",
+              "measure": "ratio",
+              "units": "inches",
+              "multiplier": "1"
+            }
+          },
+          "series": [
+            {
+              "name": "Rainfall (inches)",
+              "type": "line",
+              "records": [
+                {
+                  "x": "Mar",
+                  "y": "4"
+                },
+                {
+                  "x": "Apr",
+                  "y": "3.50"
+                },
+                {
+                  "x": "May",
+                  "y": "4.50"
+                },
+                {
+                  "x": "Jun",
+                  "y": "4"
+                },
+                {
+                  "x": "Jul",
+                  "y": "5.50"
+                },
+                {
+                  "x": "Aug",
+                  "y": "6"
+                },
+                {
+                  "x": "Sep",
+                  "y": "5"
+                },
+                {
+                  "x": "Oct",
+                  "y": "2.50"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "selectors": {
+        "#chart-title": "$.dataset[0].title",
+        "#datapoint-rainfall_inches-Mar-4": "$.dataset[0].series[0].records[0].y",
+        "#datapoint-rainfall_inches-Apr-350": "$.dataset[0].series[0].records[1].y",
+        "#datapoint-rainfall_inches-May-450": "$.dataset[0].series[0].records[2].y",
+        "#datapoint-rainfall_inches-Jun-4": "$.dataset[0].series[0].records[3].y",
+        "#datapoint-rainfall_inches-Jul-550": "$.dataset[0].series[0].records[4].y",
+        "#datapoint-rainfall_inches-Aug-6": "$.dataset[0].series[0].records[5].y",
+        "#datapoint-rainfall_inches-Sep-5": "$.dataset[0].series[0].records[6].y",
+        "#datapoint-rainfall_inches-Oct-250": "$.dataset[0].series[0].records[7].y",
+        "#tick-x-Mar": "$.dataset[0].series[0].records[0].x",
+        "#tick-x-Apr": "$.dataset[0].series[0].records[1].x",
+        "#tick-x-May": "$.dataset[0].series[0].records[2].x",
+        "#tick-x-Jun": "$.dataset[0].series[0].records[3].x",
+        "#tick-x-Jul": "$.dataset[0].series[0].records[4].x",
+        "#tick-x-Aug": "$.dataset[0].series[0].records[5].x",
+        "#tick-x-Sep": "$.dataset[0].series[0].records[6].x",
+        "#tick-x-Oct": "$.dataset[0].series[0].records[7].x"
+      }
+    }
+  </metadata>
+  <rect id="frame" fill="none" pointer-events="all" x="0" y="0" width="579.5" height="585.1"/>
+ 
+  <text role="heading" transform="translate(314.5,25)" id="chart-title">Monthly Rainfall in Chestnut City</text>
+
+  <g class="theme-diva" role="graphics-document" tabindex="0" aria-roledescription="line chart" transform="translate(0,35)">
+    <g role="graphics-object" aria-roledescription="y-axis" id="y-axis" data-axistype="numeric"
+      transform="translate(15,15)">
+      <path id="y-axis-line" d="M49.5,510 V0"/>
+      <text class="axis-title" role="heading"
+        transform="translate(15.1,250)rotate(-90)" id="y-Rainfall_inches_">Rainfall (inches)</text>
+      <g class="tick-label-tier">
+        <g class="tick-group-y" transform="translate(36.5,500)">
+          <text class="axis-label-y" role="axislabel" transform="translate(0,6.5)" id="tick-y-0">0</text>
+          <use href="#x-axis-line" class="tickmark-y-0" transform="translate(13,0)"/>
+        </g>
+        <g class="tick-group-y" transform="translate(36.5,416.6)">
+          <text class="axis-label-y" role="axislabel" transform="translate(0,6.5)" id="tick-y-1">1</text>
+          <use href="#x-axis-line" class="tickmark-y" transform="translate(13,0)"/>
+        </g>
+        <g class="tick-group-y" transform="translate(36.5,333.3)">
+          <text class="axis-label-y" role="axislabel" transform="translate(0,6.5)" id="tick-y-2">2</text>
+          <use href="#x-axis-line" class="tickmark-y" transform="translate(13,0)"/>
+        </g>
+        <g class="tick-group-y" transform="translate(36.5,250)">
+          <text class="axis-label-y" role="axislabel" transform="translate(0,6.5)" id="tick-y-3">3</text>
+          <use href="#x-axis-line" class="tickmark-y" transform="translate(13,0)"/>
+        </g>
+        <g class="tick-group-y" transform="translate(36.5,166.6)">
+          <text class="axis-label-y" role="axislabel" transform="translate(0,6.5)" id="tick-y-4">4</text>
+          <use href="#x-axis-line" class="tickmark-y" transform="translate(13,0)"/>
+        </g>
+        <g class="tick-group-y" transform="translate(36.5,83.3)">
+          <text class="axis-label-y" role="axislabel" transform="translate(0,6.5)" id="tick-y-5">5</text>
+          <use href="#x-axis-line" class="tickmark-y" transform="translate(13,0)"/>
+        </g>
+        <g class="tick-group-y" transform="translate(36.5,0)">
+          <text class="axis-label-y" role="axislabel" transform="translate(0,6.5)" id="tick-y-6">6</text>
+          <use href="#x-axis-line" class="tickmark-y" transform="translate(13,0)"/>
+        </g>
+      </g>
+    </g>
+    <g role="graphics-object" aria-roledescription="x-axis" id="x-axis" data-axistype="date"
+      transform="translate(64.5,515)">
+      <path id="x-axis-line" d="M-10,0 H500"/>
+      <text role="heading" class="axis-title" transform="translate(250.5,65.1)" id="x-Month">Month</text>
+
+      <g class="tick-label-tier" transform="translate(0,10)">
+        <g class="tick-group-x" transform="translate(0,0)">
+          <text class="axis-label" role="axislabel" transform="translate(0,13)" id="tick-x-Mar">
+            Mar</text>
+        </g>
+        <g class="tick-group-x" transform="translate(71.4,0)">
+          <text class="axis-label" role="axislabel" transform="translate(0,13)" id="tick-x-Apr">
+            Apr</text>
+        </g>
+        <g class="tick-group-x" transform="translate(142.8,0)">
+          <text class="axis-label" role="axislabel" transform="translate(0,13)" id="tick-x-May">
+            May</text>
+        </g>
+        <g class="tick-group-x" transform="translate(214.2,0)">
+          <text class="axis-label" role="axislabel" transform="translate(0,13)" id="tick-x-Jun">
+            Jun</text>
+        </g>
+        <g class="tick-group-x" transform="translate(285.7,0)">
+          <text class="axis-label" role="axislabel" transform="translate(0,13)" id="tick-x-Jul">
+            Jul</text>
+        </g>
+        <g class="tick-group-x" transform="translate(357.1,0)">
+          <text class="axis-label" role="axislabel" transform="translate(0,13)" id="tick-x-Aug">
+            Aug</text>
+        </g>
+        <g class="tick-group-x" transform="translate(428.5,0)">
+          <text class="axis-label" role="axislabel" transform="translate(0,13)" id="tick-x-Sep">
+            Sep</text>
+        </g>
+        <g class="tick-group-x" transform="translate(500,0)">
+          <text class="axis-label" role="axislabel" transform="translate(0,13)" id="tick-x-Oct">
+            Oct</text>
+        </g>
+      </g>
+    </g>
+    <g class="xychart" role="dataset" transform="translate(64.5,15)">
+      <g role="datapoint_group">
+        <g role="datapoint" id="datapoint-rainfall_inches-Mar-4" class="datapoint series-0"
+          transform="translate(0,0)">
+          <path class="data-line" d="M0,166.6 L35.7,187.5"/>
+          <circle class="chart-point" cx="0" r="5" cy="166.6"/>
+        </g>
+      </g>
+      <g role="datapoint_group">
+        <g role="datapoint" id="datapoint-rainfall_inches-Apr-350" class="datapoint series-0"
+          transform="translate(71.4,0)">
+          <path class="data-line"
+            d="M-35.7,187.5 L0,208.3 L35.7,166.6"/>
+          <circle class="chart-point" cx="0" r="5" cy="208.3"/>
+        </g>
+      </g>
+      <g role="datapoint_group">
+        <g role="datapoint" id="datapoint-rainfall_inches-May-450" class="datapoint series-0"
+          transform="translate(142.8,0)">
+          <path class="data-line"
+            d="M-35.7,166.6 L0,125 L35.7,145.8"/>
+          <circle class="chart-point" cx="0" r="5" cy="125"/>
+        </g>
+      </g>
+      <g role="datapoint_group">
+        <g role="datapoint" id="datapoint-rainfall_inches-Jun-4" class="datapoint series-0"
+          transform="translate(214.2,0)">
+          <path class="data-line"
+            d="M-35.7,145.8 L0,166.6 L35.7,104.1"/>
+          <circle class="chart-point" cx="0" r="5" cy="166.6"/>
+        </g>
+      </g>
+      <g role="datapoint_group">
+        <g role="datapoint" id="datapoint-rainfall_inches-Jul-550" class="datapoint series-0"
+          transform="translate(285.7,0)">
+          <path class="data-line"
+            d="M-35.7,104.1 L0,41.6 L35.7,20.8"/>
+          <circle class="chart-point" cx="0" r="5" cy="41.6"/>
+        </g>
+      </g>
+      <g role="datapoint_group">
+        <g role="datapoint" id="datapoint-rainfall_inches-Aug-6" class="datapoint series-0"
+          transform="translate(357.1,0)">
+          <path class="data-line"
+            d="M-35.7,20.8 L0,0 L35.7,41.6"/>
+          <circle class="chart-point" cx="0" r="5" cy="0"/>
+        </g>
+      </g>
+      <g role="datapoint_group">
+        <g role="datapoint" id="datapoint-rainfall_inches-Sep-5" class="datapoint series-0"
+          transform="translate(428.5,0)">
+          <path class="data-line"
+            d="M-35.7,41.6 L0,83.3 L35.7,187.5"/>
+          <circle class="chart-point" cx="0" r="5" cy="83.3"/>
+        </g>
+      </g>
+      <g role="datapoint_group">
+        <g role="datapoint" id="datapoint-rainfall_inches-Oct-250" class="datapoint series-0"
+          transform="translate(500,0)">
+          <path class="data-line" d="M-35.7,187.5 L0,291.6"/>
+          <circle class="chart-point" cx="0" r="5" cy="291.6"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <style>
+    :root {
+      font-family: Helvetica, Verdana, sans-serif;
+    }
+
+    text {
+      color: black;
+      text-anchor: middle;
+    }
+
+    [role=heading] {
+      font-size: 20px;
+    }
+
+    #chart-title {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .axis-label {
+      font-size: 18px;
+    }
+
+    .axis-label-y {
+      text-anchor: end;
+    }
+
+    path {
+      stroke: black;
+      fill: none;
+    }
+
+    [role=datapoint] path {
+      stroke: hsl(240, 60%, 42%);
+      stroke-width: 3;
+    }
+
+    [role=datapoint] circle {
+      fill: hsl(240, 60%, 42%);
+      stroke: hsl(240, 60%, 42%);
+      stroke-width: 2;
+    }
+  </style>
+</svg>
