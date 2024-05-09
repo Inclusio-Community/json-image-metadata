@@ -81,6 +81,12 @@
       "index": "2.1",
       "url": "../milestones/milestone-0002/bar-chart-metadata-m2-0001.svg",
       "parent_id": "milestone-2"
+    },
+    "milestone-2-line-chart-metadata-m2-0002": {
+      "title": "Line Chart Metadata, m2-0002",
+      "index": "2.2",
+      "url": "../milestones/milestone-0002/line-chart-metadata-m2-0002.svg",
+      "parent_id": "milestone-2"
     }
   },
   "milestones": {
@@ -767,6 +773,64 @@
         {
           "paracharts": {
             "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "highcharts": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "milestone-m2-0001-generate-dataset": {
+      "title": "Generate revised JIM dataset for a line chart",
+      "index": "2.2.1",
+      "parent_id": "milestone-2-line-chart-metadata-m2-0002",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jim-spec": {
+            "support": "partial",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "unar": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "iveo": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "tiger": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "vital": {
+            "support": "n/a",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "paracharts": {
+            "support": "partial",
             "notes": "",
             "example_url": ""
           }
