@@ -177,7 +177,7 @@ This vocabulary is defined in terms of "blocks", or objects identified by a key 
 
 <xmp highlight='json'>
 {
-  "data": {
+  "dataset": {
   },
   "provenance": {
   },
@@ -207,7 +207,7 @@ An `href` key `may` be included at any level of the metadata, with the relevant 
 <xmp highlight='json'>
 {
   "href": {
-    "data": "https://path.to.data",
+    "dataset": "https://path.to.dataset",
     "provenance": "https://path.to.provenance",
     "tags": "https://path.to.tags",
     "behaviors": "https://path.to.behaviors"
@@ -278,7 +278,7 @@ Note: Certain types of diagram that denote steps, stages, or relationships betwe
 
 The notional dataset described in this specification includes exemplar entities which should be included in any inline dataset for optimal correlation to common graphical representation elements.
 
-These entities include the `title`, `subtitle`, `description`, `source`, `facets`, `series`, `items`, and `href` keys and their values.
+These entities include the `title`, `subtitle`, `description`, `representation`, `facets`, `series`, `items`, `source`, and `href` keys and their values.
 
 <table class="data">
   <thead>
@@ -317,9 +317,9 @@ These entities include the `title`, `subtitle`, `description`, `source`, `facets
       <td>optional</td>
     </tr>
     <tr>
-      <td>`source`</td>
+      <td>`representation`</td>
       <td>object</td>
-      <td>The provenance of the dataset</td>
+      <td>Various aspects of the representation, such as the type of chart</td>
       <td>optional</td>
     </tr>
     <tr>
@@ -341,6 +341,12 @@ These entities include the `title`, `subtitle`, `description`, `source`, `facets
       <td>optional</td>
     </tr>
     <tr>
+      <td>`source`</td>
+      <td>object</td>
+      <td>The provenance of the dataset</td>
+      <td>optional</td>
+    </tr>
+    <tr>
       <td>`href`</td>
       <td>array</td>
       <td>An array of objects containing links to relevant resources, such as the dataset in another format, or an extended dataset</td>
@@ -358,12 +364,14 @@ An example of a `dataset` block (with elided values) for a structured data repre
   "title": "",
   "subtitle": "",
   "description": "",
-  "source": {
+  "representation": {
   },
   "facets": [
   ],
   "series": [
   ],
+  "source": {
+  },
   "href": [
   ]
 }
@@ -373,6 +381,164 @@ An example of a `dataset` block (with elided values) for a structured data repre
 > TODO: add example
 
 The individual entries of the `dataset` block are defined in [Inline data].
+
+### The `title` key ### {#title_data_block}
+
+The title of the graphic document.
+
+### The `subtitle` key ### {#subtitle_data_block}
+
+The subtitle of the graphic document.
+
+### The `description` key ### {#description_data_block}
+
+A meaningful summary of the graphic document.
+
+### The `representation` key ### {#representation_data_block}
+
+Various aspects of the representation, such as the type of chart.
+
+The `representation` object contains the `chartType` key.
+
+#### The `chartType` key #### {#charttype_data_block}
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`chartType`</td>
+      <td>string</td>
+      <td>The type of chart, such as `bar`, `line`, or `scatterplot`</td>
+      <td>optional for unstructured data, required for structured data</td>
+    </tr>
+  </tbody>
+</table>
+
+
+### The `facet` key ### {#facet_data_block}
+
+Details of each facet in the dataset, such as x and y axes or legend keys, for structured data.
+
+The `facet` array contains one or more `[facet-string]` keys. A `[facet-string]` key may be any value allowed by the schema for the representation type, and will normally represent the axes (e.g. `"x"` and `"y"`), a legend (i.e. '"legend"'), a magnitude, or any other type of recorded data being represented. Each `[facet-string]` is the key to an object which defines the parameters, value type, and descriptors for the corresponding key in the child objects of the `records` array in the `series` array.
+
+These `[facet-string]` keys must consist of a string of ASCII letters, digits, '_', and '-', with no whitespace. Each `[facet-string]` key must be a unique value.
+
+
+<div id='xmp_facet' class='example'>
+An example of a `facet` block with two `[facet-string]` object entries, `"x"` and `"y"`. The values `"x"` and `"y"` are matched in the `records` block objects, which contain the actual values for those facets. 
+
+<xmp highlight='json'>
+{
+  "dataset": [
+    {
+      "facets": {
+        "x": {
+          "label": "Month",
+          "variableType": "independent",
+          "measure": "ordinal"
+        },
+        "y": {
+          "label": "Temperature",
+          "variableType": "dependent",
+          "measure": "ratio",
+          "units": "degrees Fahrenheit",
+          "multiplier": "1"
+        }
+      },
+      "series": [
+        {
+          "name": "Average montly temperatures",
+          "type": "column",
+          "records": [
+            {
+              "x": "January",
+              "y": "23"
+            },
+            {
+              "x": "February",
+              "y": "42"
+            },
+            {
+              "x": "March",
+              "y": "55"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+</xmp>
+</div>
+
+
+#### The `[facet-string]` key #### {#facetstring_data_block}
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`label`</td>
+      <td>string</td>
+      <td>The title for the facet</td>
+      <td>optional for unstructured data, required for structured data</td>
+    </tr>
+    <tr>
+      <td>`variableType`</td>
+      <td>string</td>
+      <td>The type of measure for that facet. Allowed values are: `independent` and `dependent`</td>
+    </tr>
+    <tr>
+      <td>`measure`</td>
+      <td>string</td>
+      <td>In any given facet, what the scale of measure for that facet is. Allowed values are: `nominal`, `ordinal`, `interval`, or `ratio`</td>
+      <td>optional for unstructured data, required for structured data</td>
+    </tr>
+    <tr>
+      <td>`units`</td>
+      <td>string</td>
+      <td>The type of thing being measured</td>
+      <td>optional for unstructured data, required for structured data</td>
+    </tr>
+    <tr>
+      <td>`multiplier`</td>
+      <td>number</td>
+      <td>The multiplier for numeric values, e.g. `1000` for "(in thousands)", `1000000` for "(in millions)"</td>
+      <td>optional for unstructured data, required for structured data</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ### The `href` key in a `dataset` block ### {#href_data_block}
 
