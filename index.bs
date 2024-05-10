@@ -154,18 +154,6 @@ A conforming implementation must provide a means for the end user to extract the
 A conforming implementation must resolve all selectors and execute all supported features of the `behaviors` block.
 
 
-Path Selectors {#path_selectors} 
-=====================
-
-In order to identify and link between the DOM of an SVG document and the JSON metadata, this specification uses CSS Selectors and JSONPath.
-
-CSS Selectors [[Selectors-4]] enables the matching of DOM nodes, such as graphical or textual elements.
-
-JSONPath [[JSONPath]] enables the matching of JSON keys or values in the JSON metadata.
-
-> TODO: include more details about linking
-
-
 Schema {#schema} 
 =====================
 
@@ -177,54 +165,20 @@ This vocabulary is defined in terms of "blocks", or objects identified by a key 
 
 <xmp highlight='json'>
 {
-  "dataset": {
+  "dataset": [
+  ],
+  "selectors": {
+  },
+  "behaviors": {
   },
   "provenance": {
   },
   "tags": {
   },
-  "behaviors": {
-  },
   "href": {
   }
 }
 </xmp>
-
-## External files ## {#external_files}
-
-A metadata object can be inline in the file, or referenced as an external file, in whole or in part. There are several reasons to support external metadata files. Two major use cases include size restrictions and shared resources.
-
-Size restrictions: While including the raw data in the image is a best practice, sometimes a dataset is simply too large to pragmatically include inline. In this case, referencing a raw data file is the best practical approach.
-
-Shared resources: An author might wish to share a common metadata file or set of files for a set of image documents. This allows the metadata files to be updated independently, reduces duplication and file size, enables cacheing in the user agent, and allows for a modular approach with well-tested rules.
-
-The `href` key defines an object that refers to an external file. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file, with the exception of the `dataset` block.
-
-If an external metadata file contains rules that duplicate or conflict with rules defined in the inline metadata, the inline metadata takes precendence. This allows for customization of specific images while relying on generic common rules.
-
-An `href` key `may` be included at any level of the metadata, with the relevant key string as the attribute key and a valid URL string as the value for that attribute.
-
-<xmp highlight='json'>
-{
-  "href": {
-    "dataset": "https://path.to.dataset",
-    "provenance": "https://path.to.provenance",
-    "tags": "https://path.to.tags",
-    "behaviors": "https://path.to.behaviors"
-  }
-}
-</xmp>
-
-An additional `default` key is defined for referring to a single external metadata file that contains all the metadata blocks. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file.
-
-<xmp highlight='json'>
-{
-  "href": {
-    "default": "https://path.to.metadata"
-  }
-}
-</xmp>
-
 
 ## Dataset ## {#dataset}
 
@@ -667,6 +621,19 @@ The `href` key defines an object that refers to an external data file. The conte
 
 This external file can be used to link data to graphical elements, as defined in [Inline data].
 
+
+## Selectors ## {#selectors}
+
+
+In order to identify and link between the DOM of an SVG document and the JSON metadata, this specification uses CSS Selectors and JSONPath.
+
+CSS Selectors [[Selectors-4]] enables the matching of DOM nodes, such as graphical or textual elements.
+
+JSONPath [[JSONPath]] enables the matching of JSON keys or values in the JSON metadata.
+
+> TODO: include more details about linking
+
+
 ### Inline data ### {#inline_data}
 
 If a dataset is fairly small, it is best to include it in the image file directly.
@@ -691,7 +658,7 @@ Rarely, you might have a many-to-many relationship.
 
 On occassion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.
 
- ##### The `selector` attribute ##### {#selector_attribute}
+#### The `selector` attribute #### {#selector_attribute}
 
 Typically, 
 
@@ -711,6 +678,114 @@ Typically,
 <div class="note">
 <b>Note:</b> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata.
 </div>
+
+
+## External files ## {#external_files}
+
+A metadata object can be inline in the file, or referenced as an external file, in whole or in part. There are several reasons to support external metadata files. Two major use cases include size restrictions and shared resources.
+
+Size restrictions: While including the raw data in the image is a best practice, sometimes a dataset is simply too large to pragmatically include inline. In this case, referencing a raw data file is the best practical approach.
+
+Shared resources: An author might wish to share a common metadata file or set of files for a set of image documents. This allows the metadata files to be updated independently, reduces duplication and file size, enables cacheing in the user agent, and allows for a modular approach with well-tested rules.
+
+The `href` key defines an object that refers to an external file. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file, with the exception of the `dataset` block.
+
+If an external metadata file contains rules that duplicate or conflict with rules defined in the inline metadata, the inline metadata takes precendence. This allows for customization of specific images while relying on generic common rules.
+
+An `href` key `may` be included at any level of the metadata, with the relevant key string as the attribute key and a valid URL string as the value for that attribute.
+
+<xmp highlight='json'>
+{
+  "href": {
+    "dataset": "https://path.to.dataset",
+    "selectors": "https://path.to.behaviors"
+    "behaviors": "https://path.to.behaviors"
+    "provenance": "https://path.to.provenance",
+    "tags": "https://path.to.tags",
+  }
+}
+</xmp>
+
+An additional `default` key is defined for referring to a single external metadata file that contains all the metadata blocks. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file.
+
+<xmp highlight='json'>
+{
+  "href": {
+    "default": "https://path.to.metadata"
+  }
+}
+</xmp>
+
+
+## Behaviors ## {#behaviors}
+
+### Haptics ### {#haptics}
+
+Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.
+
+Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their finger over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API [[vibration]]. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.
+
+Haptic feedback may be accompanied or supplemented by auditory feedback.
+
+Each instance of haptic feedback is composed of a `region`, a `haptic_pattern`, and an optional `audio` block.
+
+The behavior must be triggered when the user moves a finger over the target region, and must stop immediately when the user moves their finger outside the target region.
+
+<div id='xmp_haptic_behavior' class='example'>
+An example of `haptic` block with two haptic object entries in an array. The first haptic object selects an element with the `id`=`bar_1` as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the region is first triggered. 
+
+<xmp highlight='json'>
+{
+  "behaviors": {
+    "haptic": [
+      {
+        "region": {
+          "selector": "#bar_1"
+        },
+        "haptic_pattern": "[50, 100, 150] 250"
+      },
+      {
+        "region": {
+          "shape": {
+            "circle": {
+              "cx": 100,
+              "cy": 121,
+              "r": 32
+            }
+          }
+        },
+        "haptic_pattern": "[150] 250",
+        "audio": {
+          "href": "./assets/example.mp3",
+          "repeat": "none"
+        }
+      },
+    ]
+  }
+}
+</xmp>
+</div>
+
+
+### Sonification ### {#sonification}
+
+### High contrast ### {#high_contrast}
+
+<div class="todo">
+<b>TODO:</b> Reference and expand on CSS prefers-dark-mode media query.
+</div>
+
+
+### Voicing ### {#voicing}
+
+### Tactiles ### {#tactiles}
+
+#### Refreshable displays #### {#refreshable_displays}
+
+#### Embossing #### {#embossing}
+
+
+
 
 
 ## Provenance ## {#provenance}
@@ -819,74 +894,6 @@ Each capability defines an array of capability instances, each of which consists
 </div>
 
 
-## Behaviors ## {#behaviors}
-
-### Haptics ### {#haptics}
-
-Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.
-
-Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their finger over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API [[vibration]]. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.
-
-Haptic feedback may be accompanied or supplemented by auditory feedback.
-
-Each instance of haptic feedback is composed of a `region`, a `haptic_pattern`, and an optional `audio` block.
-
-The behavior must be triggered when the user moves a finger over the target region, and must stop immediately when the user moves their finger outside the target region.
-
-<div id='xmp_haptic_behavior' class='example'>
-An example of `haptic` block with two haptic object entries in an array. The first haptic object selects an element with the `id`=`bar_1` as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the region is first triggered. 
-
-<xmp highlight='json'>
-{
-  "behaviors": {
-    "haptic": [
-      {
-        "region": {
-          "selector": "#bar_1"
-        },
-        "haptic_pattern": "[50, 100, 150] 250"
-      },
-      {
-        "region": {
-          "shape": {
-            "circle": {
-              "cx": 100,
-              "cy": 121,
-              "r": 32
-            }
-          }
-        },
-        "haptic_pattern": "[150] 250",
-        "audio": {
-          "href": "./assets/example.mp3",
-          "repeat": "none"
-        }
-      },
-    ]
-  }
-}
-</xmp>
-</div>
-
-
-### Sonification ### {#sonification}
-
-### High contrast ### {#high_contrast}
-
-<div class="todo">
-<b>TODO:</b> Reference and expand on CSS prefers-dark-mode media query.
-</div>
-
-
-### Voicing ### {#voicing}
-
-### Tactiles ### {#tactiles}
-
-#### Refreshable displays #### {#refreshable_displays}
-
-#### Embossing #### {#embossing}
-
-
 # Regions # {#regions}
 
 A region is an area of an diagram image that is associated with a particular behavior.
@@ -986,7 +993,8 @@ A region describing a irregular area using the `path` definition and a rectangle
 For each shape definition, a conforming implementation must instantiate a corresponding shape matching the element type and attributes 
 Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.
 
-# Haptic patterns # {#haptic_patterns}
+# Haptics # {#haptics_behavior}
+## Haptic patterns ## {#haptic_patterns}
 
 A haptic pattern, denoted by a `haptic_pattern` key, is a string consisting of 3 comma-or-space-separated parameters defining a sequence of vibration durations. The sequence of durations is an array of integers describing an alternating pattern of vibrations and pauses, starting with an initial pause before the first vibration starts.
 
@@ -1031,7 +1039,7 @@ A complex haptic pattern that will trigger a sequence of vibrations 10 milliseco
 
 <!-- This specification does not currently add capabilities for defining intensity, target region, or other haptic qualities, due to limitations in the W3C Vibration API and device capabilities. -->
 
-# Amplitude patterns # {#amplitude_patterns}
+## Amplitude patterns ## {#amplitude_patterns}
 
 A amplitude pattern, denoted by a `amplitude_pattern` key, is a string consisting of 1 parameter defining a sequence of vibration amplitudes that correspond to the `haptic_pattern` vibration duration array. The sequence of amplitudes is an array of integers describing an alternating pattern of vibration amplitudes and pauses, indexed to the same sequence as the `haptic_pattern` vibration duration array.
 
@@ -1124,7 +1132,7 @@ An earcon is a brief, distinctive sound which represents a specific event or con
 
 See [ADSR envelopes](#adsr_envelopes) for more details.
 
-# ADSR envelopes # {#adsr_envelopes}
+## ADSR envelopes ## {#adsr_envelopes}
 
 Timed media, such as haptic or sonification effects, are defined in this specification with the common Attack-Decay-Sustain-Release envelope.
 
@@ -1162,7 +1170,7 @@ Note: This specification will not define styles for best practices for these dif
 
 TODO: Add device capabilities for haptics
 
-# Tactile Capabilities # {#tactile_capabilities}
+## Tactile Capabilities ## {#tactile_capabilities}
 
 Embossers, swell paper, and other tactile printing technologies each have a different set of capabilities. Some tactile printing technologies may have multiple levels of dot height, while others may have only possible 1 or 2 dot heights. Some technologies rely on the width of a line to determine the height of the raised surface, while others use color to determine surface height and pattern. Some allow fine details, while others require a sparse layout. 
 
