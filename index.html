@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="11bda1d9eb94689d873b48640d08e54b55ccbd29" name="revision">
+  <meta content="31f5ca158e35704d1634dbf8b6699495d3fbf81b" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-05-09">9 May 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-05-10">10 May 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2029,7 +2029,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 9 May 2024,
+In addition, as of 10 May 2024,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2103,22 +2103,31 @@ Parts of this work may be from another specification document.  If so, those par
           <li><a href="#charttype_data_block"><span class="secno">5.2.8.1</span> <span class="content">The <code>chartType</code> key</span></a>
          </ol>
         <li>
-         <a href="#facet_data_block"><span class="secno">5.2.9</span> <span class="content">The <code>facet</code> key</span></a>
+         <a href="#facets_data_block"><span class="secno">5.2.9</span> <span class="content">The <code>facets</code> key</span></a>
          <ol class="toc">
           <li><a href="#facetstring_data_block"><span class="secno">5.2.9.1</span> <span class="content">The <code>[facet-string]</code> key</span></a>
          </ol>
-        <li><a href="#href_data_block"><span class="secno">5.2.10</span> <span class="content">The <code>href</code> key in a <code>dataset</code> block</span></a>
         <li>
-         <a href="#inline_data"><span class="secno">5.2.11</span> <span class="content">Inline data</span></a>
+         <a href="#series_data_block"><span class="secno">5.2.10</span> <span class="content">The <code>series</code> key</span></a>
+         <ol class="toc">
+          <li><a href="#series_name_data_block"><span class="secno">5.2.10.1</span> <span class="content">The <code>name</code> key</span></a>
+          <li><a href="#series_type_data_block"><span class="secno">5.2.10.2</span> <span class="content">The <code>type</code> key</span></a>
+          <li><a href="#series_records_data_block"><span class="secno">5.2.10.3</span> <span class="content">The <code>records</code> key</span></a>
+          <li><a href="#items_data_block"><span class="secno">5.2.10.4</span> <span class="content">The <code>items</code> key</span></a>
+          <li><a href="#source_data_block"><span class="secno">5.2.10.5</span> <span class="content">The <code>source</code> key</span></a>
+         </ol>
+        <li><a href="#href_data_block"><span class="secno">5.2.11</span> <span class="content">The <code>href</code> key in a <code>dataset</code> block</span></a>
+        <li>
+         <a href="#inline_data"><span class="secno">5.2.12</span> <span class="content">Inline data</span></a>
          <ol class="toc">
           <li>
-           <a href="#linking_data"><span class="secno">5.2.11.1</span> <span class="content">Linking data and representational elements</span></a>
+           <a href="#linking_data"><span class="secno">5.2.12.1</span> <span class="content">Linking data and representational elements</span></a>
            <ol class="toc">
-            <li><a href="#data_model_cardinality"><span class="secno">5.2.11.1.1</span> <span class="content">Data model cardinality</span></a>
-            <li><a href="#selector_attribute"><span class="secno">5.2.11.1.2</span> <span class="content">The <code>selector</code> attribute</span></a>
+            <li><a href="#data_model_cardinality"><span class="secno">5.2.12.1.1</span> <span class="content">Data model cardinality</span></a>
+            <li><a href="#selector_attribute"><span class="secno">5.2.12.1.2</span> <span class="content">The <code>selector</code> attribute</span></a>
            </ol>
          </ol>
-        <li><a href="#external_data_ref"><span class="secno">5.2.12</span> <span class="content">External data reference</span></a>
+        <li><a href="#external_data_ref"><span class="secno">5.2.13</span> <span class="content">External data reference</span></a>
        </ol>
       <li>
        <a href="#provenance"><span class="secno">5.3</span> <span class="content">Provenance</span></a>
@@ -2447,12 +2456,12 @@ Parts of this work may be from another specification document.  If so, those par
       <td>The type of chart, such as <code>bar</code>, <code>line</code>, or <code>scatterplot</code>
       <td>optional for unstructured data, required for structured data
    </table>
-   <h4 class="heading settled" data-level="5.2.9" id="facet_data_block"><span class="secno">5.2.9. </span><span class="content">The <code>facet</code> key</span><a class="self-link" href="#facet_data_block"></a></h4>
-   <p>Details of each facet in the dataset, such as x and y axes or legend keys, for structured data.</p>
-   <p>The <code>facet</code> array contains one or more <code>[facet-string]</code> keys. A <code>[facet-string]</code> key may be any value allowed by the schema for the representation type, and will normally represent the axes (e.g. <code>"x"</code> and <code>"y"</code>), a legend (i.e. '"legend"'), a magnitude, or any other type of recorded data being represented. Each <code>[facet-string]</code> is the key to an object which defines the parameters, value type, and descriptors for the corresponding key in the child objects of the <code>records</code> array in the <code>series</code> array.</p>
+   <h4 class="heading settled" data-level="5.2.9" id="facets_data_block"><span class="secno">5.2.9. </span><span class="content">The <code>facets</code> key</span><a class="self-link" href="#facets_data_block"></a></h4>
+   <p>The <code>facets</code> block contains details of each facet in the dataset, such as x and y axes or legend keys, for structured data.</p>
+   <p>The <code>facets</code> object contains one or more <code>[facet-string]</code> keys. A <code>[facet-string]</code> key may be any value allowed by the schema for the representation type, and will normally represent the axes (e.g. <code>"x"</code> and <code>"y"</code>), a legend (i.e. '"legend"'), a magnitude, or any other type of recorded data being represented. Each <code>[facet-string]</code> is the key to an object which defines the parameters, value type, and descriptors for the corresponding key in the child objects of the <code>records</code> array in the <code>series</code> array.</p>
    <p>These <code>[facet-string]</code> keys must consist of a string of ASCII letters, digits, '_', and '-', with no whitespace. Each <code>[facet-string]</code> key must be a unique value.</p>
-   <div class="example" id="xmp_facet">
-    <a class="self-link" href="#xmp_facet"></a> An example of a <code>facet</code> block with two <code>[facet-string]</code> object entries, <code>"x"</code> and <code>"y"</code>. The values <code>"x"</code> and <code>"y"</code> are matched in the <code>records</code> block objects, which contain the actual values for those facets. 
+   <div class="example" id="xmp_facets">
+    <a class="self-link" href="#xmp_facets"></a> An example of a <code>facets</code> block with two <code>[facet-string]</code> object entries, <code>"x"</code> and <code>"y"</code>. The values <code>"x"</code> and <code>"y"</code> are matched in the <code>records</code> block objects, which contain the actual values for those facets. 
 <pre class="highlight"><c- p>{</c->
   <c- f>"dataset"</c-><c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
@@ -2529,15 +2538,98 @@ Parts of this work may be from another specification document.  If so, those par
       <td>The multiplier for numeric values, e.g. <code>1000</code> for "(in thousands)", <code>1000000</code> for "(in millions)"
       <td>optional for unstructured data, required for structured data
    </table>
-   <h4 class="heading settled" data-level="5.2.10" id="href_data_block"><span class="secno">5.2.10. </span><span class="content">The <code>href</code> key in a <code>dataset</code> block</span><a class="self-link" href="#href_data_block"></a></h4>
+   <div class="example" id="xmp_facets_series">
+    <a class="self-link" href="#xmp_facets_series"></a> An example of a <code>facets</code> block with two <code>[facet-string]</code> object entries, <code>"x"</code> and <code>"y"</code>, and the . The values <code>"x"</code> and <code>"y"</code> are matched in the <code>records</code> block objects, which contain the actual values for those facets. 
+<pre class="highlight"><c- p>{</c->
+  <c- f>"dataset"</c-><c- p>:</c-> <c- p>[</c->
+    <c- p>{</c->
+      <c- f>"facets"</c-><c- p>:</c-> <c- p>{</c->
+        <c- f>"x"</c-><c- p>:</c-> <c- p>{</c->
+          <c- f>"label"</c-><c- p>:</c-> <c- u>"Month"</c-><c- p>,</c->
+          <c- f>"variableType"</c-><c- p>:</c-> <c- u>"independent"</c-><c- p>,</c->
+          <c- f>"measure"</c-><c- p>:</c-> <c- u>"ordinal"</c->
+        <c- p>},</c->
+        <c- f>"y"</c-><c- p>:</c-> <c- p>{</c->
+          <c- f>"label"</c-><c- p>:</c-> <c- u>"Temperature"</c-><c- p>,</c->
+          <c- f>"variableType"</c-><c- p>:</c-> <c- u>"dependent"</c-><c- p>,</c->
+          <c- f>"measure"</c-><c- p>:</c-> <c- u>"ratio"</c-><c- p>,</c->
+          <c- f>"units"</c-><c- p>:</c-> <c- u>"degrees Fahrenheit"</c-><c- p>,</c->
+          <c- f>"multiplier"</c-><c- p>:</c-> <c- u>"1"</c->
+        <c- p>}</c->
+      <c- p>},</c->
+      <c- f>"series"</c-><c- p>:</c-> <c- p>[</c->
+        <c- p>{</c->
+          <c- f>"name"</c-><c- p>:</c-> <c- u>"Average montly temperatures"</c-><c- p>,</c->
+          <c- f>"type"</c-><c- p>:</c-> <c- u>"column"</c-><c- p>,</c->
+          <c- f>"records"</c-><c- p>:</c-> <c- p>[</c->
+            <c- p>{</c->
+              <c- f>"x"</c-><c- p>:</c-> <c- u>"January"</c-><c- p>,</c->
+              <c- f>"y"</c-><c- p>:</c-> <c- u>"23"</c->
+            <c- p>},</c->
+            <c- p>{</c->
+              <c- f>"x"</c-><c- p>:</c-> <c- u>"February"</c-><c- p>,</c->
+              <c- f>"y"</c-><c- p>:</c-> <c- u>"42"</c->
+            <c- p>},</c->
+            <c- p>{</c->
+              <c- f>"x"</c-><c- p>:</c-> <c- u>"March"</c-><c- p>,</c->
+              <c- f>"y"</c-><c- p>:</c-> <c- u>"55"</c->
+            <c- p>}</c->
+          <c- p>]</c->
+        <c- p>}</c->
+      <c- p>]</c->
+    <c- p>}</c->
+  <c- p>]</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <h4 class="heading settled" data-level="5.2.10" id="series_data_block"><span class="secno">5.2.10. </span><span class="content">The <code>series</code> key</span><a class="self-link" href="#series_data_block"></a></h4>
+   <p>The <code>series</code> block contains the information about each series of the dataset for structured data, including the raw data values of each record in each series.</p>
+   <p>The <code>series</code> object contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> value type 
+      <th> description 
+      <th> requirement 
+    <tbody>
+     <tr>
+      <td><code>name</code>
+      <td>string
+      <td>The name for this series, normally used as the series label
+      <td>optional for unstructured data, required for structured data
+     <tr>
+      <td><code>type</code>
+      <td>string
+      <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>dataset</code>
+     <tr>
+      <td><code>records</code>
+      <td>array
+      <td>The raw data values for each facet of each record of this series
+      <td>optional for unstructured data, required for structured data
+   </table>
+   <h5 class="heading settled" data-level="5.2.10.1" id="series_name_data_block"><span class="secno">5.2.10.1. </span><span class="content">The <code>name</code> key</span><a class="self-link" href="#series_name_data_block"></a></h5>
+   <p>The <code>name</code> key has a value that is a string that is the name for this series, normally used as the series label.</p>
+   <h5 class="heading settled" data-level="5.2.10.2" id="series_type_data_block"><span class="secno">5.2.10.2. </span><span class="content">The <code>type</code> key</span><a class="self-link" href="#series_type_data_block"></a></h5>
+   <p>The <code>type</code> key has a value that is a string defining the type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>dataset</code>.</p>
+   <h5 class="heading settled" data-level="5.2.10.3" id="series_records_data_block"><span class="secno">5.2.10.3. </span><span class="content">The <code>records</code> key</span><a class="self-link" href="#series_records_data_block"></a></h5>
+   <p>The <code>records</code> block contains the raw data values for each facet of each record of this series.</p>
+   <p>The <code>series</code> array contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
+   <h5 class="heading settled" data-level="5.2.10.4" id="items_data_block"><span class="secno">5.2.10.4. </span><span class="content">The <code>items</code> key</span><a class="self-link" href="#items_data_block"></a></h5>
+   <p>A loosely organized set of items for unstructured data, such as labels, values, and descriptions for diagrams.</p>
+   <p>TODO: describe the <code>items</code> object</p>
+   <h5 class="heading settled" data-level="5.2.10.5" id="source_data_block"><span class="secno">5.2.10.5. </span><span class="content">The <code>source</code> key</span><a class="self-link" href="#source_data_block"></a></h5>
+   <p>The provenance of the dataset.</p>
+   <p>TODO: describe the <code>source</code> object</p>
+   <h4 class="heading settled" data-level="5.2.11" id="href_data_block"><span class="secno">5.2.11. </span><span class="content">The <code>href</code> key in a <code>dataset</code> block</span><a class="self-link" href="#href_data_block"></a></h4>
    <p>The <code>href</code> key defines an object that refers to an external data file. The content model and processing of the <code>href</code> key are different in the <code>dataset</code> block than in other metadata blocks.</p>
    <p>This external file can be used to link data to graphical elements, as defined in [Inline data].</p>
-   <h4 class="heading settled" data-level="5.2.11" id="inline_data"><span class="secno">5.2.11. </span><span class="content">Inline data</span><a class="self-link" href="#inline_data"></a></h4>
+   <h4 class="heading settled" data-level="5.2.12" id="inline_data"><span class="secno">5.2.12. </span><span class="content">Inline data</span><a class="self-link" href="#inline_data"></a></h4>
    <p>If a dataset is fairly small, it is best to include it in the image file directly.</p>
-   <h5 class="heading settled" data-level="5.2.11.1" id="linking_data"><span class="secno">5.2.11.1. </span><span class="content">Linking data and representational elements</span><a class="self-link" href="#linking_data"></a></h5>
+   <h5 class="heading settled" data-level="5.2.12.1" id="linking_data"><span class="secno">5.2.12.1. </span><span class="content">Linking data and representational elements</span><a class="self-link" href="#linking_data"></a></h5>
    <p>Each data point in the raw data <code>may</code> be represented visually in the image. There are multiple benefits in providing a mechanism to link a data point in the dataset to its representation, such as enabling users to drill down into the raw data value for a data element, or selecting a label in a different language than the graphical text label.</p>
    <p>This specification defines a <code>selector</code> attribute to enable this relationship between a graphical element and the data point it represents.</p>
-   <h6 class="heading settled" data-level="5.2.11.1.1" id="data_model_cardinality"><span class="secno">5.2.11.1.1. </span><span class="content">Data model cardinality</span><a class="self-link" href="#data_model_cardinality"></a></h6>
+   <h6 class="heading settled" data-level="5.2.12.1.1" id="data_model_cardinality"><span class="secno">5.2.12.1.1. </span><span class="content">Data model cardinality</span><a class="self-link" href="#data_model_cardinality"></a></h6>
    <p>The relationship between a graphical element and the data it represents might be complex.</p>
    <p>Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a bar in a bar chart, where the height of the bar signifies a specific numerical value.</p>
    <p>Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where , or a line chart where a , or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)</p>
@@ -2546,7 +2638,7 @@ Parts of this work may be from another specification document.  If so, those par
     <p>TODO: provide a many-to-many example.</p>
    </blockquote>
    <p>On occassion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.</p>
-   <h6 class="heading settled" data-level="5.2.11.1.2" id="selector_attribute"><span class="secno">5.2.11.1.2. </span><span class="content">The <code>selector</code> attribute</span><a class="self-link" href="#selector_attribute"></a></h6>
+   <h6 class="heading settled" data-level="5.2.12.1.2" id="selector_attribute"><span class="secno">5.2.12.1.2. </span><span class="content">The <code>selector</code> attribute</span><a class="self-link" href="#selector_attribute"></a></h6>
    <p>Typically,</p>
    <blockquote>
     <p>TODO: talk about label elements and their representation.</p>
@@ -2556,7 +2648,7 @@ Parts of this work may be from another specification document.  If so, those par
    </blockquote>
    <p>or a line segment in a line chart</p>
    <div class="note" role="note"> <b>Note:</b> We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data. </div>
-   <h4 class="heading settled" data-level="5.2.12" id="external_data_ref"><span class="secno">5.2.12. </span><span class="content">External data reference</span><a class="self-link" href="#external_data_ref"></a></h4>
+   <h4 class="heading settled" data-level="5.2.13" id="external_data_ref"><span class="secno">5.2.13. </span><span class="content">External data reference</span><a class="self-link" href="#external_data_ref"></a></h4>
    <div class="note" role="note"> <b>Note:</b> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata. </div>
    <h3 class="heading settled" data-level="5.3" id="provenance"><span class="secno">5.3. </span><span class="content">Provenance</span><a class="self-link" href="#provenance"></a></h3>
    <p>Provenance describes where a document came from. This includes entries such as authors, organizations, date and time created or modified, where it was first published, the title of the paper or article it supplemented, or the original work on which it was based.</p>

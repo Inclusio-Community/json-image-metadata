@@ -430,17 +430,17 @@ The `representation` object contains the `chartType` key.
 </table>
 
 
-### The `facet` key ### {#facet_data_block}
+### The `facets` key ### {#facets_data_block}
 
-Details of each facet in the dataset, such as x and y axes or legend keys, for structured data.
+The `facets` block contains details of each facet in the dataset, such as x and y axes or legend keys, for structured data.
 
-The `facet` array contains one or more `[facet-string]` keys. A `[facet-string]` key may be any value allowed by the schema for the representation type, and will normally represent the axes (e.g. `"x"` and `"y"`), a legend (i.e. '"legend"'), a magnitude, or any other type of recorded data being represented. Each `[facet-string]` is the key to an object which defines the parameters, value type, and descriptors for the corresponding key in the child objects of the `records` array in the `series` array.
+The `facets` object contains one or more `[facet-string]` keys. A `[facet-string]` key may be any value allowed by the schema for the representation type, and will normally represent the axes (e.g. `"x"` and `"y"`), a legend (i.e. '"legend"'), a magnitude, or any other type of recorded data being represented. Each `[facet-string]` is the key to an object which defines the parameters, value type, and descriptors for the corresponding key in the child objects of the `records` array in the `series` array.
 
 These `[facet-string]` keys must consist of a string of ASCII letters, digits, '_', and '-', with no whitespace. Each `[facet-string]` key must be a unique value.
 
 
-<div id='xmp_facet' class='example'>
-An example of a `facet` block with two `[facet-string]` object entries, `"x"` and `"y"`. The values `"x"` and `"y"` are matched in the `records` block objects, which contain the actual values for those facets. 
+<div id='xmp_facets' class='example'>
+An example of a `facets` block with two `[facet-string]` object entries, `"x"` and `"y"`. The values `"x"` and `"y"` are matched in the `records` block objects, which contain the actual values for those facets. 
 
 <xmp highlight='json'>
 {
@@ -538,6 +538,127 @@ An example of a `facet` block with two `[facet-string]` object entries, `"x"` an
     </tr>
   </tbody>
 </table>
+
+<div id='xmp_facets_series' class='example'>
+An example of a `facets` block with two `[facet-string]` object entries, `"x"` and `"y"`, and the . The values `"x"` and `"y"` are matched in the `records` block objects, which contain the actual values for those facets. 
+
+<xmp highlight='json'>
+{
+  "dataset": [
+    {
+      "facets": {
+        "x": {
+          "label": "Month",
+          "variableType": "independent",
+          "measure": "ordinal"
+        },
+        "y": {
+          "label": "Temperature",
+          "variableType": "dependent",
+          "measure": "ratio",
+          "units": "degrees Fahrenheit",
+          "multiplier": "1"
+        }
+      },
+      "series": [
+        {
+          "name": "Average montly temperatures",
+          "type": "column",
+          "records": [
+            {
+              "x": "January",
+              "y": "23"
+            },
+            {
+              "x": "February",
+              "y": "42"
+            },
+            {
+              "x": "March",
+              "y": "55"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+</xmp>
+</div>
+
+
+### The `series` key ### {#series_data_block}
+
+The `series` block contains the information about each series of the dataset for structured data, including the raw data values of each record in each series.
+
+The `series` object contains one or more objects, each of which contains one or more `[facet-string]` keys, each with a corresponding value. Each `[facet-string]` key in a `series` array object must be defined in the `facets` block, and the value for that `[facet-string]` key must conform to the datatype and other properties defined for it in the `facets` block.
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`name`</td>
+      <td>string</td>
+      <td>The name for this series, normally used as the series label</td>
+      <td>optional for unstructured data, required for structured data</td>
+    </tr>
+    <tr>
+      <td>`type`</td>
+      <td>string</td>
+      <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the `chartType` key of the `representation` block of the parent `dataset`</td>
+    </tr>
+    <tr>
+      <td>`records`</td>
+      <td>array</td>
+      <td>The raw data values for each facet of each record of this series</td>
+      <td>optional for unstructured data, required for structured data</td>
+    </tr>
+  </tbody>
+</table>
+
+
+#### The `name` key #### {#series_name_data_block}
+
+The `name` key has a value that is a string that is the name for this series, normally used as the series label.
+
+#### The `type` key #### {#series_type_data_block}
+
+The `type` key has a value that is a string defining the type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the `chartType` key of the `representation` block of the parent `dataset`.
+
+#### The `records` key #### {#series_records_data_block}
+
+The `records` block contains the raw data values for each facet of each record of this series.
+
+The `series` array contains one or more objects, each of which contains one or more `[facet-string]` keys, each with a corresponding value. Each `[facet-string]` key in a `series` array object must be defined in the `facets` block, and the value for that `[facet-string]` key must conform to the datatype and other properties defined for it in the `facets` block.
+
+
+#### The `items` key #### {#items_data_block}
+
+A loosely organized set of items for unstructured data, such as labels, values, and descriptions for diagrams.
+
+TODO: describe the `items` object
+
+
+#### The `source` key #### {#source_data_block}
+
+The provenance of the dataset.
+
+TODO: describe the `source` object
 
 
 ### The `href` key in a `dataset` block ### {#href_data_block}
