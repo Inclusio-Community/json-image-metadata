@@ -5,7 +5,9 @@
         "title": "JIM spec",
         "org": "Inclusio",
         "desc": "Draft specification for JSON Image Metadata",
-        "type": "specification"
+        "category": [ 
+          "specification"
+        ]
       }
     },
     {
@@ -13,7 +15,9 @@
         "title": "UNAR",
         "org": "UNAR Labs",
         "desc": "AI/ML data extractor",
-        "type": "generator"
+        "category": [
+          "generator"
+        ]
       }
     },
     {
@@ -21,7 +25,10 @@
         "title": "IVEO",
         "org": "ViewPlus",
         "desc": "IVEO graphics viewer",
-        "type": "viewer"
+        "category": [
+          "generator", 
+          "viewer"
+        ]
       }
     },
     {
@@ -29,7 +36,10 @@
         "title": "Tiger",
         "org": "ViewPlus",
         "desc": "Tiger embosser software and printer driver",
-        "type": "embosser"
+        "category": [
+          "embosser",
+          "printer"
+        ]
       }
     },
     {
@@ -37,7 +47,10 @@
         "title": "Vital",
         "org": "Vital",
         "desc": "haptic graphics viewer",
-        "type": "viewer"
+        "category": [
+          "generator", 
+          "viewer"
+        ]
       }
     },
     {
@@ -45,7 +58,10 @@
         "title": "ParaCharts",
         "org": "Fizz Studio",
         "desc": "ParaCharts dataviz library (external project, active development)",
-        "type": "generator, viewer"
+        "category": [
+          "generator", 
+          "viewer"
+        ]
       }
     },
     {
@@ -53,7 +69,10 @@
         "title": "HighCharts",
         "org": "HighSoft",
         "desc": "HighCharts dataviz library (external project, no active development)",
-        "type": "generator, viewer"
+        "category": [
+          "generator", 
+          "viewer"
+        ]
       }
     }
   ],
@@ -95,6 +114,7 @@
       "index": "1.1.1",
       "parent_id": "milestone-1-bar-chart-metadata-m1-0001",
       "status": "accepted",
+      "category": "generator",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -106,7 +126,7 @@
         },
         {
           "unar": {
-            "support": "partial",
+            "support": "",
             "notes": "",
             "example_url": ""
           }
@@ -153,6 +173,7 @@
       "index": "1.1.2",
       "parent_id": "milestone-1-bar-chart-metadata-m1-0001",
       "status": "accepted",
+      "category": "generator",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -164,7 +185,7 @@
         },
         {
           "unar": {
-            "support": "partial",
+            "support": "",
             "notes": "",
             "example_url": ""
           }
@@ -211,6 +232,7 @@
       "index": "1.1.3",
       "parent_id": "milestone-1-bar-chart-metadata-m1-0001",
       "status": "accepted",
+      "category": "generator",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -222,7 +244,7 @@
         },
         {
           "unar": {
-            "support": "full",
+            "support": "",
             "notes": "",
             "example_url": ""
           }
@@ -269,6 +291,7 @@
       "index": "1.1.4",
       "parent_id": "milestone-1-bar-chart-metadata-m1-0001",
       "status": "accepted",
+      "category": "viewer",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -280,7 +303,7 @@
         },
         {
           "unar": {
-            "support": "partial",
+            "support": "",
             "notes": "",
             "example_url": ""
           }
@@ -327,6 +350,7 @@
       "index": "1.1.5",
       "parent_id": "milestone-1-bar-chart-metadata-m1-0001",
       "status": "accepted",
+      "category": "viewer",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -338,7 +362,7 @@
         },
         {
           "unar": {
-            "support": "partial",
+            "support": "",
             "notes": "",
             "example_url": ""
           }
@@ -385,6 +409,7 @@
       "index": "2.1.1",
       "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
       "status": "accepted",
+      "category": "generator",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -443,6 +468,7 @@
       "index": "2.1.2",
       "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
       "status": "accepted",
+      "category": "generator",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -501,6 +527,7 @@
       "index": "2.1.3",
       "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
       "status": "accepted",
+      "category": "generator",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -559,6 +586,7 @@
       "index": "2.1.4",
       "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
       "status": "accepted",
+      "category": "generator",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -617,6 +645,7 @@
       "index": "2.1.5",
       "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
       "status": "accepted",
+      "category": "viewer",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -675,6 +704,7 @@
       "index": "2.1.6",
       "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
       "status": "accepted",
+      "category": "viewer",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -733,6 +763,7 @@
       "index": "2.1.7",
       "parent_id": "milestone-2-bar-chart-metadata-m2-0001",
       "status": "accepted",
+      "category": "viewer",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {
@@ -791,6 +822,7 @@
       "index": "2.2.1",
       "parent_id": "milestone-2-line-chart-metadata-m2-0002",
       "status": "accepted",
+      "category": "generator",
       "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
       "implementations": [
         {

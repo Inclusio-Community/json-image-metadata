@@ -42,10 +42,10 @@ export class JSON2Matrix {
     const desc_th = document.createElement('th');
     desc_th.textContent = 'description';
 
-    const type_th = document.createElement('th');
-    type_th.textContent = 'type';
+    const category_th = document.createElement('th');
+    category_th.textContent = 'category';
 
-    imp_tr.append(name_th, org_th, desc_th, type_th);
+    imp_tr.append(name_th, org_th, desc_th, category_th);
 
 
     let imp_tbody = document.createElement('tbody');
@@ -64,7 +64,7 @@ export class JSON2Matrix {
           const val = impObj[label];
 
           const cell = document.createElement(cellType);
-          cell.textContent = val;
+          cell.textContent = Array.isArray(val) ? val.join(', ') : val;
           tr.append(cell);
 
           cellType = 'td';
@@ -97,6 +97,10 @@ export class JSON2Matrix {
     let th = document.createElement('th');
     th.textContent = 'milestone';
     tr.append(th);
+
+    let th_category = document.createElement('th');
+    th_category.textContent = 'category';
+    tr.append(th_category);
 
     // let dl = document.createElement('dl');
 
@@ -182,6 +186,10 @@ export class JSON2Matrix {
       a.append(index_span);
       th.append(a);
       tr.append(th);
+
+      let td_category = document.createElement('th');
+      td_category.textContent = val.category;
+      tr.append(td_category);
 
       // iterate over implementation support columns for each milestone rows
       const cap_imps = val['implementations'];
