@@ -131,7 +131,7 @@ The MIME type for a JSON Image Metadata document is `text/jim+json`.
 
 ## Conforming document ## {#conform_doc}
 
-A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty `dataset` block or one non-empty `behavior` block.
+A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty `datasets` block or one non-empty `behavior` block.
 
 This specification assumes the format of the metadata is in a JSON object. Other conforming serializations are possible, such as XML or a binary format, as long as they adhere to the structure of the defined JSON schema, and can be serialized as JSON.
 
@@ -149,7 +149,7 @@ For raster image documents, the JIM content block must be included in the metada
 
 An implementation conforming to this specification must access the contents of the metadata block. For an SVG-capable implementation displaying an SVG document, a conforming implementation must read the JSON data in the indicated `metadata` element.
 
-A conforming implementation must provide a means for the end user to extract the contents of the `dataset` block. 
+A conforming implementation must provide a means for the end user to extract the contents of the `datasets` block. 
 
 A conforming implementation must resolve all selectors and execute all supported features of the `behaviors` block.
 
@@ -161,11 +161,11 @@ Schema {#schema}
 Note that the examples below are notional, and intended for illustrative purposes. They are not a formal definition. The final definitions will be expressed in JSON Schema [[JSON-Schema]], and will include data types for each member.
 </div>
 
-This vocabulary is defined in terms of "blocks", or objects identified by a key with a defined set of optional sub-keys. This includes the `dataset`, `provenance`, `tags`, and `behaviors` blocks.
+This vocabulary is defined in terms of "blocks", or objects identified by a key with a defined set of optional sub-keys. This includes the `datasets`, `provenance`, `tags`, and `behaviors` blocks.
 
 <xmp highlight='json'>
 {
-  "dataset": [
+  "datasets": [
   ],
   "selectors": {
   },
@@ -180,17 +180,17 @@ This vocabulary is defined in terms of "blocks", or objects identified by a key 
 }
 </xmp>
 
-## Dataset ## {#dataset}
+## Datasets ## {#datasets}
 
-Dataset refers to the raw data which the image represents.
+Datasets refer to the raw data which the image represents.
 
 There are two ways to link the data to the image file: inline; and external reference. These methods can be used together in some ways, defined below.
 
-A `dataset` block is an array of objects with the key `dataset`. Each child object represents a discrete dataset represented in the graphic.
+A `datasets` block is an array of objects with the key `datasets`. Each child object represents a discrete dataset represented in the graphic.
 
 <xmp highlight='json'>
 {
-  "dataset": [
+  "datasets": [
     {
     }
   ]
@@ -311,10 +311,10 @@ These entities include the `title`, `subtitle`, `description`, `representation`,
 
 
 <div id='xmp_dataset_structured' class='example'>
-An example of a `dataset` block (with elided values) for a structured data representation, such as a bar chart. 
+An example of a `datasets` block (with elided values) for a structured data representation, such as a bar chart. 
 
 <xmp highlight='json'>
-"dataset": {
+"datasets": {
   "title": "",
   "subtitle": "",
   "description": "",
@@ -334,7 +334,7 @@ An example of a `dataset` block (with elided values) for a structured data repre
   
 > TODO: add example
 
-The individual entries of the `dataset` block are defined in [Inline data].
+The individual entries of the `datasets` block are defined in [Inline data].
 
 ### The `title` key ### {#title_data_block}
 
@@ -398,7 +398,7 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
 
 <xmp highlight='json'>
 {
-  "dataset": [
+  "datasets": [
     {
       "facets": {
         "x": {
@@ -498,7 +498,7 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
 
 <xmp highlight='json'>
 {
-  "dataset": [
+  "datasets": [
     {
       "facets": {
         "x": {
@@ -574,7 +574,7 @@ The `series` object contains one or more objects, each of which contains one or 
     <tr>
       <td>`type`</td>
       <td>string</td>
-      <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the `chartType` key of the `representation` block of the parent `dataset`</td>
+      <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the `chartType` key of the `representation` block of the parent `datasets`</td>
     </tr>
     <tr>
       <td>`records`</td>
@@ -592,7 +592,7 @@ The `name` key has a value that is a string that is the name for this series, no
 
 #### The `type` key #### {#series_type_data_block}
 
-The `type` key has a value that is a string defining the type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the `chartType` key of the `representation` block of the parent `dataset`.
+The `type` key has a value that is a string defining the type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the `chartType` key of the `representation` block of the parent `datasets`.
 
 #### The `records` key #### {#series_records_data_block}
 
@@ -615,9 +615,9 @@ The provenance of the dataset.
 TODO: describe the `source` object
 
 
-### The `href` key in a `dataset` block ### {#href_data_block}
+### The `href` key in a `datasets` block ### {#href_data_block}
 
-The `href` key defines an object that refers to an external data file. The content model and processing of the `href` key are different in the `dataset` block than in other metadata blocks.
+The `href` key defines an object that refers to an external data file. The content model and processing of the `href` key are different in the `datasets` block than in other metadata blocks.
 
 This external file can be used to link data to graphical elements, as defined in [Inline data].
 
@@ -688,7 +688,7 @@ Size restrictions: While including the raw data in the image is a best practice,
 
 Shared resources: An author might wish to share a common metadata file or set of files for a set of image documents. This allows the metadata files to be updated independently, reduces duplication and file size, enables cacheing in the user agent, and allows for a modular approach with well-tested rules.
 
-The `href` key defines an object that refers to an external file. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file, with the exception of the `dataset` block.
+The `href` key defines an object that refers to an external file. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file, with the exception of the `datasets` block.
 
 If an external metadata file contains rules that duplicate or conflict with rules defined in the inline metadata, the inline metadata takes precendence. This allows for customization of specific images while relying on generic common rules.
 
@@ -697,7 +697,7 @@ An `href` key `may` be included at any level of the metadata, with the relevant 
 <xmp highlight='json'>
 {
   "href": {
-    "dataset": "https://path.to.dataset",
+    "datasets": "https://path.to.datasets",
     "selectors": "https://path.to.behaviors"
     "behaviors": "https://path.to.behaviors"
     "provenance": "https://path.to.provenance",

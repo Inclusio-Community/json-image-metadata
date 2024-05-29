@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="9122549f8b95c590023e985867a107823e5ff97e" name="revision">
+  <meta content="f3213a14261a2d554a47712cc7a6d8f3ff204012" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-05-10">10 May 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-05-29">29 May 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2029,7 +2029,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 10 May 2024,
+In addition, as of 29 May 2024,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2086,7 +2086,7 @@ Parts of this work may be from another specification document.  If so, those par
      <a href="#schema"><span class="secno">4</span> <span class="content">Schema</span></a>
      <ol class="toc">
       <li>
-       <a href="#dataset"><span class="secno">4.1</span> <span class="content">Dataset</span></a>
+       <a href="#datasets"><span class="secno">4.1</span> <span class="content">Datasets</span></a>
        <ol class="toc">
         <li><a href="#dataset_structures"><span class="secno">4.1.1</span> <span class="content">Dataset structures</span></a>
         <li><a href="#structured_data"><span class="secno">4.1.2</span> <span class="content">Structured data</span></a>
@@ -2114,7 +2114,7 @@ Parts of this work may be from another specification document.  If so, those par
           <li><a href="#items_data_block"><span class="secno">4.1.10.4</span> <span class="content">The <code>items</code> key</span></a>
           <li><a href="#source_data_block"><span class="secno">4.1.10.5</span> <span class="content">The <code>source</code> key</span></a>
          </ol>
-        <li><a href="#href_data_block"><span class="secno">4.1.11</span> <span class="content">The <code>href</code> key in a <code>dataset</code> block</span></a>
+        <li><a href="#href_data_block"><span class="secno">4.1.11</span> <span class="content">The <code>href</code> key in a <code>datasets</code> block</span></a>
        </ol>
       <li>
        <a href="#selectors"><span class="secno">4.2</span> <span class="content">Selectors</span></a>
@@ -2279,7 +2279,7 @@ Parts of this work may be from another specification document.  If so, those par
    <h3 class="heading settled" data-level="3.1" id="mime_type"><span class="secno">3.1. </span><span class="content">JIM MIME type</span><a class="self-link" href="#mime_type"></a></h3>
    <p>The MIME type for a JSON Image Metadata document is <code>text/jim+json</code>.</p>
    <h3 class="heading settled" data-level="3.2" id="conform_doc"><span class="secno">3.2. </span><span class="content">Conforming document</span><a class="self-link" href="#conform_doc"></a></h3>
-   <p>A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty <code>dataset</code> block or one non-empty <code>behavior</code> block.</p>
+   <p>A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty <code>datasets</code> block or one non-empty <code>behavior</code> block.</p>
    <p>This specification assumes the format of the metadata is in a JSON object. Other conforming serializations are possible, such as XML or a binary format, as long as they adhere to the structure of the defined JSON schema, and can be serialized as JSON.</p>
    <p>A conforming document must provide a means to discover the metadata block.</p>
    <h4 class="heading settled" data-level="3.2.1" id="conform_doc_svg"><span class="secno">3.2.1. </span><span class="content">Conforming SVG document</span><a class="self-link" href="#conform_doc_svg"></a></h4>
@@ -2288,13 +2288,13 @@ Parts of this work may be from another specification document.  If so, those par
    <p>For raster image documents, the JIM content block must be included in the metadata section of the raster image file.</p>
    <h3 class="heading settled" data-level="3.3" id="conform_imp"><span class="secno">3.3. </span><span class="content">Conforming implementation</span><a class="self-link" href="#conform_imp"></a></h3>
    <p>An implementation conforming to this specification must access the contents of the metadata block. For an SVG-capable implementation displaying an SVG document, a conforming implementation must read the JSON data in the indicated <code>metadata</code> element.</p>
-   <p>A conforming implementation must provide a means for the end user to extract the contents of the <code>dataset</code> block.</p>
+   <p>A conforming implementation must provide a means for the end user to extract the contents of the <code>datasets</code> block.</p>
    <p>A conforming implementation must resolve all selectors and execute all supported features of the <code>behaviors</code> block.</p>
    <h2 class="heading settled" data-level="4" id="schema"><span class="secno">4. </span><span class="content">Schema</span><a class="self-link" href="#schema"></a></h2>
    <div class="note" role="note"> Note that the examples below are notional, and intended for illustrative purposes. They are not a formal definition. The final definitions will be expressed in JSON Schema <a data-link-type="biblio" href="#biblio-json-schema" title="JSON Schema: A Media Type for Describing JSON Documents">[JSON-Schema]</a>, and will include data types for each member. </div>
-   <p>This vocabulary is defined in terms of "blocks", or objects identified by a key with a defined set of optional sub-keys. This includes the <code>dataset</code>, <code>provenance</code>, <code>tags</code>, and <code>behaviors</code> blocks.</p>
+   <p>This vocabulary is defined in terms of "blocks", or objects identified by a key with a defined set of optional sub-keys. This includes the <code>datasets</code>, <code>provenance</code>, <code>tags</code>, and <code>behaviors</code> blocks.</p>
 <pre class="highlight"><c- p>{</c->
-  <c- f>"dataset"</c-><c- p>:</c-> <c- p>[</c->
+  <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
   <c- p>],</c->
   <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
   <c- p>},</c->
@@ -2308,12 +2308,12 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h3 class="heading settled" data-level="4.1" id="dataset"><span class="secno">4.1. </span><span class="content">Dataset</span><a class="self-link" href="#dataset"></a></h3>
-   <p>Dataset refers to the raw data which the image represents.</p>
+   <h3 class="heading settled" data-level="4.1" id="datasets"><span class="secno">4.1. </span><span class="content">Datasets</span><a class="self-link" href="#datasets"></a></h3>
+   <p>Datasets refer to the raw data which the image represents.</p>
    <p>There are two ways to link the data to the image file: inline; and external reference. These methods can be used together in some ways, defined below.</p>
-   <p>A <code>dataset</code> block is an array of objects with the key <code>dataset</code>. Each child object represents a discrete dataset represented in the graphic.</p>
+   <p>A <code>datasets</code> block is an array of objects with the key <code>datasets</code>. Each child object represents a discrete dataset represented in the graphic.</p>
 <pre class="highlight"><c- p>{</c->
-  <c- f>"dataset"</c-><c- p>:</c-> <c- p>[</c->
+  <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
     <c- p>}</c->
   <c- p>]</c->
@@ -2392,8 +2392,8 @@ Parts of this work may be from another specification document.  If so, those par
       <td>optional
    </table>
    <div class="example" id="xmp_dataset_structured">
-    <a class="self-link" href="#xmp_dataset_structured"></a> An example of a <code>dataset</code> block (with elided values) for a structured data representation, such as a bar chart. 
-<pre class="highlight"><c- f>"dataset"</c-><c- p>:</c-> <c- p>{</c->
+    <a class="self-link" href="#xmp_dataset_structured"></a> An example of a <code>datasets</code> block (with elided values) for a structured data representation, such as a bar chart. 
+<pre class="highlight"><c- f>"datasets"</c-><c- p>:</c-> <c- p>{</c->
   <c- f>"title"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c->
   <c- f>"subtitle"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c->
   <c- f>"description"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c->
@@ -2413,7 +2413,7 @@ Parts of this work may be from another specification document.  If so, those par
    <blockquote>
     <p>TODO: add example</p>
    </blockquote>
-   <p>The individual entries of the <code>dataset</code> block are defined in [Inline data].</p>
+   <p>The individual entries of the <code>datasets</code> block are defined in [Inline data].</p>
    <h4 class="heading settled" data-level="4.1.5" id="title_data_block"><span class="secno">4.1.5. </span><span class="content">The <code>title</code> key</span><a class="self-link" href="#title_data_block"></a></h4>
    <p>The title of the graphic document.</p>
    <h4 class="heading settled" data-level="4.1.6" id="subtitle_data_block"><span class="secno">4.1.6. </span><span class="content">The <code>subtitle</code> key</span><a class="self-link" href="#subtitle_data_block"></a></h4>
@@ -2445,7 +2445,7 @@ Parts of this work may be from another specification document.  If so, those par
    <div class="example" id="xmp_facets">
     <a class="self-link" href="#xmp_facets"></a> An example of a <code>facets</code> block with two <code>[facet-string]</code> object entries, <code>"x"</code> and <code>"y"</code>. The values <code>"x"</code> and <code>"y"</code> are matched in the <code>records</code> block objects, which contain the actual values for those facets. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"dataset"</c-><c- p>:</c-> <c- p>[</c->
+  <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
       <c- f>"facets"</c-><c- p>:</c-> <c- p>{</c->
         <c- f>"x"</c-><c- p>:</c-> <c- p>{</c->
@@ -2523,7 +2523,7 @@ Parts of this work may be from another specification document.  If so, those par
    <div class="example" id="xmp_facets_series">
     <a class="self-link" href="#xmp_facets_series"></a> An example of a <code>facets</code> block with two <code>[facet-string]</code> object entries, <code>"x"</code> and <code>"y"</code>, and the . The values <code>"x"</code> and <code>"y"</code> are matched in the <code>records</code> block objects, which contain the actual values for those facets. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"dataset"</c-><c- p>:</c-> <c- p>[</c->
+  <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
       <c- f>"facets"</c-><c- p>:</c-> <c- p>{</c->
         <c- f>"x"</c-><c- p>:</c-> <c- p>{</c->
@@ -2583,7 +2583,7 @@ Parts of this work may be from another specification document.  If so, those par
      <tr>
       <td><code>type</code>
       <td>string
-      <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>dataset</code>
+      <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>datasets</code>
      <tr>
       <td><code>records</code>
       <td>array
@@ -2593,7 +2593,7 @@ Parts of this work may be from another specification document.  If so, those par
    <h5 class="heading settled" data-level="4.1.10.1" id="series_name_data_block"><span class="secno">4.1.10.1. </span><span class="content">The <code>name</code> key</span><a class="self-link" href="#series_name_data_block"></a></h5>
    <p>The <code>name</code> key has a value that is a string that is the name for this series, normally used as the series label.</p>
    <h5 class="heading settled" data-level="4.1.10.2" id="series_type_data_block"><span class="secno">4.1.10.2. </span><span class="content">The <code>type</code> key</span><a class="self-link" href="#series_type_data_block"></a></h5>
-   <p>The <code>type</code> key has a value that is a string defining the type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>dataset</code>.</p>
+   <p>The <code>type</code> key has a value that is a string defining the type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>datasets</code>.</p>
    <h5 class="heading settled" data-level="4.1.10.3" id="series_records_data_block"><span class="secno">4.1.10.3. </span><span class="content">The <code>records</code> key</span><a class="self-link" href="#series_records_data_block"></a></h5>
    <p>The <code>records</code> block contains the raw data values for each facet of each record of this series.</p>
    <p>The <code>series</code> array contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
@@ -2603,8 +2603,8 @@ Parts of this work may be from another specification document.  If so, those par
    <h5 class="heading settled" data-level="4.1.10.5" id="source_data_block"><span class="secno">4.1.10.5. </span><span class="content">The <code>source</code> key</span><a class="self-link" href="#source_data_block"></a></h5>
    <p>The provenance of the dataset.</p>
    <p>TODO: describe the <code>source</code> object</p>
-   <h4 class="heading settled" data-level="4.1.11" id="href_data_block"><span class="secno">4.1.11. </span><span class="content">The <code>href</code> key in a <code>dataset</code> block</span><a class="self-link" href="#href_data_block"></a></h4>
-   <p>The <code>href</code> key defines an object that refers to an external data file. The content model and processing of the <code>href</code> key are different in the <code>dataset</code> block than in other metadata blocks.</p>
+   <h4 class="heading settled" data-level="4.1.11" id="href_data_block"><span class="secno">4.1.11. </span><span class="content">The <code>href</code> key in a <code>datasets</code> block</span><a class="self-link" href="#href_data_block"></a></h4>
+   <p>The <code>href</code> key defines an object that refers to an external data file. The content model and processing of the <code>href</code> key are different in the <code>datasets</code> block than in other metadata blocks.</p>
    <p>This external file can be used to link data to graphical elements, as defined in [Inline data].</p>
    <h3 class="heading settled" data-level="4.2" id="selectors"><span class="secno">4.2. </span><span class="content">Selectors</span><a class="self-link" href="#selectors"></a></h3>
    <p>In order to identify and link between the DOM of an SVG document and the JSON metadata, this specification uses CSS Selectors and JSONPath.</p>
@@ -2643,12 +2643,12 @@ Parts of this work may be from another specification document.  If so, those par
    <p>A metadata object can be inline in the file, or referenced as an external file, in whole or in part. There are several reasons to support external metadata files. Two major use cases include size restrictions and shared resources.</p>
    <p>Size restrictions: While including the raw data in the image is a best practice, sometimes a dataset is simply too large to pragmatically include inline. In this case, referencing a raw data file is the best practical approach.</p>
    <p>Shared resources: An author might wish to share a common metadata file or set of files for a set of image documents. This allows the metadata files to be updated independently, reduces duplication and file size, enables cacheing in the user agent, and allows for a modular approach with well-tested rules.</p>
-   <p>The <code>href</code> key defines an object that refers to an external file. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file, with the exception of the <code>dataset</code> block.</p>
+   <p>The <code>href</code> key defines an object that refers to an external file. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file, with the exception of the <code>datasets</code> block.</p>
    <p>If an external metadata file contains rules that duplicate or conflict with rules defined in the inline metadata, the inline metadata takes precendence. This allows for customization of specific images while relying on generic common rules.</p>
    <p>An <code>href</code> key <code>may</code> be included at any level of the metadata, with the relevant key string as the attribute key and a valid URL string as the value for that attribute.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"href"</c-><c- p>:</c-> <c- p>{</c->
-    <c- f>"dataset"</c-><c- p>:</c-> <c- u>"https://path.to.dataset"</c-><c- p>,</c->
+    <c- f>"datasets"</c-><c- p>:</c-> <c- u>"https://path.to.datasets"</c-><c- p>,</c->
     <c- f>"selectors"</c-><c- p>:</c-> <c- f>"https://path.to.behaviors"</c->
     <c- f>"behaviors"</c-><c- p>:</c-> <c- f>"https://path.to.behaviors"</c->
     <c- f>"provenance"</c-><c- p>:</c-> <c- u>"https://path.to.provenance"</c-><c- p>,</c->
