@@ -201,6 +201,38 @@ Note: Multiple datasets serve the use cases of: representing more than one type 
 
 Note: As a heuristic, if all of the facets (and sources) are identical between two or more datasets, they can be merged into a single dataset object; but if any of the facets (or sources) is different, they are better represented as different datasets.
 
+### Fidelity in dataset representation ### {#dataset_fidelity}
+
+A document conforming to this specification must maintain an accurate visual and/or structural representation of the dataset specified in the `datasets` block, including the selectors that yoke a DOM representation to the JSONPath of the represented data.
+
+A conforming graphical document which represents structured data must also contain the corresponding dataset in JSON or must link to the dataset in some other format.
+
+> Not all graphical documents, especially those that show illustrations rather than structured charts, have an obvious or useful JSON representation. If no schema defined in this specification matches the type of graphics depicted in the document, then a JIM block can still be useful in providing the title, description, provenance, and other information.
+
+#### Superset datasets #### {#data_superset}
+
+A conforming document may include more data than is represented in the visualization, so long as the visual and structural representation is an accurate representation of a subset of the datasets.
+
+Valid examples of data supersets include (but are not limited to):
+
+- a dataset series with a larger range than the visualization (e.g. a dataset may contain 3 months of data, while the visualization only represents the second month)
+- a dataset with more data facets than are represented in the visualization
+- multiple dataset objects, where only one dataset object is represented in the visualization
+
+> There are a number of useful scenarios where a data superset occurs. For example, an author may wish for others to have their whole dataset for independent verification, even though the author focuses a visualization on only one aspect of that dataset; or, a user may "zoom in" on a shorter range of the data, in an interactive chart that enables that.
+
+#### Synchronizing datasets and representations #### {#dataset_sync}
+
+Conforming authoring tools, including any software that enables editing of graphics or data, must ensure that any changes to the graphics that represent data are also changed in the corresponding data, that any changes to the data are also changed in the corresponding graphics, and that any relevant selectors still yoke the corresponding data and representation.  
+
+#### Conforming misrepresentation of datasets #### {#misrepresent}
+
+This specification does not place conformance restrictions on the accuracy, aptness, or honesty of the data representation.
+
+A visualization which contains mistakes in the dataset itself or in the visualization, which uses the wrong type of chart for the data, or which is deliberately misleading does not necessarily fail in conformance to this specification, so long as the document uses accurate `datasets` and corresponding `selectors`.
+
+Note: The authors of this specification strongly condemn misrepresenting data with a visualization. However, this is an ethical issue, not a technical or interoperability issue.
+
 ### Dataset structures ### {#dataset_structures}
 
 This specification requires that an inline dataset must be in JSON format, but does not mandate a particular structure for a dataset.
@@ -211,7 +243,7 @@ Instead, this specification defines the `selector` attribute, which can be added
 
 This specification does include a set of canonical dataset structures which may be used. However, conforming implementations may express the dataset in a different JSON structure, so long as it includes the same set of keys as in the schema.
 
-### Structured data ### {#structured_data}
+#### Structured data #### {#structured_data}
 
 Structured data includes faceted data, whether qualitative or quantitative, that can be represented by a chart or graph.
 
@@ -219,7 +251,7 @@ This data must be included in objects in the `facets` and `series` keys.
 
 Note: A future version of this specification will define schamata for a canonical dataset structure or set of structures for different types of data visualization.
 
-### Unstructured data ### {#unstructured_data}
+#### Unstructured data #### {#unstructured_data}
 
 Unstructured data includes many types of diagrams, illustrations, pictorial graphics, or infographics. There may be some informal structure to such graphics, including hierarchies such as section headings, but they are not formatted in a defined manner.
 
