@@ -1,0 +1,175 @@
+{
+  "dataset": {
+    "title": "Temperature in Degrees Fahrenheit",
+    "facets": {
+      "x": {
+        "label": "Time (Days)",
+        "variableType": "independent"
+      },
+      "y": {
+        "label": "Recorded Temperatures",
+        "variableType": "dependent"
+      }
+    },
+    "series": [
+      {
+        "name": "2000",
+        "type": "column",
+        "records": [
+          {
+            "x": "Sunday",
+            "y": "57"
+          },
+          {
+            "x": "Monday",
+            "y": "53"
+          },
+          {
+            "x": "Tuesday",
+            "y": "66"
+          },
+          {
+            "x": "Wednesday",
+            "y": "55"
+          },
+          {
+            "x": "Thursday",
+            "y": "70"
+          },
+          {
+            "x": "Friday",
+            "y": "59"
+          },          
+          {
+            "x": "Saturday",
+            "y": "68"
+          }
+        ]
+      },
+      {
+        "name": "2015",
+        "type": "column",
+        "records": [
+          {
+            "x": "Sunday",
+            "y": "64"
+          },
+          {
+            "x": "Monday",
+            "y": "71"
+          },
+          {
+            "x": "Tuesday",
+            "y": "62"
+          },
+          {
+            "x": "Wednesday",
+            "y": "68"
+          },
+          {
+            "x": "Thursday",
+            "y": "70"
+          },
+          {
+            "x": "Friday",
+            "y": "65"
+          },
+          {
+            "x": "Saturday",
+            "y": "60"
+          }          
+        ]
+      }
+    ]
+  },
+  "selectors": {
+    "#chart-title": "$.dataset.title",
+    "datapoint-Sunday_2000": [
+      "$.dataset.series[0].records[0].y"
+    ],
+    "datapoint-Monday_2000": [
+      "$.dataset.series[0].records[1].y"
+    ],
+    "datapoint-Tuesday_2000": [
+      "$.dataset.series[0].records[2].y"
+    ],
+    "datapoint-Wednesday_2000": [
+      "$.dataset.series[0].records[3].y"
+    ],
+    "datapoint-Thursday_2000": [
+      "$.dataset.series[0].records[4].y"
+    ],
+    "datapoint-Friday_2000": [
+      "$.dataset.series[0].records[5].y"
+    ],
+    "datapoint-Saturday_2000": [
+      "$.dataset.series[0].records[6].y"
+    ],
+
+    "value-Sunday_2000": [
+      "$.dataset.series[0].records[0].y"
+    ],
+    "value-Monday_2000": [
+      "$.dataset.series[0].records[1].y"
+    ],
+    "value-Tuesday_2000": [
+      "$.dataset.series[0].records[2].y"
+    ],
+    "value-Wednesday_2000": [
+      "$.dataset.series[0].records[3].y"
+    ],
+    "value-Thursday_2000": [
+      "$.dataset.series[0].records[4].y"
+    ],
+    "value-Friday_2000": [
+      "$.dataset.series[0].records[5].y"
+    ],
+    "value-Saturday_2000": [
+      "$.dataset.series[1].records[6].y"
+    ],
+
+    "datapoint-Sunday_2015": [
+      "$.dataset.series[1].records[0].y"
+    ],
+    "datapoint-Monday_2015": [
+      "$.dataset.series[1].records[1].y"
+    ],
+    "datapoint-Tuesday_2015": [
+      "$.dataset.series[1].records[2].y"
+    ],
+    "datapoint-Wednesday_2015": [
+      "$.dataset.series[1].records[3].y"
+    ],
+    "datapoint-Thursday_2015": [
+      "$.dataset.series[1].records[4].y"
+    ],
+    "datapoint-Friday_2015": [
+      "$.dataset.series[1].records[5].y"
+    ],
+    "datapoint-Saturday_2015": [
+      "$.dataset.series[1].records[6].y"
+    ],
+    
+    "value-Sunday_2015": [
+      "$.dataset.series[1].records[0].y"
+    ],
+    "value-Monday_2015": [
+      "$.dataset.series[1].records[1].y"
+    ],
+    "value-Tuesday_2015": [
+      "$.dataset.series[1].records[2].y"
+    ],
+    "value-Wednesday_2015": [
+      "$.dataset.series[1].records[3].y"
+    ],
+    "value-Thursday_2015": [
+      "$.dataset.series[1].records[4].y"
+    ],
+    "value-Friday_2015": [
+      "$.dataset.series[1].records[5].y"
+    ],
+    "value-Saturday_2015": [
+      "$.dataset.series[1].records[6].y"
+    ]
+  }
+}
