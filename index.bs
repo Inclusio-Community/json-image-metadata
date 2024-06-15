@@ -1344,7 +1344,7 @@ The software that processes and presents the document to the end user.
       "G. Normington",
       "C. Bormann"
     ],
-    "href": "https://datatracker.ietf.org/doc/html/draft-ietf-jsonpath-base",
+    "href": "https://www.rfc-editor.org/rfc/rfc9535",
     "title": "JSONPath: Query expressions for JSON",
     "status": "Internet-Draft",
     "publisher": "IETF",
