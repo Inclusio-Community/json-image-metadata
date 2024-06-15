@@ -3,7 +3,7 @@
 
   <metadata data-type="text/jim+json">
     {
-      "dataset": {
+      "datasetss": {
         "title": "Number Line",
         "description": "Drawing of a number line, from -10 to 10",
         "source": {
@@ -15,7 +15,7 @@
             "label": "Numbers",
             "variableType": "independent",
             "measure": "ordinal"
-          },
+          }
         },
         "series": [
           {
@@ -84,34 +84,35 @@
               },
               {
                 "x": "10"
-              },
+              }
+            ]
           }
-        }
+        ]
       },
       "selectors": {
-        "#diagram-title": "$.dataset[0].title",
+        "#diagram-title": "$.datasets[0].title",
 
-        "#tick_-10": "$.dataset[0].series[0].x",
-        "#tick_-9": "$.dataset[0].series[1].x",
-        "#tick_-8": "$.dataset[0].series[2].x",
-        "#tick_-7": "$.dataset[0].series[3].x",
-        "#tick_-6": "$.dataset[0].series[4].x",
-        "#tick_-5": "$.dataset[0].series[5].x",
-        "#tick_-4": "$.dataset[0].series[6].x",
-        "#tick_-3": "$.dataset[0].series[7].x",
-        "#tick_-2": "$.dataset[0].series[8].x",
-        "#tick_-1": "$.dataset[0].series[9].x",
-        "#tick_0": "$.dataset[0].series[10].x",
-        "#tick_1": "$.dataset[0].series[11].x",
-        "#tick_2": "$.dataset[0].series[12].x",
-        "#tick_3": "$.dataset[0].series[13].x",
-        "#tick_4": "$.dataset[0].series[14].x",
-        "#tick_5": "$.dataset[0].series[15].x",
-        "#tick_6": "$.dataset[0].series[16].x",
-        "#tick_7": "$.dataset[0].series[17].x",
-        "#tick_8": "$.dataset[0].series[18].x",
-        "#tick_9": "$.dataset[0].series[19].x",
-        "#tick_10": "$.dataset[0].series[20].x"
+        "#tick_-10": "$.datasets[0].series[0].records[0].x",
+        "#tick_-9": "$.datasets[0].series[0].records[1].x",
+        "#tick_-8": "$.datasets[0].series[0].records[2].x",
+        "#tick_-7": "$.datasets[0].series[0].records[3].x",
+        "#tick_-6": "$.datasets[0].series[0].records[4].x",
+        "#tick_-5": "$.datasets[0].series[0].records[5].x",
+        "#tick_-4": "$.datasets[0].series[0].records[6].x",
+        "#tick_-3": "$.datasets[0].series[0].records[7].x",
+        "#tick_-2": "$.datasets[0].series[0].records[8].x",
+        "#tick_-1": "$.datasets[0].series[0].records[9].x",
+        "#tick_0": "$.datasets[0].series[0].records[10].x",
+        "#tick_1": "$.datasets[0].series[0].records[11].x",
+        "#tick_2": "$.datasets[0].series[0].records[12].x",
+        "#tick_3": "$.datasets[0].series[0].records[13].x",
+        "#tick_4": "$.datasets[0].series[0].records[14].x",
+        "#tick_5": "$.datasets[0].series[0].records[15].x",
+        "#tick_6": "$.datasets[0].series[0].records[16].x",
+        "#tick_7": "$.datasets[0].series[0].records[17].x",
+        "#tick_8": "$.datasets[0].series[0].records[18].x",
+        "#tick_9": "$.datasets[0].series[0].records[19].x",
+        "#tick_10": "$.datasets[0].series[0].records[20].x"
       }
     }
   </metadata>
