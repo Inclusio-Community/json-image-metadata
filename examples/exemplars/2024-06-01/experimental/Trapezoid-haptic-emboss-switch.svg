@@ -3,83 +3,84 @@
 
   <metadata data-type="text/jim+json">
     {
-      "dataset": {
-        "title": "Trapezoid",
-        "subtitle": "Results of user survey",
-        "description": "Drawing of a trapezoid with 3 side lengths labeled and 2 right angles",
-        "source": {
-          "url": "https://inclusioproject.com/graphics/exemplars/Trapezoid.svg",
-          "name": "Inclusio Project accessible graphic examplar: Trapezoid"
-        },
-        "items": {
-          "shape": {
-            "top-edge": {
-              "label": "Line W-X",
-              "measurement": "23 centimeters"
-            },
-            "right-edge": {
-              "label": "Line X-Y",
-              "measurement": "6 centimeters"
-            },
-            "bottom-edge": {
-              "label": "Line Y-Z",
-              "measurement": "undefined"
-            },
-            "left-edge": {
-              "label": "Line Z-W",
-              "measurement": "16 centimeters"
-            }
+      "datasets": [
+        {
+          "title": "Trapezoid",
+          "subtitle": "Geometry problem",
+          "description": "Drawing of a trapezoid with 3 side lengths labeled and 2 right angles",
+          "source": {
+            "url": "https://inclusioproject.com/graphics/exemplars/Trapezoid.svg",
+            "name": "Inclusio Project accessible graphic examplar: Trapezoid"
           },
-          "angles": {
-            "angle-w": {
-              "label": "Angle W",
-              "description": "Intersection of W-X and Z-W"
+          "items": {
+            "shape": {
+              "top_edge": {
+                "label": "Line W-X",
+                "measurement": "23 centimeters"
+              },
+              "right_edge": {
+                "label": "Line X-Y",
+                "measurement": "6 centimeters"
+              },
+              "bottom_edge": {
+                "label": "Line Y-Z",
+                "measurement": "undefined"
+              },
+              "left_edge": {
+                "label": "Line Z-W",
+                "measurement": "16 centimeters"
+              }
             },
-            "angle-x": {
-              "label": "Angle X",
-              "description": "Intersection of W-X and X-Y"
+            "angles": {
+              "angle_w": {
+                "label": "Angle W",
+                "description": "Intersection of W-X and Z-W"
+              },
+              "angle_x": {
+                "label": "Angle X",
+                "description": "Intersection of W-X and X-Y"
+              },
+              "angle_y": {
+                "label": "Angle Y",
+                "description": "Intersection of X-Y and Y-Z"
+              },
+              "angle_z": {
+                "label": "Angle Z",
+                "description": "Intersection of Y-Z and Z-W"
+              }
             },
-            "angle-y": {
-              "label": "Angle Y",
-              "description": "Intersection of X-Y and Y-Z"
-            },
-            "angle-z": {
-              "label": "Angle Z",
-              "description": "Intersection of Y-Z and Z-W"
-            }
-          },
-          "markers": {
-            "right-angle": {
-              "label": "Right angle",
-              "description": "90 degrees"
+            "markers": {
+              "right_angle": {
+                "label": "Right angle",
+                "description": "90 degrees"
+              }
             }
           }
         }
-      },
+      ],
       "selectors": {
-        "#diagram-title": "$.dataset.title",
+        "#diagram-title": "$.datasets[0].title",
 
-        "#line-w-x": "$.dataset.items.shape.top-edge",
-        "#line-x-y": "$.dataset.items.shape.right-edge",
-        "#line-y-z": "$.dataset.items.shape.bottom-edge",
-        "#line-z-w": "$.dataset.items.shape.left-edge",
+        "#line-w-x": "$.datasets[0].items.shape.top_edge",
+        "#line-x-y": "$.datasets[0].items.shape.right_edge",
+        "#line-y-z": "$.datasets[0].items.shape.bottom_edge",
+        "#line-w-z": "$.datasets[0].items.shape.left_edge",
 
-        "#label-w-x": "$.dataset.items.shape.top-edge",
-        "#label-x-y": "$.dataset.items.shape.right-edge",
-        "#label-y-z": "$.dataset.items.shape.bottom-edge",
-        "#label-z-w": "$.dataset.items.shape.left-edge",
+        "#label-w-x": "$.datasets[0].items.shape.top_edge",
+        "#label-x-y": "$.datasets[0].items.shape.right_edge",
+        "#label-w-z": "$.datasets[0].items.shape.left_edge",
 
-        "#angle-w": "$.dataset.items.angles.angle-w",
-        "#angle-x": "$.dataset.items.angles.angle-x",
-        "#angle-y": "$.dataset.items.angles.angle-y",
-        "#angle-z": "$.dataset.items.angles.angle-z",
+        "#angle-w": "$.datasets[0].items.angles.angle_w",
+        "#angle-x": "$.datasets[0].items.angles.angle_x",
+        "#angle-y": "$.datasets[0].items.angles.angle_y",
+        "#angle-z": "$.datasets[0].items.angles.angle_z",
 
-        "#label-w": "$.dataset.items.angles.angle-w",
-        "#label-x": "$.dataset.items.angles.angle-x",
-        "#label-y": "$.dataset.items.angles.angle-y",
-        "#label-z": "$.dataset.items.angles.angle-z",
+        "#label-w": "$.datasets[0].items.angles.angle_w",
+        "#label-x": "$.datasets[0].items.angles.angle_x",
+        "#label-y": "$.datasets[0].items.angles.angle_y",
+        "#label-z": "$.datasets[0].items.angles.angle_z",
 
-        ".right_angle": "$.dataset.items.markers.right-angle"
+        ".right_angle": "$.datasets[0].items.markers.right_angle"
       }
     }
   </metadata>

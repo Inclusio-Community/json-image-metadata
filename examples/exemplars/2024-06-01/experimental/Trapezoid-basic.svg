@@ -6,7 +6,7 @@
       "datasets": [
         {
           "title": "Trapezoid",
-          "subtitle": "Results of user survey",
+          "subtitle": "Geometry problem",
           "description": "Drawing of a trapezoid with 3 side lengths labeled and 2 right angles",
           "source": {
             "url": "https://inclusioproject.com/graphics/exemplars/Trapezoid.svg",
@@ -81,58 +81,6 @@
         "#label-z": "$.datasets[0].items.angles.angle_z",
 
         ".right_angle": "$.datasets[0].items.markers.right_angle"
-      },
-      "behaviors": [
-        {
-          "region": {
-            "selector": ".line"
-          },
-          "enter": {
-            "haptic_pattern": "[0, 300, 100] 0",
-            "notes": "longer, steady vibration to indicate shape lines",
-            "announcement": "compose({target.id}, .label)"
-          },
-          "details": {
-          },
-          "activate": {
-          },
-          "exit": {
-          }
-        },
-        {
-          "region": {
-            "selector": ".right_angle"
-          },
-          "haptic_pattern": "[0, 100, 100] 100",
-          "notes": "sharp, steady vibration to indicate right angle"
-        },
-        {
-          "region": {
-            "selector": "#angle-w"
-          },
-          "haptic_pattern": "[0, 100, 50, 50] 50",
-          "notes": "sharp, snappy vibration, heavy on the first beat, to indicate acute angle"
-        },
-        {
-          "region": {
-            "selector": "#angle-x"
-          },
-          "haptic_pattern": "[0, 50, 50, 200] 50",
-          "notes": "slower discordant vibration, heavy on the second beat, to indicate obtuse angle"
-        },
-        {
-          "region": {
-            "selector": "#angle-y, #angle-z"
-          },
-          "haptic_pattern": "[50, 100, 150] 250",
-          "notes": "sharp, steady vibration to indicate right angle"
-        }
-      ],
-      "status": {
-        "features": [
-          "haptic",
-          "announcement"
-        ]
       }
     }
   </metadata>

@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 890">
+  <title id="diagram-title">T-Instersection</title>
+
+  <metadata data-type="text/jim+json">
+    {
+      "datasets": [
+        {
+          "title": "T-Instersection",
+          "subtitle": "T-Instersection",
+          "description": "Drawing of a 2 intersecting streets bodered by 3 sidewalks, one on each side",
+          "source": {
+            "url": "https://inclusioproject.com/graphics/exemplars/T-Instersection.svg",
+            "name": "Inclusio Project accessible graphic examplar: T-Instersection"
+          },
+          "items": {
+            "sidewalks": {
+              "west_sidewalk": {
+                "label": "West Sidewalk"
+              },
+              "east_sidewalk": {
+                "label": "East Sidewalk"
+              },
+              "south_sidewalk": {
+                "label": "South Sidewalk"
+              }
+            },
+            "street": {
+              "center_street": {
+                "label": "Center Street"            
+              },
+              "south_street": {
+                "label": "South Street"
+              }
+            }
+          }
+        }
+      ],
+      "selectors": {
+        "#diagram-title": "$.datasets[0].title",
+
+        "#west_sidewalk": "$.datasets[0].items.sidewalks.west_sidewalk.label",
+        "#east_sidewalk": "$.datasets[0].items.sidewalks.east_sidewalk.label",
+        "#south_sidewalk": "$.datasets[0].items.sidewalks.south_sidewalk.label",
+        
+        "#center_street": "$.datasets[0].items.street.center_street.label",
+        "#south_street": "$.datasets[0].items.street.south_street.label"
+      },
+      "behaviors": {
+       
+      }
+    }
+  </metadata>
+
+  <style>
+    .background {
+      stroke: gainsboro;
+      fill: none;
+    }
+
+    .pathway {
+      stroke: black;
+      fill: none;
+      stroke-width: 3;
+      stroke-dasharray: 20 14;
+    }
+
+    .sidewalk {
+      fill: black;
+      stroke: white;
+    }
+
+    .street {
+      fill: gainsboro;
+    }
+        
+  </style>
+  <defs>
+    <rect id="pavement" class="sidewalk" width="80" height="80"/>
+  </defs>
+
+  <rect class="background" width="100%" height="100%"/>
+
+  <g id="west_sidewalk">
+    <use class="sidewalk_segment" href="#pavement" x="345" y="180" /> 
+    <use class="sidewalk_segment" href="#pavement" x="345" y="260" /> 
+    <use class="sidewalk_segment" href="#pavement" x="345" y="340" /> 
+    <use class="sidewalk_segment" href="#pavement" x="345" y="420" /> 
+    <use class="sidewalk_segment" href="#pavement" x="265" y="420" /> 
+    <use class="sidewalk_segment" href="#pavement" x="185" y="420" /> 
+  </g>
+
+  <g id="east_sidewalk">
+    <use class="sidewalk_segment" href="#pavement" x="505" y="180" /> 
+    <use class="sidewalk_segment" href="#pavement" x="505" y="260" /> 
+    <use class="sidewalk_segment" href="#pavement" x="505" y="340" /> 
+    <use class="sidewalk_segment" href="#pavement" x="505" y="420" /> 
+    <use class="sidewalk_segment" href="#pavement" x="585" y="420" /> 
+    <use class="sidewalk_segment" href="#pavement" x="665" y="420" /> 
+  </g>
+
+  <g id="south_sidewalk">
+    <use class="sidewalk_segment" href="#pavement" x="185" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="265" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="345" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="425" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="505" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="585" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="665" y="580" /> 
+  </g>
+
+  <g id="center_street">
+    <rect class="street" x="425" y="180" width="80" height="320"/>
+    <line id="vertical-pathway" class="pathway" x1="465" y1="180" x2="465" y2="530"/>
+  </g>
+
+  <g id="south_street">
+    <rect class="street" x="185" y="500" width="560" height="80"/>
+    <line id="horizontal-pathway" class="pathway" x1="185" y1="540" x2="745" y2="540"/>
+  </g>
+</svg>

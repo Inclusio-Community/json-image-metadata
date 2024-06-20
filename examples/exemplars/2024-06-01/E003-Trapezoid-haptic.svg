@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1500">
+  <title id="diagram-title">Trapezoid</title>
+
+  <metadata data-type="text/jim+json">
+    {
+      "datasets": [
+        {
+          "title": "Trapezoid",
+          "subtitle": "Geometry problem",
+          "description": "Drawing of a trapezoid with 3 side lengths labeled and 2 right angles",
+          "source": {
+            "url": "https://inclusioproject.com/graphics/exemplars/Trapezoid.svg",
+            "name": "Inclusio Project accessible graphic examplar: Trapezoid"
+          },
+          "items": {
+            "shape": {
+              "top_edge": {
+                "label": "Line W-X",
+                "measurement": "23 centimeters"
+              },
+              "right_edge": {
+                "label": "Line X-Y",
+                "measurement": "6 centimeters"
+              },
+              "bottom_edge": {
+                "label": "Line Y-Z",
+                "measurement": "undefined"
+              },
+              "left_edge": {
+                "label": "Line Z-W",
+                "measurement": "16 centimeters"
+              }
+            },
+            "angles": {
+              "angle_w": {
+                "label": "Angle W",
+                "description": "Intersection of W-X and Z-W"
+              },
+              "angle_x": {
+                "label": "Angle X",
+                "description": "Intersection of W-X and X-Y"
+              },
+              "angle_y": {
+                "label": "Angle Y",
+                "description": "Intersection of X-Y and Y-Z"
+              },
+              "angle_z": {
+                "label": "Angle Z",
+                "description": "Intersection of Y-Z and Z-W"
+              }
+            },
+            "markers": {
+              "right_angle": {
+                "label": "Right angle",
+                "description": "90 degrees"
+              }
+            }
+          }
+        }
+      ],
+      "selectors": {
+        "#diagram-title": "$.datasets[0].title",
+
+        "#line-w-x": "$.datasets[0].items.shape.top_edge",
+        "#line-x-y": "$.datasets[0].items.shape.right_edge",
+        "#line-y-z": "$.datasets[0].items.shape.bottom_edge",
+        "#line-w-z": "$.datasets[0].items.shape.left_edge",
+
+        "#label-w-x": "$.datasets[0].items.shape.top_edge",
+        "#label-x-y": "$.datasets[0].items.shape.right_edge",
+        "#label-w-z": "$.datasets[0].items.shape.left_edge",
+
+        "#angle-w": "$.datasets[0].items.angles.angle_w",
+        "#angle-x": "$.datasets[0].items.angles.angle_x",
+        "#angle-y": "$.datasets[0].items.angles.angle_y",
+        "#angle-z": "$.datasets[0].items.angles.angle_z",
+
+        "#label-w": "$.datasets[0].items.angles.angle_w",
+        "#label-x": "$.datasets[0].items.angles.angle_x",
+        "#label-y": "$.datasets[0].items.angles.angle_y",
+        "#label-z": "$.datasets[0].items.angles.angle_z",
+
+        ".right_angle": "$.datasets[0].items.markers.right_angle"
+      },
+      "behaviors": [
+        {
+          "region": {
+            "selector": ".line"
+          },
+          "enter": {
+            "haptic_pattern": "[0, 300, 100] 0",
+            "notes": "longer, steady vibration to indicate shape lines",
+            "announcement": "compose({target.id}, .label)"
+          },
+          "details": {
+          },
+          "activate": {
+          },
+          "exit": {
+          }
+        },
+        {
+          "region": {
+            "selector": ".right_angle"
+          },
+          "haptic_pattern": "[0, 100, 100] 100",
+          "notes": "sharp, steady vibration to indicate right angle"
+        },
+        {
+          "region": {
+            "selector": "#angle-w"
+          },
+          "haptic_pattern": "[0, 100, 50, 50] 50",
+          "notes": "sharp, snappy vibration, heavy on the first beat, to indicate acute angle"
+        },
+        {
+          "region": {
+            "selector": "#angle-x"
+          },
+          "haptic_pattern": "[0, 50, 50, 200] 50",
+          "notes": "slower discordant vibration, heavy on the second beat, to indicate obtuse angle"
+        },
+        {
+          "region": {
+            "selector": "#angle-y, #angle-z"
+          },
+          "haptic_pattern": "[50, 100, 150] 250",
+          "notes": "sharp, steady vibration to indicate right angle"
+        }
+      ],
+      "status": {
+        "features": [
+          "haptic",
+          "announcement"
+        ]
+      }
+    }
+  </metadata>
+  <style>
+    .background {
+      stroke: gray;
+      fill: none;
+    }
+    
+    .shape {
+      stroke: black;
+      stroke-width: 35;
+      fill: none;
+    }
+    
+    .line {
+      stroke: black;
+      stroke-width: 35;
+      fill: none;
+    }
+    
+    .angle {
+      stroke: none;
+      fill: lime;
+    }
+    
+    path.angle {
+      stroke: lime;
+      stroke-width: 35;
+      fill: none;
+    }
+
+    .right_angle {
+      stroke: none;
+      fill: red;
+    }
+
+    text {
+      font-family: Helvetica, Verdana, sans-serif;
+      font-size: 65px;
+      font-weight: bold;
+      text-anchor: middle;
+      fill: black;
+    }
+
+    .left {
+      text-anchor: end;
+    }
+
+    .right {
+      text-anchor: start;
+    }
+
+  </style>
+
+  <rect class="background" width="100%" height="100%"/>
+
+  <path class="shape" d="M430,255 V1150 H1570 V755 Z" />
+
+  <path id="line-w-x" aria-labelledby="label-w-x" class="line" d="M1570,755 L430,255" />
+  <path id="line-x-y" aria-labelledby="label-x-y" class="line" d="M1570,1150 V755" />
+  <path id="line-y-z" class="line" d="M430,1150 H1570" />
+  <path id="line-w-z" aria-labelledby="label-w-z" class="line" d="M430,255 V1150" />
+
+  <path id="angle-w" aria-labelledby="label-w" class="angle" d="M475,275 L430,255 V305" />
+  <path id="angle-x" aria-labelledby="label-x" class="angle" d="M1570,785 V755 L1540,742" />
+  <rect id="angle-y" aria-labelledby="label-y" class="angle" x="1552.5" y="1132.5" width="35" height="35"/>
+  <rect id="angle-z" aria-labelledby="label-z" class="angle" x="412.5" y="1132.5" width="35" height="35"/>
+
+  <rect id="right-angle-z" class="right_angle" x="447.5" y="1062.5" width="70" height="70"/>
+  <rect id="right-angle-y" class="right_angle" x="1482.5" y="1062.5" width="70" height="70"/>
+
+  <text id="label-w" x="380" y="220">W</text>
+  <text id="label-x" x="1630" y="730">X</text>
+  <text id="label-y" x="1630" y="1230">Y</text>
+  <text id="label-z" x="380" y="1230">Z</text>
+
+  <text id="label-w-x" x="1140" y="470">23 cm</text>
+  <text id="label-x-y" class="right" x="1630" y="960">6 cm</text>
+  <text id="label-w-z" class="left" x="380" y="740">16 cm</text>
+
+</svg>
