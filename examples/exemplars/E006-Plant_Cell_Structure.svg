@@ -3,81 +3,83 @@
 
   <metadata data-type="text/jim+json">
     {
-      "datasets": {
-        "title": "Plant Cell Structure",
-        "description": "Drawing of a plant cell with details on its internal structures",
-        "source": {
-          "url": "https://inclusioproject.com/graphics/exemplars/E006-Plant_Cell_Structure.svg",
-          "name": "Inclusio Project accessible graphic examplar: E006 Plant Cell Structure"
-        },
-        "items": {
-          "amyloplast": {
-            "label": "Amyloplast"
+      "datasets": [
+        {
+          "title": "Plant Cell Structure",
+          "description": "Drawing of a plant cell with details on its internal structures",
+          "source": {
+            "url": "https://inclusioproject.com/graphics/exemplars/E006-Plant_Cell_Structure.svg",
+            "name": "Inclusio Project accessible graphic examplar: E006 Plant Cell Structure"
           },
-          "cell_wall": {
-            "label": "Cell Wall",
-            "description": "The cell wall is a rigid outer layer that provides shape, support, and protection to the cell. It consists mainly of cellulose. Plant cells have cell walls, while animal cells do not."
-          },
-          "cell_membrane": {
-            "label": "Cell Membrane",
-            "description": "The cell membrane is a semi-permeable membrane composed of lipids and proteins that surrounds the cell. It forms the boundary between the outer environment and living systems. Both plant and animal cells have cell membranes."
-          },
-          "chloroplasts": {
-            "label": "Chloroplasts",
-            "description": "Chloroplasts are the sites of photosynthesis, where sunlight, carbon dioxide, and water are converted into glucose and oxygen. Chloroplasts contain chlorophyll, a green pigment which captures light energy."
-          },
-          "cytoplasm": {
-            "label": "Cytoplasm",
-            "description": "Cytoplasm is the gelatinous liquid that fills the inside of a cell, composed of water, salts, and various organic molecules. The cytoplasm includes the cytoskeleton, a network of protein fibers that provides structural support."
-          },
-          "druse_crystal": {
-            "label": "Druse crystal"
-          },
-          "endoplasmic_reticulum": {
-            "label": "Endoplasmic Reticulum (ER)",
-            "description": "Endoplasmic Reticulum is a network of membranous tubules and sacs that synthesize lipids and fold proteins. The rough ER is studded with ribosomes and synthesizes proteins, while the smooth ER performs lipid and steroid hormone synthesis. Part of the ER is contiguous with the nuclear envelope."
-          },
-          "golgi_apparatus": {
-            "label": "Golgi Apparatus",
-            "description": "The Golgi apparatus modifies, sorts, and packages proteins and lipids for transport to their final destinations inside or outside the cell. It is closely associated with the Endoplasmic Reticulum."
-          },
-          "leucoplasts": {
-            "label": "Leucoplasts",
-            "description": "Leucoplasts are plastids and that synthesize and store macromolecules, such as starches, lipids, and proteins. Amyloplasts are a type of Leucoplast that specializes in the synthesis and storage of starch granules, and also play a role in gravity sensing (gravitropism) in roots and shoots."
-          },
-          "mitochondria": {
-            "label": "Mitochondria",
-            "description": "Mitochondria are the powerhouse of the cell. They produce ATP through a process called cellular respiration."
-          },
-          "nucleus": {
-            "label": "Nucleus",
-            "description": "The nucleus is the control center of the cell. It contains the plant DNA which directs all cellular activities. The nucleolus, the largest structure in the cell, synthesizes ribosomes. The nucleus is enclosed by a nuclear membrane, a double-membrane structure with nuclear pores that regulates transport and communication with the cytoplasm."
-          },
-          "peroxisomes": {
-            "label": "Peroxisomes",
-            "description": "Plant peroxisomes perform a key role in photorespiration and also produce plant hormones."
-          },
-          "plasma_membrane": {
-            "label": "Plasma Membrane",
-            "description": "The Plasma Membrane is a semi-permeable membrane that controls the movement of substances into and out of the cell."
-          },
-          "plasmodesmata": {
-            "label": "Plasmodesmata",
-            "description": "Plasmodesmata are small tubes that connect plant cells to each other, allowing direct communication and transport of substances between cell. Plasmodesmata are a unique feature of plant cells not found in animal cells."
-          },
-          "raphide_crystal": {
-            "label": "Raphide Crystal"
-          },
-          "ribosomes": {
-            "label": "Ribosomes",
-            "description": "Ribosomes are the sites of protein synthesis. They are either free in the cytoplasm or bound to the Endoplasmic Reticulum."
-          },
-          "vacuole": {
-            "label": "Vacuole",
-            "description": "The vacuole stores water and helps maintain turgor pressure, supporting the cell structure. Plant cells contain a large central vacuole, while animal cells contain multiple small vacuoles. Some plant vacuoles contain Druse and raphite crystals of calcium oxalate and calcium carbonates that deter herbivores and also store minerals for the cell."
-          }                  
+          "items": {
+            "amyloplast": {
+              "label": "Amyloplast"
+            },
+            "cell_wall": {
+              "label": "Cell Wall",
+              "description": "The cell wall is a rigid outer layer that provides shape, support, and protection to the cell. It consists mainly of cellulose. Plant cells have cell walls, while animal cells do not."
+            },
+            "cell_membrane": {
+              "label": "Cell Membrane",
+              "description": "The cell membrane is a semi-permeable membrane composed of lipids and proteins that surrounds the cell. It forms the boundary between the outer environment and living systems. Both plant and animal cells have cell membranes."
+            },
+            "chloroplasts": {
+              "label": "Chloroplasts",
+              "description": "Chloroplasts are the sites of photosynthesis, where sunlight, carbon dioxide, and water are converted into glucose and oxygen. Chloroplasts contain chlorophyll, a green pigment which captures light energy."
+            },
+            "cytoplasm": {
+              "label": "Cytoplasm",
+              "description": "Cytoplasm is the gelatinous liquid that fills the inside of a cell, composed of water, salts, and various organic molecules. The cytoplasm includes the cytoskeleton, a network of protein fibers that provides structural support."
+            },
+            "druse_crystal": {
+              "label": "Druse crystal"
+            },
+            "endoplasmic_reticulum": {
+              "label": "Endoplasmic Reticulum (ER)",
+              "description": "Endoplasmic Reticulum is a network of membranous tubules and sacs that synthesize lipids and fold proteins. The rough ER is studded with ribosomes and synthesizes proteins, while the smooth ER performs lipid and steroid hormone synthesis. Part of the ER is contiguous with the nuclear envelope."
+            },
+            "golgi_apparatus": {
+              "label": "Golgi Apparatus",
+              "description": "The Golgi apparatus modifies, sorts, and packages proteins and lipids for transport to their final destinations inside or outside the cell. It is closely associated with the Endoplasmic Reticulum."
+            },
+            "leucoplasts": {
+              "label": "Leucoplasts",
+              "description": "Leucoplasts are plastids and that synthesize and store macromolecules, such as starches, lipids, and proteins. Amyloplasts are a type of Leucoplast that specializes in the synthesis and storage of starch granules, and also play a role in gravity sensing (gravitropism) in roots and shoots."
+            },
+            "mitochondria": {
+              "label": "Mitochondria",
+              "description": "Mitochondria are the powerhouse of the cell. They produce ATP through a process called cellular respiration."
+            },
+            "nucleus": {
+              "label": "Nucleus",
+              "description": "The nucleus is the control center of the cell. It contains the plant DNA which directs all cellular activities. The nucleolus, the largest structure in the cell, synthesizes ribosomes. The nucleus is enclosed by a nuclear membrane, a double-membrane structure with nuclear pores that regulates transport and communication with the cytoplasm."
+            },
+            "peroxisomes": {
+              "label": "Peroxisomes",
+              "description": "Plant peroxisomes perform a key role in photorespiration and also produce plant hormones."
+            },
+            "plasma_membrane": {
+              "label": "Plasma Membrane",
+              "description": "The Plasma Membrane is a semi-permeable membrane that controls the movement of substances into and out of the cell."
+            },
+            "plasmodesmata": {
+              "label": "Plasmodesmata",
+              "description": "Plasmodesmata are small tubes that connect plant cells to each other, allowing direct communication and transport of substances between cell. Plasmodesmata are a unique feature of plant cells not found in animal cells."
+            },
+            "raphide_crystal": {
+              "label": "Raphide Crystal"
+            },
+            "ribosomes": {
+              "label": "Ribosomes",
+              "description": "Ribosomes are the sites of protein synthesis. They are either free in the cytoplasm or bound to the Endoplasmic Reticulum."
+            },
+            "vacuole": {
+              "label": "Vacuole",
+              "description": "The vacuole stores water and helps maintain turgor pressure, supporting the cell structure. Plant cells contain a large central vacuole, while animal cells contain multiple small vacuoles. Some plant vacuoles contain Druse and raphite crystals of calcium oxalate and calcium carbonates that deter herbivores and also store minerals for the cell."
+            }                  
+          }
         }
-      },
+      ],
       "selectors": {
         "#diagram-title": "$.datasets[0].title",
         "#cell-wall": "$.datasets[0].items.cell_wall",
