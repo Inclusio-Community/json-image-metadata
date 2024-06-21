@@ -49,6 +49,20 @@
                "heerenveen": {
                  "label": "Heerenveen"
                }
+             },
+             "compass_rose": {
+               "north": {
+                 "label": "North"            
+               },
+               "east": {
+                 "label": "East"
+               },
+               "south": {
+                 "label": "South"
+               },
+               "west": {
+                 "label": "West"
+               }
              }
            }
          }
@@ -67,7 +81,12 @@
          "#Hague-group": "$.datasets[0].items.cities.hague.label",
          "#Rotterdam-group": "$.datasets[0].items.cities.rotterdam.label",
          "#Enschede-group": "$.datasets[0].items.cities.enschede.label",
-         "#Heerenveen-group": "$.datasets[0].items.cities.heerenveen.label"
+         "#Heerenveen-group": "$.datasets[0].items.cities.heerenveen.label",
+         
+         "#north": "$.datasets[0].items.compass_rose.north.label",
+         "#east": "$.datasets[0].items.compass_rose.east.label",
+         "#south": "$.datasets[0].items.compass_rose.south.label",
+         "#west": "$.datasets[0].items.compass_rose.west.label"
        },
        "behaviors": {
         
@@ -156,7 +175,7 @@
     }
 
     #North-Sea {
-      fill: hsl(0, 0%, 95%);
+      fill: hsl(210, 94%, 95%);
     }
 
     .compass-arrow {
@@ -201,19 +220,19 @@
 
   <g id="compass_rose" transform="translate(338, 225)">
     <path d="M0,0 L88,88 L0,176 L-88,88 Z" fill="white" stroke="black" stroke-width="1"/>
-    <g>
+    <g id="north">
       <path id="north-arrow" class="compass-arrow" d="M0,88 V45"/>
       <text x="0" y="30" class="mid">N</text>
     </g>
-    <g>
+    <g id="east">
       <path id="east-arrow" class="compass-arrow" d="M0,88 H45"/>
       <text x="63" y="95" class="mid">E</text>
     </g>
-    <g>
+    <g id="south">
       <path id="south-arrow" class="compass-arrow" d="M0,88 V131"/>
       <text x="0" y="160" class="mid">S</text>
     </g>
-    <g>
+    <g id="west">
       <path id="west-arrow" class="compass-arrow" d="M0,88 H-45"/>
       <text x="-63" y="95" class="mid">W</text>
     </g>
