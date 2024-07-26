@@ -753,6 +753,12 @@ An additional `default` key is defined for referring to a single external metada
 
 An `behavior` block is an array with the key `behavior`, which contains one or more ojects including at least a target (defined by the `region` key), and an event type containing one or more of the behaviors, including `haptic`, `audio`, `sonification`, `announcement`, `contrast`, and `tactile`.
 
+### Behavior and conforming generators ### {#behavior_generators}
+
+A generator conforming to this specification is not required to add behaviors to graphics, only a dataset and selectors.
+
+Note: While this specification does not define best practices for different behaviors for different classes of user agent and graphics, a companion best practices document is under development. A conforming generator might be much more useful if it also follows that guidance and generates graphic documents with behaviors optimized for the target user agent capabilities.
+
 
 ### Behavior events ### {#behavior_events}
 
