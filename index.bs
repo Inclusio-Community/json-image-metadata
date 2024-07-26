@@ -974,13 +974,11 @@ The <b>announcement hint</b> is a text passage (ideally short) that provides ins
 
 
 
-### Tactile Behaviors ### {#tactile}
+#### Tactile Behaviors #### {#tactile}
 
-#### Refreshable Display Behaviors #### {#refreshable_displays}
+##### Refreshable Display Behaviors ##### {#refreshable_displays}
 
-#### Embossing Behaviors #### {#embossing}
-
-
+##### Embossing Behaviors ##### {#embossing}
 
 
 
