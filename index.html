@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="a7594d0476b20780b40d07a25467fb34f25c4422" name="revision">
+  <meta content="862ea23ecbe1883dd2af5fed7c1858c53ee0eabf" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-06-15">15 June 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-07-25">25 July 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2029,7 +2029,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 15 June 2024,
+In addition, as of 25 July 2024,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2145,15 +2145,28 @@ Parts of this work may be from another specification document.  If so, those par
       <li>
        <a href="#behaviors"><span class="secno">4.4</span> <span class="content">Behaviors</span></a>
        <ol class="toc">
-        <li><a href="#haptics"><span class="secno">4.4.1</span> <span class="content">Haptics</span></a>
-        <li><a href="#sonification"><span class="secno">4.4.2</span> <span class="content">Sonification</span></a>
-        <li><a href="#high_contrast"><span class="secno">4.4.3</span> <span class="content">High contrast</span></a>
-        <li><a href="#voicing"><span class="secno">4.4.4</span> <span class="content">Voicing</span></a>
+        <li><a href="#behavior_events"><span class="secno">4.4.1</span> <span class="content">Behavior events</span></a>
         <li>
-         <a href="#tactiles"><span class="secno">4.4.5</span> <span class="content">Tactiles</span></a>
+         <a href="#behavior_types"><span class="secno">4.4.2</span> <span class="content">Behavior types</span></a>
          <ol class="toc">
-          <li><a href="#refreshable_displays"><span class="secno">4.4.5.1</span> <span class="content">Refreshable displays</span></a>
-          <li><a href="#embossing"><span class="secno">4.4.5.2</span> <span class="content">Embossing</span></a>
+          <li><a href="#audio_behavior"><span class="secno">4.4.2.1</span> <span class="content">Audio Behaviors</span></a>
+          <li><a href="#haptics"><span class="secno">4.4.2.2</span> <span class="content">Haptic Behaviors</span></a>
+          <li><a href="#sonification"><span class="secno">4.4.2.3</span> <span class="content">Sonification Behaviors</span></a>
+          <li><a href="#contrast"><span class="secno">4.4.2.4</span> <span class="content">Visual Contrast Behaviors</span></a>
+          <li>
+           <a href="#announcements"><span class="secno">4.4.2.5</span> <span class="content">Announcement Behaviors</span></a>
+           <ol class="toc">
+            <li><a href="##announcement_name"><span class="secno">4.4.2.5.1</span> <span class="content">Announcement name</span></a>
+            <li><a href="##announcement_description"><span class="secno">4.4.2.5.2</span> <span class="content">Announcement description</span></a>
+            <li><a href="#announcement_detail"><span class="secno">4.4.2.5.3</span> <span class="content">Announcement detail</span></a>
+            <li><a href="##announcement_hint"><span class="secno">4.4.2.5.4</span> <span class="content">Announcement hint</span></a>
+           </ol>
+         </ol>
+        <li>
+         <a href="#tactile"><span class="secno">4.4.3</span> <span class="content">Tactile Behaviors</span></a>
+         <ol class="toc">
+          <li><a href="#refreshable_displays"><span class="secno">4.4.3.1</span> <span class="content">Refreshable Display Behaviors</span></a>
+          <li><a href="#embossing"><span class="secno">4.4.3.2</span> <span class="content">Embossing Behaviors</span></a>
          </ol>
        </ol>
       <li>
@@ -2306,10 +2319,10 @@ Parts of this work may be from another specification document.  If so, those par
 <pre class="highlight"><c- p>{</c->
   <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
   <c- p>],</c->
-  <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
-  <c- p>},</c->
-  <c- f>"behaviors"</c-><c- p>:</c-> <c- p>{</c->
-  <c- p>},</c->
+  <c- f>"selectors"</c-><c- p>:</c-> <c- p>[</c->
+  <c- p>],</c->
+  <c- f>"behaviors"</c-><c- p>:</c-> <c- p>[</c->
+  <c- p>],</c->
   <c- f>"provenance"</c-><c- p>:</c-> <c- p>{</c->
   <c- p>},</c->
   <c- f>"tags"</c-><c- p>:</c-> <c- p>{</c->
@@ -2685,8 +2698,8 @@ Parts of this work may be from another specification document.  If so, those par
 <pre class="highlight"><c- p>{</c->
   <c- f>"href"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"datasets"</c-><c- p>:</c-> <c- u>"https://path.to.datasets"</c-><c- p>,</c->
-    <c- f>"selectors"</c-><c- p>:</c-> <c- f>"https://path.to.behaviors"</c->
-    <c- f>"behaviors"</c-><c- p>:</c-> <c- f>"https://path.to.behaviors"</c->
+    <c- f>"selectors"</c-><c- p>:</c-> <c- u>"https://path.to.selectors"</c-><c- p>,</c->
+    <c- f>"behaviors"</c-><c- p>:</c-> <c- u>"https://path.to.behaviors"</c-><c- p>,</c->
     <c- f>"provenance"</c-><c- p>:</c-> <c- u>"https://path.to.provenance"</c-><c- p>,</c->
     <c- f>"tags"</c-><c- p>:</c-> <c- u>"https://path.to.tags"</c-><c- p>,</c->
   <c- p>}</c->
@@ -2700,51 +2713,156 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    <h3 class="heading settled" data-level="4.4" id="behaviors"><span class="secno">4.4. </span><span class="content">Behaviors</span><a class="self-link" href="#behaviors"></a></h3>
-   <h4 class="heading settled" data-level="4.4.1" id="haptics"><span class="secno">4.4.1. </span><span class="content">Haptics</span><a class="self-link" href="#haptics"></a></h4>
+   <p>An <code>behavior</code> block is an array with the key <code>behavior</code>, which contains one or more ojects including at least a target (defined by the <code>region</code> key), and an event type containing one or more of the behaviors, including <code>haptic</code>, <code>audio</code>, <code>sonification</code>, <code>announcement</code>, <code>contrast</code>, and <code>tactile</code>.</p>
+   <h4 class="heading settled" data-level="4.4.1" id="behavior_events"><span class="secno">4.4.1. </span><span class="content">Behavior events</span><a class="self-link" href="#behavior_events"></a></h4>
+   <p>An event block is an object with the one of the <code>enter</code>, <code>details</code>, <code>activate</code>, and <code>exit</code> keys, and a value which is a list of key-value pairs defining specific behaviors.</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> description 
+    <tbody>
+     <tr>
+      <td><code>enter</code>
+      <td>Dispatched when the user-guided pointer moves onto the element
+     <tr>
+      <td><code>details</code>
+      <td>Dispatched after the <code>enter</code> event, and before the <code>exit</code> event, in a manner determined by the user agent, typically when the user-guided pointer has persisted over the element for a predetermined length of time (usually less than 2 seconds)
+     <tr>
+      <td><code>activate</code>
+      <td>Dispatched when the user activates the element, such as with a click of the <code>Enter</code> or <code>Space</code> key, or issues a verbal command, as supported by the user agent
+     <tr>
+      <td><code>exit</code>
+      <td>Dispatched when the user-guided pointer moves off of the element
+   </table>
+   <p>Moving from one event state to another must cancel any currently active behavior, and initiate the new event behavior.</p>
+   <h4 class="heading settled" data-level="4.4.2" id="behavior_types"><span class="secno">4.4.2. </span><span class="content">Behavior types</span><a class="self-link" href="#behavior_types"></a></h4>
+   <h5 class="heading settled" data-level="4.4.2.1" id="audio_behavior"><span class="secno">4.4.2.1. </span><span class="content">Audio Behaviors</span><a class="self-link" href="#audio_behavior"></a></h5>
+   <p>Audio playback is the use of sound to provide feedback to the user as they interact with an image or object. The <code>audio</code> block is distinct from the related <code>sonification</code> block in that it plays back a static prerecorded audio file or earcon, while the <code>sonification</code> block dynamically generates the audio given the dataset and selected element.</p>
+   <p>Details on the syntax of an <code>audio</code> block are defined in the <a href="#audio"><code>audio</code> section</a>.</p>
+   <h5 class="heading settled" data-level="4.4.2.2" id="haptics"><span class="secno">4.4.2.2. </span><span class="content">Haptic Behaviors</span><a class="self-link" href="#haptics"></a></h5>
    <p>Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.</p>
-   <p>Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their finger over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API <a data-link-type="biblio" href="#biblio-vibration" title="Vibration API (Second Edition)">[vibration]</a>. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.</p>
+   <p>Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their pointer over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API <a data-link-type="biblio" href="#biblio-vibration" title="Vibration API (Second Edition)">[vibration]</a>. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.</p>
    <p>Haptic feedback may be accompanied or supplemented by auditory feedback.</p>
-   <p>Each instance of haptic feedback is composed of a <code>region</code>, a <code>haptic_pattern</code>, and an optional <code>audio</code> block.</p>
-   <p>The behavior must be triggered when the user moves a finger over the target region, and must stop immediately when the user moves their finger outside the target region.</p>
+   <p>Each instance of haptic feedback is associated with a <code>region</code> and event type, and is composed of a <code>haptic_pattern</code>, and an optional <code>amplitude_pattern</code> block.</p>
+   <p>The behavior must be triggered when the user moves a pointer over the target region, and must stop immediately when the user moves their pointer outside the target region.</p>
    <div class="example" id="xmp_haptic_behavior">
     <a class="self-link" href="#xmp_haptic_behavior"></a> An example of <code>haptic</code> block with two haptic object entries in an array. The first haptic object selects an element with the <code>id</code>=<code>bar_1</code> as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the region is first triggered. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"behaviors"</c-><c- p>:</c-> <c- p>{</c->
-    <c- f>"haptic"</c-><c- p>:</c-> <c- p>[</c->
-      <c- p>{</c->
-        <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
-          <c- f>"selector"</c-><c- p>:</c-> <c- u>"#bar_1"</c->
-        <c- p>},</c->
-        <c- f>"haptic_pattern"</c-><c- p>:</c-> <c- u>"[50, 100, 150] 250"</c->
+  <c- f>"behaviors"</c-><c- p>:</c-> <c- p>[</c->
+    <c- p>{</c->
+      <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+        <c- f>"selector"</c-><c- p>:</c-> <c- u>"#bar_1"</c->
       <c- p>},</c->
-      <c- p>{</c->
-        <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
-          <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
-            <c- f>"circle"</c-><c- p>:</c-> <c- p>{</c->
-              <c- f>"cx"</c-><c- p>:</c-> <c- mi>100</c-><c- p>,</c->
-              <c- f>"cy"</c-><c- p>:</c-> <c- mi>121</c-><c- p>,</c->
-              <c- f>"r"</c-><c- p>:</c-> <c- mi>32</c->
-            <c- p>}</c->
+      `e<c- kc>nter</c->`<c- p>:</c-> <c- p>{</c->
+        <c- f>"haptic_pattern"</c-><c- p>:</c-> <c- u>"[50, 100, 150] 250"</c->
+      <c- p>}</c->
+    <c- p>}</c->
+    <c- p>{</c->
+      <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+        <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
+          <c- f>"circle"</c-><c- p>:</c-> <c- p>{</c->
+            <c- f>"cx"</c-><c- p>:</c-> <c- mi>100</c-><c- p>,</c->
+            <c- f>"cy"</c-><c- p>:</c-> <c- mi>121</c-><c- p>,</c->
+            <c- f>"r"</c-><c- p>:</c-> <c- mi>32</c->
           <c- p>}</c->
-        <c- p>},</c->
+        <c- p>}</c->
+      <c- p>},</c->
+      `e<c- kc>nter</c->`<c- p>:</c-> <c- p>{</c->
         <c- f>"haptic_pattern"</c-><c- p>:</c-> <c- u>"[150] 250"</c-><c- p>,</c->
         <c- f>"audio"</c-><c- p>:</c-> <c- p>{</c->
           <c- f>"href"</c-><c- p>:</c-> <c- u>"./assets/example.mp3"</c-><c- p>,</c->
           <c- f>"repeat"</c-><c- p>:</c-> <c- u>"none"</c->
         <c- p>}</c->
-      <c- p>},</c->
-    <c- p>]</c->
-  <c- p>}</c->
+      <c- p>}</c->
+    <c- p>}</c->
+  <c- p>]</c->
 <c- p>}</c->
 </pre>
    </div>
-   <h4 class="heading settled" data-level="4.4.2" id="sonification"><span class="secno">4.4.2. </span><span class="content">Sonification</span><a class="self-link" href="#sonification"></a></h4>
-   <h4 class="heading settled" data-level="4.4.3" id="high_contrast"><span class="secno">4.4.3. </span><span class="content">High contrast</span><a class="self-link" href="#high_contrast"></a></h4>
+   <h5 class="heading settled" data-level="4.4.2.3" id="sonification"><span class="secno">4.4.2.3. </span><span class="content">Sonification Behaviors</span><a class="self-link" href="#sonification"></a></h5>
+   <h5 class="heading settled" data-level="4.4.2.4" id="contrast"><span class="secno">4.4.2.4. </span><span class="content">Visual Contrast Behaviors</span><a class="self-link" href="#contrast"></a></h5>
    <div class="todo"> <b>TODO:</b> Reference and expand on CSS prefers-dark-mode media query. </div>
-   <h4 class="heading settled" data-level="4.4.4" id="voicing"><span class="secno">4.4.4. </span><span class="content">Voicing</span><a class="self-link" href="#voicing"></a></h4>
-   <h4 class="heading settled" data-level="4.4.5" id="tactiles"><span class="secno">4.4.5. </span><span class="content">Tactiles</span><a class="self-link" href="#tactiles"></a></h4>
-   <h5 class="heading settled" data-level="4.4.5.1" id="refreshable_displays"><span class="secno">4.4.5.1. </span><span class="content">Refreshable displays</span><a class="self-link" href="#refreshable_displays"></a></h5>
-   <h5 class="heading settled" data-level="4.4.5.2" id="embossing"><span class="secno">4.4.5.2. </span><span class="content">Embossing</span><a class="self-link" href="#embossing"></a></h5>
+   <h5 class="heading settled" data-level="4.4.2.5" id="announcements"><span class="secno">4.4.2.5. </span><span class="content">Announcement Behaviors</span><a class="self-link" href="#announcements"></a></h5>
+   <p>Announcements (or "voicings") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text.</p>
+   <p>WCAG defines two primary types of announcement: the <b>accessible name</b>; and the <b>accessible description</b>. This specification defines analogs to that convention as <b>announcement name</b> and <b>announcement description</b>, and adds two more types, <b>announcement details</b> and <b>announcement hints</b>.</p>
+   <p>An <code>announcement</code> block is an object with the key <code>announcement</code>, which contains one or more key-value pairs including one or more of the keys <code>name</code>, <code>description</code>, <code>details</code>, and <code>hint</code> keys and their values.</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> value type 
+      <th> description 
+      <th> requirement 
+    <tbody>
+     <tr>
+      <td><code>name</code>
+      <td>string
+      <td>The announcement name of the graphic element
+      <td>optional
+     <tr>
+      <td><code>description</code>
+      <td>string
+      <td>The longer description of the graphic element
+      <td>optional
+     <tr>
+      <td><code>details</code>
+      <td>string
+      <td>The supplemental announcement based on interaction with the graphic element
+      <td>optional
+     <tr>
+      <td><code>hint</code>
+      <td>string
+      <td>The instructions for use of the graphic element
+      <td>optional
+   </table>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"announcement"</c-><c- p>:</c-> <c- p>{</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   <h6 class="heading settled" data-level="4.4.2.5.1" id="#announcement_name"><span class="secno">4.4.2.5.1. </span><span class="content">Announcement name</span><a class="self-link" href="#%23announcement_name"></a></h6>
+   <p>The <b>announcement name</b> is normally short, 1-3 words, and serves two primary purposes:</p>
+   <ol>
+    <li data-md>
+     <p>To convey the purpose or intent of the element;</p>
+    <li data-md>
+     <p>To distinguish the element from other elements in the graphic.</p>
+   </ol>
+   <p>A document conforming to this specification must define an <b>announcement name</b> for all visual elements that convey meaning, unless that element is deliberately excluded (such as to remove redundancy or simplify a graphic).</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"announcement"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"name"</c-><c- p>:</c-> <c- u>"purpose of the element"</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   <h6 class="heading settled" data-level="4.4.2.5.2" id="#announcement_description"><span class="secno">4.4.2.5.2. </span><span class="content">Announcement description</span><a class="self-link" href="#%23announcement_description"></a></h6>
+   <p>The <b>announcement description</b> is a longer text passage that provides additional information for an element, such as visual or structural details, relationship to other elements, or annotations.</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"announcement"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"description"</c-><c- p>:</c-> <c- u>"additional information for an element"</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   <h6 class="heading settled" data-level="4.4.2.5.3" id="announcement_detail"><span class="secno">4.4.2.5.3. </span><span class="content">Announcement detail</span><a class="self-link" href="#announcement_detail"></a></h6>
+   <p>The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"announcement"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"detail"</c-><c- p>:</c-> <c- u>"supplemental information for element interaction"</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   <h6 class="heading settled" data-level="4.4.2.5.4" id="#announcement_hint"><span class="secno">4.4.2.5.4. </span><span class="content">Announcement hint</span><a class="self-link" href="#%23announcement_hint"></a></h6>
+   <p>The <b>announcement hint</b> is a text passage (ideally short) that provides instructions for interaction with the graphical element.</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"announcement"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"hint"</c-><c- p>:</c-> <c- u>"instruction for element interaction"</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   <h4 class="heading settled" data-level="4.4.3" id="tactile"><span class="secno">4.4.3. </span><span class="content">Tactile Behaviors</span><a class="self-link" href="#tactile"></a></h4>
+   <h5 class="heading settled" data-level="4.4.3.1" id="refreshable_displays"><span class="secno">4.4.3.1. </span><span class="content">Refreshable Display Behaviors</span><a class="self-link" href="#refreshable_displays"></a></h5>
+   <h5 class="heading settled" data-level="4.4.3.2" id="embossing"><span class="secno">4.4.3.2. </span><span class="content">Embossing Behaviors</span><a class="self-link" href="#embossing"></a></h5>
    <h3 class="heading settled" data-level="4.5" id="provenance"><span class="secno">4.5. </span><span class="content">Provenance</span><a class="self-link" href="#provenance"></a></h3>
    <p>Provenance describes where a document came from. This includes entries such as authors, organizations, date and time created or modified, where it was first published, the title of the paper or article it supplemented, or the original work on which it was based.</p>
    <p>A <code>provenance</code> block is an object with the key <code>provenance</code>.</p>

@@ -167,10 +167,10 @@ This vocabulary is defined in terms of "blocks", or objects identified by a key 
 {
   "datasets": [
   ],
-  "selectors": {
-  },
-  "behaviors": {
-  },
+  "selectors": [
+  ],
+  "behaviors": [
+  ],
   "provenance": {
   },
   "tags": {
@@ -730,8 +730,8 @@ An `href` key `may` be included at any level of the metadata, with the relevant 
 {
   "href": {
     "datasets": "https://path.to.datasets",
-    "selectors": "https://path.to.behaviors"
-    "behaviors": "https://path.to.behaviors"
+    "selectors": "https://path.to.selectors",
+    "behaviors": "https://path.to.behaviors",
     "provenance": "https://path.to.provenance",
     "tags": "https://path.to.tags",
   }
@@ -751,70 +751,234 @@ An additional `default` key is defined for referring to a single external metada
 
 ## Behaviors ## {#behaviors}
 
-### Haptics ### {#haptics}
+An `behavior` block is an array with the key `behavior`, which contains one or more ojects including at least a target (defined by the `region` key), and an event type containing one or more of the behaviors, including `haptic`, `audio`, `sonification`, `announcement`, `contrast`, and `tactile`.
+
+
+### Behavior events ### {#behavior_events}
+
+An event block is an object with the one of the `enter`, `details`, `activate`, and `exit` keys, and a value which is a list of key-value pairs defining specific behaviors.
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`enter`</td>
+      <td>Dispatched when the user-guided pointer moves onto the element</td>
+    </tr>
+    <tr>
+      <td>`details`</td>
+      <td>Dispatched after the `enter` event, and before the `exit` event, in a manner determined by the user agent, typically when the user-guided pointer has persisted over the element for a predetermined length of time (usually less than 2 seconds)</td>
+    </tr>
+    <tr>
+      <td>`activate`</td>
+      <td>Dispatched when the user activates the element, such as with a click of the `Enter` or `Space` key, or issues a verbal command, as supported by the user agent</td>
+    </tr>
+    <tr>
+      <td>`exit`</td>
+      <td>Dispatched when the user-guided pointer moves off of the element</td>
+    </tr>
+  </tbody>
+</table>
+
+Moving from one event state to another must cancel any currently active behavior, and initiate the new event behavior.
+
+### Behavior types ### {#behavior_types}
+
+#### Audio Behaviors #### {#audio_behavior}
+
+Audio playback is the use of sound to provide feedback to the user as they interact with an image or object. The `audio` block is distinct from the related `sonification` block in that it plays back a static prerecorded audio file or earcon, while the `sonification` block dynamically generates the audio given the dataset and selected element.
+
+Details on the syntax of an `audio` block are defined in the <a href="#audio">`audio` section</a>.
+
+#### Haptic Behaviors #### {#haptics}
 
 Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.
 
-Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their finger over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API [[vibration]]. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.
+Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their pointer over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API [[vibration]]. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.
 
 Haptic feedback may be accompanied or supplemented by auditory feedback.
 
-Each instance of haptic feedback is composed of a `region`, a `haptic_pattern`, and an optional `audio` block.
+Each instance of haptic feedback is associated with a `region` and event type, and is composed of a `haptic_pattern`, and an optional `amplitude_pattern` block.
 
-The behavior must be triggered when the user moves a finger over the target region, and must stop immediately when the user moves their finger outside the target region.
+The behavior must be triggered when the user moves a pointer over the target region, and must stop immediately when the user moves their pointer outside the target region.
 
 <div id='xmp_haptic_behavior' class='example'>
 An example of `haptic` block with two haptic object entries in an array. The first haptic object selects an element with the `id`=`bar_1` as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the region is first triggered. 
 
 <xmp highlight='json'>
 {
-  "behaviors": {
-    "haptic": [
-      {
-        "region": {
-          "selector": "#bar_1"
-        },
-        "haptic_pattern": "[50, 100, 150] 250"
+  "behaviors": [
+    {
+      "region": {
+        "selector": "#bar_1"
       },
-      {
-        "region": {
-          "shape": {
-            "circle": {
-              "cx": 100,
-              "cy": 121,
-              "r": 32
-            }
+      `enter`: {
+        "haptic_pattern": "[50, 100, 150] 250"
+      }
+    }
+    {
+      "region": {
+        "shape": {
+          "circle": {
+            "cx": 100,
+            "cy": 121,
+            "r": 32
           }
-        },
+        }
+      },
+      `enter`: {
         "haptic_pattern": "[150] 250",
         "audio": {
           "href": "./assets/example.mp3",
           "repeat": "none"
         }
-      },
-    ]
-  }
+      }
+    }
+  ]
 }
 </xmp>
 </div>
 
 
-### Sonification ### {#sonification}
+#### Sonification Behaviors #### {#sonification}
 
-### High contrast ### {#high_contrast}
+#### Visual Contrast Behaviors #### {#contrast}
 
 <div class="todo">
 <b>TODO:</b> Reference and expand on CSS prefers-dark-mode media query.
 </div>
 
 
-### Voicing ### {#voicing}
+#### Announcement Behaviors #### {#announcements}
 
-### Tactiles ### {#tactiles}
+Announcements (or "voicings") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text.
 
-#### Refreshable displays #### {#refreshable_displays}
+WCAG defines two primary types of announcement: the <b>accessible name</b>; and the <b>accessible description</b>. This specification defines analogs to that convention as <b>announcement name</b> and <b>announcement description</b>, and adds two more types, <b>announcement details</b> and <b>announcement hints</b>.
 
-#### Embossing #### {#embossing}
+An `announcement` block is an object with the key `announcement`, which contains one or more key-value pairs including one or more of the keys `name`, `description`, `details`, and `hint` keys and their values.
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`name`</td>
+      <td>string</td>
+      <td>The announcement name of the graphic element</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`description`</td>
+      <td>string</td>
+      <td>The longer description of the graphic element</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`details`</td>
+      <td>string</td>
+      <td>The supplemental announcement based on interaction with the graphic element</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`hint`</td>
+      <td>string</td>
+      <td>The instructions for use of the graphic element</td>
+      <td>optional</td>
+    </tr>
+  </tbody>
+</table>
+
+<xmp highlight='json'>
+{
+  "announcement": {
+  }
+}
+</xmp>
+
+##### Announcement name ##### {##announcement_name}
+
+The <b>announcement name</b> is normally short, 1-3 words, and serves two primary purposes:
+
+1. To convey the purpose or intent of the element;
+2. To distinguish the element from other elements in the graphic.
+
+A document conforming to this specification must define an <b>announcement name</b> for all visual elements that convey meaning, unless that element is deliberately excluded (such as to remove redundancy or simplify a graphic).
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "name": "purpose of the element"
+  }
+}
+</xmp>
+
+##### Announcement description ##### {##announcement_description}
+
+The <b>announcement description</b> is a longer text passage that provides additional information for an element, such as visual or structural details, relationship to other elements, or annotations.
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "description": "additional information for an element"
+  }
+}
+</xmp>
+
+##### Announcement detail ##### {#announcement_detail}
+
+The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "detail": "supplemental information for element interaction"
+  }
+}
+</xmp>
+
+##### Announcement hint ##### {##announcement_hint}
+
+The <b>announcement hint</b> is a text passage (ideally short) that provides instructions for interaction with the graphical element.
+
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "hint": "instruction for element interaction"
+  }
+}
+</xmp>
+
+
+
+### Tactile Behaviors ### {#tactile}
+
+#### Refreshable Display Behaviors #### {#refreshable_displays}
+
+#### Embossing Behaviors #### {#embossing}
 
 
 
