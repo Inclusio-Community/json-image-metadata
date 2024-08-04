@@ -1,0 +1,300 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 170">
+  <title id="diagram-title">Number Line</title>
+
+  <metadata data-type="text/jim+json">
+    {
+      "datasets": [
+        {
+          "title": "Number Line",
+          "description": "Drawing of a number line, from -10 to 10",
+          "source": {
+            "url": "https://inclusioproject.com/graphics/exemplars/E004-Number_Line.svg",
+            "name": "Inclusio Project accessible graphic examplar: Number Line"
+          },
+          "facets": {
+            "x": {
+              "label": "Numbers",
+              "variableType": "independent",
+              "measure": "ordinal"
+            }
+          },
+          "series": [
+            {
+              "name": "Numbers",
+              "type": "grid",
+              "records": [
+                {
+                  "x": "-10"
+                },
+                {
+                  "x": "-9"
+                },
+                {
+                  "x": "-8"
+                },
+                {
+                  "x": "-7"
+                },
+                {
+                  "x": "-6"
+                },
+                {
+                  "x": "-5"
+                },
+                {
+                  "x": "-4"
+                },
+                {
+                  "x": "-3"
+                },
+                {
+                  "x": "-2"
+                },
+                {
+                  "x": "-1"
+                },
+                {
+                  "x": "0"
+                },
+                {
+                  "x": "1"
+                },
+                {
+                  "x": "2"
+                },
+                {
+                  "x": "3"
+                },
+                {
+                  "x": "4"
+                },
+                {
+                  "x": "5"
+                },
+                {
+                  "x": "6"
+                },
+                {
+                  "x": "7"
+                },
+                {
+                  "x": "8"
+                },
+                {
+                  "x": "9"
+                },
+                {
+                  "x": "10"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "selectors": {
+        "#diagram-title": "$.datasets[0].title",
+
+        "#tick_-10 .tick-mark": "$.datasets[0].series[0].records[0].x",
+        "#tick_-9 .tick-mark": "$.datasets[0].series[0].records[1].x",
+        "#tick_-8 .tick-mark": "$.datasets[0].series[0].records[2].x",
+        "#tick_-7 .tick-mark": "$.datasets[0].series[0].records[3].x",
+        "#tick_-6 .tick-mark": "$.datasets[0].series[0].records[4].x",
+        "#tick_-5 .tick-mark": "$.datasets[0].series[0].records[5].x",
+        "#tick_-4 .tick-mark": "$.datasets[0].series[0].records[6].x",
+        "#tick_-3 .tick-mark": "$.datasets[0].series[0].records[7].x",
+        "#tick_-2 .tick-mark": "$.datasets[0].series[0].records[8].x",
+        "#tick_-1 .tick-mark": "$.datasets[0].series[0].records[9].x",
+        "#tick_0 .tick-mark": "$.datasets[0].series[0].records[10].x",
+        "#tick_1 .tick-mark": "$.datasets[0].series[0].records[11].x",
+        "#tick_2 .tick-mark": "$.datasets[0].series[0].records[12].x",
+        "#tick_3 .tick-mark": "$.datasets[0].series[0].records[13].x",
+        "#tick_4 .tick-mark": "$.datasets[0].series[0].records[14].x",
+        "#tick_5 .tick-mark": "$.datasets[0].series[0].records[15].x",
+        "#tick_6 .tick-mark": "$.datasets[0].series[0].records[16].x",
+        "#tick_7 .tick-mark": "$.datasets[0].series[0].records[17].x",
+        "#tick_8 .tick-mark": "$.datasets[0].series[0].records[18].x",
+        "#tick_9 .tick-mark": "$.datasets[0].series[0].records[19].x",
+        "#tick_10 .tick-mark": "$.datasets[0].series[0].records[20].x"
+      },
+      "behaviors": [
+        {
+          "region": {
+            "selector": ".number-line"
+          },
+            "haptic_pattern": "[0, 300, 100] 0",
+            "notes": "longer, steady vibration to indicate the line"
+        }
+      ],
+      "status": {
+        "features": [
+          "haptic",
+          "announcement"
+        ]
+      }
+    }
+  </metadata>
+  <style>
+    .background {
+      stroke: gainsboro;
+      fill: none;
+    }
+  
+    text {
+      font-family: Comic Sans MS, Comic Sans, cursive;
+      font-size: 1 7px;
+      text-anchor: middle;
+      fill: black;
+    }
+
+
+    .number-line {
+      fill: none;
+      stroke: black;
+      stroke-width: 3px;
+      stroke-linecap: round;
+      marker-start: url(#arrow-start);
+      marker-end: url(#arrow-end);
+    }
+
+    .tick-mark {
+      fill: none;
+      stroke: black;
+      stroke-width: 2px;
+      stroke-linecap: round;
+    }
+
+    #arrow-start,
+    #arrow-end {
+      fill: black;
+      stroke: none;
+    }
+
+  </style>
+
+  
+  
+  <defs id="defs-1">
+    <marker id="arrow-start" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="-4" refY="0" markerWidth="15" markerHeight="30" orient="auto-start-reverse"
+        class="process">
+      <path d="M-10,-5 L0,0 -10,5 Z"/>
+    </marker>
+    <marker id="arrow-end" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="-4" refY="0" markerWidth="15" markerHeight="30" orient="auto"
+        class="process">
+      <path d="M-10,-5 L0,0 -10,5 Z"/>
+    </marker>
+  </defs>  
+
+  <rect class="background" width="100%" height="100%"/>
+  
+  <g transform="translate(2, 0)">
+    <path d="M20,100 H576" class="number-line"/>
+    
+    <g id="tick_-10" transform="translate(38, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-10</text>
+    </g>
+    
+    <g id="tick_-9" transform="translate(64, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-9</text>
+    </g>
+    
+    <g id="tick_-8" transform="translate(90, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-8</text>
+    </g>
+    
+    <g id="tick_-7" transform="translate(116, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-7</text>
+    </g>
+    
+    <g id="tick_-6" transform="translate(142, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-6</text>
+    </g>
+    
+    <g id="tick_-5" transform="translate(168, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-5</text>
+    </g>
+    
+    <g id="tick_-4" transform="translate(194, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-4</text>
+    </g>
+    
+    <g id="tick_-3" transform="translate(220, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-3</text>
+    </g>
+    
+    <g id="tick_-2" transform="translate(246, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-2</text>
+    </g>
+    
+    <g id="tick_-1" transform="translate(272, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-1</text>
+    </g>
+    
+    <g id="tick_0" transform="translate(298, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">0</text>
+    </g>
+    
+    <g id="tick_1" transform="translate(324, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">1</text>
+    </g>
+    
+    <g id="tick_2" transform="translate(350, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">2</text>
+    </g>
+    
+    <g id="tick_3" transform="translate(376, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">3</text>
+    </g>
+    
+    <g id="tick_4" transform="translate(402, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">4</text>
+    </g>
+    
+    <g id="tick_5" transform="translate(428, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">5</text>
+    </g>
+    
+    <g id="tick_6" transform="translate(454, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">6</text>
+    </g>
+    
+    <g id="tick_7" transform="translate(480, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">7</text>
+    </g>
+    
+    <g id="tick_8" transform="translate(506, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">8</text>
+    </g>
+    
+    <g id="tick_9" transform="translate(532, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">9</text>
+    </g>
+    
+    <g id="tick_10" transform="translate(558, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">10</text>
+    </g>
+  </g>
+    
+</svg>
