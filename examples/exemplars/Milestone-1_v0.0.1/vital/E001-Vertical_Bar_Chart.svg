@@ -168,15 +168,15 @@
       ],
       "selectors": {
         "#chart-title": "$.datasets[0].title",
-        "#y-axis g:nth-child(1)": "$.datasets[0].facets.y.label",
-        "#x-axis g:nth-child(1)": "$.datasets[0].facets.x.label",
-        "#x-axis g:nth-child(2)": "$.datasets[0].series[0].records[0].x",
-        "#x-axis g:nth-child(3)": "$.datasets[0].series[0].records[1].x",
-        "#x-axis g:nth-child(4)": "$.datasets[0].series[0].records[2].x",
-        "#x-axis g:nth-child(5)": "$.datasets[0].series[0].records[3].x",
-        "#x-axis g:nth-child(6)": "$.datasets[0].series[0].records[4].x",
-        "#x-axis g:nth-child(7)": "$.datasets[0].series[0].records[5].x",
-        "#x-axis g:nth-child(8)": "$.datasets[0].series[0].records[6].x",
+        "#y-axis g:nth-child(1) text": "$.datasets[0].facets.y.label",
+        "#x-axis g:nth-child(1) text": "$.datasets[0].facets.x.label",
+        "#x-axis g:nth-child(2) text": "$.datasets[0].series[0].records[0].x",
+        "#x-axis g:nth-child(3) text": "$.datasets[0].series[0].records[1].x",
+        "#x-axis g:nth-child(4) text": "$.datasets[0].series[0].records[2].x",
+        "#x-axis g:nth-child(5) text": "$.datasets[0].series[0].records[3].x",
+        "#x-axis g:nth-child(6) text": "$.datasets[0].series[0].records[4].x",
+        "#x-axis g:nth-child(7) text": "$.datasets[0].series[0].records[5].x",
+        "#x-axis g:nth-child(8) text": "$.datasets[0].series[0].records[6].x",
         "#datapoint-Sunday_2000": [
           "$.datasets[0].series[0].records[0].*"
         ],
@@ -219,6 +219,7 @@
         "#datapoint-Saturday_2015": [
           "$.datasets[0].series[1].records[6].*"
         ],
+        "#y-axis g:nth-child(2) path": "$.datasets[0].series[2].records[0].y",
         "#y-axis g:nth-child(3) path": "$.datasets[0].series[2].records[1].y",
         "#y-axis g:nth-child(4) path": "$.datasets[0].series[2].records[2].y",
         "#y-axis g:nth-child(5) path": "$.datasets[0].series[2].records[3].y",
