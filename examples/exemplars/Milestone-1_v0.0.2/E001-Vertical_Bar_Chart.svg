@@ -1,0 +1,449 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3132 2274">
+  <style> 
+    text { 
+      fill: #404040; 
+      font-family: Helvetica, sans-serif; 
+      font-size: 41px; 
+    }
+
+    text.axis_label,
+    text#chart-title { 
+      fill: #595959; 
+    } 
+    
+    text#chart-title { 
+      font-size: 64px;
+    } 
+    
+    .year_2000 { 
+      fill: hsl(213, 74%, 62%); 
+    } 
+    
+    .year_2015 { 
+      fill: hsl(26, 87%, 56%); 
+    } 
+
+    .tick_line {
+      stroke: #D9D9D9;
+      stroke-width: 3.4;
+      stroke-linejoin: round;
+      fill: none;
+    }
+  </style>
+
+  <metadata data-type="text/jim+json">
+    {
+      "datasets": [
+        {
+          "title": "Temperature in Degrees Fahrenheit",
+          "facets": {
+            "x": {
+              "label": "Time (Days)",
+              "variableType": "independent",
+              "labelType": "x axis"
+            },
+            "y": {
+              "label": "Recorded Temperatures",
+              "variableType": "dependent",
+              "labelType": "y axis"
+            }
+          },
+          "series": [
+            {
+              "name": "2000",
+              "type": "column",
+              "records": [
+                {
+                  "x": "Sunday",
+                  "y": "57"
+                },
+                {
+                  "x": "Monday",
+                  "y": "53"
+                },
+                {
+                  "x": "Tuesday",
+                  "y": "66"
+                },
+                {
+                  "x": "Wednesday",
+                  "y": "55"
+                },
+                {
+                  "x": "Thursday",
+                  "y": "70"
+                },
+                {
+                  "x": "Friday",
+                  "y": "59"
+                },          
+                {
+                  "x": "Saturday",
+                  "y": "68"
+                }
+              ]
+            },
+            {
+              "name": "2015",
+              "type": "column",
+              "records": [
+                {
+                  "x": "Sunday",
+                  "y": "64"
+                },
+                {
+                  "x": "Monday",
+                  "y": "71"
+                },
+                {
+                  "x": "Tuesday",
+                  "y": "62"
+                },
+                {
+                  "x": "Wednesday",
+                  "y": "68"
+                },
+                {
+                  "x": "Thursday",
+                  "y": "70"
+                },
+                {
+                  "x": "Friday",
+                  "y": "65"
+                },
+                {
+                  "x": "Saturday",
+                  "y": "60"
+                }          
+              ]
+            }
+          ]
+        }
+      ],
+      "items": {
+        "yAxis": {
+          "tick_0": "0",
+          "tick_10": "10",
+          "tick_20": "20",
+          "tick_30": "30",
+          "tick_40": "40",
+          "tick_50": "50",
+          "tick_60": "60",
+          "tick_70": "70",
+          "tick_80": "80"
+        }
+      },
+      "selectors": {
+        "#chart-title": "$.datasets[0].title",
+        "#datapoint-Sunday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[0].*"
+        ],
+        "#datapoint-Monday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[1].*"
+        ],
+        "#datapoint-Tuesday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[2].*"
+        ],
+        "#datapoint-Wednesday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[3].*"
+        ],
+        "#datapoint-Thursday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[4].*"
+        ],
+        "#datapoint-Friday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[5].*"
+        ],
+        "#datapoint-Saturday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[6].*"
+        ],
+    
+        "#value-Sunday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[0].*"
+        ],
+        "#value-Monday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[1].*"
+        ],
+        "#value-Tuesday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[2].*"
+        ],
+        "#value-Wednesday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[3].*"
+        ],
+        "#value-Thursday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[4].*"
+        ],
+        "#value-Friday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[5].*"
+        ],
+        "#value-Saturday_2000": [
+          "$.datasets[0].series[0].name",
+          "$.datasets[0].series[0].records[6].*"
+        ],
+    
+        "#datapoint-Sunday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[0].*"
+        ],
+        "#datapoint-Monday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[1].*"
+        ],
+        "#datapoint-Tuesday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[2].*"
+        ],
+        "#datapoint-Wednesday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[3].*"
+        ],
+        "#datapoint-Thursday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[4].*"
+        ],
+        "#datapoint-Friday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[5].*"
+        ],
+        "#datapoint-Saturday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[6].*"
+        ],
+        
+        "#value-Sunday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[0].*"
+        ],
+        "#value-Monday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[1].*"
+        ],
+        "#value-Tuesday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[2].*"
+        ],
+        "#value-Wednesday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[3].*"
+        ],
+        "#value-Thursday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[4].*"
+        ],
+        "#value-Friday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[5].*"
+        ],
+        "#value-Saturday_2015": [
+          "$.datasets[0].series[1].name",
+          "$.datasets[0].series[1].records[6].*"
+        ],
+        "#Sunday": [
+          "$.datasets[0].series[0].records[0].x"
+        ],
+        "#Monday": [
+          "$.datasets[0].series[0].records[1].x"
+        ],
+        "#Tuesday": [
+          "$.datasets[0].series[0].records[2].x"
+        ],
+        "#Wednesday": [
+          "$.datasets[0].series[0].records[3].x"
+        ],
+        "#Thursday": [
+          "$.datasets[0].series[0].records[4].x"
+        ],
+        "#Friday": [
+          "$.datasets[0].series[0].records[5].x"
+        ],
+        "#Saturday": [
+          "$.datasets[0].series[0].records[6].x"
+        ],
+        "#x-axis-label": [
+          "$.datasets[0].facets.x.labelType",
+          "$.datasets[0].facets.x.label"
+        ],
+        "#y-axis-label": [
+          "$.datasets[0].facets.y.labelType",
+          "$.datasets[0].facets.y.label"
+        ],
+
+        "#y-tick-0 *": "$.items.yAxis.tick_0",
+        "#y-tick-10 *": "$.items.yAxis.tick_10",
+        "#y-tick-20 *": "$.items.yAxis.tick_20",
+        "#y-tick-30 *": "$.items.yAxis.tick_30",
+        "#y-tick-40 *": "$.items.yAxis.tick_40",
+        "#y-tick-50 *": "$.items.yAxis.tick_50",
+        "#y-tick-60 *": "$.items.yAxis.tick_60",
+        "#y-tick-70 *": "$.items.yAxis.tick_70",
+        "#y-tick-80 *": "$.items.yAxis.tick_80"
+      }
+    }
+  </metadata>
+
+  
+  <g>
+    <rect x="0" y="0" width="100%" height="100%" fill="#FFFFFF" />
+    <rect x="0.5" y="0.5" width="3129" height="2271" fill="none" stroke="#D9D9D9" stroke-width="3.4" />
+    <text id="chart-title" transform="translate(1121.2 94)">Temperature in Degrees, Fahrenheit</text>
+
+    <g id="y-axis">
+      <!-- <path d="M206.5 1738.5 3078.5 1738.5M206.5 1514.5 3078.5 1514.5M206.5 1290.5 3078.5 1290.5M206.5 1066.5 3078.5 1066.5M206.5 842.5 3078.5 842.5M206.5 618.5 3078.5 618.5M206.5 394.5 3078.5 394.5M206.5 169.5 3078.5 169.5" stroke="#D9D9D9" stroke-width="3.4" fill="none" /> -->
+      <g>
+        <text id="y-axis-label" fill="#595959" font-weight="700" font-size="46" transform="matrix(6.1e-17 -1 1 6.1e-17 100.2 1295)">Recorded Temperatures</text>
+      </g>
+
+      <g id="y-tick-0">
+        <text class="axis_label" transform="translate(147.8, 1975)">0</text>
+        <path class="tick_line" d="M206.5 1963.5 3078.5 1963.5" />
+      </g>
+      <g id="y-tick-10">
+        <text class="axis_label" transform="translate(126.9, 1751)">10</text>
+        <path class="tick_line" d="M206.5 1738.5 3078.5 1738.5" />
+      </g>
+      <g id="y-tick-20">
+        <text class="axis_label" transform="translate(126.9, 1526)">20</text>
+        <path class="tick_line" d="M206.5 1514.5 3078.5 1514.5" />
+      </g>
+      <g id="y-tick-30">
+        <text class="axis_label" transform="translate(126.9, 1302)">30</text>
+        <path class="tick_line" d="M206.5 1290.5 3078.5 1290.5" />
+      </g>
+      <g id="y-tick-40">
+        <text class="axis_label" transform="translate(126.9, 1078)">40</text>
+        <path class="tick_line" d="M206.5 1066.5 3078.5 1066.5" />
+      </g>
+      <g id="y-tick-50">
+        <text class="axis_label" transform="translate(126.9, 854)">50</text>
+        <path class="tick_line" d="M206.5 842.5 3078.5 842.5" />
+      </g>
+      <g id="y-tick-60">
+        <text class="axis_label" transform="translate(126.9, 630)">60</text>
+        <path class="tick_line" d="M206.5 618.5 3078.5 618.5" />
+      </g>
+      <g id="y-tick-70">
+        <text class="axis_label" transform="translate(126.9, 406)">70</text>
+        <path class="tick_line" d="M206.5 394.5 3078.5 394.5" />
+      </g>
+      <g id="y-tick-80">
+        <text class="axis_label" transform="translate(126.9, 182)">80</text>
+        <path class="tick_line" d="M206.5 169.5 3078.5 169.5" />
+      </g>
+    </g>
+
+    <g id="x-axis">
+      <text id="x-axis-label" fill="#595959" font-family="Aptos Narrow,Aptos Narrow_MSFontService,sans-serif"
+        font-weight="700" font-stretch="semi-condensed" font-size="46"
+        transform="translate(1531.7 2096)">Time, (Days)</text>
+      <g>
+        <text id="Sunday" class="axis_label" transform="translate(351.1, 2028)">Sunday</text>
+      </g>
+      <g>
+        <text id="Monday" class="axis_label" transform="translate(757.2, 2028)">Monday</text>
+      </g>
+      <g>
+        <text id="Tuesday" class="axis_label" transform="translate(1164.6, 2028)">Tuesday</text>
+      </g>
+      <g>
+        <text id="Wednesday" class="axis_label" transform="translate(1546.5, 2028)">Wednesday</text>
+      </g>
+      <g>
+        <text id="Thursday" class="axis_label" transform="translate(1978.3, 2028)">Thursday</text>
+      </g>
+      <g>
+        <text id="Friday" class="axis_label" transform="translate(2413.1, 2028)">Friday</text>
+      </g>
+      <g>
+        <text id="Saturday" class="axis_label" transform="translate(2800.5, 2028)">Saturday</text>
+      </g>
+    </g>
+
+
+    <g id="legend" transform="translate(70, 0)">
+      <g>
+        <rect x="1438" y="2188" width="30" height="30" class="year_2000" />
+        <text id="2000" class="axis_label" transform="translate(1474.0, 2216)">2000</text>
+      </g>
+      <g>
+        <rect x="1590" y="2188" width="30" height="30" class="year_2015" />
+        <text id="2015" class="axis_label" transform="translate(1626.1, 2216)">2015</text>
+      </g>
+    </g>
+
+    <g id="series_2000">
+      <g>
+        <text id="value-Sunday_2000" transform="translate(332.6, 654)">57</text>
+        <path id="datapoint-Sunday_2000" class="year_2000" d="M308 685 400 685 400 1963 308 1963Z" />
+      </g>
+      <g>
+        <text id="value-Monday_2000" transform="translate(742.9, 743)">53</text>
+        <path id="datapoint-Monday_2000" class="year_2000" d="M718 775 810 775 810 1963 718 1963Z" />
+      </g>
+      <g>
+        <text id="value-Tuesday_2000" transform="translate(1153.1, 452)">66</text>
+        <path id="datapoint-Tuesday_2000" class="year_2000" d="M1128 484 1220 484 1220 1963 1128 1963Z" />
+      </g>
+      <g>
+        <text id="value-Wednesday_2000" transform="translate(1563.4, 698)">55</text>
+        <path id="datapoint-Wednesday_2000" class="year_2000" d="M1538 730 1630 730 1630 1963 1538 1963Z" />
+      </g>
+      <g>
+        <text id="value-Thursday_2000" transform="translate(1973.6, 362)">70</text>
+        <path id="datapoint-Thursday_2000" class="year_2000" d="M1949 394 2040 394 2040 1963 1949 1963Z" />
+      </g>
+      <g>
+        <text id="value-Friday_2000" transform="translate(2383.9, 609)">59</text>
+        <path id="datapoint-Friday_2000" class="year_2000" d="M2359 641 2451 641 2451 1963 2359 1963Z" />
+      </g>
+      <g>
+        <text id="value-Saturday_2000" transform="translate(2794.1, 407)">68</text>
+        <path id="datapoint-Saturday_2000" class="year_2000" d="M2769 439 2861 439 2861 1963 2769 1963Z" />
+      </g>
+    </g>
+
+    <g id="series_2015">
+      <g>
+        <text id="value-Sunday_2015" transform="translate(449.4, 497)">64</text>
+        <path id="datapoint-Sunday_2015" class="year_2015" d="M424 529 516 529 516 1963 424 1963Z" />
+      </g>
+      <g>
+        <text id="value-Monday_2015" transform="translate(859.7, 340)">71</text>
+        <path id="datapoint-Monday_2015" class="year_2015" d="M835 372 927 372 927 1963 835 1963Z" />
+      </g>
+      <g>
+        <text id="value-Tuesday_2015" transform="translate(1269.9, 541)">62</text>
+        <path id="datapoint-Tuesday_2015" class="year_2015" d="M1245 573 1337 573 1337 1963 1245 1963Z" />
+      </g>
+      <g>
+        <text id="value-Wednesday_2015" transform="translate(1680.2, 407)">68</text>
+        <path id="datapoint-Wednesday_2015" class="year_2015" d="M1655 439 1747 439 1747 1963 1655 1963Z" />
+      </g>
+      <g>
+        <text id="value-Thursday_2015" transform="translate(2090.4, 362)">70</text>
+        <path id="datapoint-Thursday_2015" class="year_2015" d="M2065 394 2157 394 2157 1963 2065 1963Z" />
+      </g>
+      <g>
+        <text id="value-Friday_2015" transform="translate(2500.7, 474)">65</text>
+        <path id="datapoint-Friday_2015" class="year_2015" d="M2476 506 2568 506 2568 1963 2476 1963Z" />
+      </g>
+      <g>
+        <text id="value-Saturday_2015" transform="translate(2910.9, 586)">60</text>
+        <path id="datapoint-Saturday_2015" class="year_2015" d="M2886 618 2978.1 618 2978.1 1963 2886 1963Z" />
+      </g>
+    </g>
+    
+
+  </g>
+</svg>
