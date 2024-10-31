@@ -100,7 +100,7 @@ This specification must define easy ways to enable the distribution and discover
 
 ## Provenance expression ## {#provenance_expression}
 
-Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more cotent by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be shared, while also providing credit to the original author or publisher.
+Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more content by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be shared, while also providing credit to the original author or publisher.
 
 ## Encapsulation ## {#encapsulation}
 
@@ -131,7 +131,7 @@ The MIME type for a JSON Image Metadata document is `text/jim+json`.
 
 ## Conforming document ## {#conform_doc}
 
-A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty `datasets` block or one non-empty `behavior` block.
+A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty `datasets` block or one non-empty `behaviors` block.
 
 This specification assumes the format of the metadata is in a JSON object. Other conforming serializations are possible, such as XML or a binary format, as long as they adhere to the structure of the defined JSON schema, and can be serialized as JSON.
 
@@ -751,7 +751,7 @@ An additional `default` key is defined for referring to a single external metada
 
 ## Behaviors ## {#behaviors}
 
-An `behavior` block is an array with the key `behavior`, which contains one or more ojects including at least a target (defined by the `region` key), and an event type containing one or more of the behaviors, including `haptic`, `audio`, `sonification`, `announcement`, `contrast`, and `tactile`.
+A `behaviors` block is an array with the key `behaviors`, which contains one or more objects including at least a target (defined by the `region` key), and an event type containing one or more of the behaviors, including `haptic`, `audio`, `sonification`, `announcement`, `contrast`, and `tactile`.
 
 ### Behavior and conforming generators ### {#behavior_generators}
 
@@ -997,10 +997,10 @@ A `provenance` block is an object with the key `provenance`.
 <xmp highlight='json'>
 {
   "provenance": {
-    "notes": {
+    "notes": [
       "item 1",
       "item 2"
-    }
+    ]
   }
 }
 </xmp>
@@ -1201,7 +1201,7 @@ A haptic pattern, denoted by a `haptic_pattern` key, is a string consisting of 3
 <pre class=simpledef>
 vibration duration array: The first parameter is an array, enclosed by square brackets (opening bracket `[` and closing bracket `]`) with a comma-or-space-separated list of integers. Each integer represents a time in milliseconds. The even integers in the list (starting with index `0`) must define the number of milliseconds without vibration, and the odd integers in the list must define the number of milliseconds with vibration.
 repetition interval: The second parameter is an integer representing a time in milliseconds before the vibration duration array begins repeating. If the value is `0` or a positive integer, the haptic pattern must repeat until the activating behavior is terminated (such as by the user moving their finger off the target region). If the value is a negative integer, or if the value is omitted, the haptic pattern must not repeat.
-repetition index: The third parameter is an integer indicating the index of the vibration duration array that is the starting duraction for repetiion, if any. If the value is `0` or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the `0` index. Repetition must only occur according to the value of the repetition interval.
+repetition index: The third parameter is an integer indicating the index of the vibration duration array that is the starting duration for repetition, if any. If the value is `0` or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the `0` index. Repetition must only occur according to the value of the repetition interval.
 </pre>
 
 
