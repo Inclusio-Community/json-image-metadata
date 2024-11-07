@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 170">
+  <title id="diagram-title">Number Line</title>
+  <style>
+    .background {
+      stroke: gainsboro;
+      fill: none;
+    }
+  
+    text {
+      font-family: Comic Sans MS, Comic Sans, cursive;
+      font-size: 1 7px;
+      text-anchor: middle;
+      fill: black;
+    }
+
+
+    .number-line {
+      fill: none;
+      stroke: black;
+      stroke-width: 3px;
+      stroke-linecap: round;
+      marker-start: url(#arrow-start);
+      marker-end: url(#arrow-end);
+    }
+
+    .tick-mark {
+      fill: none;
+      stroke: black;
+      stroke-width: 2px;
+      stroke-linecap: round;
+    }
+
+    #arrow-start,
+    #arrow-end {
+      fill: black;
+      stroke: none;
+    }
+
+  </style>
+
+  
+  
+  <defs id="defs-1">
+    <marker id="arrow-start" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="-4" refY="0" markerWidth="15" markerHeight="30" orient="auto-start-reverse"
+        class="process">
+      <path d="M-10,-5 L0,0 -10,5 Z"/>
+    </marker>
+    <marker id="arrow-end" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="-4" refY="0" markerWidth="15" markerHeight="30" orient="auto"
+        class="process">
+      <path d="M-10,-5 L0,0 -10,5 Z"/>
+    </marker>
+  </defs>  
+
+  <rect class="background" width="100%" height="100%"/>
+  
+  <g transform="translate(2, 0)">
+    <path d="M20,100 H576" class="number-line"/>
+    
+    <g id="tick_-10" transform="translate(38, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-10</text>
+    </g>
+    
+    <g id="tick_-9" transform="translate(64, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-9</text>
+    </g>
+    
+    <g id="tick_-8" transform="translate(90, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-8</text>
+    </g>
+    
+    <g id="tick_-7" transform="translate(116, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-7</text>
+    </g>
+    
+    <g id="tick_-6" transform="translate(142, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-6</text>
+    </g>
+    
+    <g id="tick_-5" transform="translate(168, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-5</text>
+    </g>
+    
+    <g id="tick_-4" transform="translate(194, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-4</text>
+    </g>
+    
+    <g id="tick_-3" transform="translate(220, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-3</text>
+    </g>
+    
+    <g id="tick_-2" transform="translate(246, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-2</text>
+    </g>
+    
+    <g id="tick_-1" transform="translate(272, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="-4" y="125">-1</text>
+    </g>
+    
+    <g id="tick_0" transform="translate(298, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">0</text>
+    </g>
+    
+    <g id="tick_1" transform="translate(324, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">1</text>
+    </g>
+    
+    <g id="tick_2" transform="translate(350, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">2</text>
+    </g>
+    
+    <g id="tick_3" transform="translate(376, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">3</text>
+    </g>
+    
+    <g id="tick_4" transform="translate(402, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">4</text>
+    </g>
+    
+    <g id="tick_5" transform="translate(428, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">5</text>
+    </g>
+    
+    <g id="tick_6" transform="translate(454, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">6</text>
+    </g>
+    
+    <g id="tick_7" transform="translate(480, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">7</text>
+    </g>
+    
+    <g id="tick_8" transform="translate(506, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">8</text>
+    </g>
+    
+    <g id="tick_9" transform="translate(532, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">9</text>
+    </g>
+    
+    <g id="tick_10" transform="translate(558, 0)">
+      <path d="M0,89 V104" class="tick-mark"/>
+      <text x="0" y="125">10</text>
+    </g>
+  </g>
+    
+</svg>

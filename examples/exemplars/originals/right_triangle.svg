@@ -1,0 +1,61 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <desc>A right triangle with vertices A, B, and C</desc>
+
+  <style>
+    text {
+      font-family: Verdana;
+      font-size: 20px;
+    }
+
+    #background {
+      fill: none;
+      pointer-events: all;
+    }
+
+    #triangle {
+      stroke: black;
+      stroke-width: 3px;
+      stroke-linejoin: miter;
+      fill: gainsboro;
+    }
+
+    .side {
+      stroke: none;
+      stroke-width: 3px;
+      pointer-events: stroke;
+    }
+
+    .vertex {
+      fill: none;
+      stroke-linejoin: miter;
+      stroke-linecap: square;
+      stroke-width: 3px;
+      pointer-events: stroke;
+    }
+  </style>
+  <rect id="background" width="200" height="200"/>
+
+  <!-- Triangle using polygon to ensure shape is closed -->
+  <polygon id="triangle" points="20,180 180,180 180,60" aria-labelledby="triangleTitle">
+    <title id="triangleTitle">Right Triangle</title>
+  </polygon>
+
+  <path id="side-A-C" class="side" d="M20,180 180,180"/>
+  <path id="side-B-C" class="side" d="M180,60 180,180"/>
+  <path id="side-A-B" class="side" d="M180,60 20,180"/>
+
+  <!-- Right angle marker -->
+  <rect id="right-angle-marker" x="168.5" y="168.5" width="10" height="10" fill="red" aria-labelledby="rectTitle">
+    <title id="rectTitle">Right angle marker</title>
+  </rect>
+
+  <!-- Angle markers -->
+  <path id="vertex-A" class="vertex" d="M23.9,177 L20,180 L25,180"/> 
+  <path id="vertex-B" class="vertex" d="M176,63 L180,60 L180,65"/> 
+  <path id="vertex-C" class="vertex" d="M175,180 L180,180 L180,175"/> 
+
+  <!-- Labels -->
+  <text id="vertex-label-A" x="5" y="195">A</text> <!-- A -->
+  <text id="vertex-label-B" x="185" y="60">B</text> <!-- B -->
+  <text id="vertex-label-C" x="185" y="195">C</text> <!-- C -->
+</svg>
