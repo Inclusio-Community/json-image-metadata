@@ -50,9 +50,9 @@ This specification should be complete and definitive with the state of the art, 
 
 ## Personalization ## {#personalization}
 
-This assistive technology must enable the user to select which of the available accomodations are enabled at any time, and at which available effect level. This must be able to set as a default in the user agent, and must be overrideable by the user to meet their specific need at any time.
+This assistive technology must enable the user to select which of the available accommodations are enabled at any time, and at which available effect level. This must be able to set as a default in the user agent, and must be overrideable by the user to meet their specific need at any time.
 
-Any given end-user might have multiple disabilities, with varying degrees of effect at any given time; any given document might have multiple accomodations enabled and encoded in it; any given user agent might suport multiple assistive technologies; any given environment might have different affordances and constraints.
+Any given end-user might have multiple disabilities, with varying degrees of effect at any given time; any given document might have multiple accommodations enabled and encoded in it; any given user agent might suport multiple assistive technologies; any given environment might have different affordances and constraints.
 
 <div id='xmp_low_vision_high_contrast' class='example'>
 A low vision user might wish to enable very high contrast in a bright environment or when they are tired, and lower contrast when they are in a more moderately lighted environment and well-rested.
@@ -96,7 +96,7 @@ At the same time, this specification should establish defaults and baselines bas
 
 ## Searching and categorization ## {#searching_categorization}
 
-This specification must define easy ways to enable the distribution and discovery of content based on user needs and accomodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.
+This specification must define easy ways to enable the distribution and discovery of content based on user needs and accommodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.
 
 ## Provenance expression ## {#provenance_expression}
 
@@ -1051,7 +1051,7 @@ The `keywords` key denotes an array of user-defined strings. Examples of keyword
 <b>Note:</b> This is a rough notion of how we might define
 </div>
 
-The `capabilities` key denotes an object that includes which accomodations have been defined in the image document, and some system of rating that scores the effectiveness of that accomodation.
+The `capabilities` key denotes an object that includes which accommodations have been defined in the image document, and some system of rating that scores the effectiveness of that accommodation.
 
 Each capability defines an array of capability instances, each of which consists of a least a condition of applicability, and a rating.
 
