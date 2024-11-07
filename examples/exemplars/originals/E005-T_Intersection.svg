@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 890">
+  <title id="diagram-title">T-Instersection</title>
+  <style>
+    .background {
+      stroke: gainsboro;
+      fill: none;
+    }
+
+    .pathway {
+      stroke: black;
+      fill: none;
+      stroke-width: 3;
+      stroke-dasharray: 20 14;
+    }
+
+    .sidewalk {
+      fill: black;
+      stroke: white;
+    }
+
+    .street {
+      fill: gainsboro;
+    }
+        
+  </style>
+  <defs>
+    <rect id="pavement" class="sidewalk" width="80" height="80"/>
+  </defs>
+
+  <rect class="background" width="100%" height="100%"/>
+
+  <g id="west_sidewalk">
+    <use class="sidewalk_segment" href="#pavement" x="345" y="180" /> 
+    <use class="sidewalk_segment" href="#pavement" x="345" y="260" /> 
+    <use class="sidewalk_segment" href="#pavement" x="345" y="340" /> 
+    <use class="sidewalk_segment" href="#pavement" x="345" y="420" /> 
+    <use class="sidewalk_segment" href="#pavement" x="265" y="420" /> 
+    <use class="sidewalk_segment" href="#pavement" x="185" y="420" /> 
+  </g>
+
+  <g id="east_sidewalk">
+    <use class="sidewalk_segment" href="#pavement" x="505" y="180" /> 
+    <use class="sidewalk_segment" href="#pavement" x="505" y="260" /> 
+    <use class="sidewalk_segment" href="#pavement" x="505" y="340" /> 
+    <use class="sidewalk_segment" href="#pavement" x="505" y="420" /> 
+    <use class="sidewalk_segment" href="#pavement" x="585" y="420" /> 
+    <use class="sidewalk_segment" href="#pavement" x="665" y="420" /> 
+  </g>
+
+  <g id="south_sidewalk">
+    <use class="sidewalk_segment" href="#pavement" x="185" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="265" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="345" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="425" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="505" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="585" y="580" /> 
+    <use class="sidewalk_segment" href="#pavement" x="665" y="580" /> 
+  </g>
+
+  <g id="center_street">
+    <rect class="street" x="425" y="180" width="80" height="320"/>
+    <line id="vertical-pathway" class="pathway" x1="465" y1="180" x2="465" y2="530"/>
+  </g>
+
+  <g id="south_street">
+    <rect class="street" x="185" y="500" width="560" height="80"/>
+    <line id="horizontal-pathway" class="pathway" x1="185" y1="540" x2="745" y2="540"/>
+  </g>
+</svg>
