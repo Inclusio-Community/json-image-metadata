@@ -249,7 +249,7 @@ Structured data includes faceted data, whether qualitative or quantitative, that
 
 This data must be included in objects in the `facets` and `series` keys.
 
-Note: A future version of this specification will define schamata for a canonical dataset structure or set of structures for different types of data visualization.
+Note: A future version of this specification will define schemata for a canonical dataset structure or set of structures for different types of data visualization.
 
 #### Unstructured data #### {#unstructured_data}
 
@@ -1086,7 +1086,7 @@ Each capability defines an array of capability instances, each of which consists
 </xmp>
 
 <div class="note">
-<b>Note:</b> Consider splitting out capabilities and ratings into seperate entries.
+<b>Note:</b> Consider splitting out capabilities and ratings into separate entries.
 </div>
 
 <div class="note">
