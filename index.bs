@@ -1170,7 +1170,7 @@ A region describing a circular area with a centerpoint at `100, 121` and a radiu
 </div>
 
 <div id='xmp_region_shape_complex' class='example'>
-A region describing a irregular area using the `path` definition and a rectangle definition, which together make a single region. The rectangle definition elides the "x" attribute, which defaults to `0`, per the SVG 2 specification.
+A region describing an irregular area using the `path` definition and a rectangle definition, which together make a single region. The rectangle definition elides the "x" attribute, which defaults to `0`, per the SVG 2 specification.
 
 <xmp highlight='json'>
 {
