@@ -1101,7 +1101,7 @@ A region is an area of an diagram image that is associated with a particular beh
 Regions may consist of one of two possible values:
 
 1. **An element link**: a selector indicating a specific element or set of elements in the DOM of a SVG file;
-2. **A `shape` object**: an object that defines a shape to be dynamically represented in the diagram file.
+2. **A** `shape` **object**: an object that defines a shape to be dynamically represented in the diagram file.
 
 ## Region element `selector` ## {#region_element_selector}
 
