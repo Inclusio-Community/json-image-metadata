@@ -1238,7 +1238,7 @@ A complex haptic pattern that will trigger a sequence of vibrations 10 milliseco
 </xmp>
 </div>
 
-> **Note:** The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with an optional additional value for repetition of that pattern with a fixed interval between pattern instances, and an optional repetiion index. 
+> **Note:** The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with an optional additional value for repetition of that pattern with a fixed interval between pattern instances, and an optional repetition index. 
 
 <!-- This specification does not currently add capabilities for defining intensity, target region, or other haptic qualities, due to limitations in the W3C Vibration API and device capabilities. -->
 
