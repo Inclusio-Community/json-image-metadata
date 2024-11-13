@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version 742f3d674, updated Mon Nov 4 14:56:54 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="e75f2917735f228c446d17bd871e43062007ea35" name="revision">
+  <meta content="e7a845b02d1dc10f7812adeaf8a1b15c1e62ffd5" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2016,7 +2016,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-11">11 November 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-13">13 November 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2030,7 +2030,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 11 November 2024,
+In addition, as of 13 November 2024,
 the editors have made this specification available under the <a href="https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2450,14 +2450,14 @@ Parts of this work may be from another specification document.  If so, those par
   <c- f>"description"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c->
   <c- f>"representation"</c-><c- p>:</c-> <c- p>{</c->
   <c- p>},</c->
-  <c- f>"facets"</c-><c- p>:</c-> <c- p>[</c->
-  <c- p>],</c->
+  <c- f>"facets"</c-><c- p>:</c-> <c- p>{</c->
+  <c- p>},</c->
   <c- f>"series"</c-><c- p>:</c-> <c- p>[</c->
   <c- p>],</c->
   <c- f>"source"</c-><c- p>:</c-> <c- p>{</c->
   <c- p>},</c->
-  <c- f>"href"</c-><c- p>:</c-> <c- p>[</c->
-  <c- p>]</c->
+  <c- f>"href"</c-><c- p>:</c-> <c- p>{</c->
+  <c- p>}</c->
 <c- p>}</c->
 </pre>
    </div>
@@ -3000,7 +3000,7 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    </div>
    <div class="example" id="xmp_region_shape_complex">
-    <a class="self-link" href="#xmp_region_shape_complex"></a> A region describing a irregular area using the <code>path</code> definition and a rectangle definition, which together make a single region. The rectangle definition elides the "x" attribute, which defaults to <code>0</code>, per the SVG 2 specification. 
+    <a class="self-link" href="#xmp_region_shape_complex"></a> A region describing an irregular area using the <code>path</code> definition and a rectangle definition, which together make a single region. The rectangle definition elides the "x" attribute, which defaults to <code>0</code>, per the SVG 2 specification. 
 <pre class="highlight"><c- p>{</c->
   <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
@@ -3017,8 +3017,8 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    </div>
-   <p>For each shape definition, a conforming implementation must instantiate a corresponding shape matching the element type and attributes
-Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.</p>
+   <p>For each shape definition, a conforming implementation must instantiate a corresponding shape matching the element type and attributes.</p>
+   <div class="note" role="note"> <b>Note:</b> Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean. </div>
    <h2 class="heading settled" data-level="6" id="haptics_behavior"><span class="secno">6. </span><span class="content">Haptics</span><a class="self-link" href="#haptics_behavior"></a></h2>
    <h3 class="heading settled" data-level="6.1" id="haptic_patterns"><span class="secno">6.1. </span><span class="content">Haptic patterns</span><a class="self-link" href="#haptic_patterns"></a></h3>
    <p>A haptic pattern, denoted by a <code>haptic_pattern</code> key, is a string consisting of 3 comma-or-space-separated parameters defining a sequence of vibration durations. The sequence of durations is an array of integers describing an alternating pattern of vibrations and pauses, starting with an initial pause before the first vibration starts.</p>
@@ -3056,7 +3056,7 @@ Similar to your implementation, there will indeed be the ability to draw “invi
 </pre>
    </div>
    <blockquote>
-    <p><strong>Note:</strong> The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with an optional additional value for repetition of that pattern with a fixed interval between pattern instances, and an optional repetiion index.</p>
+    <p><strong>Note:</strong> The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with an optional additional value for repetition of that pattern with a fixed interval between pattern instances, and an optional repetition index.</p>
    </blockquote>
    <h3 class="heading settled" data-level="6.2" id="amplitude_patterns"><span class="secno">6.2. </span><span class="content">Amplitude patterns</span><a class="self-link" href="#amplitude_patterns"></a></h3>
    <p>A amplitude pattern, denoted by a <code>amplitude_pattern</code> key, is a string consisting of 1 parameter defining a sequence of vibration amplitudes that correspond to the <code>haptic_pattern</code> vibration duration array. The sequence of amplitudes is an array of integers describing an alternating pattern of vibration amplitudes and pauses, indexed to the same sequence as the <code>haptic_pattern</code> vibration duration array.</p>
@@ -3203,7 +3203,7 @@ Similar to your implementation, there will indeed be the ability to draw “invi
    <h3 class="heading settled" data-level="9.2" id="css"><span class="secno">9.2. </span><span class="content">Cascading Style Sheets (CSS)</span><a class="self-link" href="#css"></a></h3>
    <p>Some features of this specification, such as contrast control, overlap with capabilities of CSS, such as the <code>prefers-high-contrast</code> media query. This specification is designed to complement and extend such capabilities.</p>
    <h4 class="heading settled" data-level="9.2.1" id="css_format"><span class="secno">9.2.1. </span><span class="content">CSS format</span><a class="self-link" href="#css_format"></a></h4>
-   <p>CSS defines its own syntax, processing model, and format, initially define in the 1990s. It requires a custom processor.</p>
+   <p>CSS defines its own syntax, processing model, and format, initially defined in the 1990s. It requires a custom processor.</p>
    <p>This specification uses the common JSON format, which can be processed by any JSON tools, including web browser contexts, JavaScript, and many other tools.</p>
    <p>This specification attempts to define its rules in a way that CSS might be expresssed in JSON.</p>
    <h4 class="heading settled" data-level="9.2.2" id="css_selectors"><span class="secno">9.2.2. </span><span class="content">CSS selectors</span><a class="self-link" href="#css_selectors"></a></h4>
