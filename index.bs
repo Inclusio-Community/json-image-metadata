@@ -1440,7 +1440,7 @@ Some features of this specification, such as contrast control, overlap with capa
 
 ### CSS format ### {#css_format}
 
-CSS defines its own syntax, processing model, and format, initially define in the 1990s. It requires a custom processor.
+CSS defines its own syntax, processing model, and format, initially defined in the 1990s. It requires a custom processor.
 
 This specification uses the common JSON format, which can be processed by any JSON tools, including web browser contexts, JavaScript, and many other tools.
 
