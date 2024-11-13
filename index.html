@@ -1488,10 +1488,11 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
+  <meta content="Bikeshed version 742f3d674, updated Mon Nov 4 14:56:54 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="56ea70f30253870d966e09ecd34898fd8380316a" name="revision">
+  <meta content="c8c386daf7e40d83e4cb63b52e0a516e3f41a3df" name="revision">
+  <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,23 +2016,24 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-07-25">25 July 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-13">13 November 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
      <dd><a class="u-url" href="https://Inclusio-Community.github.io/json-image-metadata/">https://Inclusio-Community.github.io/json-image-metadata/</a>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/Inclusio-Community/json-image-metadata/issues/">GitHub</a>
-     <dt class="editor">Editor:
+     <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
+     <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 25 July 2024,
-the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
-which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
+In addition, as of 13 November 2024,
+the editors have made this specification available under the <a href="https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
+which is available at https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
    <hr title="Separator for header">
   </div>
@@ -2283,7 +2285,7 @@ Parts of this work may be from another specification document.  If so, those par
    <h3 class="heading settled" data-level="2.9" id="searching_categorization"><span class="secno">2.9. </span><span class="content">Searching and categorization</span><a class="self-link" href="#searching_categorization"></a></h3>
    <p>This specification must define easy ways to enable the distribution and discovery of content based on user needs and accomodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.</p>
    <h3 class="heading settled" data-level="2.10" id="provenance_expression"><span class="secno">2.10. </span><span class="content">Provenance expression</span><a class="self-link" href="#provenance_expression"></a></h3>
-   <p>Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more cotent by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be shared, while also providing credit to the original author or publisher.</p>
+   <p>Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more content by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be shared, while also providing credit to the original author or publisher.</p>
    <h3 class="heading settled" data-level="2.11" id="encapsulation"><span class="secno">2.11. </span><span class="content">Encapsulation</span><a class="self-link" href="#encapsulation"></a></h3>
    <p>Through encapsulation, more than one metadata profile can be included for any given image document, much like a stylesheet can change the appearance of the same HMTL file. This specification should not require any changes to the markup of SVG or other files, with 2 exceptions:</p>
    <ol>
@@ -2303,7 +2305,7 @@ Parts of this work may be from another specification document.  If so, those par
    <h3 class="heading settled" data-level="3.1" id="mime_type"><span class="secno">3.1. </span><span class="content">JIM MIME type</span><a class="self-link" href="#mime_type"></a></h3>
    <p>The MIME type for a JSON Image Metadata document is <code>text/jim+json</code>.</p>
    <h3 class="heading settled" data-level="3.2" id="conform_doc"><span class="secno">3.2. </span><span class="content">Conforming document</span><a class="self-link" href="#conform_doc"></a></h3>
-   <p>A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty <code>datasets</code> block or one non-empty <code>behavior</code> block.</p>
+   <p>A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty <code>datasets</code> block or one non-empty <code>behaviors</code> block.</p>
    <p>This specification assumes the format of the metadata is in a JSON object. Other conforming serializations are possible, such as XML or a binary format, as long as they adhere to the structure of the defined JSON schema, and can be serialized as JSON.</p>
    <p>A conforming document must provide a means to discover the metadata block.</p>
    <h4 class="heading settled" data-level="3.2.1" id="conform_doc_svg"><span class="secno">3.2.1. </span><span class="content">Conforming SVG document</span><a class="self-link" href="#conform_doc_svg"></a></h4>
@@ -2714,7 +2716,7 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    <h3 class="heading settled" data-level="4.4" id="behaviors"><span class="secno">4.4. </span><span class="content">Behaviors</span><a class="self-link" href="#behaviors"></a></h3>
-   <p>An <code>behavior</code> block is an array with the key <code>behavior</code>, which contains one or more ojects including at least a target (defined by the <code>region</code> key), and an event type containing one or more of the behaviors, including <code>haptic</code>, <code>audio</code>, <code>sonification</code>, <code>announcement</code>, <code>contrast</code>, and <code>tactile</code>.</p>
+   <p>A <code>behaviors</code> block is an array with the key <code>behaviors</code>, which contains one or more objects including at least a target (defined by the <code>region</code> key), and an event type containing one or more of the behaviors, including <code>haptic</code>, <code>audio</code>, <code>sonification</code>, <code>announcement</code>, <code>contrast</code>, and <code>tactile</code>.</p>
    <h4 class="heading settled" data-level="4.4.1" id="behavior_generators"><span class="secno">4.4.1. </span><span class="content">Behavior and conforming generators</span><a class="self-link" href="#behavior_generators"></a></h4>
    <p>A generator conforming to this specification is not required to add behaviors to graphics, only a dataset and selectors.</p>
    <p class="note" role="note"><span class="marker">Note:</span> While this specification does not define best practices for different behaviors for different classes of user agent and graphics, a companion best practices document is under development. A conforming generator might be much more useful if it also follows that guidance and generates graphic documents with behaviors optimized for the target user agent capabilities.</p>
@@ -2872,10 +2874,10 @@ Parts of this work may be from another specification document.  If so, those par
    <p>A <code>provenance</code> block is an object with the key <code>provenance</code>.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"provenance"</c-><c- p>:</c-> <c- p>{</c->
-    <c- f>"notes"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"notes"</c-><c- p>:</c-> <c- p>[</c->
       <c- u>"item 1"</c-><c- p>,</c->
       <c- u>"item 2"</c->
-    <c- p>}</c->
+    <c- p>]</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
@@ -3031,7 +3033,7 @@ Similar to your implementation, there will indeed be the ability to draw “invi
       <td>The second parameter is an integer representing a time in milliseconds before the vibration duration array begins repeating. If the value is <code>0</code> or a positive integer, the haptic pattern must repeat until the activating behavior is terminated (such as by the user moving their finger off the target region). If the value is a negative integer, or if the value is omitted, the haptic pattern must not repeat.
      <tr>
       <th>repetition index
-      <td>The third parameter is an integer indicating the index of the vibration duration array that is the starting duraction for repetiion, if any. If the value is <code>0</code> or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the <code>0</code> index. Repetition must only occur according to the value of the repetition interval.
+      <td>The third parameter is an integer indicating the index of the vibration duration array that is the starting duration for repetition, if any. If the value is <code>0</code> or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the <code>0</code> index. Repetition must only occur according to the value of the repetition interval.
    </table>
    <div class="example" id="xmp_haptic_pattern_simple">
     <a class="self-link" href="#xmp_haptic_pattern_simple"></a> A simple haptic pattern that will trigger a single vibration lasting 200 milliseconds. 
@@ -3392,7 +3394,7 @@ Similar to your implementation, there will indeed be the ability to draw “invi
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-json-schema">[JSON-Schema]
-   <dd>Austin Wright; et al. <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema"><cite>JSON Schema: A Media Type for Describing JSON Documents</cite></a>. 8 December 2020. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema">https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema</a>
+   <dd>Austin Wright; et al. <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema"><cite>JSON Schema: A Media Type for Describing JSON Documents</cite></a>. 10 June 2022. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema">https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema</a>
    <dt id="biblio-jsonpath">[JSONPath]
    <dd>S. Gössner; G. Normington; C. Bormann. <a href="https://www.rfc-editor.org/rfc/rfc9535"><cite>JSONPath: Query expressions for JSON</cite></a>. Internet-Draft. URL: <a href="https://www.rfc-editor.org/rfc/rfc9535">https://www.rfc-editor.org/rfc/rfc9535</a>
    <dt id="biblio-selectors-4">[Selectors-4]
