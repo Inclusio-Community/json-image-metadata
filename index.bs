@@ -352,14 +352,14 @@ An example of a `datasets` block (with elided values) for a structured data repr
   "description": "",
   "representation": {
   },
-  "facets": [
-  ],
+  "facets": {
+  },
   "series": [
   ],
   "source": {
   },
-  "href": [
-  ]
+  "href": {
+  }
 }
 </xmp>
 </div>
