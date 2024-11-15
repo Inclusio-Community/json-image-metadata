@@ -7,6 +7,7 @@ Group: Inclusio Project
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
 Editor: Doug Schepers, Fizz Studio http://fizz.studio, doug@fizz.studio
+Editor: Simon Varey, Fizz Studio http://fizz.studio, simon@fizz.studio
 Abstract: A specifiction for expressing technical image metadata, with an emphasis on accessibility of data visualizations.
 Favicon: ./favicon.svg
 Complain About: accidental-2119 yes, missing-example-ids yes
