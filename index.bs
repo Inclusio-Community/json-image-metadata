@@ -50,9 +50,9 @@ This specification should be complete and definitive with the state of the art, 
 
 ## Personalization ## {#personalization}
 
-This assistive technology must enable the user to select which of the available accomodations are enabled at any time, and at which available effect level. This must be able to set as a default in the user agent, and must be overrideable by the user to meet their specific need at any time.
+This assistive technology must enable the user to select which of the available accommodations are enabled at any time, and at which available effect level. This must be able to set as a default in the user agent, and must be overrideable by the user to meet their specific need at any time.
 
-Any given end-user might have multiple disabilities, with varying degrees of effect at any given time; any given document might have multiple accomodations enabled and encoded in it; any given user agent might suport multiple assistive technologies; any given environment might have different affordances and constraints.
+Any given end-user might have multiple disabilities, with varying degrees of effect at any given time; any given document might have multiple accommodations enabled and encoded in it; any given user agent might suport multiple assistive technologies; any given environment might have different affordances and constraints.
 
 <div id='xmp_low_vision_high_contrast' class='example'>
 A low vision user might wish to enable very high contrast in a bright environment or when they are tired, and lower contrast when they are in a more moderately lighted environment and well-rested.
@@ -96,7 +96,7 @@ At the same time, this specification should establish defaults and baselines bas
 
 ## Searching and categorization ## {#searching_categorization}
 
-This specification must define easy ways to enable the distribution and discovery of content based on user needs and accomodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.
+This specification must define easy ways to enable the distribution and discovery of content based on user needs and accommodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.
 
 ## Provenance expression ## {#provenance_expression}
 
@@ -249,7 +249,7 @@ Structured data includes faceted data, whether qualitative or quantitative, that
 
 This data must be included in objects in the `facets` and `series` keys.
 
-Note: A future version of this specification will define schamata for a canonical dataset structure or set of structures for different types of data visualization.
+Note: A future version of this specification will define schemata for a canonical dataset structure or set of structures for different types of data visualization.
 
 #### Unstructured data #### {#unstructured_data}
 
@@ -352,14 +352,14 @@ An example of a `datasets` block (with elided values) for a structured data repr
   "description": "",
   "representation": {
   },
-  "facets": [
-  ],
+  "facets": {
+  },
   "series": [
   ],
   "source": {
   },
-  "href": [
-  ]
+  "href": {
+  }
 }
 </xmp>
 </div>
@@ -1051,7 +1051,7 @@ The `keywords` key denotes an array of user-defined strings. Examples of keyword
 <b>Note:</b> This is a rough notion of how we might define
 </div>
 
-The `capabilities` key denotes an object that includes which accomodations have been defined in the image document, and some system of rating that scores the effectiveness of that accomodation.
+The `capabilities` key denotes an object that includes which accommodations have been defined in the image document, and some system of rating that scores the effectiveness of that accommodation.
 
 Each capability defines an array of capability instances, each of which consists of a least a condition of applicability, and a rating.
 
@@ -1086,7 +1086,7 @@ Each capability defines an array of capability instances, each of which consists
 </xmp>
 
 <div class="note">
-<b>Note:</b> Consider splitting out capabilities and ratings into seperate entries.
+<b>Note:</b> Consider splitting out capabilities and ratings into separate entries.
 </div>
 
 <div class="note">
@@ -1101,7 +1101,7 @@ A region is an area of an diagram image that is associated with a particular beh
 Regions may consist of one of two possible values:
 
 1. **An element link**: a selector indicating a specific element or set of elements in the DOM of a SVG file;
-2. **A `shape` object**: an object that defines a shape to be dynamically represented in the diagram file.
+2. **A** `shape` **object**: an object that defines a shape to be dynamically represented in the diagram file.
 
 ## Region element `selector` ## {#region_element_selector}
 
@@ -1170,7 +1170,7 @@ A region describing a circular area with a centerpoint at `100, 121` and a radiu
 </div>
 
 <div id='xmp_region_shape_complex' class='example'>
-A region describing a irregular area using the `path` definition and a rectangle definition, which together make a single region. The rectangle definition elides the "x" attribute, which defaults to `0`, per the SVG 2 specification.
+A region describing an irregular area using the `path` definition and a rectangle definition, which together make a single region. The rectangle definition elides the "x" attribute, which defaults to `0`, per the SVG 2 specification.
 
 <xmp highlight='json'>
 {
@@ -1190,8 +1190,11 @@ A region describing a irregular area using the `path` definition and a rectangle
 </xmp>
 </div>
 
-For each shape definition, a conforming implementation must instantiate a corresponding shape matching the element type and attributes 
-Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.
+For each shape definition, a conforming implementation must instantiate a corresponding shape matching the element type and attributes.
+
+<div class="note">
+<b>Note:</b> Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.
+</div>
 
 # Haptics # {#haptics_behavior}
 ## Haptic patterns ## {#haptic_patterns}
@@ -1235,7 +1238,7 @@ A complex haptic pattern that will trigger a sequence of vibrations 10 milliseco
 </xmp>
 </div>
 
-> **Note:** The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with an optional additional value for repetition of that pattern with a fixed interval between pattern instances, and an optional repetiion index. 
+> **Note:** The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with an optional additional value for repetition of that pattern with a fixed interval between pattern instances, and an optional repetition index. 
 
 <!-- This specification does not currently add capabilities for defining intensity, target region, or other haptic qualities, due to limitations in the W3C Vibration API and device capabilities. -->
 
@@ -1437,7 +1440,7 @@ Some features of this specification, such as contrast control, overlap with capa
 
 ### CSS format ### {#css_format}
 
-CSS defines its own syntax, processing model, and format, initially define in the 1990s. It requires a custom processor.
+CSS defines its own syntax, processing model, and format, initially defined in the 1990s. It requires a custom processor.
 
 This specification uses the common JSON format, which can be processed by any JSON tools, including web browser contexts, JavaScript, and many other tools.
 
