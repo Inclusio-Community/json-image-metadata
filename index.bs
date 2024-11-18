@@ -347,21 +347,24 @@ These entities include the `title`, `subtitle`, `description`, `representation`,
 An example of a `datasets` block (with elided values) for a structured data representation, such as a bar chart. 
 
 <xmp highlight='json'>
-"datasets": {
-  "title": "",
-  "subtitle": "",
-  "description": "",
-  "representation": {
+"datasets": [
+  {
+    "title": "",
+    "subtitle": "",
+    "description": "",
+    "representation": {
+    },
+    "facets": {
+    },
+    "series": [
+    ],
+    "source": {
+    },
+    "href": {
+    }
   },
-  "facets": {
-  },
-  "series": [
-  ],
-  "source": {
-  },
-  "href": {
-  }
-}
+  ...
+]
 </xmp>
 </div>
   
