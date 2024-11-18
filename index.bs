@@ -831,7 +831,7 @@ An example of `haptic` block with two haptic object entries in an array. The fir
       "region": {
         "selector": "#bar_1"
       },
-      `enter`: {
+      "enter": {
         "haptic_pattern": "[50, 100, 150] 250"
       }
     }
@@ -845,7 +845,7 @@ An example of `haptic` block with two haptic object entries in an array. The fir
           }
         }
       },
-      `enter`: {
+      "enter": {
         "haptic_pattern": "[150] 250",
         "audio": {
           "href": "./assets/example.mp3",
