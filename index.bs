@@ -893,25 +893,25 @@ An `announcement` block is an object with the key `announcement`, which contains
   <tbody>
     <tr>
       <td>`name`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The announcement name of the graphic element</td>
       <td>optional</td>
     </tr>
     <tr>
       <td>`description`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The longer description of the graphic element</td>
       <td>optional</td>
     </tr>
     <tr>
       <td>`details`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The supplemental announcement based on interaction with the graphic element</td>
       <td>optional</td>
     </tr>
     <tr>
       <td>`hint`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The instructions for use of the graphic element</td>
       <td>optional</td>
     </tr>
