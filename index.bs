@@ -348,9 +348,9 @@ An example of a `datasets` block (with elided values) for a structured data repr
 
 <xmp highlight='json'>
 "datasets": {
-  "title": "",
-  "subtitle": "",
-  "description": "",
+  "title": "Chart Title",
+  "subtitle": "Chart Subtitle",
+  "description": "A description of the chart.",
   "representation": {
   },
   "facets": {
