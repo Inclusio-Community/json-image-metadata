@@ -323,8 +323,8 @@ These entities include the `title`, `subtitle`, `description`, `representation`,
     </tr>
     <tr>
       <td>`items`</td>
-      <td>array</td>
-      <td>A loosely organized set of items for unstructured data, such as labels, values, and descriptions for diagrams</td>
+      <td>object</td>
+      <td>A loosely organized collection of items for unstructured data, such as labels, values, and descriptions for diagrams</td>
       <td>optional</td>
     </tr>
     <tr>
@@ -636,7 +636,7 @@ The `series` array contains one or more objects, each of which contains one or m
 
 #### The `items` key #### {#items_data_block}
 
-A loosely organized set of items for unstructured data, such as labels, values, and descriptions for diagrams.
+A loosely organized collection of items for unstructured data, such as labels, values, and descriptions for diagrams.
 
 TODO: describe the `items` object
 
