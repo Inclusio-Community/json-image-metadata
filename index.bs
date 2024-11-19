@@ -287,19 +287,19 @@ These entities include the `title`, `subtitle`, `description`, `representation`,
   <tbody>
     <tr>
       <td>`title`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The title of the graphic document</td>
       <td>required</td>
     </tr>
     <tr>
       <td>`subtitle`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The subtitle of the graphic document</td>
       <td>optional</td>
     </tr>
     <tr>
       <td>`description`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>A meaningful summary of the graphic document</td>
       <td>optional</td>
     </tr>
@@ -348,9 +348,9 @@ An example of a `datasets` block (with elided values) for a structured data repr
 
 <xmp highlight='json'>
 "datasets": {
-  "title": "",
-  "subtitle": "",
-  "description": "",
+  "title": "Chart Title",
+  "subtitle": "Chart Subtitle",
+  "description": "A description of the chart.",
   "representation": {
   },
   "facets": {
@@ -496,7 +496,7 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
   <tbody>
     <tr>
       <td>`label`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The title for the facet</td>
       <td>optional for unstructured data, required for structured data</td>
     </tr>
@@ -513,7 +513,7 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
     </tr>
     <tr>
       <td>`units`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The type of thing being measured</td>
       <td>optional for unstructured data, required for structured data</td>
     </tr>
@@ -600,13 +600,13 @@ The `series` object contains one or more objects, each of which contains one or 
   <tbody>
     <tr>
       <td>`name`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The name for this series, normally used as the series label</td>
       <td>optional for unstructured data, required for structured data</td>
     </tr>
     <tr>
       <td>`type`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the `chartType` key of the `representation` block of the parent `datasets`</td>
     </tr>
     <tr>
@@ -893,25 +893,25 @@ An `announcement` block is an object with the key `announcement`, which contains
   <tbody>
     <tr>
       <td>`name`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The announcement name of the graphic element</td>
       <td>optional</td>
     </tr>
     <tr>
       <td>`description`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The longer description of the graphic element</td>
       <td>optional</td>
     </tr>
     <tr>
       <td>`details`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The supplemental announcement based on interaction with the graphic element</td>
       <td>optional</td>
     </tr>
     <tr>
       <td>`hint`</td>
-      <td>string</td>
+      <td>non-empty string</td>
       <td>The instructions for use of the graphic element</td>
       <td>optional</td>
     </tr>
@@ -1010,7 +1010,7 @@ A `provenance` block is an object with the key `provenance`.
 
 The `notes` key defines an array where any details not covered by specific keys can be identified. This might include the name of the organization or individuals who sponsored the work, a dedications to a meaningful person in the author's life, and so on.
 
-Each item should be a quoted string separated by a comma.
+Each item should be a quoted non-empty string separated by a comma.
 
 <xmp highlight='json'>
 {
@@ -1031,7 +1031,7 @@ Tags are used to aid in the filtering and searching for content.
 
 ### Keywords ### {#keywords}
 
-The `keywords` key denotes an array of user-defined strings. Examples of keywords include labels from a folksonomy, terms defined in a formal document, steps in a workflow process, short descriptions of items depicted in the image, or any other strings.
+The `keywords` key denotes an array of user-defined non-empty strings. Examples of keywords include labels from a folksonomy, terms defined in a formal document, steps in a workflow process, short descriptions of items depicted in the image, or any other strings.
 
 <xmp highlight='json'>
 {
