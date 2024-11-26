@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="f354c4588955a5a3ed9ef0291b923d61115003aa" name="revision">
+  <meta content="461ba9446816412fe67159c1781e342c3242db51" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-15">15 November 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-26">26 November 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2025,12 +2025,14 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
+     <dt>Semantic Version:
+     <dd>0.3.0
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 15 November 2024,
+In addition, as of 26 November 2024,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2075,13 +2077,14 @@ Parts of this work may be from another specification document.  If so, those par
      <a href="#conform_doc_imp"><span class="secno">3</span> <span class="content">Conforming documents and implementations</span></a>
      <ol class="toc">
       <li><a href="#mime_type"><span class="secno">3.1</span> <span class="content">JIM MIME type</span></a>
+      <li><a href="#conform_version"><span class="secno">3.2</span> <span class="content">Version conformance</span></a>
       <li>
-       <a href="#conform_doc"><span class="secno">3.2</span> <span class="content">Conforming document</span></a>
+       <a href="#conform_doc"><span class="secno">3.3</span> <span class="content">Conforming document</span></a>
        <ol class="toc">
-        <li><a href="#conform_doc_svg"><span class="secno">3.2.1</span> <span class="content">Conforming SVG document</span></a>
-        <li><a href="#conform_doc_raster"><span class="secno">3.2.2</span> <span class="content">Conforming raster document</span></a>
+        <li><a href="#conform_doc_svg"><span class="secno">3.3.1</span> <span class="content">Conforming SVG document</span></a>
+        <li><a href="#conform_doc_raster"><span class="secno">3.3.2</span> <span class="content">Conforming raster document</span></a>
        </ol>
-      <li><a href="#conform_imp"><span class="secno">3.3</span> <span class="content">Conforming implementation</span></a>
+      <li><a href="#conform_imp"><span class="secno">3.4</span> <span class="content">Conforming implementation</span></a>
      </ol>
     <li>
      <a href="#schema"><span class="secno">4</span> <span class="content">Schema</span></a>
@@ -2182,6 +2185,7 @@ Parts of this work may be from another specification document.  If so, those par
         <li><a href="#keywords"><span class="secno">4.6.1</span> <span class="content">Keywords</span></a>
         <li><a href="#capabilities_ratings"><span class="secno">4.6.2</span> <span class="content">Capabilities and ratings</span></a>
        </ol>
+      <li><a href="#version"><span class="secno">4.7</span> <span class="content">Version</span></a>
      </ol>
     <li>
      <a href="#regions"><span class="secno">5</span> <span class="content">Regions</span></a>
@@ -2303,15 +2307,21 @@ Parts of this work may be from another specification document.  If so, those par
    <h2 class="heading settled" data-level="3" id="conform_doc_imp"><span class="secno">3. </span><span class="content">Conforming documents and implementations</span><a class="self-link" href="#conform_doc_imp"></a></h2>
    <h3 class="heading settled" data-level="3.1" id="mime_type"><span class="secno">3.1. </span><span class="content">JIM MIME type</span><a class="self-link" href="#mime_type"></a></h3>
    <p>The MIME type for a JSON Image Metadata document is <code>text/jim+json</code>.</p>
-   <h3 class="heading settled" data-level="3.2" id="conform_doc"><span class="secno">3.2. </span><span class="content">Conforming document</span><a class="self-link" href="#conform_doc"></a></h3>
+   <h3 class="heading settled" data-level="3.2" id="conform_version"><span class="secno">3.2. </span><span class="content">Version conformance</span><a class="self-link" href="#conform_version"></a></h3>
+   <p>This specification defines a <a href="https://semver.org/">semantic version</a> [Semantic Versioning 2.0.0].</p>
+   <p>A document conforming to this specification should specify the version number of the specification to which it conforms, in the <code>jim</code> key of the <code>version</code> block.</p>
+   <p>An implementation conforming to this specification must store internally the version number of the specification to which it conforms, and should expose the version number to the end user. If the implementation opens a JIM document which specifies an incompatible version of JIM, the implementation must warn the end user.</p>
+   <div class="note" role="note"> Note that this specification is being developed in parallel with several experimental implementations, on a milestone basis, as part of the Inclusio Project. The minor version number (MAJOR.MINOR.PATCH) corresponds to the project milestone number across the Inclusio Project implementations. </div>
+   <div class="note" role="note"> Note that version 0.3.0 of this specification is the first version to use Semantic Versioning, and includes breaking changes to the specification due to implementation experience. Future versions of this specification will adhere to the practice of incrementing the major version number for breaking changes. </div>
+   <h3 class="heading settled" data-level="3.3" id="conform_doc"><span class="secno">3.3. </span><span class="content">Conforming document</span><a class="self-link" href="#conform_doc"></a></h3>
    <p>A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty <code>datasets</code> block or one non-empty <code>behaviors</code> block.</p>
    <p>This specification assumes the format of the metadata is in a JSON object. Other conforming serializations are possible, such as XML or a binary format, as long as they adhere to the structure of the defined JSON schema, and can be serialized as JSON.</p>
    <p>A conforming document must provide a means to discover the metadata block.</p>
-   <h4 class="heading settled" data-level="3.2.1" id="conform_doc_svg"><span class="secno">3.2.1. </span><span class="content">Conforming SVG document</span><a class="self-link" href="#conform_doc_svg"></a></h4>
+   <h4 class="heading settled" data-level="3.3.1" id="conform_doc_svg"><span class="secno">3.3.1. </span><span class="content">Conforming SVG document</span><a class="self-link" href="#conform_doc_svg"></a></h4>
    <p>In SVG, the metadata block must be the content of a <code>metadata</code> element with an attribute <code>data-type</code> with the attribute value <code>text/jim+json</code>, the MIME type for a JIM document.</p>
-   <h4 class="heading settled" data-level="3.2.2" id="conform_doc_raster"><span class="secno">3.2.2. </span><span class="content">Conforming raster document</span><a class="self-link" href="#conform_doc_raster"></a></h4>
+   <h4 class="heading settled" data-level="3.3.2" id="conform_doc_raster"><span class="secno">3.3.2. </span><span class="content">Conforming raster document</span><a class="self-link" href="#conform_doc_raster"></a></h4>
    <p>For raster image documents, the JIM content block must be included in the metadata section of the raster image file.</p>
-   <h3 class="heading settled" data-level="3.3" id="conform_imp"><span class="secno">3.3. </span><span class="content">Conforming implementation</span><a class="self-link" href="#conform_imp"></a></h3>
+   <h3 class="heading settled" data-level="3.4" id="conform_imp"><span class="secno">3.4. </span><span class="content">Conforming implementation</span><a class="self-link" href="#conform_imp"></a></h3>
    <p>An implementation conforming to this specification must access the contents of the metadata block. For an SVG-capable implementation displaying an SVG document, a conforming implementation must read the JSON data in the indicated <code>metadata</code> element.</p>
    <p>A conforming implementation must provide a means for the end user to extract the contents of the <code>datasets</code> block.</p>
    <p>A conforming implementation must resolve all selectors and execute all supported features of the <code>behaviors</code> block.</p>
@@ -2398,17 +2408,17 @@ Parts of this work may be from another specification document.  If so, those par
     <tbody>
      <tr>
       <td><code>title</code>
-      <td>string
+      <td>non-empty string
       <td>The title of the graphic document
       <td>required
      <tr>
       <td><code>subtitle</code>
-      <td>string
+      <td>non-empty string
       <td>The subtitle of the graphic document
       <td>optional
      <tr>
       <td><code>description</code>
-      <td>string
+      <td>non-empty string
       <td>A meaningful summary of the graphic document
       <td>optional
      <tr>
@@ -2428,8 +2438,8 @@ Parts of this work may be from another specification document.  If so, those par
       <td>optional for unstructured data, required for structured data
      <tr>
       <td><code>items</code>
-      <td>array
-      <td>A loosely organized set of items for unstructured data, such as labels, values, and descriptions for diagrams
+      <td>object
+      <td>A loosely organized collection of items for unstructured data, such as labels, values, and descriptions for diagrams
       <td>optional
      <tr>
       <td><code>source</code>
@@ -2445,9 +2455,9 @@ Parts of this work may be from another specification document.  If so, those par
    <div class="example" id="xmp_dataset_structured">
     <a class="self-link" href="#xmp_dataset_structured"></a> An example of a <code>datasets</code> block (with elided values) for a structured data representation, such as a bar chart. 
 <pre class="highlight"><c- f>"datasets"</c-><c- p>:</c-> <c- p>{</c->
-  <c- f>"title"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c->
-  <c- f>"subtitle"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c->
-  <c- f>"description"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c->
+  <c- f>"title"</c-><c- p>:</c-> <c- u>"Chart Title"</c-><c- p>,</c->
+  <c- f>"subtitle"</c-><c- p>:</c-> <c- u>"Chart Subtitle"</c-><c- p>,</c->
+  <c- f>"description"</c-><c- p>:</c-> <c- u>"A description of the chart."</c-><c- p>,</c->
   <c- f>"representation"</c-><c- p>:</c-> <c- p>{</c->
   <c- p>},</c->
   <c- f>"facets"</c-><c- p>:</c-> <c- p>{</c->
@@ -2548,7 +2558,7 @@ Parts of this work may be from another specification document.  If so, those par
     <tbody>
      <tr>
       <td><code>label</code>
-      <td>string
+      <td>non-empty string
       <td>The title for the facet
       <td>optional for unstructured data, required for structured data
      <tr>
@@ -2562,7 +2572,7 @@ Parts of this work may be from another specification document.  If so, those par
       <td>optional for unstructured data, required for structured data
      <tr>
       <td><code>units</code>
-      <td>string
+      <td>non-empty string
       <td>The type of thing being measured
       <td>optional for unstructured data, required for structured data
      <tr>
@@ -2628,12 +2638,12 @@ Parts of this work may be from another specification document.  If so, those par
     <tbody>
      <tr>
       <td><code>name</code>
-      <td>string
+      <td>non-empty string
       <td>The name for this series, normally used as the series label
       <td>optional for unstructured data, required for structured data
      <tr>
       <td><code>type</code>
-      <td>string
+      <td>non-empty string
       <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>datasets</code>
      <tr>
       <td><code>records</code>
@@ -2649,7 +2659,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p>The <code>records</code> block contains the raw data values for each facet of each record of this series.</p>
    <p>The <code>series</code> array contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
    <h5 class="heading settled" data-level="4.1.9.4" id="items_data_block"><span class="secno">4.1.9.4. </span><span class="content">The <code>items</code> key</span><a class="self-link" href="#items_data_block"></a></h5>
-   <p>A loosely organized set of items for unstructured data, such as labels, values, and descriptions for diagrams.</p>
+   <p>A loosely organized collection of items for unstructured data, such as labels, values, and descriptions for diagrams.</p>
    <p>TODO: describe the <code>items</code> object</p>
    <h5 class="heading settled" data-level="4.1.9.5" id="source_data_block"><span class="secno">4.1.9.5. </span><span class="content">The <code>source</code> key</span><a class="self-link" href="#source_data_block"></a></h5>
    <p>The provenance of the dataset.</p>
@@ -2802,22 +2812,22 @@ Parts of this work may be from another specification document.  If so, those par
     <tbody>
      <tr>
       <td><code>name</code>
-      <td>string
+      <td>non-empty string
       <td>The announcement name of the graphic element
       <td>optional
      <tr>
       <td><code>description</code>
-      <td>string
+      <td>non-empty string
       <td>The longer description of the graphic element
       <td>optional
      <tr>
       <td><code>details</code>
-      <td>string
+      <td>non-empty string
       <td>The supplemental announcement based on interaction with the graphic element
       <td>optional
      <tr>
       <td><code>hint</code>
-      <td>string
+      <td>non-empty string
       <td>The instructions for use of the graphic element
       <td>optional
    </table>
@@ -2882,7 +2892,7 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    <h4 class="heading settled" data-level="4.5.1" id="notes"><span class="secno">4.5.1. </span><span class="content">Notes</span><a class="self-link" href="#notes"></a></h4>
    <p>The <code>notes</code> key defines an array where any details not covered by specific keys can be identified. This might include the name of the organization or individuals who sponsored the work, a dedications to a meaningful person in the author’s life, and so on.</p>
-   <p>Each item should be a quoted string separated by a comma.</p>
+   <p>Each item should be a quoted non-empty string separated by a comma.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"provenance"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"notes"</c-><c- p>:</c-> <c- p>[</c->
@@ -2896,7 +2906,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p>Tags are a way to categorize the file, either by the the content, by the capabilities, or by a rating system, or some combination thereof.</p>
    <p>Tags are used to aid in the filtering and searching for content.</p>
    <h4 class="heading settled" data-level="4.6.1" id="keywords"><span class="secno">4.6.1. </span><span class="content">Keywords</span><a class="self-link" href="#keywords"></a></h4>
-   <p>The <code>keywords</code> key denotes an array of user-defined strings. Examples of keywords include labels from a folksonomy, terms defined in a formal document, steps in a workflow process, short descriptions of items depicted in the image, or any other strings.</p>
+   <p>The <code>keywords</code> key denotes an array of user-defined non-empty strings. Examples of keywords include labels from a folksonomy, terms defined in a formal document, steps in a workflow process, short descriptions of items depicted in the image, or any other strings.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"tags"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"keywords"</c-><c- p>:</c-> <c- p>[</c->
@@ -2942,6 +2952,37 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    <div class="note" role="note"> <b>Note:</b> Consider splitting out capabilities and ratings into separate entries. </div>
    <div class="note" role="note"> <b>Note:</b> To be defined further. </div>
+   <h3 class="heading settled" data-level="4.7" id="version"><span class="secno">4.7. </span><span class="content">Version</span><a class="self-link" href="#version"></a></h3>
+   <p>A conforming document may include an optional <code>version</code> key.</p>
+   <p>An <code>version</code> block is an object with the key <code>version</code>, which contains one or more key-value pairs including one or more of the keys <code>document</code> and <code>jim</code> and their values.</p>
+   <p>The value of the optional <code>jim</code> key, if present, must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (<code>.</code>). The default value of the <code>jim</code> key is <code>1.0.0</code>.</p>
+   <p>The value of the optional <code>document</code> key may be any non-empty string that is meaningful to the author, but it should be a string conforming to the Semantic Versioning 2.0.0 specification.</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> value type 
+      <th> description 
+      <th> requirement 
+    <tbody>
+     <tr>
+      <td><code>document</code>
+      <td>non-empty string
+      <td>The version of the document
+      <td>optional
+     <tr>
+      <td><code>jim</code>
+      <td>semantic version string
+      <td>The version of the JIM specification the document conforms to
+      <td>optional
+   </table>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"version"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"document"</c-><c- p>:</c-> <c- u>"1.0.1"</c-><c- p>,</c->
+    <c- f>"jim"</c-><c- p>:</c-> <c- u>"0.3.0"</c-><c- p>,</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
    <h2 class="heading settled" data-level="5" id="regions"><span class="secno">5. </span><span class="content">Regions</span><a class="self-link" href="#regions"></a></h2>
    <p>A region is an area of an diagram image that is associated with a particular behavior.</p>
    <p>Regions may consist of one of two possible values:</p>

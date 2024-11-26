@@ -3,6 +3,7 @@ Title: JSON Image Metadata
 Shortname: jim
 Level: 1
 Status: fido/ED
+!Semantic Version: 0.3.0
 Group: Inclusio Project
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
@@ -123,12 +124,28 @@ While this specification does include some accessibility-specific extensions of 
 
 This specification is complementary and orthogonal to the W3C specifications defining `role` attributes, including the [WAI-ARIA Graphics Module](https://www.w3.org/TR/graphics-aria-1.0/) and the [SVG Accessibility API Mappings](https://www.w3.org/TR/svg-aam-1.0/).
 
-Conforming documents and implementations {#conform_doc_imp}
-=====================
+# Conforming documents and implementations # {#conform_doc_imp}
 
 ## JIM MIME type ## {#mime_type}
 
 The MIME type for a JSON Image Metadata document is `text/jim+json`.
+
+## Version conformance ## {#conform_version}
+
+This specification defines a <a href="https://semver.org/">semantic version</a> [Semantic Versioning 2.0.0]. 
+
+A document conforming to this specification should specify the version number of the specification to which it conforms, in the `jim` key of the `version` block.
+
+An implementation conforming to this specification must store internally the version number of the specification to which it conforms, and should expose the version number to the end user. If the implementation opens a JIM document which specifies an incompatible version of JIM, the implementation must warn the end user.
+
+<div class='note'>
+Note that this specification is being developed in parallel with several experimental implementations, on a milestone basis, as part of the Inclusio Project. The minor version number (MAJOR.MINOR.PATCH) corresponds to the project milestone number across the Inclusio Project implementations.
+</div>
+
+<div class='note'>
+Note that version 0.3.0 of this specification is the first version to use Semantic Versioning, and includes breaking changes to the specification due to implementation experience. Future versions of this specification will adhere to the practice of incrementing the major version number for breaking changes.
+</div>
+
 
 ## Conforming document ## {#conform_doc}
 
@@ -1093,6 +1110,59 @@ Each capability defines an array of capability instances, each of which consists
 <div class="note">
 <b>Note:</b> To be defined further.
 </div>
+
+## Version ## {#version}
+
+A conforming document may include an optional `version` key.
+
+An `version` block is an object with the key `version`, which contains one or more key-value pairs including one or more of the keys `document` and `jim` and their values.
+
+The value of the optional `jim` key, if present, must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (`.`). The default value of the `jim` key is `1.0.0`.
+
+The value of the optional `document` key may be any non-empty string that is meaningful to the author, but it should be a string conforming to the Semantic Versioning 2.0.0 specification.
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`document`</td>
+      <td>non-empty string</td>
+      <td>The version of the document</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`jim`</td>
+      <td>semantic version string</td>
+      <td>The version of the JIM specification the document conforms to</td>
+      <td>optional</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<xmp highlight='json'>
+{
+  "version": {
+    "document": "1.0.1",
+    "jim": "0.3.0",
+  }
+}
+</xmp>
 
 
 # Regions # {#regions}
