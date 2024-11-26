@@ -1,0 +1,2758 @@
+[
+  {
+    "pattern": "50",
+    "valid": false
+  },
+  {
+    "pattern": "-50",
+    "valid": false
+  },
+  {
+    "pattern": "ab",
+    "valid": false
+  },
+  {
+    "pattern": "50ab",
+    "valid": false
+  },
+  {
+    "pattern": " ",
+    "valid": false
+  },
+  {
+    "pattern": ",",
+    "valid": false
+  },
+  {
+    "pattern": " ,",
+    "valid": false
+  },
+  {
+    "pattern": ", ",
+    "valid": false
+  },
+  {
+    "pattern": " , ",
+    "valid": false
+  },
+  {
+    "pattern": " 50",
+    "valid": false
+  },
+  {
+    "pattern": ",50",
+    "valid": false
+  },
+  {
+    "pattern": " ,50",
+    "valid": false
+  },
+  {
+    "pattern": ", 50",
+    "valid": false
+  },
+  {
+    "pattern": " , 50",
+    "valid": false
+  },
+  {
+    "pattern": " -50",
+    "valid": false
+  },
+  {
+    "pattern": ",-50",
+    "valid": false
+  },
+  {
+    "pattern": " ,-50",
+    "valid": false
+  },
+  {
+    "pattern": ", -50",
+    "valid": false
+  },
+  {
+    "pattern": " , -50",
+    "valid": false
+  },
+  {
+    "pattern": " ab",
+    "valid": false
+  },
+  {
+    "pattern": ",ab",
+    "valid": false
+  },
+  {
+    "pattern": " ,ab",
+    "valid": false
+  },
+  {
+    "pattern": ", ab",
+    "valid": false
+  },
+  {
+    "pattern": " , ab",
+    "valid": false
+  },
+  {
+    "pattern": " 50ab",
+    "valid": false
+  },
+  {
+    "pattern": ",50ab",
+    "valid": false
+  },
+  {
+    "pattern": " ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": ", 50ab",
+    "valid": false
+  },
+  {
+    "pattern": " , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "50 ",
+    "valid": false
+  },
+  {
+    "pattern": "50,",
+    "valid": false
+  },
+  {
+    "pattern": "50 ,",
+    "valid": false
+  },
+  {
+    "pattern": "50, ",
+    "valid": false
+  },
+  {
+    "pattern": "50 , ",
+    "valid": false
+  },
+  {
+    "pattern": "-50 ",
+    "valid": false
+  },
+  {
+    "pattern": "-50,",
+    "valid": false
+  },
+  {
+    "pattern": "-50 ,",
+    "valid": false
+  },
+  {
+    "pattern": "-50, ",
+    "valid": false
+  },
+  {
+    "pattern": "-50 , ",
+    "valid": false
+  },
+  {
+    "pattern": "ab ",
+    "valid": false
+  },
+  {
+    "pattern": "ab,",
+    "valid": false
+  },
+  {
+    "pattern": "ab ,",
+    "valid": false
+  },
+  {
+    "pattern": "ab, ",
+    "valid": false
+  },
+  {
+    "pattern": "ab , ",
+    "valid": false
+  },
+  {
+    "pattern": "50ab ",
+    "valid": false
+  },
+  {
+    "pattern": "50ab,",
+    "valid": false
+  },
+  {
+    "pattern": "50ab ,",
+    "valid": false
+  },
+  {
+    "pattern": "50ab, ",
+    "valid": false
+  },
+  {
+    "pattern": "50ab , ",
+    "valid": false
+  },
+  {
+    "pattern": " 50 ",
+    "valid": false
+  },
+  {
+    "pattern": ",50,",
+    "valid": false
+  },
+  {
+    "pattern": " ,50 ,",
+    "valid": false
+  },
+  {
+    "pattern": ", 50, ",
+    "valid": false
+  },
+  {
+    "pattern": " , 50 , ",
+    "valid": false
+  },
+  {
+    "pattern": " -50 ",
+    "valid": false
+  },
+  {
+    "pattern": ",-50,",
+    "valid": false
+  },
+  {
+    "pattern": " ,-50 ,",
+    "valid": false
+  },
+  {
+    "pattern": ", -50, ",
+    "valid": false
+  },
+  {
+    "pattern": " , -50 , ",
+    "valid": false
+  },
+  {
+    "pattern": " ab ",
+    "valid": false
+  },
+  {
+    "pattern": ",ab,",
+    "valid": false
+  },
+  {
+    "pattern": " ,ab ,",
+    "valid": false
+  },
+  {
+    "pattern": ", ab, ",
+    "valid": false
+  },
+  {
+    "pattern": " , ab , ",
+    "valid": false
+  },
+  {
+    "pattern": " 50ab ",
+    "valid": false
+  },
+  {
+    "pattern": ",50ab,",
+    "valid": false
+  },
+  {
+    "pattern": " ,50ab ,",
+    "valid": false
+  },
+  {
+    "pattern": ", 50ab, ",
+    "valid": false
+  },
+  {
+    "pattern": " , 50ab , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50]",
+    "valid": true
+  },
+  {
+    "pattern": "[-50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab]",
+    "valid": false
+  },
+  {
+    "pattern": " [50]",
+    "valid": false
+  },
+  {
+    "pattern": ",[50]",
+    "valid": false
+  },
+  {
+    "pattern": " ,[50]",
+    "valid": false
+  },
+  {
+    "pattern": ", [50]",
+    "valid": false
+  },
+  {
+    "pattern": " , [50]",
+    "valid": false
+  },
+  {
+    "pattern": " [-50]",
+    "valid": false
+  },
+  {
+    "pattern": ",[-50]",
+    "valid": false
+  },
+  {
+    "pattern": " ,[-50]",
+    "valid": false
+  },
+  {
+    "pattern": ", [-50]",
+    "valid": false
+  },
+  {
+    "pattern": " , [-50]",
+    "valid": false
+  },
+  {
+    "pattern": " [ab]",
+    "valid": false
+  },
+  {
+    "pattern": ",[ab]",
+    "valid": false
+  },
+  {
+    "pattern": " ,[ab]",
+    "valid": false
+  },
+  {
+    "pattern": ", [ab]",
+    "valid": false
+  },
+  {
+    "pattern": " , [ab]",
+    "valid": false
+  },
+  {
+    "pattern": " [50ab]",
+    "valid": false
+  },
+  {
+    "pattern": ",[50ab]",
+    "valid": false
+  },
+  {
+    "pattern": " ,[50ab]",
+    "valid": false
+  },
+  {
+    "pattern": ", [50ab]",
+    "valid": false
+  },
+  {
+    "pattern": " , [50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ 50]",
+    "valid": false
+  },
+  {
+    "pattern": "[,50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ ,50]",
+    "valid": false
+  },
+  {
+    "pattern": "[, 50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ , 50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[,-50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ ,-50]",
+    "valid": false
+  },
+  {
+    "pattern": "[, -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ , -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[,ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ ,ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[, ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ , ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[,50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ ,50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[, 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ , 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ]",
+    "valid": true
+  },
+  {
+    "pattern": "[50,]",
+    "valid": true
+  },
+  {
+    "pattern": "[50 ,]",
+    "valid": true
+  },
+  {
+    "pattern": "[50, ]",
+    "valid": true
+  },
+  {
+    "pattern": "[50 , ]",
+    "valid": true
+  },
+  {
+    "pattern": "[-50 ]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, ]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, ]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50  ]",
+    "valid": true
+  },
+  {
+    "pattern": "[50,,]",
+    "valid": false
+  },
+  {
+    "pattern": "[50 , ,]",
+    "valid": false
+  },
+  {
+    "pattern": "[50, , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ,  , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50  ]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,,]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , ,]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,  , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab  ]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,,]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ,]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,  , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab  ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,,]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , ,]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,  , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[5050]",
+    "valid": true
+  },
+  {
+    "pattern": "[-50-50]",
+    "valid": false
+  },
+  {
+    "pattern": "[abab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50 50]",
+    "valid": true
+  },
+  {
+    "pattern": "[50,50]",
+    "valid": true
+  },
+  {
+    "pattern": "[50 ,50]",
+    "valid": true
+  },
+  {
+    "pattern": "[50, 50]",
+    "valid": true
+  },
+  {
+    "pattern": "[50 , 50]",
+    "valid": true
+  },
+  {
+    "pattern": "[-50 -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,-50]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,-50]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": " [50 50]",
+    "valid": false
+  },
+  {
+    "pattern": ",[50,50]",
+    "valid": false
+  },
+  {
+    "pattern": " ,[50 ,50]",
+    "valid": false
+  },
+  {
+    "pattern": ", [50, 50]",
+    "valid": false
+  },
+  {
+    "pattern": " , [50 , 50]",
+    "valid": false
+  },
+  {
+    "pattern": " [-50 -50]",
+    "valid": false
+  },
+  {
+    "pattern": ",[-50,-50]",
+    "valid": false
+  },
+  {
+    "pattern": " ,[-50 ,-50]",
+    "valid": false
+  },
+  {
+    "pattern": ", [-50, -50]",
+    "valid": false
+  },
+  {
+    "pattern": " , [-50 , -50]",
+    "valid": false
+  },
+  {
+    "pattern": " [ab ab]",
+    "valid": false
+  },
+  {
+    "pattern": ",[ab,ab]",
+    "valid": false
+  },
+  {
+    "pattern": " ,[ab ,ab]",
+    "valid": false
+  },
+  {
+    "pattern": ", [ab, ab]",
+    "valid": false
+  },
+  {
+    "pattern": " , [ab , ab]",
+    "valid": false
+  },
+  {
+    "pattern": " [50ab 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": ",[50ab,50ab]",
+    "valid": false
+  },
+  {
+    "pattern": " ,[50ab ,50ab]",
+    "valid": false
+  },
+  {
+    "pattern": ", [50ab, 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": " , [50ab , 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50 50] ",
+    "valid": false
+  },
+  {
+    "pattern": "[50,50],",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ,50] ,",
+    "valid": false
+  },
+  {
+    "pattern": "[50, 50], ",
+    "valid": false
+  },
+  {
+    "pattern": "[50 , 50] , ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 -50] ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,-50],",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,-50] ,",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, -50], ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , -50] , ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ab] ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,ab],",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,ab] ,",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, ab], ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ab] , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab 50ab] ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,50ab],",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,50ab] ,",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, 50ab], ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , 50ab] , ",
+    "valid": false
+  },
+  {
+    "pattern": "[ 50 50]",
+    "valid": false
+  },
+  {
+    "pattern": "[,50,50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ ,50 ,50]",
+    "valid": false
+  },
+  {
+    "pattern": "[, 50, 50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ , 50 , 50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ -50 -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[,-50,-50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ ,-50 ,-50]",
+    "valid": false
+  },
+  {
+    "pattern": "[, -50, -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ , -50 , -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ ab ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[,ab,ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ ,ab ,ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[, ab, ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ , ab , ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ 50ab 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[,50ab,50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ ,50ab ,50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[, 50ab, 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ , 50ab , 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50  50]",
+    "valid": true
+  },
+  {
+    "pattern": "[50,,50]",
+    "valid": false
+  },
+  {
+    "pattern": "[50 , ,50]",
+    "valid": false
+  },
+  {
+    "pattern": "[50, , 50]",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ,  , 50]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50  -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,,-50]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , ,-50]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, , -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,  , -50]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab  ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,,ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ,ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, , ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,  , ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab  50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,,50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , ,50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, , 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,  , 50ab]",
+    "valid": false
+  },
+  {
+    "pattern": "[50 50 ]",
+    "valid": true
+  },
+  {
+    "pattern": "[50,50,]",
+    "valid": true
+  },
+  {
+    "pattern": "[50 ,50 ,]",
+    "valid": true
+  },
+  {
+    "pattern": "[50, 50, ]",
+    "valid": true
+  },
+  {
+    "pattern": "[50 , 50 , ]",
+    "valid": true
+  },
+  {
+    "pattern": "[-50 -50 ]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,-50,]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,-50 ,]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, -50, ]",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , -50 , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ab ]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,ab,]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,ab ,]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, ab, ]",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ab , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab 50ab ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,50ab,]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,50ab ,]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, 50ab, ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , 50ab , ]",
+    "valid": false
+  },
+  {
+    "pattern": "[50]50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50]-50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab]ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab]50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50] 50",
+    "valid": true
+  },
+  {
+    "pattern": "[50],50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50], 50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": " [50] 50",
+    "valid": false
+  },
+  {
+    "pattern": ",[50],50",
+    "valid": false
+  },
+  {
+    "pattern": " ,[50] ,50",
+    "valid": false
+  },
+  {
+    "pattern": ", [50], 50",
+    "valid": false
+  },
+  {
+    "pattern": " , [50] , 50",
+    "valid": false
+  },
+  {
+    "pattern": " [-50] -50",
+    "valid": false
+  },
+  {
+    "pattern": ",[-50],-50",
+    "valid": false
+  },
+  {
+    "pattern": " ,[-50] ,-50",
+    "valid": false
+  },
+  {
+    "pattern": ", [-50], -50",
+    "valid": false
+  },
+  {
+    "pattern": " , [-50] , -50",
+    "valid": false
+  },
+  {
+    "pattern": " [ab] ab",
+    "valid": false
+  },
+  {
+    "pattern": ",[ab],ab",
+    "valid": false
+  },
+  {
+    "pattern": " ,[ab] ,ab",
+    "valid": false
+  },
+  {
+    "pattern": ", [ab], ab",
+    "valid": false
+  },
+  {
+    "pattern": " , [ab] , ab",
+    "valid": false
+  },
+  {
+    "pattern": " [50ab] 50ab",
+    "valid": false
+  },
+  {
+    "pattern": ",[50ab],50ab",
+    "valid": false
+  },
+  {
+    "pattern": " ,[50ab] ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": ", [50ab], 50ab",
+    "valid": false
+  },
+  {
+    "pattern": " , [50ab] , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ] 50",
+    "valid": true
+  },
+  {
+    "pattern": "[50,],50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ,] ,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50, ], 50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 , ] , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ] -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,],-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,] ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, ], -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , ] , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ] ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,],ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,] ,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, ], ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ] , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ] 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,],50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,] ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, ], 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , ] , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50  ] 50",
+    "valid": true
+  },
+  {
+    "pattern": "[50,,],50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 , ,] ,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50, , ], 50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ,  , ] , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50  ] -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,,],-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , ,] ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, , ], -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,  , ] , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab  ] ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,,],ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ,] ,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, , ], ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,  , ] , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab  ] 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,,],50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , ,] ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, , ], 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,  , ] , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50]  50",
+    "valid": true
+  },
+  {
+    "pattern": "[50],,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , ,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50], , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,  , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50]  -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,  , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab]  ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , ,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,  , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab]  50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,  , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50] 50  ",
+    "valid": false
+  },
+  {
+    "pattern": "[50],50,,",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,50 , ,",
+    "valid": false
+  },
+  {
+    "pattern": "[50], 50, , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , 50 ,  , ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] -50  ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],-50,,",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,-50 , ,",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], -50, , ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , -50 ,  , ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ab  ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],ab,,",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,ab , ,",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], ab, , ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , ab ,  , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] 50ab  ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],50ab,,",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,50ab , ,",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], 50ab, , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , 50ab ,  , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50]-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50]--50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab]-ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab]-50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50] -50",
+    "valid": true
+  },
+  {
+    "pattern": "[50],-50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[50], -50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] --50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],--50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,--50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], --50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , --50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],-ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,-ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],-50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,-50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , -50ab",
+    "valid": false
+  },
+  {
+    "pattern": " [50] -50",
+    "valid": false
+  },
+  {
+    "pattern": ",[50],-50",
+    "valid": false
+  },
+  {
+    "pattern": " ,[50] ,-50",
+    "valid": false
+  },
+  {
+    "pattern": ", [50], -50",
+    "valid": false
+  },
+  {
+    "pattern": " , [50] , -50",
+    "valid": false
+  },
+  {
+    "pattern": " [-50] --50",
+    "valid": false
+  },
+  {
+    "pattern": ",[-50],--50",
+    "valid": false
+  },
+  {
+    "pattern": " ,[-50] ,--50",
+    "valid": false
+  },
+  {
+    "pattern": ", [-50], --50",
+    "valid": false
+  },
+  {
+    "pattern": " , [-50] , --50",
+    "valid": false
+  },
+  {
+    "pattern": " [ab] -ab",
+    "valid": false
+  },
+  {
+    "pattern": ",[ab],-ab",
+    "valid": false
+  },
+  {
+    "pattern": " ,[ab] ,-ab",
+    "valid": false
+  },
+  {
+    "pattern": ", [ab], -ab",
+    "valid": false
+  },
+  {
+    "pattern": " , [ab] , -ab",
+    "valid": false
+  },
+  {
+    "pattern": " [50ab] -50ab",
+    "valid": false
+  },
+  {
+    "pattern": ",[50ab],-50ab",
+    "valid": false
+  },
+  {
+    "pattern": " ,[50ab] ,-50ab",
+    "valid": false
+  },
+  {
+    "pattern": ", [50ab], -50ab",
+    "valid": false
+  },
+  {
+    "pattern": " , [50ab] , -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ] -50",
+    "valid": true
+  },
+  {
+    "pattern": "[50,],-50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ,] ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[50, ], -50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 , ] , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ] --50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,],--50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,] ,--50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, ], --50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , ] , --50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ] -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,],-ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,] ,-ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, ], -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ] , -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ] -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,],-50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,] ,-50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, ], -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , ] , -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50  ] -50",
+    "valid": true
+  },
+  {
+    "pattern": "[50,,],-50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 , ,] ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[50, , ], -50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ,  , ] , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50  ] --50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,,],--50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , ,] ,--50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, , ], --50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,  , ] , --50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab  ] -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,,],-ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ,] ,-ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, , ], -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,  , ] , -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab  ] -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,,],-50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , ,] ,-50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, , ], -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,  , ] , -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50]  -50",
+    "valid": true
+  },
+  {
+    "pattern": "[50],,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[50], , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,  , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50]  --50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],,--50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , ,--50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], , --50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,  , --50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab]  -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],,-ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , ,-ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], , -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,  , -ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab]  -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],,-50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , ,-50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], , -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,  , -50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50] -50  ",
+    "valid": false
+  },
+  {
+    "pattern": "[50],-50,,",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,-50 , ,",
+    "valid": false
+  },
+  {
+    "pattern": "[50], -50, , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , -50 ,  , ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] --50  ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],--50,,",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,--50 , ,",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], --50, , ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , --50 ,  , ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] -ab  ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],-ab,,",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,-ab , ,",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], -ab, , ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , -ab ,  , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] -50ab  ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],-50ab,,",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,-50ab , ,",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], -50ab, , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , -50ab ,  , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50]5050",
+    "valid": false
+  },
+  {
+    "pattern": "[-50]-50-50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab]abab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab]50ab50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50] 5050",
+    "valid": true
+  },
+  {
+    "pattern": "[50],5050",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,5050",
+    "valid": false
+  },
+  {
+    "pattern": "[50], 5050",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , 5050",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] -50-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],-50-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,-50-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], -50-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , -50-50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] abab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],abab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,abab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], abab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , abab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] 50ab50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],50ab50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,50ab50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], 50ab50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , 50ab50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50] 50 50",
+    "valid": true
+  },
+  {
+    "pattern": "[50],50,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,50 ,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50], 50, 50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , 50 , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] -50 -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],-50,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,-50 ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], -50, -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , -50 , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ab ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],ab,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,ab ,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], ab, ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , ab , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] 50ab 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],50ab,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,50ab ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], 50ab, 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , 50ab , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": " [50] 50 50",
+    "valid": false
+  },
+  {
+    "pattern": ",[50],50,50",
+    "valid": false
+  },
+  {
+    "pattern": " ,[50] ,50 ,50",
+    "valid": false
+  },
+  {
+    "pattern": ", [50], 50, 50",
+    "valid": false
+  },
+  {
+    "pattern": " , [50] , 50 , 50",
+    "valid": false
+  },
+  {
+    "pattern": " [-50] -50 -50",
+    "valid": false
+  },
+  {
+    "pattern": ",[-50],-50,-50",
+    "valid": false
+  },
+  {
+    "pattern": " ,[-50] ,-50 ,-50",
+    "valid": false
+  },
+  {
+    "pattern": ", [-50], -50, -50",
+    "valid": false
+  },
+  {
+    "pattern": " , [-50] , -50 , -50",
+    "valid": false
+  },
+  {
+    "pattern": " [ab] ab ab",
+    "valid": false
+  },
+  {
+    "pattern": ",[ab],ab,ab",
+    "valid": false
+  },
+  {
+    "pattern": " ,[ab] ,ab ,ab",
+    "valid": false
+  },
+  {
+    "pattern": ", [ab], ab, ab",
+    "valid": false
+  },
+  {
+    "pattern": " , [ab] , ab , ab",
+    "valid": false
+  },
+  {
+    "pattern": " [50ab] 50ab 50ab",
+    "valid": false
+  },
+  {
+    "pattern": ",[50ab],50ab,50ab",
+    "valid": false
+  },
+  {
+    "pattern": " ,[50ab] ,50ab ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": ", [50ab], 50ab, 50ab",
+    "valid": false
+  },
+  {
+    "pattern": " , [50ab] , 50ab , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ] 50 50",
+    "valid": true
+  },
+  {
+    "pattern": "[50,],50,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ,] ,50 ,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50, ], 50, 50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 , ] , 50 , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ] -50 -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,],-50,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,] ,-50 ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, ], -50, -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , ] , -50 , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ] ab ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,],ab,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,] ,ab ,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, ], ab, ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ] , ab , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ] 50ab 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,],50ab,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,] ,50ab ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, ], 50ab, 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , ] , 50ab , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50  ] 50 50",
+    "valid": true
+  },
+  {
+    "pattern": "[50,,],50,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 , ,] ,50 ,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50, , ], 50, 50",
+    "valid": false
+  },
+  {
+    "pattern": "[50 ,  , ] , 50 , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50  ] -50 -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50,,],-50,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 , ,] ,-50 ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50, , ], -50, -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50 ,  , ] , -50 , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab  ] ab ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab,,],ab,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab , ,] ,ab ,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab, , ], ab, ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab ,  , ] , ab , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab  ] 50ab 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab,,],50ab,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab , ,] ,50ab ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab, , ], 50ab, 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab ,  , ] , 50ab , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50]  50 50",
+    "valid": true
+  },
+  {
+    "pattern": "[50],,50,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , ,50 ,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50], , 50, 50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,  , 50 , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50]  -50 -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],,-50,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , ,-50 ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], , -50, -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,  , -50 , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab]  ab ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],,ab,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , ,ab ,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], , ab, ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,  , ab , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab]  50ab 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],,50ab,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , ,50ab ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], , 50ab, 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,  , 50ab , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50] 50  50",
+    "valid": true
+  },
+  {
+    "pattern": "[50],50,,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,50 , ,50",
+    "valid": false
+  },
+  {
+    "pattern": "[50], 50, , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , 50 ,  , 50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] -50  -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],-50,,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,-50 , ,-50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], -50, , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , -50 ,  , -50",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ab  ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],ab,,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,ab , ,ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], ab, , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , ab ,  , ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] 50ab  50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],50ab,,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,50ab , ,50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], 50ab, , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , 50ab ,  , 50ab",
+    "valid": false
+  },
+  {
+    "pattern": "[50] 50 50 ",
+    "valid": false
+  },
+  {
+    "pattern": "[50],50,50,",
+    "valid": false
+  },
+  {
+    "pattern": "[50] ,50 ,50 ,",
+    "valid": false
+  },
+  {
+    "pattern": "[50], 50, 50, ",
+    "valid": false
+  },
+  {
+    "pattern": "[50] , 50 , 50 , ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] -50 -50 ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50],-50,-50,",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] ,-50 ,-50 ,",
+    "valid": false
+  },
+  {
+    "pattern": "[-50], -50, -50, ",
+    "valid": false
+  },
+  {
+    "pattern": "[-50] , -50 , -50 , ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ab ab ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab],ab,ab,",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] ,ab ,ab ,",
+    "valid": false
+  },
+  {
+    "pattern": "[ab], ab, ab, ",
+    "valid": false
+  },
+  {
+    "pattern": "[ab] , ab , ab , ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] 50ab 50ab ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab],50ab,50ab,",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] ,50ab ,50ab ,",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab], 50ab, 50ab, ",
+    "valid": false
+  },
+  {
+    "pattern": "[50ab] , 50ab , 50ab , ",
+    "valid": false
+  }
+]
