@@ -882,119 +882,11 @@ An example of `haptic` block with two haptic object entries in an array. The fir
 </div>
 
 
-#### Announcement Behaviors #### {#announcements}
+#### Announcement Behaviors #### {#announcement_behaviors}
 
-Announcements (or "voicings") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text.
+Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text. An announcement is defined in an `announcement` block.
 
-WCAG defines two primary types of announcement: the <b>accessible name</b>; and the <b>accessible description</b>. This specification defines analogs to that convention as <b>announcement name</b> and <b>announcement description</b>, and adds two more types, <b>announcement details</b> and <b>announcement hints</b>.
-
-An `announcement` block is an object with the key `announcement`, which contains one or more key-value pairs including one or more of the keys `name`, `description`, `details`, and `hint` keys and their values.
-
-<table class="data">
-  <thead>
-    <tr>
-      <th>
-      key
-      </th>
-      <th>
-      value type
-      </th>
-      <th>
-      description
-      </th>
-      <th>
-      requirement
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>`name`</td>
-      <td>non-empty string</td>
-      <td>The announcement name of the graphic element</td>
-      <td>optional</td>
-    </tr>
-    <tr>
-      <td>`description`</td>
-      <td>non-empty string</td>
-      <td>The longer description of the graphic element</td>
-      <td>optional</td>
-    </tr>
-    <tr>
-      <td>`details`</td>
-      <td>non-empty string</td>
-      <td>The supplemental announcement based on interaction with the graphic element</td>
-      <td>optional</td>
-    </tr>
-    <tr>
-      <td>`hint`</td>
-      <td>non-empty string</td>
-      <td>The instructions for use of the graphic element</td>
-      <td>optional</td>
-    </tr>
-  </tbody>
-</table>
-
-<xmp highlight='json'>
-{
-  "announcement": {
-  }
-}
-</xmp>
-
-##### Announcement name ##### {##announcement_name}
-
-The <b>announcement name</b> is normally short, 1-3 words, and serves two primary purposes:
-
-1. To convey the purpose or intent of the element;
-2. To distinguish the element from other elements in the graphic.
-
-A document conforming to this specification must define an <b>announcement name</b> for all visual elements that convey meaning, unless that element is deliberately excluded (such as to remove redundancy or simplify a graphic).
-
-<xmp highlight='json'>
-{
-  "announcement": {
-    "name": "purpose of the element"
-  }
-}
-</xmp>
-
-##### Announcement description ##### {##announcement_description}
-
-The <b>announcement description</b> is a longer text passage that provides additional information for an element, such as visual or structural details, relationship to other elements, or annotations.
-
-<xmp highlight='json'>
-{
-  "announcement": {
-    "description": "additional information for an element"
-  }
-}
-</xmp>
-
-##### Announcement detail ##### {#announcement_detail}
-
-The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.
-
-<xmp highlight='json'>
-{
-  "announcement": {
-    "detail": "supplemental information for element interaction"
-  }
-}
-</xmp>
-
-##### Announcement hint ##### {##announcement_hint}
-
-The <b>announcement hint</b> is a text passage (ideally short) that provides instructions for interaction with the graphical element.
-
-
-<xmp highlight='json'>
-{
-  "announcement": {
-    "hint": "instruction for element interaction"
-  }
-}
-</xmp>
+Details on the syntax of an `announcement` block are defined in the <a href="#announcements">Announcements section</a>.
 
 
 
@@ -1266,6 +1158,124 @@ For each shape definition, a conforming implementation must instantiate a corres
 <div class="note">
 <b>Note:</b> Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.
 </div>
+
+
+
+# Announcements # {#announcements}
+
+Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text.
+
+WCAG defines two primary types of announcement: the <b>accessible name</b>; and the <b>accessible description</b>. This specification defines analogs to that convention as <b>announcement name</b> and <b>announcement description</b>, and adds two more types, <b>announcement details</b> and <b>announcement hints</b>.
+
+An `announcement` block is an object with the key `announcement`, which contains one or more key-value pairs including one or more of the keys `name`, `description`, `details`, and `hint` keys and their values.
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`name`</td>
+      <td>non-empty string</td>
+      <td>The announcement name of the graphic element</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`description`</td>
+      <td>non-empty string</td>
+      <td>The longer description of the graphic element</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`details`</td>
+      <td>non-empty string</td>
+      <td>The supplemental announcement based on interaction with the graphic element</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`hint`</td>
+      <td>non-empty string</td>
+      <td>The instructions for use of the graphic element</td>
+      <td>optional</td>
+    </tr>
+  </tbody>
+</table>
+
+<xmp highlight='json'>
+{
+  "announcement": {
+  }
+}
+</xmp>
+
+## Announcement name ## {##announcement_name}
+
+The <b>announcement name</b> is normally short, 1-3 words, and serves two primary purposes:
+
+1. To convey the purpose or intent of the element;
+2. To distinguish the element from other elements in the graphic.
+
+A document conforming to this specification must define an <b>announcement name</b> for all visual elements that convey meaning, unless that element is deliberately excluded (such as to remove redundancy or simplify a graphic).
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "name": "purpose of the element"
+  }
+}
+</xmp>
+
+## Announcement description ## {##announcement_description}
+
+The <b>announcement description</b> is a longer text passage that provides additional information for an element, such as visual or structural details, relationship to other elements, or annotations.
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "description": "additional information for an element"
+  }
+}
+</xmp>
+
+## Announcement detail ## {#announcement_detail}
+
+The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "detail": "supplemental information for element interaction"
+  }
+}
+</xmp>
+
+## Announcement hint ## {##announcement_hint}
+
+The <b>announcement hint</b> is a text passage (ideally short) that provides instructions for interaction with the graphical element.
+
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "hint": "instruction for element interaction"
+  }
+}
+</xmp>
+
+
 
 # Haptics # {#haptics_behavior}
 ## Haptic patterns ## {#haptic_patterns}
