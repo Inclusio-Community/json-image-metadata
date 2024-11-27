@@ -653,6 +653,8 @@ These `[selector-string]` keys must consist of a string of ASCII letters, digits
   </tbody>
 </table>
 
+> TODO: Maybe we could also add an option for a `class` key (with an array of strings as the value), so all selectors sets with a certain class can be addressed by target selectors?
+
 
 <div id='xmp_selector_syntax' class='example'>
 An example of a `selectors` block with three selector set object entries. 
@@ -676,7 +678,7 @@ The third selector set object selects an element with `id="datapoint-Sunday_2000
     },
     "dp5": {
       "dom": "#datapoint-Thursday_2000",
-      "json": "$.datasets[0].series[0].records[0].*",
+      "json": "$.datasets[0].series[0].records[4].*",
       "note": "x/y value for Thursday 2000"
     }
   }
@@ -728,7 +730,7 @@ An example of a `selector` block with one selector set object entry, and a `beha
   "selectors": {
     "dp5": {
       "dom": "#datapoint-Thursday_2000",
-      "json": "$.datasets[0].series[0].records[0].*"
+      "json": "$.datasets[0].series[0].records[4].*"
     }
   },
   "behaviors": [
@@ -1145,14 +1147,19 @@ The value of the optional `document` key may be any non-empty string that is mea
 
 A target is an area of an diagram image that is associated with a particular behavior.
 
-Targets may consist of one of two possible values:
+Targets may consist of one of three possible values:
 
 1. **An element link**: a selector indicating a specific element or set of elements in the DOM of a SVG file;
-2. **A** `shape` **object**: an object that defines a shape to be dynamically represented in the diagram file.
+2. **An JSONPath link**: a selector indicating a specific selector set in the JIM of a SVG file;
+3. **A** `shape` **object**: an object that defines a shape to be dynamically represented in the diagram file.
 
-## Target element `selector` ## {#target_element_selector}
+## Target `selector` key ## {#target_selector_key}
 
-A target may consist of a `selector` key with a valid selector pointing to one or more elements in the DOM of an SVG file. The target may be a textual element, a shape element, or a container element. If the selector target is a container element, the shape target is all targetable elements within that container, but not the bounding box of the container element itself.
+A target may consist of a `selector` key with a valid selector, either a DOM selector pointing to one or more elements in the DOM of an SVG file, or a JSONPath selector pointing to a selector set. 
+
+### Target `selector` for elements ### {#target_element_selector}
+
+An element target may be a textual element, a shape element, or a container element. If the selector target is a container element, the shape target is all targetable elements within that container, but not the bounding box of the container element itself.
 
 If the selector is not valid, or if the target element is not found, the `target` definition is ignored.
 
@@ -1192,7 +1199,39 @@ A target selector targeting all elements in the container element `graph_area`.
 </xmp>
 </div>
 
-## Target shape ## {#target_shape}
+
+### Target `selector` for selector sets ### {#target_selector_set_selector}
+
+An selector set target may be a JSONPath selector pointing to a selector set, or an array of such JSONPath selectors.
+
+> TODO: Expand on this.
+
+
+<div id='xmp_selector_set_selector' class='example'>
+An example of a `target` block with a `selector` key which has a JSONPath selector addressing a labeled selector set.
+
+<xmp highlight='json'>
+{
+  "selectors": {
+    "dp5": {
+      "dom": "#datapoint-Thursday_2000",
+      "json": "$.datasets[0].series[0].records[4].*"
+    }
+  },
+  "behaviors": [
+    {
+      "target": {
+        "selector": "$.selectors.dp5"
+      }
+    }
+  ]
+}
+</xmp>
+</div>
+
+
+
+### Target shape ### {#target_shape}
 
 A shape definition consists of an SVG shape element tag name, with an object of keys representing the required attributes. The definitive list of shapes is defined by the SVG 2.0 [[SVG2]] specification. All SVG shape elements are valid.
 
