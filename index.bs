@@ -42,85 +42,7 @@ T: */
 </pre>
 -->
 
-# Goals # {#goals} 
 
-## Interoperability ## {#interoperability}
-
-This specification should be complete and definitive with the state of the art, to prevent the need for additional or competing specifications that would decrease interoperability.
-
-## Personalization ## {#personalization}
-
-This assistive technology must enable the user to select which of the available accommodations are enabled at any time, and at which available effect level. This must be able to set as a default in the user agent, and must be overrideable by the user to meet their specific need at any time.
-
-Any given end-user might have multiple disabilities, with varying degrees of effect at any given time; any given document might have multiple accommodations enabled and encoded in it; any given user agent might suport multiple assistive technologies; any given environment might have different affordances and constraints.
-
-<div id='xmp_low_vision_high_contrast' class='example'>
-A low vision user might wish to enable very high contrast in a bright environment or when they are tired, and lower contrast when they are in a more moderately lighted environment and well-rested.
-</div>
-
-<div id='xmp_blind_env_conditions' class='example'>
-A blind user might wish to enable haptics and braille output when they are in a quiet zone or noisy environment, and sonification and spoken output when they are in a private, quiet environment.
-</div>
-
-## Security ## {#security}
-
-The distribution of interactive content presents a conflict between innovative capabilities and user security. In the web platform, most advanced interactivity can only be achieved through JavaScript, but allowing JavaScript in a file opens the user's system up to possible security holes.
-
-This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as conent management systems or email servers) might strip out the `script` element, disabling the interactivity of the content.
-
-By defining a set of declarative syntaxes for different assistive technologies, including parameters and conditional execution triggers, this specification enables the user agent to provide the interactivity defined by the author, without compromising security. This specification refers to such declarative capabilities as "behaviors".
-
-## Privacy ## {#privacy}
-
-By enabling security through declarative behaviors, this specification ensures the privacy of the user from third parties. Note that data collection might still be performed through some primary user agents and content providers, but this should be done only with the user's consent.
-
-## Portability ## {#portability}
-
-Data visualizations can often lose their association with their context, including the article they were published in or the data they represent. This specification must define a way to include the raw data and the provenance in the image file, so the context can be preserved as the document is shared through various means.
-
-## Reuseability ## {#reuseability}
-
-This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, creaste different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.
-
-In addition, a visual image can be enhanced with different metadata to serve a different purpose, such as providing a different set of descriptions for an audience at different reading levels, or translating the document into another language.
-
-## Familiarity ## {#familiarity}
-
-Document technologies are most useful when the syntax and model is familiar and unambiguous. This allows for ease of implementation, increased interoperability, and ease of authoring. This specification should use common technologies like JSON and CSS as its underpinnings.
-
-## Flexibility ## {#flexibility}
-
-This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accomodate other techniques in the future.
-
-At the same time, this specification should establish defaults and baselines based on best practices, wherever possible, to encourage good authoring and normalize user experience.
-
-## Searching and categorization ## {#searching_categorization}
-
-This specification must define easy ways to enable the distribution and discovery of content based on user needs and accommodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.
-
-## Provenance expression ## {#provenance_expression}
-
-Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more content by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be shared, while also providing credit to the original author or publisher.
-
-## Encapsulation ## {#encapsulation}
-
-Through encapsulation, more than one metadata profile can be included for any given image document, much like a stylesheet can change the appearance of the same HMTL file. This specification should not require any changes to the markup of SVG or other files, with 2 exceptions:
-
-1. The inclusion of a `metadata` element and its contents.
-2. The encouragement of the use of `id` attributes on key elements. This is not necessary, since selector syntax can target any point in a DOM tree, but the inclusion of `id`s makes creating and maintaining the markup easier.
-
-## Non-goals ## {#nongoals}
-### Formal semantics and namespaces ### {#formal_semantics_namespaces}
-
-While namespaces allow a flexible extensibility and modularity, they also hamper and complicate authoring and reading. This document will avoid the use of namespaces, and related technologies such as JSON-LD. Future supplements to this specification might define a JSON-LD schema, if demand exists for it.
-
-### Generic styling ### {#generic_styling}
-
-While this specification does include some accessibility-specific extensions of CSS, such as a finer control of color contrast settings, it must not define or be used to supercede CSS.
-
-### ARIA Syntax for Data Visualization ### {#aria_syntax}
-
-This specification is complementary and orthogonal to the W3C specifications defining `role` attributes, including the [WAI-ARIA Graphics Module](https://www.w3.org/TR/graphics-aria-1.0/) and the [SVG Accessibility API Mappings](https://www.w3.org/TR/svg-aam-1.0/).
 
 # JIM Conformance # {#jim_conformance}
 
@@ -1661,6 +1583,92 @@ If a rule in a document's metadata conflicts with a hard-coded CSS rule, the CSS
 ### Future adoption and integration into CSS ### {#future_css}
 
 This specification defines some of its functionality in a way that could be integrated into future versions of CSS. Among other examples, the features that involve timing, such as haptics or sonification, are modeled after the animation syntax in CSS.
+
+
+
+# Specification Goals # {#goals}
+
+The goals of this specification are varied. We also define non-goals, things this specification deliberately avoids doing.
+
+## Interoperability ## {#interoperability}
+
+This specification should be complete and definitive with the state of the art, to prevent the need for additional or competing specifications that would decrease interoperability.
+
+## Personalization ## {#personalization}
+
+This assistive technology must enable the user to select which of the available accommodations are enabled at any time, and at which available effect level. This must be able to set as a default in the user agent, and must be overrideable by the user to meet their specific need at any time.
+
+Any given end-user might have multiple disabilities, with varying degrees of effect at any given time; any given document might have multiple accommodations enabled and encoded in it; any given user agent might suport multiple assistive technologies; any given environment might have different affordances and constraints.
+
+<div id='xmp_low_vision_high_contrast' class='example'>
+A low vision user might wish to enable very high contrast in a bright environment or when they are tired, and lower contrast when they are in a more moderately lighted environment and well-rested.
+</div>
+
+<div id='xmp_blind_env_conditions' class='example'>
+A blind user might wish to enable haptics and braille output when they are in a quiet zone or noisy environment, and sonification and spoken output when they are in a private, quiet environment.
+</div>
+
+## Security ## {#security}
+
+The distribution of interactive content presents a conflict between innovative capabilities and user security. In the web platform, most advanced interactivity can only be achieved through JavaScript, but allowing JavaScript in a file opens the user's system up to possible security holes.
+
+This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as conent management systems or email servers) might strip out the `script` element, disabling the interactivity of the content.
+
+By defining a set of declarative syntaxes for different assistive technologies, including parameters and conditional execution triggers, this specification enables the user agent to provide the interactivity defined by the author, without compromising security. This specification refers to such declarative capabilities as "behaviors".
+
+## Privacy ## {#privacy}
+
+By enabling security through declarative behaviors, this specification ensures the privacy of the user from third parties. Note that data collection might still be performed through some primary user agents and content providers, but this should be done only with the user's consent.
+
+## Portability ## {#portability}
+
+Data visualizations can often lose their association with their context, including the article they were published in or the data they represent. This specification must define a way to include the raw data and the provenance in the image file, so the context can be preserved as the document is shared through various means.
+
+## Reuseability ## {#reuseability}
+
+This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, creaste different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.
+
+In addition, a visual image can be enhanced with different metadata to serve a different purpose, such as providing a different set of descriptions for an audience at different reading levels, or translating the document into another language.
+
+## Familiarity ## {#familiarity}
+
+Document technologies are most useful when the syntax and model is familiar and unambiguous. This allows for ease of implementation, increased interoperability, and ease of authoring. This specification should use common technologies like JSON and CSS as its underpinnings.
+
+## Flexibility ## {#flexibility}
+
+This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accomodate other techniques in the future.
+
+At the same time, this specification should establish defaults and baselines based on best practices, wherever possible, to encourage good authoring and normalize user experience.
+
+## Searching and categorization ## {#searching_categorization}
+
+This specification must define easy ways to enable the distribution and discovery of content based on user needs and accommodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.
+
+## Provenance expression ## {#provenance_expression}
+
+Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more content by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be shared, while also providing credit to the original author or publisher.
+
+## Encapsulation ## {#encapsulation}
+
+Through encapsulation, more than one metadata profile can be included for any given image document, much like a stylesheet can change the appearance of the same HMTL file. This specification should not require any changes to the markup of SVG or other files, with 2 exceptions:
+
+1. The inclusion of a `metadata` element and its contents.
+2. The encouragement of the use of `id` attributes on key elements. This is not necessary, since selector syntax can target any point in a DOM tree, but the inclusion of `id`s makes creating and maintaining the markup easier.
+
+## Non-goals ## {#nongoals}
+### Formal semantics and namespaces ### {#formal_semantics_namespaces}
+
+While namespaces allow a flexible extensibility and modularity, they also hamper and complicate authoring and reading. This document will avoid the use of namespaces, and related technologies such as JSON-LD. Future supplements to this specification might define a JSON-LD schema, if demand exists for it.
+
+### Generic styling ### {#generic_styling}
+
+While this specification does include some accessibility-specific extensions of CSS, such as a finer control of color contrast settings, it must not define or be used to supercede CSS.
+
+### ARIA Syntax for Data Visualization ### {#aria_syntax}
+
+This specification is complementary and orthogonal to the W3C specifications defining `role` attributes, including the [WAI-ARIA Graphics Module](https://www.w3.org/TR/graphics-aria-1.0/) and the [SVG Accessibility API Mappings](https://www.w3.org/TR/svg-aam-1.0/).
+
+
 
 
 # Definitions # {#definitions}
