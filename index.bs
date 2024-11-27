@@ -608,9 +608,147 @@ JSONPath [[JSONPath]] enables the matching of JSON keys or values in the JSON me
 
 The `selectors` block is an object containing sets of selectors.  
 
-The `selectors` object contains one or more `[selector-string]` keys. A `[selector-string]` key may be any value allowed by the schema for the representation type, and will normally represent a human-readable identifier for the selector set (e.g. `"title"`, `"bar-3"`, or `"axis_labels"`). Each `[selector-string]` is the key to an object which defines the DOM selectors, JSONPath selectors, and descriptor for selector set.
+The `selectors` object contains one or more `[selector-string]` keys. A `[selector-string]` key may be any value allowed by the schema for the representation type, and will normally represent a human-readable identifier for the selector set (e.g. `"title"`, `"bar-3"`, or `"axis_labels"`). Each `[selector-string]` is the key to an object which defines the DOM selectors, JSONPath selectors, and optional descriptor for the selector set.
 
-The JSONPath for any given `[selector-string]` key can be used as the value of a behavior target selector.
+These `[selector-string]` keys must consist of a string of ASCII letters, digits, and '_', with no whitespace. Each `[selector-string]` key must be a unique value.
+
+#### The `[selector-string]` key #### {#selectorstring_data_block}
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`dom`</td>
+      <td>A string of a valid CSS selector, or an array of strings of a valid CSS selectors</td>
+      <td>The DOM selector (i.e. CSS selector) or selectors indicating a DOM element or set of elements that is the representation of a component of a JIM dataset.</td>
+      <td>required</td>
+    </tr>
+    <tr>
+      <td>`json`</td>
+      <td>A string of a valid JSONPath selector, or an array of strings of a valid JSONPath selectors</td>
+      <td>The JSONPath selector or selectors indicating a JIM key or set of JIM keys that is basis for the DOM representation.</td>
+      <td>required</td>
+    </tr>
+    <tr>
+      <td>`note`</td>
+      <td>non-empty string</td>
+      <td>A human-readable description of what the selector set represents. This is informational only.</td>
+      <td>optional</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div id='xmp_selector_syntax' class='example'>
+An example of a `selectors` block with three selector set object entries. 
+
+The first selector set object selects an element with the `id="chart-title"` as the target element, and associates that with the object key for the title of the first dataset in the JSON.
+
+The second selector set object selects an element with a complex DOM selector for an element without an `id` attribute as the target element, and associates that with the object key for a label of a record in the dataset of the JSON.
+
+The third selector set object selects an element with `id="datapoint-Sunday_2000"` as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard. 
+
+<xmp highlight='json'>
+{
+  "selectors": {
+    "title": {
+      "dom": "#chart-title",
+      "json": "$.datasets[0].title"
+    },
+    "xLabel3": {
+      "dom": "#x-axis g:nth-child(3) text",
+      "json": "$.datasets[0].series[0].records[2].x"
+    },
+    "dp5": {
+      "dom": "#datapoint-Thursday_2000",
+      "json": "$.datasets[0].series[0].records[0].*",
+      "note": "x/y value for Thursday 2000"
+    }
+  }
+}
+</xmp>
+</div>
+
+<div id='xmp_selector_alternate_syntax' class='example'>
+An example of a `selectors` block with two selector set object entries with alternate syntaxes for the same kind of connection. 
+
+The first selector set object selects an element with the `id="datapoint-Sunday_2000"` as the target element, and associates that with the object key for the `x` and `y` values of a record in the dataset of the JSON, using an array of JSONPath selectors. 
+
+The second selector set object selects an element with `id="datapoint-Monday_2000"` as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.
+
+Assuming a record structure with only `x` and `y` keys, these selectors would yeild the same outcome, making the wildcard selector a shorthand for the array syntax.
+
+<xmp highlight='json'>
+{
+  "selectors": {
+    "dp0": {
+      "dom": "#datapoint-Sunday_2000",
+      "json": [
+        "$.datasets[0].series[0].records[0].x",
+        "$.datasets[0].series[0].records[0].y"
+      ]
+    },
+    "dp1": {
+      "dom": "#datapoint-Monday_2000",
+      "json": "$.datasets[0].series[0].records[1].*"
+    }
+  }
+}
+</xmp>
+</div>
+
+> TODO: provide examples of one-to-many,  many-to-one, and  many-to-many selector sets.
+
+
+#### `[selector-string]` as target selector #### {#selectorstring_target_selector}
+
+The JSONPath for any given `[selector-string]` key can be used as the value of a behavior [target selector](#targets).
+
+
+<div id='xmp_selector_behavior' class='example'>
+An example of a `selector` block with one selector set object entry, and a `behaviors` block with an entry referencing that selector set by its JSONPath.
+
+<xmp highlight='json'>
+{
+  "selectors": {
+    "dp5": {
+      "dom": "#datapoint-Thursday_2000",
+      "json": "$.datasets[0].series[0].records[0].*"
+    }
+  },
+  "behaviors": [
+    {
+      "target": {
+        "selector": "$.selectors.dp5"
+      },
+      "enter": {
+        {
+          "haptic": {
+            "durations": [ 50, 100, 150 ]
+          }
+        }
+      }
+    }
+  ]
+}
+</xmp>
+</div>
+
 
 
 ### Inline data ### {#inline_data}
@@ -637,18 +775,19 @@ Rarely, you might have a many-to-many relationship.
 
 On occassion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.
 
-#### The `selector` attribute #### {#selector_attribute}
-
-Typically, 
-
 > TODO: talk about label elements and their representation.
 
 > TODO: cover rounding and precision in visual labels vs raw data
 
+<!--
+#### The `selector` attribute #### {#selector_attribute}
+
+Typically, 
+
  or a line segment in a line chart
 
 Note:  We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data.
-
+-->
 
 ### External data reference ### {#external_data_ref}
 
@@ -775,7 +914,7 @@ Each instance of haptic feedback is associated with a `target` and event type, a
 The behavior must be triggered when the user moves a pointer over the target region, and must stop immediately when the user moves their pointer outside the target region.
 
 <div id='xmp_haptic_behavior' class='example'>
-An example of `haptic` block with two haptic object entries in an array. The first haptic object selects an element with the `id`=`bar_1` as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the target is first triggered. 
+An example of a `haptic` block with two haptic object entries in an array. The first haptic object selects an element with the `id`=`bar_1` as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the target is first triggered. 
 
 <xmp highlight='json'>
 {
@@ -784,7 +923,7 @@ An example of `haptic` block with two haptic object entries in an array. The fir
       "target": {
         "selector": "#bar_1"
       },
-      `enter`: {
+      "enter": {
         {
           "haptic": {
             "durations": [ 50, 100, 150 ],
@@ -792,7 +931,7 @@ An example of `haptic` block with two haptic object entries in an array. The fir
           }
         }
       }
-    }
+    },
     {
       "target": {
         "shape": {
@@ -803,7 +942,7 @@ An example of `haptic` block with two haptic object entries in an array. The fir
           }
         }
       },
-      `enter`: {
+      "enter": {
         {
           "haptic": {
             "durations": [ 0, 150 ],
@@ -885,7 +1024,7 @@ Each item should be a quoted non-empty string separated by a comma.
 
 ## Tags ## {#tags}
 
-Tags are a way to categorize the file, either by the the content, by the capabilities, or by a rating system, or some combination thereof.
+Tags are a way to categorize the file, either by the content, by the capabilities, or by a rating system, or some combination thereof.
 
 Tags are used to aid in the filtering and searching for content.
 
