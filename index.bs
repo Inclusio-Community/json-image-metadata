@@ -3,7 +3,7 @@ Title: JSON Image Metadata
 Shortname: jim
 Level: 1
 Status: fido/ED
-!Semantic Version: 0.3.0
+!Semantic Version: 0.3.1
 Group: Inclusio Project
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
@@ -15,8 +15,7 @@ Complain About: accidental-2119 yes, missing-example-ids yes
 Markup Shorthands: markdown yes, css no
 </pre>
 
-Introduction {#intro}
-=====================
+# Introduction # {#intro}
 
 This specification defines a structured metadata schema for image documents to express information, data, and behaviors related to the visual image, with a particular emphasis on accessibility. The metadata includes raw data, provenance information, and predefined behaviors for assistive technology techniques, such as haptics, sonification, tactiles, high contrast, voicing, braille, and more.
 
@@ -43,8 +42,7 @@ T: */
 </pre>
 -->
 
-Goals {#goals} 
-=====================
+# Goals # {#goals} 
 
 ## Interoperability ## {#interoperability}
 
@@ -124,7 +122,7 @@ While this specification does include some accessibility-specific extensions of 
 
 This specification is complementary and orthogonal to the W3C specifications defining `role` attributes, including the [WAI-ARIA Graphics Module](https://www.w3.org/TR/graphics-aria-1.0/) and the [SVG Accessibility API Mappings](https://www.w3.org/TR/svg-aam-1.0/).
 
-# Conforming documents and implementations # {#conform_doc_imp}
+# JIM Conformance # {#jim_conformance}
 
 ## JIM MIME type ## {#mime_type}
 
@@ -172,8 +170,7 @@ A conforming implementation must provide a means for the end user to extract the
 A conforming implementation must resolve all selectors and execute all supported features of the `behaviors` block.
 
 
-Schema {#schema} 
-=====================
+# Schema # {#schema} 
 
 <div class='note'>
 Note that the examples below are notional, and intended for illustrative purposes. They are not a formal definition. The final definitions will be expressed in JSON Schema [[JSON-Schema]], and will include data types for each member.
@@ -718,16 +715,12 @@ Typically,
 
  or a line segment in a line chart
 
-<div class="note">
-<b>Note:</b> We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data.
-</div>
+Note:  We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data.
 
 
 ### External data reference ### {#external_data_ref}
 
-<div class="note">
-<b>Note:</b> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata.
-</div>
+Note: It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata.
 
 
 ## External files ## {#external_files}
@@ -817,13 +810,27 @@ Moving from one event state to another must cancel any currently active behavior
 
 ### Behavior types ### {#behavior_types}
 
-#### Audio Behaviors #### {#audio_behavior}
+#### Announcement Behaviors #### {#announcement_behaviors}
 
-Audio playback is the use of sound to provide feedback to the user as they interact with an image or object. The `audio` block is distinct from the related `sonification` block in that it plays back a static prerecorded audio file or earcon, while the `sonification` block dynamically generates the audio given the dataset and selected element.
+Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text. An announcement is defined in an `announcement` block.
 
-Details on the syntax of an `audio` block are defined in the <a href="#audio">`audio` section</a>.
+Details on the syntax of an `announcement` block are defined in the [Announcements section](#announcements).
 
-#### Haptic Behaviors #### {#haptics}
+
+#### Audio Behaviors #### {#audio_behaviors}
+
+Audio playback is the use of sound to provide feedback to the user as they interact with an image or object. 
+
+Note: The `audio` block is distinct from the related `sonification` block in that it plays back a static prerecorded audio file or earcon, while the `sonification` block dynamically generates the audio given the dataset and selected element.
+
+Details on the syntax of an `audio` block are defined in the [Audio section](#audio).
+
+
+#### Embossing Behaviors #### {#embossing_behaviors}
+
+
+
+#### Haptic Behaviors #### {#haptic_behaviors}
 
 Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.
 
@@ -831,7 +838,7 @@ Haptic feedback typically uses vibration patterns on a touch surface to provide 
 
 Haptic feedback may be accompanied or supplemented by auditory feedback.
 
-Each instance of haptic feedback is associated with a `region` and event type, and is composed of a `haptic_pattern`, and an optional `amplitude_pattern` block.
+Each instance of haptic feedback is associated with a `region` and event type, and is composed of a `haptic` block, with a `durations` key and optional `intensities`, `repetitionInterval`, and `repetitionIndex` keys.
 
 The behavior must be triggered when the user moves a pointer over the target region, and must stop immediately when the user moves their pointer outside the target region.
 
@@ -846,7 +853,12 @@ An example of `haptic` block with two haptic object entries in an array. The fir
         "selector": "#bar_1"
       },
       `enter`: {
-        "haptic_pattern": "[50, 100, 150] 250"
+        {
+          "haptic": {
+            "durations": [ 50, 100, 150 ],
+            "repetitionInterval": 250
+          }
+        }
       }
     }
     {
@@ -860,7 +872,12 @@ An example of `haptic` block with two haptic object entries in an array. The fir
         }
       },
       `enter`: {
-        "haptic_pattern": "[150] 250",
+        {
+          "haptic": {
+            "durations": [ 0, 150 ],
+            "repetitionInterval": 250
+          }
+        }
         "audio": {
           "href": "./assets/example.mp3",
           "repeat": "none"
@@ -873,136 +890,27 @@ An example of `haptic` block with two haptic object entries in an array. The fir
 </div>
 
 
-#### Sonification Behaviors #### {#sonification}
+#### Refreshable Pin Display Behaviors #### {#refreshable_pin_display_behaviors}
 
-#### Visual Contrast Behaviors #### {#contrast}
+> **TODO**: Cover refreshable braille displays and tactile tablets like the Graphiti, Dot pad, Monarch, and single-line braille displays. 
+
+
+#### Sonification Behaviors #### {#sonification_behaviors}
+
+Sonification is the audio playback of sounds to represent data. A sonification is defined in an `sonification` block.
+
+Details on the syntax of an `sonification` block are defined in the [Sonification section](#sonification).
+
+
+#### Tactile Behaviors #### {#tactile_behaviors}
+
+
+
+#### Visual Contrast Behaviors #### {#contrast_behaviors}
 
 <div class="todo">
 <b>TODO:</b> Reference and expand on CSS prefers-dark-mode media query.
 </div>
-
-
-#### Announcement Behaviors #### {#announcements}
-
-Announcements (or "voicings") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text.
-
-WCAG defines two primary types of announcement: the <b>accessible name</b>; and the <b>accessible description</b>. This specification defines analogs to that convention as <b>announcement name</b> and <b>announcement description</b>, and adds two more types, <b>announcement details</b> and <b>announcement hints</b>.
-
-An `announcement` block is an object with the key `announcement`, which contains one or more key-value pairs including one or more of the keys `name`, `description`, `details`, and `hint` keys and their values.
-
-<table class="data">
-  <thead>
-    <tr>
-      <th>
-      key
-      </th>
-      <th>
-      value type
-      </th>
-      <th>
-      description
-      </th>
-      <th>
-      requirement
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>`name`</td>
-      <td>non-empty string</td>
-      <td>The announcement name of the graphic element</td>
-      <td>optional</td>
-    </tr>
-    <tr>
-      <td>`description`</td>
-      <td>non-empty string</td>
-      <td>The longer description of the graphic element</td>
-      <td>optional</td>
-    </tr>
-    <tr>
-      <td>`details`</td>
-      <td>non-empty string</td>
-      <td>The supplemental announcement based on interaction with the graphic element</td>
-      <td>optional</td>
-    </tr>
-    <tr>
-      <td>`hint`</td>
-      <td>non-empty string</td>
-      <td>The instructions for use of the graphic element</td>
-      <td>optional</td>
-    </tr>
-  </tbody>
-</table>
-
-<xmp highlight='json'>
-{
-  "announcement": {
-  }
-}
-</xmp>
-
-##### Announcement name ##### {##announcement_name}
-
-The <b>announcement name</b> is normally short, 1-3 words, and serves two primary purposes:
-
-1. To convey the purpose or intent of the element;
-2. To distinguish the element from other elements in the graphic.
-
-A document conforming to this specification must define an <b>announcement name</b> for all visual elements that convey meaning, unless that element is deliberately excluded (such as to remove redundancy or simplify a graphic).
-
-<xmp highlight='json'>
-{
-  "announcement": {
-    "name": "purpose of the element"
-  }
-}
-</xmp>
-
-##### Announcement description ##### {##announcement_description}
-
-The <b>announcement description</b> is a longer text passage that provides additional information for an element, such as visual or structural details, relationship to other elements, or annotations.
-
-<xmp highlight='json'>
-{
-  "announcement": {
-    "description": "additional information for an element"
-  }
-}
-</xmp>
-
-##### Announcement detail ##### {#announcement_detail}
-
-The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.
-
-<xmp highlight='json'>
-{
-  "announcement": {
-    "detail": "supplemental information for element interaction"
-  }
-}
-</xmp>
-
-##### Announcement hint ##### {##announcement_hint}
-
-The <b>announcement hint</b> is a text passage (ideally short) that provides instructions for interaction with the graphical element.
-
-
-<xmp highlight='json'>
-{
-  "announcement": {
-    "hint": "instruction for element interaction"
-  }
-}
-</xmp>
-
-
-
-#### Tactile Behaviors #### {#tactile}
-
-##### Refreshable Display Behaviors ##### {#refreshable_displays}
-
-##### Embossing Behaviors ##### {#embossing}
 
 
 
@@ -1065,9 +973,7 @@ The `keywords` key denotes an array of user-defined non-empty strings. Examples 
 
 ### Capabilities and ratings ### {#capabilities_ratings}
 
-<div class="note">
-<b>Note:</b> This is a rough notion of how we might define
-</div>
+Note: This is a rough notion of how we might define capabilities
 
 The `capabilities` key denotes an object that includes which accommodations have been defined in the image document, and some system of rating that scores the effectiveness of that accommodation.
 
@@ -1103,13 +1009,9 @@ Each capability defines an array of capability instances, each of which consists
 }  
 </xmp>
 
-<div class="note">
-<b>Note:</b> Consider splitting out capabilities and ratings into separate entries.
-</div>
+Note: Consider splitting out capabilities and ratings into separate entries.
 
-<div class="note">
-<b>Note:</b> To be defined further.
-</div>
+Note: To be defined further.
 
 ## Version ## {#version}
 
@@ -1263,85 +1165,125 @@ A region describing an irregular area using the `path` definition and a rectangl
 
 For each shape definition, a conforming implementation must instantiate a corresponding shape matching the element type and attributes.
 
-<div class="note">
-<b>Note:</b> Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.
-</div>
-
-# Haptics # {#haptics_behavior}
-## Haptic patterns ## {#haptic_patterns}
-
-A haptic pattern, denoted by a `haptic_pattern` key, is a string consisting of 3 comma-or-space-separated parameters defining a sequence of vibration durations. The sequence of durations is an array of integers describing an alternating pattern of vibrations and pauses, starting with an initial pause before the first vibration starts.
-
-<pre class=simpledef>
-vibration duration array: The first parameter is an array, enclosed by square brackets (opening bracket `[` and closing bracket `]`) with a comma-or-space-separated list of integers. Each integer represents a time in milliseconds. The even integers in the list (starting with index `0`) must define the number of milliseconds without vibration, and the odd integers in the list must define the number of milliseconds with vibration.
-repetition interval: The second parameter is an integer representing a time in milliseconds before the vibration duration array begins repeating. If the value is `0` or a positive integer, the haptic pattern must repeat until the activating behavior is terminated (such as by the user moving their finger off the target region). If the value is a negative integer, or if the value is omitted, the haptic pattern must not repeat.
-repetition index: The third parameter is an integer indicating the index of the vibration duration array that is the starting duration for repetition, if any. If the value is `0` or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the `0` index. Repetition must only occur according to the value of the repetition interval.
-</pre>
+Note: Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.
 
 
-<div id='xmp_haptic_pattern_simple' class='example'>
-A simple haptic pattern that will trigger a single vibration lasting 200 milliseconds.
 
-<xmp highlight='json'>
-{
-  "haptic_pattern": "[0, 200]"
-}
-</xmp>
-</div>
+# Announcements # {#announcements}
 
-<div id='xmp_haptic_pattern_repeat' class='example'>
-A haptic pattern that will trigger a single vibration lasting 200 milliseconds, once every 500 milliseconds.
+Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text.
 
-<xmp highlight='json'>
-{
-  "haptic_pattern": "[0 200] 500"
-}
-</xmp>
-</div>
+WCAG defines two primary types of announcement: the <b>accessible name</b>; and the <b>accessible description</b>. This specification defines analogs to that convention as <b>announcement name</b> and <b>announcement description</b>, and adds two more types, <b>announcement details</b> and <b>announcement hints</b>.
 
-<div id='xmp_haptic_pattern_complex' class='example'>
-A complex haptic pattern that will trigger a sequence of vibrations 10 milliseconds after the event (e.g. a touch event), the first vibration lasting 50 milliseconds, followed by a pause of 100 milliseconds, followed by a second vibration that lasts 150 milliseconds, with the pattern repeating every 250 milliseconds starting at the second vibration index (the 50 millisecond vibration).
+An `announcement` block is an object with the key `announcement`, which contains one or more key-value pairs including one or more of the keys `name`, `description`, `details`, and `hint` keys and their values.
 
-<xmp highlight='json'>
-{
-  "haptic_pattern": "[10, 50, 100, 150] 250 1"
-}
-</xmp>
-</div>
-
-> **Note:** The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with an optional additional value for repetition of that pattern with a fixed interval between pattern instances, and an optional repetition index. 
-
-<!-- This specification does not currently add capabilities for defining intensity, target region, or other haptic qualities, due to limitations in the W3C Vibration API and device capabilities. -->
-
-## Amplitude patterns ## {#amplitude_patterns}
-
-A amplitude pattern, denoted by a `amplitude_pattern` key, is a string consisting of 1 parameter defining a sequence of vibration amplitudes that correspond to the `haptic_pattern` vibration duration array. The sequence of amplitudes is an array of integers describing an alternating pattern of vibration amplitudes and pauses, indexed to the same sequence as the `haptic_pattern` vibration duration array.
-
-If the platform or operating system does not support variable amplitudes, the `amplitude_pattern` key and value must be ignored.
-
-<pre class=simpledef>
-vibration duration array: This parameter is an array, enclosed by square brackets (opening bracket `[` and closing bracket `]`) with a comma-or-space-separated list of integers. Each integer represents an amplitude. The even integers in the list (starting with index `0`) define the pause between vibrations, and the odd integers in the list define the amplitude of the vibration.
-</pre>
-
-> **Note:** The vibration duration array is defined to mirror the vibration duration array, for ease of authoring. The values of "blank" (Even-numbered) indexes have no effect, and can be defined as `0` to avoid confusion. 
-
-
-<div id='xmp_haptic_amplitude_pattern' class='example'>
-An amplitude pattern and haptic pattern that will trigger a pair of vibrations lasting 200 milliseconds with a pause of 100 milliseconds between them, once every 500 milliseconds. The first vibration will have an amplitude of 30, and the second vibration will have an amplitude of 60.
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`name`</td>
+      <td>non-empty string</td>
+      <td>The announcement name of the graphic element</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`description`</td>
+      <td>non-empty string</td>
+      <td>The longer description of the graphic element</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`details`</td>
+      <td>non-empty string</td>
+      <td>The supplemental announcement based on interaction with the graphic element</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`hint`</td>
+      <td>non-empty string</td>
+      <td>The instructions for use of the graphic element</td>
+      <td>optional</td>
+    </tr>
+  </tbody>
+</table>
 
 <xmp highlight='json'>
 {
-  "haptic_pattern": "[0 200 100 200] 500 1",
-  "amplitude_pattern": "[0 30 0 60] 500 1"
+  "announcement": {
+  }
 }
 </xmp>
-</div>
 
-> **Note:** The W3C Vibration API does not currently define any capabilities for the amplitude of vibration, and will ignore the  `amplitude_pattern`. This specification includes the `amplitude_pattern` to support the Android Vibration API and the iOS Core Haptics API. 
+## Announcement name ## {##announcement_name}
 
-> TODO: include more details about amplitude patterns, including the units
+The <b>announcement name</b> is normally short, 1-3 words, and serves two primary purposes:
 
-> TODO: provide examples with the selector, to illustrate authoring
+1. To convey the purpose or intent of the element;
+2. To distinguish the element from other elements in the graphic.
+
+A document conforming to this specification must define an <b>announcement name</b> for all visual elements that convey meaning, unless that element is deliberately excluded (such as to remove redundancy or simplify a graphic).
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "name": "purpose of the element"
+  }
+}
+</xmp>
+
+## Announcement description ## {##announcement_description}
+
+The <b>announcement description</b> is a longer text passage that provides additional information for an element, such as visual or structural details, relationship to other elements, or annotations.
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "description": "additional information for an element"
+  }
+}
+</xmp>
+
+## Announcement detail ## {#announcement_detail}
+
+The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "detail": "supplemental information for element interaction"
+  }
+}
+</xmp>
+
+## Announcement hint ## {##announcement_hint}
+
+The <b>announcement hint</b> is a text passage (ideally short) that provides instructions for interaction with the graphical element.
+
+
+<xmp highlight='json'>
+{
+  "announcement": {
+    "hint": "instruction for element interaction"
+  }
+}
+</xmp>
+
+
 
 # Audio # {#audio}
 
@@ -1402,11 +1344,15 @@ Conforming user agents must support the following audio formats for audio playba
 
 An earcon is a brief, distinctive sound which represents a specific event or conveys other information. It is the audio equivalent of an icon. This specification defines a mechanism for playback of a pre-defined set of earcons that conforming user agents must support. An `earcon` consists of a unique name and an audio definition. A list of earcon definitions will be defined in a separate specification.
 
-## ADSR definitions ## {#adsr_definitions}
+## ADSR ## {#adsr}
+
+### ADSR definitions ### {#adsr_definitions}
+
+> TODO: provide more details here.
 
 See [ADSR envelopes](#adsr_envelopes) for more details.
 
-## ADSR envelopes ## {#adsr_envelopes}
+### ADSR envelopes ### {#adsr_envelopes}
 
 Timed media, such as haptic or sonification effects, are defined in this specification with the common Attack-Decay-Sustain-Release envelope.
 
@@ -1430,6 +1376,185 @@ Note: Consider using A-weighted decibels (dBA) instead of dB. The dB scale is ba
 Note: Consider whether or not to include pitch as an effect type. It might be easier for authoring if the author is a musician, but it can be looked up and expressed as frequency. But it's a nice-to-have.
 
 Any given rule can have multiple effect types. For example, a sonification could simultaneously change amplitude and frequency.
+
+
+
+
+# Haptics # {#haptics}
+
+Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.
+
+Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their pointer over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API [[vibration]]. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.
+
+Note: The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with options for an additional value for repetition of that pattern with a fixed interval between pattern instances, a repetition index, and a matching amplitude array. 
+
+<!-- This specification does not currently add capabilities for defining target region or other haptic qualities, due to limitations in the W3C Vibration API and device capabilities. -->
+
+A `haptics` block is an object with the key `haptics`, which contains one or more key-value pairs including one or more of the keys `durations`, `intensities`, `repetitionInterval`, and `repetitionIndex` keys and their values.
+
+## The `haptic` key ## {#haptic_block}
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`durations`</td>
+      <td>integer array</td>
+      <td>
+        An array of integers, each representing the duration of that segment in milliseconds.
+      
+        The even entries in the array (starting with index `0`) must define the number of milliseconds without vibration, and the odd entries in the array must define the number of milliseconds with vibration.
+      </td>
+      <td>required</td>
+    </tr>
+
+    <tr>
+      <td>`intensities`</td>
+      <td>number array</td>
+      <td>
+        An array of numbers, expressed as a percentage of the range 0 to 1, each representing the vibrational intensity of that segment, indexed to the same sequence as the `duration` array.
+      
+        The even entries in the array (starting with index `0`) correspond to the pauses between vibrations and be ignored. The odd entries in the array must define the amplitude of the vibration for the corresponding vibration duration in the `duration` array.
+      </td>
+      <td>optional</td>
+    </tr>
+
+    <tr>
+      <td>`repetitionInterval`</td>
+      <td>integer</td>
+      <td>The time in milliseconds before the `duration` array begins repeating. If the value is `0` or a positive integer, the haptic pattern must repeat until the activating behavior is terminated (such as by the user moving their finger off the target region). If the value is a negative integer, or if the value is omitted, the haptic pattern must not repeat.</td>
+      <td>optional</td>
+    </tr>
+
+    <tr>
+      <td>`repetitionIndex`</td>
+      <td>integer</td>
+      <td>The index of the `duration` array that is the starting duration for repetition, if any. If the value is `0` or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the `0` index. Repetition must only occur according to the value of the `repetitionInterval`.</td>
+      <td>optional</td>
+    </tr>
+  </tbody>
+</table>
+
+## Vibration patterns ## {#vibration_patterns}
+
+A haptic vibration pattern, denoted by a `durations` key of the `haptic` object, is an array of integers defining a sequence of vibration durations. The sequence of durations is an alternating pattern of vibrations and pauses, starting with an initial pause before the first vibration starts.
+
+
+
+## Intensity patterns ## {#intensity_patterns}
+
+The sequence of intensities is an array of numbers describing an alternating pattern of vibration intensities and pauses, indexed to the same sequence as the vibration `duration` array.
+
+The `intensities` key value array defines how strong the vibration is for each value in the `durations` array. The intensity is a value from 0 to 1. Any values outside the range 0.0 (no intensity) to 1.0 (highest intensity) will be clamped to this range.
+
+Each intensity value is a percentage of the maximum vibration amplitude of the device or the implementation. An implementation may define a range of amplitudes that is narrower than the device's capabilities.
+
+Note: Each device with vibration support has a different range of amplitudes. Thus, this specification does not define an amplitude with units, but rather a percentage of the device's maximum possible amplitude.
+
+Note: The W3C Vibration API does not currently define any capabilities for the amplitude of vibration, and will ignore the `amplitudes`. This specification includes the `amplitudes` key to support the Android Vibration API and the iOS Core Haptics API. 
+
+If the platform or operating system does not support variable intensities, the `intensities` key and value must be ignored.
+
+Note: The `intensities` array is defined to mirror the vibration `duration` array, for ease of authoring. The values of "blank" (even-numbered) indexes have no effect, and can be defined as `0` to avoid confusion. 
+
+## Haptic examples ## {#haptic_examples}
+
+<div id='xmp_haptic_duration_simple' class='example'>
+A simple haptic pattern that will trigger a single vibration lasting 200 milliseconds.
+
+<xmp highlight='json'>
+{
+  "haptic": {
+    "durations": [ 0, 200 ]
+  }
+}
+</xmp>
+</div>
+
+<div id='xmp_haptic_duration_repeat' class='example'>
+A haptic pattern that will trigger a single vibration lasting 200 milliseconds, once every 500 milliseconds.
+
+<xmp highlight='json'>
+{
+  "haptic": {
+    "durations": [ 0, 200 ],
+    "repetitionInterval": 500
+  }
+}
+</xmp>
+</div>
+
+<div id='xmp_haptic_duration_complex' class='example'>
+A complex haptic pattern that will trigger a sequence of vibrations 10 milliseconds after the event (e.g. a touch event), the first vibration lasting 50 milliseconds, followed by a pause of 100 milliseconds, followed by a second vibration that lasts 150 milliseconds, with the pattern repeating every 250 milliseconds starting at the second vibration index (the 50 millisecond vibration).
+
+<xmp highlight='json'>
+{
+  "haptic": {
+    "durations": [ 10, 50, 100, 150 ],
+    "repetitionInterval": 250,
+    "repetitionIndex": 1
+  }
+}
+</xmp>
+</div>
+
+
+<div id='xmp_haptic_intensity_pattern' class='example'>
+A set of duration and amplitude patterns that will trigger a pair of vibrations lasting 200 milliseconds with a pause of 100 milliseconds between them, once every 500 milliseconds. On supporting devices, the first vibration will have an intensity of 30%, and the second vibration will have an intensity of 60%.
+
+<xmp highlight='json'>
+{
+  "haptic": {
+    "durations": [ 0, 200, 100, 200 ],
+    "intensities": [ 0, 0.3, 0, 0.6 ],
+    "repetitionInterval": 500,
+    "repetitionIndex": 1
+  }
+}
+</xmp>
+</div>
+
+<div id='xmp_haptic_amplitude_two_tone_pattern' class='example'>
+A set of duration and amplitude patterns that simulate a set of rising and falling tones.
+
+For each pair of virbation durations, there is a pause of 0 milliseconds between them, but a change of intensity between the first and second vibration, making it feel like a single vibration that changes intensities.
+
+The first pair will collectively last for 400 milliseconds, doubling in intensity halfway through; after a pause of 350 milliseconds the 
+second pair will collectively last for 250 milliseconds, with the intensity dropping from full to one third after 150 milliseconds.
+
+<xmp highlight='json'>
+{
+  "haptic": {
+    "durations": [ 0, 200, 0, 200, 350, 150, 0, 100 ],
+    "intensities": [ 0, .5, 0, 1, 0, 1, 0, .3 ],
+  }
+}
+</xmp>
+</div>
+
+> TODO: provide examples with the selector, to illustrate authoring
+
+
+
+# Sonification # {#sonification}
+
+The `sonification` block dynamically generates audio feedback given the dataset, selected element, and optionally cursor position.
+
 
 
 # Selective Device Capabilities # {#select_device}
