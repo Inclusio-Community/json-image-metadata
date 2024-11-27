@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="480a66ee9efb91abc53547fb167fcdb5a71bce6e" name="revision">
+  <meta content="bb04c9ba85a6af21605e606e60cf5a2232251292" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-26">26 November 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-27">27 November 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2032,7 +2032,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 26 November 2024,
+In addition, as of 27 November 2024,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2111,17 +2111,18 @@ Parts of this work may be from another specification document.  If so, those par
       <li>
        <a href="#selectors"><span class="secno">3.2</span> <span class="content">Selectors</span></a>
        <ol class="toc">
+        <li><a href="#selectors_block"><span class="secno">3.2.1</span> <span class="content">The <code>selectors</code> block data</span></a>
         <li>
-         <a href="#inline_data"><span class="secno">3.2.1</span> <span class="content">Inline data</span></a>
+         <a href="#inline_data"><span class="secno">3.2.2</span> <span class="content">Inline data</span></a>
          <ol class="toc">
           <li>
-           <a href="#linking_data"><span class="secno">3.2.1.1</span> <span class="content">Linking data and representational elements</span></a>
+           <a href="#linking_data"><span class="secno">3.2.2.1</span> <span class="content">Linking data and representational elements</span></a>
            <ol class="toc">
-            <li><a href="#data_model_cardinality"><span class="secno">3.2.1.1.1</span> <span class="content">Data model cardinality</span></a>
+            <li><a href="#data_model_cardinality"><span class="secno">3.2.2.1.1</span> <span class="content">Data model cardinality</span></a>
            </ol>
-          <li><a href="#selector_attribute"><span class="secno">3.2.1.2</span> <span class="content">The <code>selector</code> attribute</span></a>
+          <li><a href="#selector_attribute"><span class="secno">3.2.2.2</span> <span class="content">The <code>selector</code> attribute</span></a>
          </ol>
-        <li><a href="#external_data_ref"><span class="secno">3.2.2</span> <span class="content">External data reference</span></a>
+        <li><a href="#external_data_ref"><span class="secno">3.2.3</span> <span class="content">External data reference</span></a>
        </ol>
       <li><a href="#external_files"><span class="secno">3.3</span> <span class="content">External files</span></a>
       <li>
@@ -2156,10 +2157,10 @@ Parts of this work may be from another specification document.  If so, those par
       <li><a href="#version"><span class="secno">3.7</span> <span class="content">Version</span></a>
      </ol>
     <li>
-     <a href="#regions"><span class="secno">4</span> <span class="content">Regions</span></a>
+     <a href="#targets"><span class="secno">4</span> <span class="content">Targets</span></a>
      <ol class="toc">
-      <li><a href="#region_element_selector"><span class="secno">4.1</span> <span class="content">Region element <code>selector</code></span></a>
-      <li><a href="#region_shape"><span class="secno">4.2</span> <span class="content">Region shape</span></a>
+      <li><a href="#target_element_selector"><span class="secno">4.1</span> <span class="content">Target element <code>selector</code></span></a>
+      <li><a href="#target_shape"><span class="secno">4.2</span> <span class="content">Target shape</span></a>
      </ol>
     <li>
      <a href="#announcements"><span class="secno">5</span> <span class="content">Announcements</span></a>
@@ -2293,8 +2294,8 @@ Parts of this work may be from another specification document.  If so, those par
 <pre class="highlight"><c- p>{</c->
   <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
   <c- p>],</c->
-  <c- f>"selectors"</c-><c- p>:</c-> <c- p>[</c->
-  <c- p>],</c->
+  <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
+  <c- p>},</c->
   <c- f>"behaviors"</c-><c- p>:</c-> <c- p>[</c->
   <c- p>],</c->
   <c- f>"provenance"</c-><c- p>:</c-> <c- p>{</c->
@@ -2636,12 +2637,16 @@ Parts of this work may be from another specification document.  If so, those par
    <blockquote>
     <p>TODO: include more details about linking</p>
    </blockquote>
-   <h4 class="heading settled" data-level="3.2.1" id="inline_data"><span class="secno">3.2.1. </span><span class="content">Inline data</span><a class="self-link" href="#inline_data"></a></h4>
+   <h4 class="heading settled" data-level="3.2.1" id="selectors_block"><span class="secno">3.2.1. </span><span class="content">The <code>selectors</code> block data</span><a class="self-link" href="#selectors_block"></a></h4>
+   <p>The <code>selectors</code> block is an object containing sets of selectors.</p>
+   <p>The <code>selectors</code> object contains one or more <code>[selector-string]</code> keys. A <code>[selector-string]</code> key may be any value allowed by the schema for the representation type, and will normally represent a human-readable identifier for the selector set (e.g. <code>"title"</code>, <code>"bar-3"</code>, or <code>"axis_labels"</code>). Each <code>[selector-string]</code> is the key to an object which defines the DOM selectors, JSONPath selectors, and descriptor for selector set.</p>
+   <p>The JSONPath for any given <code>[selector-string]</code> key can be used as the value of a behavior target selector.</p>
+   <h4 class="heading settled" data-level="3.2.2" id="inline_data"><span class="secno">3.2.2. </span><span class="content">Inline data</span><a class="self-link" href="#inline_data"></a></h4>
    <p>If a dataset is fairly small, it is best to include it in the image file directly.</p>
-   <h5 class="heading settled" data-level="3.2.1.1" id="linking_data"><span class="secno">3.2.1.1. </span><span class="content">Linking data and representational elements</span><a class="self-link" href="#linking_data"></a></h5>
+   <h5 class="heading settled" data-level="3.2.2.1" id="linking_data"><span class="secno">3.2.2.1. </span><span class="content">Linking data and representational elements</span><a class="self-link" href="#linking_data"></a></h5>
    <p>Each data point in the raw data <code>may</code> be represented visually in the image. There are multiple benefits in providing a mechanism to link a data point in the dataset to its representation, such as enabling users to drill down into the raw data value for a data element, or selecting a label in a different language than the graphical text label.</p>
    <p>This specification defines a <code>selector</code> attribute to enable this relationship between a graphical element and the data point it represents.</p>
-   <h6 class="heading settled" data-level="3.2.1.1.1" id="data_model_cardinality"><span class="secno">3.2.1.1.1. </span><span class="content">Data model cardinality</span><a class="self-link" href="#data_model_cardinality"></a></h6>
+   <h6 class="heading settled" data-level="3.2.2.1.1" id="data_model_cardinality"><span class="secno">3.2.2.1.1. </span><span class="content">Data model cardinality</span><a class="self-link" href="#data_model_cardinality"></a></h6>
    <p>The relationship between a graphical element and the data it represents might be complex.</p>
    <p>Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a bar in a bar chart, where the height of the bar signifies a specific numerical value.</p>
    <p>Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where , or a line chart where a , or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)</p>
@@ -2650,7 +2655,7 @@ Parts of this work may be from another specification document.  If so, those par
     <p>TODO: provide a many-to-many example.</p>
    </blockquote>
    <p>On occassion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.</p>
-   <h5 class="heading settled" data-level="3.2.1.2" id="selector_attribute"><span class="secno">3.2.1.2. </span><span class="content">The <code>selector</code> attribute</span><a class="self-link" href="#selector_attribute"></a></h5>
+   <h5 class="heading settled" data-level="3.2.2.2" id="selector_attribute"><span class="secno">3.2.2.2. </span><span class="content">The <code>selector</code> attribute</span><a class="self-link" href="#selector_attribute"></a></h5>
    <p>Typically,</p>
    <blockquote>
     <p>TODO: talk about label elements and their representation.</p>
@@ -2660,7 +2665,7 @@ Parts of this work may be from another specification document.  If so, those par
    </blockquote>
    <p>or a line segment in a line chart</p>
    <p class="note" role="note"><span class="marker">Note:</span> We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data.</p>
-   <h4 class="heading settled" data-level="3.2.2" id="external_data_ref"><span class="secno">3.2.2. </span><span class="content">External data reference</span><a class="self-link" href="#external_data_ref"></a></h4>
+   <h4 class="heading settled" data-level="3.2.3" id="external_data_ref"><span class="secno">3.2.3. </span><span class="content">External data reference</span><a class="self-link" href="#external_data_ref"></a></h4>
    <p class="note" role="note"><span class="marker">Note:</span> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata.</p>
    <h3 class="heading settled" data-level="3.3" id="external_files"><span class="secno">3.3. </span><span class="content">External files</span><a class="self-link" href="#external_files"></a></h3>
    <p>A metadata object can be inline in the file, or referenced as an external file, in whole or in part. There are several reasons to support external metadata files. Two major use cases include size restrictions and shared resources.</p>
@@ -2687,7 +2692,7 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    <h3 class="heading settled" data-level="3.4" id="behaviors"><span class="secno">3.4. </span><span class="content">Behaviors</span><a class="self-link" href="#behaviors"></a></h3>
-   <p>A <code>behaviors</code> block is an array with the key <code>behaviors</code>, which contains one or more objects including at least a target (defined by the <code>region</code> key), and an event type containing one or more of the behaviors, including <code>haptic</code>, <code>audio</code>, <code>sonification</code>, <code>announcement</code>, <code>contrast</code>, and <code>tactile</code>.</p>
+   <p>A <code>behaviors</code> block is an array with the key <code>behaviors</code>, which contains one or more objects including at least a target (defined by the <code>target</code> key), and an event type containing one or more of the behaviors, including <code>haptic</code>, <code>audio</code>, <code>sonification</code>, <code>announcement</code>, <code>contrast</code>, and <code>tactile</code>.</p>
    <h4 class="heading settled" data-level="3.4.1" id="behavior_generators"><span class="secno">3.4.1. </span><span class="content">Behavior and conforming generators</span><a class="self-link" href="#behavior_generators"></a></h4>
    <p>A generator conforming to this specification is not required to add behaviors to graphics, only a dataset and selectors.</p>
    <p class="note" role="note"><span class="marker">Note:</span> While this specification does not define best practices for different behaviors for different classes of user agent and graphics, a companion best practices document is under development. A conforming generator might be much more useful if it also follows that guidance and generates graphic documents with behaviors optimized for the target user agent capabilities.</p>
@@ -2726,14 +2731,14 @@ Parts of this work may be from another specification document.  If so, those par
    <p>Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.</p>
    <p>Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their pointer over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API <a data-link-type="biblio" href="#biblio-vibration" title="Vibration API (Second Edition)">[vibration]</a>. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.</p>
    <p>Haptic feedback may be accompanied or supplemented by auditory feedback.</p>
-   <p>Each instance of haptic feedback is associated with a <code>region</code> and event type, and is composed of a <code>haptic</code> block, with a <code>durations</code> key and optional <code>intensities</code>, <code>repeatInterval</code>, and <code>repeatIndex</code> keys.</p>
+   <p>Each instance of haptic feedback is associated with a <code>target</code> and event type, and is composed of a <code>haptic</code> block, with a <code>durations</code> key and optional <code>intensities</code>, <code>repeatInterval</code>, and <code>repeatIndex</code> keys.</p>
    <p>The behavior must be triggered when the user moves a pointer over the target region, and must stop immediately when the user moves their pointer outside the target region.</p>
    <div class="example" id="xmp_haptic_behavior">
-    <a class="self-link" href="#xmp_haptic_behavior"></a> An example of <code>haptic</code> block with two haptic object entries in an array. The first haptic object selects an element with the <code>id</code>=<code>bar_1</code> as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the region is first triggered. 
+    <a class="self-link" href="#xmp_haptic_behavior"></a> An example of <code>haptic</code> block with two haptic object entries in an array. The first haptic object selects an element with the <code>id</code>=<code>bar_1</code> as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the target is first triggered. 
 <pre class="highlight"><c- p>{</c->
   <c- f>"behaviors"</c-><c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
-      <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
         <c- f>"selector"</c-><c- p>:</c-> <c- u>"#bar_1"</c->
       <c- p>},</c->
       `e<c- kc>nter</c->`<c- p>:</c-> <c- p>{</c->
@@ -2746,7 +2751,7 @@ Parts of this work may be from another specification document.  If so, those par
       <c- p>}</c->
     <c- p>}</c->
     <c- p>{</c->
-      <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
         <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
           <c- f>"circle"</c-><c- p>:</c-> <c- p>{</c->
             <c- f>"cx"</c-><c- p>:</c-> <c- mi>100</c-><c- p>,</c->
@@ -2773,6 +2778,7 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    </div>
    <h5 class="heading settled" data-level="3.4.3.5" id="refreshable_pin_display_behaviors"><span class="secno">3.4.3.5. </span><span class="content">Refreshable Pin Display Behaviors</span><a class="self-link" href="#refreshable_pin_display_behaviors"></a></h5>
+   <p class="note" role="note"><span class="marker">Note:</span> Depending on the refresh rate of the refreshable pin display, the haptic pattern might be applicable and useful here.</p>
    <blockquote>
     <p><strong>TODO</strong>: Cover refreshable braille displays and tactile tablets like the Graphiti, Dot pad, Monarch, and single-line braille displays.</p>
    </blockquote>
@@ -2887,52 +2893,52 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h2 class="heading settled" data-level="4" id="regions"><span class="secno">4. </span><span class="content">Regions</span><a class="self-link" href="#regions"></a></h2>
-   <p>A region is an area of an diagram image that is associated with a particular behavior.</p>
-   <p>Regions may consist of one of two possible values:</p>
+   <h2 class="heading settled" data-level="4" id="targets"><span class="secno">4. </span><span class="content">Targets</span><a class="self-link" href="#targets"></a></h2>
+   <p>A target is an area of an diagram image that is associated with a particular behavior.</p>
+   <p>Targets may consist of one of two possible values:</p>
    <ol>
     <li data-md>
      <p><strong>An element link</strong>: a selector indicating a specific element or set of elements in the DOM of a SVG file;</p>
     <li data-md>
      <p><strong>A</strong> <code>shape</code> <strong>object</strong>: an object that defines a shape to be dynamically represented in the diagram file.</p>
    </ol>
-   <h3 class="heading settled" data-level="4.1" id="region_element_selector"><span class="secno">4.1. </span><span class="content">Region element <code>selector</code></span><a class="self-link" href="#region_element_selector"></a></h3>
-   <p>A region may consist of a <code>selector</code> key with a valid selector pointing to one or more elements in the DOM of an SVG file. The target may be a textual element, a shape element, or a container element. If the selector target is a container element, the shape region is all targetable elements within that container, but not the bounding box of the container element itself.</p>
-   <p>If the selector is not valid, or if the target element is not found, the <code>region</code> definition is ignored.</p>
-   <div class="example" id="xmp_region_selector_single">
-    <a class="self-link" href="#xmp_region_selector_single"></a> A region selector targeting a single shape element. 
+   <h3 class="heading settled" data-level="4.1" id="target_element_selector"><span class="secno">4.1. </span><span class="content">Target element <code>selector</code></span><a class="self-link" href="#target_element_selector"></a></h3>
+   <p>A target may consist of a <code>selector</code> key with a valid selector pointing to one or more elements in the DOM of an SVG file. The target may be a textual element, a shape element, or a container element. If the selector target is a container element, the shape target is all targetable elements within that container, but not the bounding box of the container element itself.</p>
+   <p>If the selector is not valid, or if the target element is not found, the <code>target</code> definition is ignored.</p>
+   <div class="example" id="xmp_target_selector_single">
+    <a class="self-link" href="#xmp_target_selector_single"></a> A target selector targeting a single shape element. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+  <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"selector"</c-><c- p>:</c-> <c- u>"#bar_1"</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
    </div>
-   <div class="example" id="xmp_region_selector_class">
-    <a class="self-link" href="#xmp_region_selector_class"></a> A region selector targeting all elements with the class <code>line</code> in the container element <code>graph_area</code>. 
+   <div class="example" id="xmp_target_selector_class">
+    <a class="self-link" href="#xmp_target_selector_class"></a> A target selector targeting all elements with the class <code>line</code> in the container element <code>graph_area</code>. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+  <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"selector"</c-><c- p>:</c-> <c- u>"#graph_area .line"</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
    </div>
-   <div class="example" id="xmp_region_selector_container">
-    <a class="self-link" href="#xmp_region_selector_container"></a> A region selector targeting all elements in the container element <code>graph_area</code>. 
+   <div class="example" id="xmp_target_selector_container">
+    <a class="self-link" href="#xmp_target_selector_container"></a> A target selector targeting all elements in the container element <code>graph_area</code>. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+  <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"selector"</c-><c- p>:</c-> <c- u>"#graph_area"</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
    </div>
-   <h3 class="heading settled" data-level="4.2" id="region_shape"><span class="secno">4.2. </span><span class="content">Region shape</span><a class="self-link" href="#region_shape"></a></h3>
+   <h3 class="heading settled" data-level="4.2" id="target_shape"><span class="secno">4.2. </span><span class="content">Target shape</span><a class="self-link" href="#target_shape"></a></h3>
    <p>A shape definition consists of an SVG shape element tag name, with an object of keys representing the required attributes. The definitive list of shapes is defined by the SVG 2.0 <a data-link-type="biblio" href="#biblio-svg2" title="Scalable Vector Graphics (SVG) 2">[SVG2]</a> specification. All SVG shape elements are valid.</p>
-   <p>Any attributes not defined by the region shape definition default to the SVG lacunae values for that attribute. Any attributes</p>
-   <div class="example" id="xmp_region_shape_circle">
-    <a class="self-link" href="#xmp_region_shape_circle"></a> A region describing a circular area with a centerpoint at <code>100, 121</code> and a radius of <code>32</code> pixels. 
+   <p>Any attributes not defined by the target shape definition default to the SVG lacunae values for that attribute. Any attributes</p>
+   <div class="example" id="xmp_target_shape_circle">
+    <a class="self-link" href="#xmp_target_shape_circle"></a> A target describing a circular area with a centerpoint at <code>100, 121</code> and a radius of <code>32</code> pixels. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+  <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
       <c- f>"circle"</c-><c- p>:</c-> <c- p>{</c->
         <c- f>"cx"</c-><c- p>:</c-> <c- mi>100</c-><c- p>,</c->
@@ -2944,10 +2950,10 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    </div>
-   <div class="example" id="xmp_region_shape_complex">
-    <a class="self-link" href="#xmp_region_shape_complex"></a> A region describing an irregular area using the <code>path</code> definition and a rectangle definition, which together make a single region. The rectangle definition elides the "x" attribute, which defaults to <code>0</code>, per the SVG 2 specification. 
+   <div class="example" id="xmp_target_shape_complex">
+    <a class="self-link" href="#xmp_target_shape_complex"></a> A target describing an irregular area using the <code>path</code> definition and a rectangle definition, which together make a single target. The rectangle definition elides the "x" attribute, which defaults to <code>0</code>, per the SVG 2 specification. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+  <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
       <c- f>"path"</c-><c- p>:</c-> <c- p>{</c->
         <c- f>"d"</c-><c- p>:</c-> <c- u>"M0,12 L6.3,9 V15 Z M7.3,9 H17 V15 H7.3 Z M18,9 H18.4 Q21.4,9 21.4,12 Q21.4,15 18.4,15 H18 Z"</c->

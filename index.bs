@@ -104,8 +104,8 @@ This vocabulary is defined in terms of "blocks", or objects identified by a key 
 {
   "datasets": [
   ],
-  "selectors": [
-  ],
+  "selectors": {
+  },
   "behaviors": [
   ],
   "provenance": {
@@ -603,6 +603,16 @@ JSONPath [[JSONPath]] enables the matching of JSON keys or values in the JSON me
 > TODO: include more details about linking
 
 
+
+### The `selectors` block data ### {#selectors_block}
+
+The `selectors` block is an object containing sets of selectors.  
+
+The `selectors` object contains one or more `[selector-string]` keys. A `[selector-string]` key may be any value allowed by the schema for the representation type, and will normally represent a human-readable identifier for the selector set (e.g. `"title"`, `"bar-3"`, or `"axis_labels"`). Each `[selector-string]` is the key to an object which defines the DOM selectors, JSONPath selectors, and descriptor for selector set.
+
+The JSONPath for any given `[selector-string]` key can be used as the value of a behavior target selector.
+
+
 ### Inline data ### {#inline_data}
 
 If a dataset is fairly small, it is best to include it in the image file directly.
@@ -684,7 +694,7 @@ An additional `default` key is defined for referring to a single external metada
 
 ## Behaviors ## {#behaviors}
 
-A `behaviors` block is an array with the key `behaviors`, which contains one or more objects including at least a target (defined by the `region` key), and an event type containing one or more of the behaviors, including `haptic`, `audio`, `sonification`, `announcement`, `contrast`, and `tactile`.
+A `behaviors` block is an array with the key `behaviors`, which contains one or more objects including at least a target (defined by the `target` key), and an event type containing one or more of the behaviors, including `haptic`, `audio`, `sonification`, `announcement`, `contrast`, and `tactile`.
 
 ### Behavior and conforming generators ### {#behavior_generators}
 
@@ -760,18 +770,18 @@ Haptic feedback typically uses vibration patterns on a touch surface to provide 
 
 Haptic feedback may be accompanied or supplemented by auditory feedback.
 
-Each instance of haptic feedback is associated with a `region` and event type, and is composed of a `haptic` block, with a `durations` key and optional `intensities`, `repeatInterval`, and `repeatIndex` keys.
+Each instance of haptic feedback is associated with a `target` and event type, and is composed of a `haptic` block, with a `durations` key and optional `intensities`, `repeatInterval`, and `repeatIndex` keys.
 
 The behavior must be triggered when the user moves a pointer over the target region, and must stop immediately when the user moves their pointer outside the target region.
 
 <div id='xmp_haptic_behavior' class='example'>
-An example of `haptic` block with two haptic object entries in an array. The first haptic object selects an element with the `id`=`bar_1` as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the region is first triggered. 
+An example of `haptic` block with two haptic object entries in an array. The first haptic object selects an element with the `id`=`bar_1` as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the target is first triggered. 
 
 <xmp highlight='json'>
 {
   "behaviors": [
     {
-      "region": {
+      "target": {
         "selector": "#bar_1"
       },
       `enter`: {
@@ -784,7 +794,7 @@ An example of `haptic` block with two haptic object entries in an array. The fir
       }
     }
     {
-      "region": {
+      "target": {
         "shape": {
           "circle": {
             "cx": 100,
@@ -813,6 +823,9 @@ An example of `haptic` block with two haptic object entries in an array. The fir
 
 
 #### Refreshable Pin Display Behaviors #### {#refreshable_pin_display_behaviors}
+
+
+Note: Depending on the refresh rate of the refreshable pin display, the haptic pattern might be applicable and useful here.
 
 > **TODO**: Cover refreshable braille displays and tactile tablets like the Graphiti, Dot pad, Monarch, and single-line braille displays. 
 
@@ -989,69 +1002,69 @@ The value of the optional `document` key may be any non-empty string that is mea
 </xmp>
 
 
-# Regions # {#regions}
+# Targets # {#targets}
 
-A region is an area of an diagram image that is associated with a particular behavior.
+A target is an area of an diagram image that is associated with a particular behavior.
 
-Regions may consist of one of two possible values:
+Targets may consist of one of two possible values:
 
 1. **An element link**: a selector indicating a specific element or set of elements in the DOM of a SVG file;
 2. **A** `shape` **object**: an object that defines a shape to be dynamically represented in the diagram file.
 
-## Region element `selector` ## {#region_element_selector}
+## Target element `selector` ## {#target_element_selector}
 
-A region may consist of a `selector` key with a valid selector pointing to one or more elements in the DOM of an SVG file. The target may be a textual element, a shape element, or a container element. If the selector target is a container element, the shape region is all targetable elements within that container, but not the bounding box of the container element itself.
+A target may consist of a `selector` key with a valid selector pointing to one or more elements in the DOM of an SVG file. The target may be a textual element, a shape element, or a container element. If the selector target is a container element, the shape target is all targetable elements within that container, but not the bounding box of the container element itself.
 
-If the selector is not valid, or if the target element is not found, the `region` definition is ignored.
+If the selector is not valid, or if the target element is not found, the `target` definition is ignored.
 
-<div id='xmp_region_selector_single' class='example'>
-A region selector targeting a single shape element.
+<div id='xmp_target_selector_single' class='example'>
+A target selector targeting a single shape element.
 
 <xmp highlight='json'>
 {
-  "region": {
+  "target": {
     "selector": "#bar_1"
   }
 }
 </xmp>
 </div>
 
-<div id='xmp_region_selector_class' class='example'>
-A region selector targeting all elements with the class `line` in the container element `graph_area`.
+<div id='xmp_target_selector_class' class='example'>
+A target selector targeting all elements with the class `line` in the container element `graph_area`.
 
 <xmp highlight='json'>
 {
-  "region": {
+  "target": {
     "selector": "#graph_area .line"
   }
 }
 </xmp>
 </div>
 
-<div id='xmp_region_selector_container' class='example'>
-A region selector targeting all elements in the container element `graph_area`.
+<div id='xmp_target_selector_container' class='example'>
+A target selector targeting all elements in the container element `graph_area`.
 
 <xmp highlight='json'>
 {
-  "region": {
+  "target": {
     "selector": "#graph_area"
   }
 }
 </xmp>
 </div>
 
-## Region shape ## {#region_shape}
+## Target shape ## {#target_shape}
 
 A shape definition consists of an SVG shape element tag name, with an object of keys representing the required attributes. The definitive list of shapes is defined by the SVG 2.0 [[SVG2]] specification. All SVG shape elements are valid.
 
-Any attributes not defined by the region shape definition default to the SVG lacunae values for that attribute. Any attributes 
+Any attributes not defined by the target shape definition default to the SVG lacunae values for that attribute. Any attributes 
 
-<div id='xmp_region_shape_circle' class='example'>
-A region describing a circular area with a centerpoint at `100, 121` and a radius of `32` pixels.
+<div id='xmp_target_shape_circle' class='example'>
+A target describing a circular area with a centerpoint at `100, 121` and a radius of `32` pixels.
 
 <xmp highlight='json'>
 {
-  "region": {
+  "target": {
     "shape": {
       "circle": {
         "cx": 100,
@@ -1064,12 +1077,12 @@ A region describing a circular area with a centerpoint at `100, 121` and a radiu
 </xmp>
 </div>
 
-<div id='xmp_region_shape_complex' class='example'>
-A region describing an irregular area using the `path` definition and a rectangle definition, which together make a single region. The rectangle definition elides the "x" attribute, which defaults to `0`, per the SVG 2 specification.
+<div id='xmp_target_shape_complex' class='example'>
+A target describing an irregular area using the `path` definition and a rectangle definition, which together make a single target. The rectangle definition elides the "x" attribute, which defaults to `0`, per the SVG 2 specification.
 
 <xmp highlight='json'>
 {
-  "region": {
+  "target": {
     "shape": {
       "path": {
         "d": "M0,12 L6.3,9 V15 Z M7.3,9 H17 V15 H7.3 Z M18,9 H18.4 Q21.4,9 21.4,12 Q21.4,15 18.4,15 H18 Z"
