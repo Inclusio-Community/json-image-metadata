@@ -81,9 +81,6 @@
 /*                                    Body                                    */
 /******************************************************************************/
 
-	html {
-	}
-
 	body {
 		counter-reset: example figure issue;
 
@@ -1491,7 +1488,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="c4d0a69726b938943114b011ea0a46d44652b2bc" name="revision">
+  <meta content="8468467175354d6d0e30436a189940efeecdf973" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2026,7 +2023,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dt>Semantic Version:
-     <dd>0.3.0
+     <dd>0.3.1
     </dl>
    </div>
    <div data-fill-with="warning"></div>
@@ -2074,7 +2071,7 @@ Parts of this work may be from another specification document.  If so, those par
        </ol>
      </ol>
     <li>
-     <a href="#conform_doc_imp"><span class="secno">3</span> <span class="content">Conforming documents and implementations</span></a>
+     <a href="#jim_conformance"><span class="secno">3</span> <span class="content">JIM Conformance</span></a>
      <ol class="toc">
       <li><a href="#mime_type"><span class="secno">3.1</span> <span class="content">JIM MIME type</span></a>
       <li><a href="#conform_version"><span class="secno">3.2</span> <span class="content">Version conformance</span></a>
@@ -2154,17 +2151,14 @@ Parts of this work may be from another specification document.  If so, those par
         <li>
          <a href="#behavior_types"><span class="secno">4.4.3</span> <span class="content">Behavior types</span></a>
          <ol class="toc">
-          <li><a href="#audio_behavior"><span class="secno">4.4.3.1</span> <span class="content">Audio Behaviors</span></a>
-          <li><a href="#haptics"><span class="secno">4.4.3.2</span> <span class="content">Haptic Behaviors</span></a>
-          <li><a href="#sonification"><span class="secno">4.4.3.3</span> <span class="content">Sonification Behaviors</span></a>
-          <li><a href="#contrast"><span class="secno">4.4.3.4</span> <span class="content">Visual Contrast Behaviors</span></a>
-          <li><a href="#announcement_behaviors"><span class="secno">4.4.3.5</span> <span class="content">Announcement Behaviors</span></a>
-          <li>
-           <a href="#tactile"><span class="secno">4.4.3.6</span> <span class="content">Tactile Behaviors</span></a>
-           <ol class="toc">
-            <li><a href="#refreshable_displays"><span class="secno">4.4.3.6.1</span> <span class="content">Refreshable Display Behaviors</span></a>
-            <li><a href="#embossing"><span class="secno">4.4.3.6.2</span> <span class="content">Embossing Behaviors</span></a>
-           </ol>
+          <li><a href="#announcement_behaviors"><span class="secno">4.4.3.1</span> <span class="content">Announcement Behaviors</span></a>
+          <li><a href="#audio_behaviors"><span class="secno">4.4.3.2</span> <span class="content">Audio Behaviors</span></a>
+          <li><a href="#embossing_behaviors"><span class="secno">4.4.3.3</span> <span class="content">Embossing Behaviors</span></a>
+          <li><a href="#haptic_behaviors"><span class="secno">4.4.3.4</span> <span class="content">Haptic Behaviors</span></a>
+          <li><a href="#refreshable_pin_display_behaviors"><span class="secno">4.4.3.5</span> <span class="content">Refreshable Pin Display Behaviors</span></a>
+          <li><a href="#sonification_behaviors"><span class="secno">4.4.3.6</span> <span class="content">Sonification Behaviors</span></a>
+          <li><a href="#tactile_behaviors"><span class="secno">4.4.3.7</span> <span class="content">Tactile Behaviors</span></a>
+          <li><a href="#contrast_behaviors"><span class="secno">4.4.3.8</span> <span class="content">Visual Contrast Behaviors</span></a>
          </ol>
        </ol>
       <li>
@@ -2195,53 +2189,60 @@ Parts of this work may be from another specification document.  If so, those par
       <li><a href="##announcement_hint"><span class="secno">6.4</span> <span class="content">Announcement hint</span></a>
      </ol>
     <li>
-     <a href="#haptics_behavior"><span class="secno">7</span> <span class="content">Haptics</span></a>
+     <a href="#audio"><span class="secno">7</span> <span class="content">Audio</span></a>
      <ol class="toc">
-      <li><a href="#haptic_patterns"><span class="secno">7.1</span> <span class="content">Haptic patterns</span></a>
-      <li><a href="#amplitude_patterns"><span class="secno">7.2</span> <span class="content">Amplitude patterns</span></a>
-     </ol>
-    <li>
-     <a href="#audio"><span class="secno">8</span> <span class="content">Audio</span></a>
-     <ol class="toc">
-      <li><a href="#audio_files"><span class="secno">8.1</span> <span class="content">Audio files</span></a>
-      <li><a href="#earcons"><span class="secno">8.2</span> <span class="content">Earcons</span></a>
-      <li><a href="#adsr_definitions"><span class="secno">8.3</span> <span class="content">ADSR definitions</span></a>
-      <li><a href="#adsr_envelopes"><span class="secno">8.4</span> <span class="content">ADSR envelopes</span></a>
-     </ol>
-    <li>
-     <a href="#select_device"><span class="secno">9</span> <span class="content">Selective Device Capabilities</span></a>
-     <ol class="toc">
-      <li><a href="#tactile_capabilities"><span class="secno">9.1</span> <span class="content">Tactile Capabilities</span></a>
-     </ol>
-    <li>
-     <a href="#tech_relationship"><span class="secno">10</span> <span class="content">Relationship to other technologies</span></a>
-     <ol class="toc">
+      <li><a href="#audio_files"><span class="secno">7.1</span> <span class="content">Audio files</span></a>
+      <li><a href="#earcons"><span class="secno">7.2</span> <span class="content">Earcons</span></a>
       <li>
-       <a href="#svg"><span class="secno">10.1</span> <span class="content">Scalable Vector Graphics (SVG)</span></a>
+       <a href="#adsr"><span class="secno">7.3</span> <span class="content">ADSR</span></a>
        <ol class="toc">
-        <li><a href="#svg_metadata_element"><span class="secno">10.1.1</span> <span class="content">The SVG <code>metadata</code> element</span></a>
-       </ol>
-      <li>
-       <a href="#css"><span class="secno">10.2</span> <span class="content">Cascading Style Sheets (CSS)</span></a>
-       <ol class="toc">
-        <li><a href="#css_format"><span class="secno">10.2.1</span> <span class="content">CSS format</span></a>
-        <li><a href="#css_selectors"><span class="secno">10.2.2</span> <span class="content">CSS selectors</span></a>
-        <li><a href="#intended_authoring"><span class="secno">10.2.3</span> <span class="content">Intended authoring usage</span></a>
-        <li><a href="#css_conflicts"><span class="secno">10.2.4</span> <span class="content">Conflicts</span></a>
-        <li><a href="#future_css"><span class="secno">10.2.5</span> <span class="content">Future adoption and integration into CSS</span></a>
+        <li><a href="#adsr_definitions"><span class="secno">7.3.1</span> <span class="content">ADSR definitions</span></a>
+        <li><a href="#adsr_envelopes"><span class="secno">7.3.2</span> <span class="content">ADSR envelopes</span></a>
        </ol>
      </ol>
     <li>
-     <a href="#definitions"><span class="secno">11</span> <span class="content">Definitions</span></a>
+     <a href="#haptics"><span class="secno">8</span> <span class="content">Haptics</span></a>
      <ol class="toc">
-      <li><a href="#inline"><span class="secno">11.1</span> <span class="content">inline</span></a>
-      <li><a href="#rule"><span class="secno">11.2</span> <span class="content">rule</span></a>
-      <li><a href="#media_query"><span class="secno">11.3</span> <span class="content">media query</span></a>
-      <li><a href="#selector"><span class="secno">11.4</span> <span class="content">selector</span></a>
-      <li><a href="#raw_data"><span class="secno">11.5</span> <span class="content">raw data</span></a>
-      <li><a href="#user"><span class="secno">11.6</span> <span class="content">user</span></a>
-      <li><a href="#end_user"><span class="secno">11.7</span> <span class="content">end user</span></a>
-      <li><a href="#user_agent"><span class="secno">11.8</span> <span class="content">user agent</span></a>
+      <li><a href="#haptic_block"><span class="secno">8.1</span> <span class="content">The <code>haptic</code> key</span></a>
+      <li><a href="#vibration_patterns"><span class="secno">8.2</span> <span class="content">Vibration patterns</span></a>
+      <li><a href="#intensity_patterns"><span class="secno">8.3</span> <span class="content">Intensity patterns</span></a>
+      <li><a href="#haptic_examples"><span class="secno">8.4</span> <span class="content">Haptic examples</span></a>
+     </ol>
+    <li><a href="#sonification"><span class="secno">9</span> <span class="content">Sonification</span></a>
+    <li>
+     <a href="#select_device"><span class="secno">10</span> <span class="content">Selective Device Capabilities</span></a>
+     <ol class="toc">
+      <li><a href="#tactile_capabilities"><span class="secno">10.1</span> <span class="content">Tactile Capabilities</span></a>
+     </ol>
+    <li>
+     <a href="#tech_relationship"><span class="secno">11</span> <span class="content">Relationship to other technologies</span></a>
+     <ol class="toc">
+      <li>
+       <a href="#svg"><span class="secno">11.1</span> <span class="content">Scalable Vector Graphics (SVG)</span></a>
+       <ol class="toc">
+        <li><a href="#svg_metadata_element"><span class="secno">11.1.1</span> <span class="content">The SVG <code>metadata</code> element</span></a>
+       </ol>
+      <li>
+       <a href="#css"><span class="secno">11.2</span> <span class="content">Cascading Style Sheets (CSS)</span></a>
+       <ol class="toc">
+        <li><a href="#css_format"><span class="secno">11.2.1</span> <span class="content">CSS format</span></a>
+        <li><a href="#css_selectors"><span class="secno">11.2.2</span> <span class="content">CSS selectors</span></a>
+        <li><a href="#intended_authoring"><span class="secno">11.2.3</span> <span class="content">Intended authoring usage</span></a>
+        <li><a href="#css_conflicts"><span class="secno">11.2.4</span> <span class="content">Conflicts</span></a>
+        <li><a href="#future_css"><span class="secno">11.2.5</span> <span class="content">Future adoption and integration into CSS</span></a>
+       </ol>
+     </ol>
+    <li>
+     <a href="#definitions"><span class="secno">12</span> <span class="content">Definitions</span></a>
+     <ol class="toc">
+      <li><a href="#inline"><span class="secno">12.1</span> <span class="content">inline</span></a>
+      <li><a href="#rule"><span class="secno">12.2</span> <span class="content">rule</span></a>
+      <li><a href="#media_query"><span class="secno">12.3</span> <span class="content">media query</span></a>
+      <li><a href="#selector"><span class="secno">12.4</span> <span class="content">selector</span></a>
+      <li><a href="#raw_data"><span class="secno">12.5</span> <span class="content">raw data</span></a>
+      <li><a href="#user"><span class="secno">12.6</span> <span class="content">user</span></a>
+      <li><a href="#end_user"><span class="secno">12.7</span> <span class="content">end user</span></a>
+      <li><a href="#user_agent"><span class="secno">12.8</span> <span class="content">user agent</span></a>
      </ol>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
@@ -2305,7 +2306,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p>While this specification does include some accessibility-specific extensions of CSS, such as a finer control of color contrast settings, it must not define or be used to supercede CSS.</p>
    <h4 class="heading settled" data-level="2.12.3" id="aria_syntax"><span class="secno">2.12.3. </span><span class="content">ARIA Syntax for Data Visualization</span><a class="self-link" href="#aria_syntax"></a></h4>
    <p>This specification is complementary and orthogonal to the W3C specifications defining <code>role</code> attributes, including the <a href="https://www.w3.org/TR/graphics-aria-1.0/">WAI-ARIA Graphics Module</a> and the <a href="https://www.w3.org/TR/svg-aam-1.0/">SVG Accessibility API Mappings</a>.</p>
-   <h2 class="heading settled" data-level="3" id="conform_doc_imp"><span class="secno">3. </span><span class="content">Conforming documents and implementations</span><a class="self-link" href="#conform_doc_imp"></a></h2>
+   <h2 class="heading settled" data-level="3" id="jim_conformance"><span class="secno">3. </span><span class="content">JIM Conformance</span><a class="self-link" href="#jim_conformance"></a></h2>
    <h3 class="heading settled" data-level="3.1" id="mime_type"><span class="secno">3.1. </span><span class="content">JIM MIME type</span><a class="self-link" href="#mime_type"></a></h3>
    <p>The MIME type for a JSON Image Metadata document is <code>text/jim+json</code>.</p>
    <h3 class="heading settled" data-level="3.2" id="conform_version"><span class="secno">3.2. </span><span class="content">Version conformance</span><a class="self-link" href="#conform_version"></a></h3>
@@ -2698,9 +2699,9 @@ Parts of this work may be from another specification document.  If so, those par
     <p>TODO: cover rounding and precision in visual labels vs raw data</p>
    </blockquote>
    <p>or a line segment in a line chart</p>
-   <div class="note" role="note"> <b>Note:</b> We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data. </div>
+   <p class="note" role="note"><span class="marker">Note:</span> We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data.</p>
    <h4 class="heading settled" data-level="4.2.2" id="external_data_ref"><span class="secno">4.2.2. </span><span class="content">External data reference</span><a class="self-link" href="#external_data_ref"></a></h4>
-   <div class="note" role="note"> <b>Note:</b> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata. </div>
+   <p class="note" role="note"><span class="marker">Note:</span> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata.</p>
    <h3 class="heading settled" data-level="4.3" id="external_files"><span class="secno">4.3. </span><span class="content">External files</span><a class="self-link" href="#external_files"></a></h3>
    <p>A metadata object can be inline in the file, or referenced as an external file, in whole or in part. There are several reasons to support external metadata files. Two major use cases include size restrictions and shared resources.</p>
    <p>Size restrictions: While including the raw data in the image is a best practice, sometimes a dataset is simply too large to pragmatically include inline. In this case, referencing a raw data file is the best practical approach.</p>
@@ -2753,14 +2754,19 @@ Parts of this work may be from another specification document.  If so, those par
    </table>
    <p>Moving from one event state to another must cancel any currently active behavior, and initiate the new event behavior.</p>
    <h4 class="heading settled" data-level="4.4.3" id="behavior_types"><span class="secno">4.4.3. </span><span class="content">Behavior types</span><a class="self-link" href="#behavior_types"></a></h4>
-   <h5 class="heading settled" data-level="4.4.3.1" id="audio_behavior"><span class="secno">4.4.3.1. </span><span class="content">Audio Behaviors</span><a class="self-link" href="#audio_behavior"></a></h5>
-   <p>Audio playback is the use of sound to provide feedback to the user as they interact with an image or object. The <code>audio</code> block is distinct from the related <code>sonification</code> block in that it plays back a static prerecorded audio file or earcon, while the <code>sonification</code> block dynamically generates the audio given the dataset and selected element.</p>
-   <p>Details on the syntax of an <code>audio</code> block are defined in the <a href="#audio"><code>audio</code> section</a>.</p>
-   <h5 class="heading settled" data-level="4.4.3.2" id="haptics"><span class="secno">4.4.3.2. </span><span class="content">Haptic Behaviors</span><a class="self-link" href="#haptics"></a></h5>
+   <h5 class="heading settled" data-level="4.4.3.1" id="announcement_behaviors"><span class="secno">4.4.3.1. </span><span class="content">Announcement Behaviors</span><a class="self-link" href="#announcement_behaviors"></a></h5>
+   <p>Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text. An announcement is defined in an <code>announcement</code> block.</p>
+   <p>Details on the syntax of an <code>announcement</code> block are defined in the <a href="#announcements">Announcements section</a>.</p>
+   <h5 class="heading settled" data-level="4.4.3.2" id="audio_behaviors"><span class="secno">4.4.3.2. </span><span class="content">Audio Behaviors</span><a class="self-link" href="#audio_behaviors"></a></h5>
+   <p>Audio playback is the use of sound to provide feedback to the user as they interact with an image or object.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The <code>audio</code> block is distinct from the related <code>sonification</code> block in that it plays back a static prerecorded audio file or earcon, while the <code>sonification</code> block dynamically generates the audio given the dataset and selected element.</p>
+   <p>Details on the syntax of an <code>audio</code> block are defined in the <a href="#audio">Audio section</a>.</p>
+   <h5 class="heading settled" data-level="4.4.3.3" id="embossing_behaviors"><span class="secno">4.4.3.3. </span><span class="content">Embossing Behaviors</span><a class="self-link" href="#embossing_behaviors"></a></h5>
+   <h5 class="heading settled" data-level="4.4.3.4" id="haptic_behaviors"><span class="secno">4.4.3.4. </span><span class="content">Haptic Behaviors</span><a class="self-link" href="#haptic_behaviors"></a></h5>
    <p>Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.</p>
    <p>Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their pointer over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API <a data-link-type="biblio" href="#biblio-vibration" title="Vibration API (Second Edition)">[vibration]</a>. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.</p>
    <p>Haptic feedback may be accompanied or supplemented by auditory feedback.</p>
-   <p>Each instance of haptic feedback is associated with a <code>region</code> and event type, and is composed of a <code>haptic_pattern</code>, and an optional <code>amplitude_pattern</code> block.</p>
+   <p>Each instance of haptic feedback is associated with a <code>region</code> and event type, and is composed of a <code>haptic</code> block, with a <code>durations</code> key and optional <code>intensities</code>, <code>repetitionInterval</code>, and <code>repetitionIndex</code> keys.</p>
    <p>The behavior must be triggered when the user moves a pointer over the target region, and must stop immediately when the user moves their pointer outside the target region.</p>
    <div class="example" id="xmp_haptic_behavior">
     <a class="self-link" href="#xmp_haptic_behavior"></a> An example of <code>haptic</code> block with two haptic object entries in an array. The first haptic object selects an element with the <code>id</code>=<code>bar_1</code> as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the region is first triggered. 
@@ -2771,7 +2777,12 @@ Parts of this work may be from another specification document.  If so, those par
         <c- f>"selector"</c-><c- p>:</c-> <c- u>"#bar_1"</c->
       <c- p>},</c->
       `e<c- kc>nter</c->`<c- p>:</c-> <c- p>{</c->
-        <c- f>"haptic_pattern"</c-><c- p>:</c-> <c- u>"[50, 100, 150] 250"</c->
+        <c- p>{</c->
+          <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
+            <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>50</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
+            <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>250</c->
+          <c- p>}</c->
+        <c- p>}</c->
       <c- p>}</c->
     <c- p>}</c->
     <c- p>{</c->
@@ -2785,7 +2796,12 @@ Parts of this work may be from another specification document.  If so, those par
         <c- p>}</c->
       <c- p>},</c->
       `e<c- kc>nter</c->`<c- p>:</c-> <c- p>{</c->
-        <c- f>"haptic_pattern"</c-><c- p>:</c-> <c- u>"[150] 250"</c-><c- p>,</c->
+        <c- p>{</c->
+          <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
+            <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
+            <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>250</c->
+          <c- p>}</c->
+        <c- p>}</c->
         <c- f>"audio"</c-><c- p>:</c-> <c- p>{</c->
           <c- f>"href"</c-><c- p>:</c-> <c- u>"./assets/example.mp3"</c-><c- p>,</c->
           <c- f>"repeat"</c-><c- p>:</c-> <c- u>"none"</c->
@@ -2796,15 +2812,16 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    </div>
-   <h5 class="heading settled" data-level="4.4.3.3" id="sonification"><span class="secno">4.4.3.3. </span><span class="content">Sonification Behaviors</span><a class="self-link" href="#sonification"></a></h5>
-   <h5 class="heading settled" data-level="4.4.3.4" id="contrast"><span class="secno">4.4.3.4. </span><span class="content">Visual Contrast Behaviors</span><a class="self-link" href="#contrast"></a></h5>
+   <h5 class="heading settled" data-level="4.4.3.5" id="refreshable_pin_display_behaviors"><span class="secno">4.4.3.5. </span><span class="content">Refreshable Pin Display Behaviors</span><a class="self-link" href="#refreshable_pin_display_behaviors"></a></h5>
+   <blockquote>
+    <p><strong>TODO</strong>: Cover refreshable braille displays and tactile tablets like the Graphiti, Dot pad, Monarch, and single-line braille displays.</p>
+   </blockquote>
+   <h5 class="heading settled" data-level="4.4.3.6" id="sonification_behaviors"><span class="secno">4.4.3.6. </span><span class="content">Sonification Behaviors</span><a class="self-link" href="#sonification_behaviors"></a></h5>
+   <p>Sonification is the audio playback of sounds to represent data. A sonification is defined in an <code>sonification</code> block.</p>
+   <p>Details on the syntax of an <code>sonification</code> block are defined in the <a href="#sonification">Sonification section</a>.</p>
+   <h5 class="heading settled" data-level="4.4.3.7" id="tactile_behaviors"><span class="secno">4.4.3.7. </span><span class="content">Tactile Behaviors</span><a class="self-link" href="#tactile_behaviors"></a></h5>
+   <h5 class="heading settled" data-level="4.4.3.8" id="contrast_behaviors"><span class="secno">4.4.3.8. </span><span class="content">Visual Contrast Behaviors</span><a class="self-link" href="#contrast_behaviors"></a></h5>
    <div class="todo"> <b>TODO:</b> Reference and expand on CSS prefers-dark-mode media query. </div>
-   <h5 class="heading settled" data-level="4.4.3.5" id="announcement_behaviors"><span class="secno">4.4.3.5. </span><span class="content">Announcement Behaviors</span><a class="self-link" href="#announcement_behaviors"></a></h5>
-   <p>Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text. An announcement is defined in an <code>announcement</code> block.</p>
-   <p>Details on the syntax of an <code>announcement</code> block are defined in the <a href="#announcements">Announcements section</a>.</p>
-   <h5 class="heading settled" data-level="4.4.3.6" id="tactile"><span class="secno">4.4.3.6. </span><span class="content">Tactile Behaviors</span><a class="self-link" href="#tactile"></a></h5>
-   <h6 class="heading settled" data-level="4.4.3.6.1" id="refreshable_displays"><span class="secno">4.4.3.6.1. </span><span class="content">Refreshable Display Behaviors</span><a class="self-link" href="#refreshable_displays"></a></h6>
-   <h6 class="heading settled" data-level="4.4.3.6.2" id="embossing"><span class="secno">4.4.3.6.2. </span><span class="content">Embossing Behaviors</span><a class="self-link" href="#embossing"></a></h6>
    <h3 class="heading settled" data-level="4.5" id="provenance"><span class="secno">4.5. </span><span class="content">Provenance</span><a class="self-link" href="#provenance"></a></h3>
    <p>Provenance describes where a document came from. This includes entries such as authors, organizations, date and time created or modified, where it was first published, the title of the paper or article it supplemented, or the original work on which it was based.</p>
    <p>A <code>provenance</code> block is an object with the key <code>provenance</code>.</p>
@@ -2846,7 +2863,7 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    <h4 class="heading settled" data-level="4.6.2" id="capabilities_ratings"><span class="secno">4.6.2. </span><span class="content">Capabilities and ratings</span><a class="self-link" href="#capabilities_ratings"></a></h4>
-   <div class="note" role="note"> <b>Note:</b> This is a rough notion of how we might define </div>
+   <p class="note" role="note"><span class="marker">Note:</span> This is a rough notion of how we might define capabilities</p>
    <p>The <code>capabilities</code> key denotes an object that includes which accommodations have been defined in the image document, and some system of rating that scores the effectiveness of that accommodation.</p>
    <p>Each capability defines an array of capability instances, each of which consists of a least a condition of applicability, and a rating.</p>
 <pre class="highlight"><c- p>{</c->
@@ -2877,8 +2894,8 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->  
 </pre>
-   <div class="note" role="note"> <b>Note:</b> Consider splitting out capabilities and ratings into separate entries. </div>
-   <div class="note" role="note"> <b>Note:</b> To be defined further. </div>
+   <p class="note" role="note"><span class="marker">Note:</span> Consider splitting out capabilities and ratings into separate entries.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> To be defined further.</p>
    <h3 class="heading settled" data-level="4.7" id="version"><span class="secno">4.7. </span><span class="content">Version</span><a class="self-link" href="#version"></a></h3>
    <p>A conforming document may include an optional <code>version</code> key.</p>
    <p>An <code>version</code> block is an object with the key <code>version</code>, which contains one or more key-value pairs including one or more of the keys <code>document</code> and <code>jim</code> and their values.</p>
@@ -2986,7 +3003,7 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    </div>
    <p>For each shape definition, a conforming implementation must instantiate a corresponding shape matching the element type and attributes.</p>
-   <div class="note" role="note"> <b>Note:</b> Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean. </div>
+   <p class="note" role="note"><span class="marker">Note:</span> Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.</p>
    <h2 class="heading settled" data-level="6" id="announcements"><span class="secno">6. </span><span class="content">Announcements</span><a class="self-link" href="#announcements"></a></h2>
    <p>Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text.</p>
    <p>WCAG defines two primary types of announcement: the <b>accessible name</b>; and the <b>accessible description</b>. This specification defines analogs to that convention as <b>announcement name</b> and <b>announcement description</b>, and adds two more types, <b>announcement details</b> and <b>announcement hints</b>.</p>
@@ -3064,75 +3081,7 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h2 class="heading settled" data-level="7" id="haptics_behavior"><span class="secno">7. </span><span class="content">Haptics</span><a class="self-link" href="#haptics_behavior"></a></h2>
-   <h3 class="heading settled" data-level="7.1" id="haptic_patterns"><span class="secno">7.1. </span><span class="content">Haptic patterns</span><a class="self-link" href="#haptic_patterns"></a></h3>
-   <p>A haptic pattern, denoted by a <code>haptic_pattern</code> key, is a string consisting of 3 comma-or-space-separated parameters defining a sequence of vibration durations. The sequence of durations is an array of integers describing an alternating pattern of vibrations and pauses, starting with an initial pause before the first vibration starts.</p>
-   <table class="def">
-    <tbody>
-     <tr>
-      <th>vibration duration array
-      <td>The first parameter is an array, enclosed by square brackets (opening bracket <code>[</code> and closing bracket <code>]</code>) with a comma-or-space-separated list of integers. Each integer represents a time in milliseconds. The even integers in the list (starting with index <code>0</code>) must define the number of milliseconds without vibration, and the odd integers in the list must define the number of milliseconds with vibration.
-     <tr>
-      <th>repetition interval
-      <td>The second parameter is an integer representing a time in milliseconds before the vibration duration array begins repeating. If the value is <code>0</code> or a positive integer, the haptic pattern must repeat until the activating behavior is terminated (such as by the user moving their finger off the target region). If the value is a negative integer, or if the value is omitted, the haptic pattern must not repeat.
-     <tr>
-      <th>repetition index
-      <td>The third parameter is an integer indicating the index of the vibration duration array that is the starting duration for repetition, if any. If the value is <code>0</code> or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the <code>0</code> index. Repetition must only occur according to the value of the repetition interval.
-   </table>
-   <div class="example" id="xmp_haptic_pattern_simple">
-    <a class="self-link" href="#xmp_haptic_pattern_simple"></a> A simple haptic pattern that will trigger a single vibration lasting 200 milliseconds. 
-<pre class="highlight"><c- p>{</c->
-  <c- f>"haptic_pattern"</c-><c- p>:</c-> <c- u>"[0, 200]"</c->
-<c- p>}</c->
-</pre>
-   </div>
-   <div class="example" id="xmp_haptic_pattern_repeat">
-    <a class="self-link" href="#xmp_haptic_pattern_repeat"></a> A haptic pattern that will trigger a single vibration lasting 200 milliseconds, once every 500 milliseconds. 
-<pre class="highlight"><c- p>{</c->
-  <c- f>"haptic_pattern"</c-><c- p>:</c-> <c- u>"[0 200] 500"</c->
-<c- p>}</c->
-</pre>
-   </div>
-   <div class="example" id="xmp_haptic_pattern_complex">
-    <a class="self-link" href="#xmp_haptic_pattern_complex"></a> A complex haptic pattern that will trigger a sequence of vibrations 10 milliseconds after the event (e.g. a touch event), the first vibration lasting 50 milliseconds, followed by a pause of 100 milliseconds, followed by a second vibration that lasts 150 milliseconds, with the pattern repeating every 250 milliseconds starting at the second vibration index (the 50 millisecond vibration). 
-<pre class="highlight"><c- p>{</c->
-  <c- f>"haptic_pattern"</c-><c- p>:</c-> <c- u>"[10, 50, 100, 150] 250 1"</c->
-<c- p>}</c->
-</pre>
-   </div>
-   <blockquote>
-    <p><strong>Note:</strong> The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with an optional additional value for repetition of that pattern with a fixed interval between pattern instances, and an optional repetition index.</p>
-   </blockquote>
-   <h3 class="heading settled" data-level="7.2" id="amplitude_patterns"><span class="secno">7.2. </span><span class="content">Amplitude patterns</span><a class="self-link" href="#amplitude_patterns"></a></h3>
-   <p>A amplitude pattern, denoted by a <code>amplitude_pattern</code> key, is a string consisting of 1 parameter defining a sequence of vibration amplitudes that correspond to the <code>haptic_pattern</code> vibration duration array. The sequence of amplitudes is an array of integers describing an alternating pattern of vibration amplitudes and pauses, indexed to the same sequence as the <code>haptic_pattern</code> vibration duration array.</p>
-   <p>If the platform or operating system does not support variable amplitudes, the <code>amplitude_pattern</code> key and value must be ignored.</p>
-   <table class="def">
-    <tbody>
-     <tr>
-      <th>vibration duration array
-      <td>This parameter is an array, enclosed by square brackets (opening bracket <code>[</code> and closing bracket <code>]</code>) with a comma-or-space-separated list of integers. Each integer represents an amplitude. The even integers in the list (starting with index <code>0</code>) define the pause between vibrations, and the odd integers in the list define the amplitude of the vibration.
-   </table>
-   <blockquote>
-    <p><strong>Note:</strong> The vibration duration array is defined to mirror the vibration duration array, for ease of authoring. The values of "blank" (Even-numbered) indexes have no effect, and can be defined as <code>0</code> to avoid confusion.</p>
-   </blockquote>
-   <div class="example" id="xmp_haptic_amplitude_pattern">
-    <a class="self-link" href="#xmp_haptic_amplitude_pattern"></a> An amplitude pattern and haptic pattern that will trigger a pair of vibrations lasting 200 milliseconds with a pause of 100 milliseconds between them, once every 500 milliseconds. The first vibration will have an amplitude of 30, and the second vibration will have an amplitude of 60. 
-<pre class="highlight"><c- p>{</c->
-  <c- f>"haptic_pattern"</c-><c- p>:</c-> <c- u>"[0 200 100 200] 500 1"</c-><c- p>,</c->
-  <c- f>"amplitude_pattern"</c-><c- p>:</c-> <c- u>"[0 30 0 60] 500 1"</c->
-<c- p>}</c->
-</pre>
-   </div>
-   <blockquote>
-    <p><strong>Note:</strong> The W3C Vibration API does not currently define any capabilities for the amplitude of vibration, and will ignore the <code>amplitude_pattern</code>. This specification includes the <code>amplitude_pattern</code> to support the Android Vibration API and the iOS Core Haptics API.</p>
-   </blockquote>
-   <blockquote>
-    <p>TODO: include more details about amplitude patterns, including the units</p>
-   </blockquote>
-   <blockquote>
-    <p>TODO: provide examples with the selector, to illustrate authoring</p>
-   </blockquote>
-   <h2 class="heading settled" data-level="8" id="audio"><span class="secno">8. </span><span class="content">Audio</span><a class="self-link" href="#audio"></a></h2>
+   <h2 class="heading settled" data-level="7" id="audio"><span class="secno">7. </span><span class="content">Audio</span><a class="self-link" href="#audio"></a></h2>
    <p>Audio feedback can take one of three forms:</p>
    <ol>
     <li data-md>
@@ -3142,7 +3091,7 @@ Parts of this work may be from another specification document.  If so, those par
     <li data-md>
      <p>Dynamic generation of a sound with an ADSR envelope definition</p>
    </ol>
-   <h3 class="heading settled" data-level="8.1" id="audio_files"><span class="secno">8.1. </span><span class="content">Audio files</span><a class="self-link" href="#audio_files"></a></h3>
+   <h3 class="heading settled" data-level="7.1" id="audio_files"><span class="secno">7.1. </span><span class="content">Audio files</span><a class="self-link" href="#audio_files"></a></h3>
    <p>An audio file is a prerecorded external sound file that is referenced through a file path in an <code>href</code> key.</p>
    <p>An external link may be to a local file or a file on the Web. Local audio files are recommended for lack of latency. This specification does not define how audio files are distributed or packaged with diagram files; a separate specification may define a packaging format.</p>
    <p>Conforming user agents must support the following audio formats for audio playback:</p>
@@ -3170,11 +3119,15 @@ Parts of this work may be from another specification document.  If so, those par
       <td><code>.wav</code>
       <td><code>audio/wav</code>
    </table>
-   <h3 class="heading settled" data-level="8.2" id="earcons"><span class="secno">8.2. </span><span class="content">Earcons</span><a class="self-link" href="#earcons"></a></h3>
+   <h3 class="heading settled" data-level="7.2" id="earcons"><span class="secno">7.2. </span><span class="content">Earcons</span><a class="self-link" href="#earcons"></a></h3>
    <p>An earcon is a brief, distinctive sound which represents a specific event or conveys other information. It is the audio equivalent of an icon. This specification defines a mechanism for playback of a pre-defined set of earcons that conforming user agents must support. An <code>earcon</code> consists of a unique name and an audio definition. A list of earcon definitions will be defined in a separate specification.</p>
-   <h3 class="heading settled" data-level="8.3" id="adsr_definitions"><span class="secno">8.3. </span><span class="content">ADSR definitions</span><a class="self-link" href="#adsr_definitions"></a></h3>
+   <h3 class="heading settled" data-level="7.3" id="adsr"><span class="secno">7.3. </span><span class="content">ADSR</span><a class="self-link" href="#adsr"></a></h3>
+   <h4 class="heading settled" data-level="7.3.1" id="adsr_definitions"><span class="secno">7.3.1. </span><span class="content">ADSR definitions</span><a class="self-link" href="#adsr_definitions"></a></h4>
+   <blockquote>
+    <p>TODO: provide more details here.</p>
+   </blockquote>
    <p>See <a href="#adsr_envelopes">ADSR envelopes</a> for more details.</p>
-   <h3 class="heading settled" data-level="8.4" id="adsr_envelopes"><span class="secno">8.4. </span><span class="content">ADSR envelopes</span><a class="self-link" href="#adsr_envelopes"></a></h3>
+   <h4 class="heading settled" data-level="7.3.2" id="adsr_envelopes"><span class="secno">7.3.2. </span><span class="content">ADSR envelopes</span><a class="self-link" href="#adsr_envelopes"></a></h4>
    <p>Timed media, such as haptic or sonification effects, are defined in this specification with the common Attack-Decay-Sustain-Release envelope.</p>
    <p>This is the most common kind of envelope generator, and it has four stages: attack, decay, sustain, and release (ADSR). Attack, decay, and release all refer to time, while sustain refers to effect level. Each of these stages is defined by an attribute</p>
    <ul>
@@ -3200,13 +3153,123 @@ Parts of this work may be from another specification document.  If so, those par
    <p class="note" role="note"><span class="marker">Note:</span> Consider using A-weighted decibels (dBA) instead of dB. The dB scale is based only on sound intensity, while the dBA scale is based on intensity and on how the human ear responds, which better describes when sound can damage your hearing.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Consider whether or not to include pitch as an effect type. It might be easier for authoring if the author is a musician, but it can be looked up and expressed as frequency. But it’s a nice-to-have.</p>
    <p>Any given rule can have multiple effect types. For example, a sonification could simultaneously change amplitude and frequency.</p>
-   <h2 class="heading settled" data-level="9" id="select_device"><span class="secno">9. </span><span class="content">Selective Device Capabilities</span><a class="self-link" href="#select_device"></a></h2>
+   <h2 class="heading settled" data-level="8" id="haptics"><span class="secno">8. </span><span class="content">Haptics</span><a class="self-link" href="#haptics"></a></h2>
+   <p>Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.</p>
+   <p>Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their pointer over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API <a data-link-type="biblio" href="#biblio-vibration" title="Vibration API (Second Edition)">[vibration]</a>. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with options for an additional value for repetition of that pattern with a fixed interval between pattern instances, a repetition index, and a matching amplitude array.</p>
+   <p>A <code>haptics</code> block is an object with the key <code>haptics</code>, which contains one or more key-value pairs including one or more of the keys <code>durations</code>, <code>intensities</code>, <code>repetitionInterval</code>, and <code>repetitionIndex</code> keys and their values.</p>
+   <h3 class="heading settled" data-level="8.1" id="haptic_block"><span class="secno">8.1. </span><span class="content">The <code>haptic</code> key</span><a class="self-link" href="#haptic_block"></a></h3>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> value type 
+      <th> description 
+      <th> requirement 
+    <tbody>
+     <tr>
+      <td><code>durations</code>
+      <td>integer array
+      <td>
+        An array of integers, each representing the duration of that segment in milliseconds. 
+       <p>The even entries in the array (starting with index <code>0</code>) must define the number of milliseconds without vibration, and the odd entries in the array must define the number of milliseconds with vibration.</p>
+      <td>required
+     <tr>
+      <td><code>intensities</code>
+      <td>number array
+      <td>
+        An array of numbers, expressed as a percentage of the range 0 to 1, each representing the vibrational intensity of that segment, indexed to the same sequence as the <code>duration</code> array. 
+       <p>The even entries in the array (starting with index <code>0</code>) correspond to the pauses between vibrations and be ignored. The odd entries in the array must define the amplitude of the vibration for the corresponding vibration duration in the <code>duration</code> array.</p>
+      <td>optional
+     <tr>
+      <td><code>repetitionInterval</code>
+      <td>integer
+      <td>The time in milliseconds before the <code>duration</code> array begins repeating. If the value is <code>0</code> or a positive integer, the haptic pattern must repeat until the activating behavior is terminated (such as by the user moving their finger off the target region). If the value is a negative integer, or if the value is omitted, the haptic pattern must not repeat.
+      <td>optional
+     <tr>
+      <td><code>repetitionIndex</code>
+      <td>integer
+      <td>The index of the <code>duration</code> array that is the starting duration for repetition, if any. If the value is <code>0</code> or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the <code>0</code> index. Repetition must only occur according to the value of the <code>repetitionInterval</code>.
+      <td>optional
+   </table>
+   <h3 class="heading settled" data-level="8.2" id="vibration_patterns"><span class="secno">8.2. </span><span class="content">Vibration patterns</span><a class="self-link" href="#vibration_patterns"></a></h3>
+   <p>A haptic vibration pattern, denoted by a <code>durations</code> key of the <code>haptic</code> object, is an array of integers defining a sequence of vibration durations. The sequence of durations is an alternating pattern of vibrations and pauses, starting with an initial pause before the first vibration starts.</p>
+   <h3 class="heading settled" data-level="8.3" id="intensity_patterns"><span class="secno">8.3. </span><span class="content">Intensity patterns</span><a class="self-link" href="#intensity_patterns"></a></h3>
+   <p>The sequence of intensities is an array of numbers describing an alternating pattern of vibration intensities and pauses, indexed to the same sequence as the vibration <code>duration</code> array.</p>
+   <p>The <code>intensities</code> key value array defines how strong the vibration is for each value in the <code>durations</code> array. The intensity is a value from 0 to 1. Any values outside the range 0.0 (no intensity) to 1.0 (highest intensity) will be clamped to this range.</p>
+   <p>Each intensity value is a percentage of the maximum vibration amplitude of the device or the implementation. An implementation may define a range of amplitudes that is narrower than the device’s capabilities.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> Each device with vibration support has a different range of amplitudes. Thus, this specification does not define an amplitude with units, but rather a percentage of the device’s maximum possible amplitude.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The W3C Vibration API does not currently define any capabilities for the amplitude of vibration, and will ignore the <code>amplitudes</code>. This specification includes the <code>amplitudes</code> key to support the Android Vibration API and the iOS Core Haptics API.</p>
+   <p>If the platform or operating system does not support variable intensities, the <code>intensities</code> key and value must be ignored.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> The <code>intensities</code> array is defined to mirror the vibration <code>duration</code> array, for ease of authoring. The values of "blank" (even-numbered) indexes have no effect, and can be defined as <code>0</code> to avoid confusion.</p>
+   <h3 class="heading settled" data-level="8.4" id="haptic_examples"><span class="secno">8.4. </span><span class="content">Haptic examples</span><a class="self-link" href="#haptic_examples"></a></h3>
+   <div class="example" id="xmp_haptic_duration_simple">
+    <a class="self-link" href="#xmp_haptic_duration_simple"></a> A simple haptic pattern that will trigger a single vibration lasting 200 milliseconds. 
+<pre class="highlight"><c- p>{</c->
+  <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>200</c-> <c- p>]</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <div class="example" id="xmp_haptic_duration_repeat">
+    <a class="self-link" href="#xmp_haptic_duration_repeat"></a> A haptic pattern that will trigger a single vibration lasting 200 milliseconds, once every 500 milliseconds. 
+<pre class="highlight"><c- p>{</c->
+  <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>200</c-> <c- p>],</c->
+    <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>500</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <div class="example" id="xmp_haptic_duration_complex">
+    <a class="self-link" href="#xmp_haptic_duration_complex"></a> A complex haptic pattern that will trigger a sequence of vibrations 10 milliseconds after the event (e.g. a touch event), the first vibration lasting 50 milliseconds, followed by a pause of 100 milliseconds, followed by a second vibration that lasts 150 milliseconds, with the pattern repeating every 250 milliseconds starting at the second vibration index (the 50 millisecond vibration). 
+<pre class="highlight"><c- p>{</c->
+  <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>10</c-><c- p>,</c-> <c- mi>50</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
+    <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>250</c-><c- p>,</c->
+    <c- f>"repetitionIndex"</c-><c- p>:</c-> <c- mi>1</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <div class="example" id="xmp_haptic_intensity_pattern">
+    <a class="self-link" href="#xmp_haptic_intensity_pattern"></a> A set of duration and amplitude patterns that will trigger a pair of vibrations lasting 200 milliseconds with a pause of 100 milliseconds between them, once every 500 milliseconds. On supporting devices, the first vibration will have an intensity of 30%, and the second vibration will have an intensity of 60%. 
+<pre class="highlight"><c- p>{</c->
+  <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>200</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>200</c-> <c- p>],</c->
+    <c- f>"intensities"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mf>0.3</c-><c- p>,</c-> <c- mi>0</c-><c- p>,</c-> <c- mf>0.6</c-> <c- p>],</c->
+    <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>500</c-><c- p>,</c->
+    <c- f>"repetitionIndex"</c-><c- p>:</c-> <c- mi>1</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <div class="example" id="xmp_haptic_amplitude_two_tone_pattern">
+    <a class="self-link" href="#xmp_haptic_amplitude_two_tone_pattern"></a> A set of duration and amplitude patterns that simulate a set of rising and falling tones. 
+    <p>For each pair of virbation durations, there is a pause of 0 milliseconds between them, but a change of intensity between the first and second vibration, making it feel like a single vibration that changes intensities.</p>
+    <p>The first pair will collectively last for 400 milliseconds, doubling in intensity halfway through; after a pause of 350 milliseconds the
+second pair will collectively last for 250 milliseconds, with the intensity dropping from full to one third after 150 milliseconds.</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>200</c-><c- p>,</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>200</c-><c- p>,</c-> <c- mi>350</c-><c- p>,</c-> <c- mi>150</c-><c- p>,</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>100</c-> <c- p>],</c->
+    <c- f>"intensities"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> .<c- mi>5</c-><c- p>,</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>1</c-><c- p>,</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>1</c-><c- p>,</c-> <c- mi>0</c-><c- p>,</c-> .<c- mi>3</c-> <c- p>],</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <blockquote>
+    <p>TODO: provide examples with the selector, to illustrate authoring</p>
+   </blockquote>
+   <h2 class="heading settled" data-level="9" id="sonification"><span class="secno">9. </span><span class="content">Sonification</span><a class="self-link" href="#sonification"></a></h2>
+   <p>The <code>sonification</code> block dynamically generates audio feedback given the dataset, selected element, and optionally cursor position.</p>
+   <h2 class="heading settled" data-level="10" id="select_device"><span class="secno">10. </span><span class="content">Selective Device Capabilities</span><a class="self-link" href="#select_device"></a></h2>
    <p>All devices, including assistive technology devices, have specific capabilities distinct from other similar devices. Some of those capabilities require specific changes to a graphical document’s appearance, such as hiding or showing certain objects or layers to simplify a document for embossing vs printing, or rendering a thicker stroke on shapes so there’s a larger "hit box" for haptics.</p>
    <p>This specification defines a set of device capabilities for assistive technology devices such that the most appropriate stylesheet can be selected for displaying the document on that device.</p>
    <p class="note" role="note"><span class="marker">Note:</span> This is similar to and informed by the CSS Media Queries capabilities, but dedicated specifically to the various capabilities relevant for assistive technology devices, at a finer-grained level of detail than CSS currently defines. A future CSS specification might adopt these device capabilities, especially if the assistive technology device industry adopts this mechanism and enough content uses it.</p>
    <p class="note" role="note"><span class="marker">Note:</span> This specification will not define styles for best practices for these different capabilities, but only the mechanism to switch or select stylesheets. Another companion specification or specifications might define best styling practice guidelines for specific media and devices.</p>
    <p>TODO: Add device capabilities for haptics</p>
-   <h3 class="heading settled" data-level="9.1" id="tactile_capabilities"><span class="secno">9.1. </span><span class="content">Tactile Capabilities</span><a class="self-link" href="#tactile_capabilities"></a></h3>
+   <h3 class="heading settled" data-level="10.1" id="tactile_capabilities"><span class="secno">10.1. </span><span class="content">Tactile Capabilities</span><a class="self-link" href="#tactile_capabilities"></a></h3>
    <p>Embossers, swell paper, and other tactile printing technologies each have a different set of capabilities. Some tactile printing technologies may have multiple levels of dot height, while others may have only possible 1 or 2 dot heights. Some technologies rely on the width of a line to determine the height of the raised surface, while others use color to determine surface height and pattern. Some allow fine details, while others require a sparse layout.</p>
    <p>To enable a single document to be applicable to multiple tactile output techniques, this specification defines a capabilities switch with different CSS stylesheets to hide or show different elements, to increase line width, to use particular color palettes, and so forth.</p>
    <p>The <code>tactile</code> key defines an object that defines conditional device capabilities, each of which is associated with its appropriate external CSS stylesheet file for print media. The appropriate external CSS file must be loaded by the user agent based on the target printer, and applied following the same processing rules as an inline CSS rule set.</p>
@@ -3236,51 +3299,51 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    </div>
    <p>TODO: Define and describe mechanisms for setting layers on objects (e.g. print only, print and tactile, emboss only, braille)</p>
-   <h2 class="heading settled" data-level="10" id="tech_relationship"><span class="secno">10. </span><span class="content">Relationship to other technologies</span><a class="self-link" href="#tech_relationship"></a></h2>
-   <h3 class="heading settled" data-level="10.1" id="svg"><span class="secno">10.1. </span><span class="content">Scalable Vector Graphics (SVG)</span><a class="self-link" href="#svg"></a></h3>
+   <h2 class="heading settled" data-level="11" id="tech_relationship"><span class="secno">11. </span><span class="content">Relationship to other technologies</span><a class="self-link" href="#tech_relationship"></a></h2>
+   <h3 class="heading settled" data-level="11.1" id="svg"><span class="secno">11.1. </span><span class="content">Scalable Vector Graphics (SVG)</span><a class="self-link" href="#svg"></a></h3>
    <p>This specification is designed specifically with SVG in mind, though the metadata format can be used in other image types.</p>
-   <h4 class="heading settled" data-level="10.1.1" id="svg_metadata_element"><span class="secno">10.1.1. </span><span class="content">The SVG <code>metadata</code> element</span><a class="self-link" href="#svg_metadata_element"></a></h4>
+   <h4 class="heading settled" data-level="11.1.1" id="svg_metadata_element"><span class="secno">11.1.1. </span><span class="content">The SVG <code>metadata</code> element</span><a class="self-link" href="#svg_metadata_element"></a></h4>
    <p>The SVG <a data-link-type="biblio" href="#biblio-svg11" title="Scalable Vector Graphics (SVG) 1.1 (Second Edition)">[SVG11]</a> specification defines a <code>metadata</code> element (or "tag"), which can contain this metadata format. In the SVG 2.0 specification, defined in the late 1990s, it was expected that metadata would be expressed in XML; the SVG 2.0 <a data-link-type="biblio" href="#biblio-svg2" title="Scalable Vector Graphics (SVG) 2">[SVG2]</a> specification lifts this restriction, and defines the <code>metadata</code> child content model as text content. This allows any structured or unstructured text, including structured content like JSON.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The SVG 2.0 specification is not yet approved, and has not yet reached W3C Recommentation status.</p>
    <p>Parts of it are implemented in browsers and other user agents, but some validation tools might still flag non-XML content in the <code>metadata</code> element as a violation. This might impact some organizational requirements that all HTML or SVG documents are required to pass validation in order to be accessible. These tools <span class="allow-2119">should</span> be urged to update to the SVG 2.0 specification for processing the <code>metadata</code> element.</p>
    <p>It is important to note that currently, SVG does not define a processing algorithm or behavior for metadata. A user agent <code>may</code> process the metadata in any manner it supports. Currently, no general purpose web browser processes the contents of the <code>metadata</code> element.</p>
    <p>Because the SVG <code>metadata</code> element does not have any defined attributes (such as an <code>href</code> attribute), there is no defined way to link to external resources; this contrasts with the <code>style</code> element in SVG, which can contain CSS rules as the child content of the element, or can reference external CSS files through the <code>href</code> attribute. Thus, this specification defines a linking syntax to allow external metadata files to be applied in whole or in part to the referring image document.</p>
-   <h3 class="heading settled" data-level="10.2" id="css"><span class="secno">10.2. </span><span class="content">Cascading Style Sheets (CSS)</span><a class="self-link" href="#css"></a></h3>
+   <h3 class="heading settled" data-level="11.2" id="css"><span class="secno">11.2. </span><span class="content">Cascading Style Sheets (CSS)</span><a class="self-link" href="#css"></a></h3>
    <p>Some features of this specification, such as contrast control, overlap with capabilities of CSS, such as the <code>prefers-high-contrast</code> media query. This specification is designed to complement and extend such capabilities.</p>
-   <h4 class="heading settled" data-level="10.2.1" id="css_format"><span class="secno">10.2.1. </span><span class="content">CSS format</span><a class="self-link" href="#css_format"></a></h4>
+   <h4 class="heading settled" data-level="11.2.1" id="css_format"><span class="secno">11.2.1. </span><span class="content">CSS format</span><a class="self-link" href="#css_format"></a></h4>
    <p>CSS defines its own syntax, processing model, and format, initially defined in the 1990s. It requires a custom processor.</p>
    <p>This specification uses the common JSON format, which can be processed by any JSON tools, including web browser contexts, JavaScript, and many other tools.</p>
    <p>This specification attempts to define its rules in a way that CSS might be expresssed in JSON.</p>
-   <h4 class="heading settled" data-level="10.2.2" id="css_selectors"><span class="secno">10.2.2. </span><span class="content">CSS selectors</span><a class="self-link" href="#css_selectors"></a></h4>
+   <h4 class="heading settled" data-level="11.2.2" id="css_selectors"><span class="secno">11.2.2. </span><span class="content">CSS selectors</span><a class="self-link" href="#css_selectors"></a></h4>
    <p>This specification uses the CSS selector syntax to link specific metadata entries to specific markup elements, to classes on markup elements, or other linking mechanisms. Unlike CSS, however, it does not use selectors as an "object key", but rather as a value for a <code>selector</code> attribute, to fit the JSON schema and allow multiple rules to use the same selector.</p>
-   <h4 class="heading settled" data-level="10.2.3" id="intended_authoring"><span class="secno">10.2.3. </span><span class="content">Intended authoring usage</span><a class="self-link" href="#intended_authoring"></a></h4>
+   <h4 class="heading settled" data-level="11.2.3" id="intended_authoring"><span class="secno">11.2.3. </span><span class="content">Intended authoring usage</span><a class="self-link" href="#intended_authoring"></a></h4>
    <p>To enable a CSS feature that is extended in this specification, the author can include the rule in either the metadata definition or the CSS definition.</p>
    <p>If the rule is defined in the metadata, a user agent must apply in the same manner as if it were defined in the CSS. For a user agent that supports this specification, this can provide a greater degree of user control, ease authoring and maintenance, and decrease synchronization conflicts.</p>
    <p>The author does not need to define it in both the metadata and the CSS, but might wish to do so for a user agent (such as a general-purpose web browser) that supports the feature in CSS but does not support this specification.</p>
-   <h4 class="heading settled" data-level="10.2.4" id="css_conflicts"><span class="secno">10.2.4. </span><span class="content">Conflicts</span><a class="self-link" href="#css_conflicts"></a></h4>
+   <h4 class="heading settled" data-level="11.2.4" id="css_conflicts"><span class="secno">11.2.4. </span><span class="content">Conflicts</span><a class="self-link" href="#css_conflicts"></a></h4>
    <p>If a rule in a document’s metadata conflicts with a hard-coded CSS rule, the CSS rule should take precedence, unless the user has made a preference selection, through a default settting or a specific selection at the time of viewing.</p>
-   <h4 class="heading settled" data-level="10.2.5" id="future_css"><span class="secno">10.2.5. </span><span class="content">Future adoption and integration into CSS</span><a class="self-link" href="#future_css"></a></h4>
+   <h4 class="heading settled" data-level="11.2.5" id="future_css"><span class="secno">11.2.5. </span><span class="content">Future adoption and integration into CSS</span><a class="self-link" href="#future_css"></a></h4>
    <p>This specification defines some of its functionality in a way that could be integrated into future versions of CSS. Among other examples, the features that involve timing, such as haptics or sonification, are modeled after the animation syntax in CSS.</p>
-   <h2 class="heading settled" data-level="11" id="definitions"><span class="secno">11. </span><span class="content">Definitions</span><a class="self-link" href="#definitions"></a></h2>
-   <h3 class="heading settled" data-level="11.1" id="inline"><span class="secno">11.1. </span><span class="content">inline</span><a class="self-link" href="#inline"></a></h3>
+   <h2 class="heading settled" data-level="12" id="definitions"><span class="secno">12. </span><span class="content">Definitions</span><a class="self-link" href="#definitions"></a></h2>
+   <h3 class="heading settled" data-level="12.1" id="inline"><span class="secno">12.1. </span><span class="content">inline</span><a class="self-link" href="#inline"></a></h3>
    <p>In the context of this specification, "inline" refers to content that is included textually in the document itself, in contrast to external content that is referenced, but not incorporated into the document. This is akin to the concept of inclusion by value versus inclusion by reference.</p>
-   <h3 class="heading settled" data-level="11.2" id="rule"><span class="secno">11.2. </span><span class="content">rule</span><a class="self-link" href="#rule"></a></h3>
+   <h3 class="heading settled" data-level="12.2" id="rule"><span class="secno">12.2. </span><span class="content">rule</span><a class="self-link" href="#rule"></a></h3>
    <p>A rule is a combination of a selector and a behavior or data entry, which applies to an element or set of elements.</p>
-   <h3 class="heading settled" data-level="11.3" id="media_query"><span class="secno">11.3. </span><span class="content">media query</span><a class="self-link" href="#media_query"></a></h3>
+   <h3 class="heading settled" data-level="12.3" id="media_query"><span class="secno">12.3. </span><span class="content">media query</span><a class="self-link" href="#media_query"></a></h3>
    <p>A conditional meta-rule that applies rules based on the capabilities and environment of a user agent or device. Defined by the W3C Media Queries Level 4 specification. Syntactically, they consist of an <code>@</code> token operator followed by a string, followed by an optional condition set, where the string is one keyword from a pre-defined set of keywords denoting a capability or environmental variable, and the optional condition set is a value or range of values for that capability or environmental variable.</p>
    <div class="example" id="xmp_media_query_print">
     <a class="self-link" href="#xmp_media_query_print"></a> For example, the following media query expresses that a rule is used on printing devices only, with a resolution greater than 300 dots per CSS: 
     <p><code>@media print and (min-resolution: 300dpi)</code></p>
    </div>
-   <h3 class="heading settled" data-level="11.4" id="selector"><span class="secno">11.4. </span><span class="content">selector</span><a class="self-link" href="#selector"></a></h3>
+   <h3 class="heading settled" data-level="12.4" id="selector"><span class="secno">12.4. </span><span class="content">selector</span><a class="self-link" href="#selector"></a></h3>
    <p>A pattern that matches against elements in a tree. Defined by the W3C CSS Selectors specification. Syntactically, they normally consist of a token followed by a string, where the token is the operator, and the string is an user-defined alphanumeric "word" assigned to an element in the markup.</p>
    <p>The most common examples are the <code>id</code> selector (<code>#</code>), which matches the <code>id</code> of a single element (e.g. <code>#bar-1</code>, which matches the element with the <code>id</code> "bar-1"), and the class selector (<code>.</code>), which matches all instances of a string declared as the value of a <code>class</code> attribute (e.g. <code>.bar</code>, which matches all elements with the <code>class</code> including "bar").</p>
-   <h3 class="heading settled" data-level="11.5" id="raw_data"><span class="secno">11.5. </span><span class="content">raw data</span><a class="self-link" href="#raw_data"></a></h3>
+   <h3 class="heading settled" data-level="12.5" id="raw_data"><span class="secno">12.5. </span><span class="content">raw data</span><a class="self-link" href="#raw_data"></a></h3>
    <p>The dataset on which the visualization or image is based. Optimally, this dataset is included in the image file as metadata.</p>
-   <h3 class="heading settled" data-level="11.6" id="user"><span class="secno">11.6. </span><span class="content">user</span><a class="self-link" href="#user"></a></h3>
-   <h3 class="heading settled" data-level="11.7" id="end_user"><span class="secno">11.7. </span><span class="content">end user</span><a class="self-link" href="#end_user"></a></h3>
+   <h3 class="heading settled" data-level="12.6" id="user"><span class="secno">12.6. </span><span class="content">user</span><a class="self-link" href="#user"></a></h3>
+   <h3 class="heading settled" data-level="12.7" id="end_user"><span class="secno">12.7. </span><span class="content">end user</span><a class="self-link" href="#end_user"></a></h3>
    <p>The person experiencing or interacting with the image content, through whatever medium.</p>
-   <h3 class="heading settled" data-level="11.8" id="user_agent"><span class="secno">11.8. </span><span class="content">user agent</span><a class="self-link" href="#user_agent"></a></h3>
+   <h3 class="heading settled" data-level="12.8" id="user_agent"><span class="secno">12.8. </span><span class="content">user agent</span><a class="self-link" href="#user_agent"></a></h3>
    <p>The software that processes and presents the document to the end user.</p>
   </main>
   <div data-fill-with="conformance">
