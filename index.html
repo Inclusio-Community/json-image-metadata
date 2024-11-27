@@ -81,6 +81,9 @@
 /*                                    Body                                    */
 /******************************************************************************/
 
+	html {
+	}
+
 	body {
 		counter-reset: example figure issue;
 
@@ -1488,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="8468467175354d6d0e30436a189940efeecdf973" name="revision">
+  <meta content="61774ff2eeb28f32479b492832df0b7ecd5fc2cc" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2012,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-26">26 November 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-27">27 November 2024</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2023,13 +2026,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dt>Semantic Version:
-     <dd>0.3.1
+     <dd>0.3.2
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 26 November 2024,
+In addition, as of 27 November 2024,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2049,187 +2052,197 @@ Parts of this work may be from another specification document.  If so, those par
       <li><a href="#motivation"><span class="secno">1.1</span> <span class="content">Motivation</span></a>
      </ol>
     <li>
-     <a href="#goals"><span class="secno">2</span> <span class="content">Goals</span></a>
+     <a href="#jim_conformance"><span class="secno">2</span> <span class="content">JIM Conformance</span></a>
      <ol class="toc">
-      <li><a href="#interoperability"><span class="secno">2.1</span> <span class="content">Interoperability</span></a>
-      <li><a href="#personalization"><span class="secno">2.2</span> <span class="content">Personalization</span></a>
-      <li><a href="#security"><span class="secno">2.3</span> <span class="content">Security</span></a>
-      <li><a href="#privacy"><span class="secno">2.4</span> <span class="content">Privacy</span></a>
-      <li><a href="#portability"><span class="secno">2.5</span> <span class="content">Portability</span></a>
-      <li><a href="#reuseability"><span class="secno">2.6</span> <span class="content">Reuseability</span></a>
-      <li><a href="#familiarity"><span class="secno">2.7</span> <span class="content">Familiarity</span></a>
-      <li><a href="#flexibility"><span class="secno">2.8</span> <span class="content">Flexibility</span></a>
-      <li><a href="#searching_categorization"><span class="secno">2.9</span> <span class="content">Searching and categorization</span></a>
-      <li><a href="#provenance_expression"><span class="secno">2.10</span> <span class="content">Provenance expression</span></a>
-      <li><a href="#encapsulation"><span class="secno">2.11</span> <span class="content">Encapsulation</span></a>
+      <li><a href="#mime_type"><span class="secno">2.1</span> <span class="content">JIM MIME type</span></a>
+      <li><a href="#conform_version"><span class="secno">2.2</span> <span class="content">Version conformance</span></a>
       <li>
-       <a href="#nongoals"><span class="secno">2.12</span> <span class="content">Non-goals</span></a>
+       <a href="#conform_doc"><span class="secno">2.3</span> <span class="content">Conforming document</span></a>
        <ol class="toc">
-        <li><a href="#formal_semantics_namespaces"><span class="secno">2.12.1</span> <span class="content">Formal semantics and namespaces</span></a>
-        <li><a href="#generic_styling"><span class="secno">2.12.2</span> <span class="content">Generic styling</span></a>
-        <li><a href="#aria_syntax"><span class="secno">2.12.3</span> <span class="content">ARIA Syntax for Data Visualization</span></a>
+        <li><a href="#conform_doc_svg"><span class="secno">2.3.1</span> <span class="content">Conforming SVG document</span></a>
+        <li><a href="#conform_doc_raster"><span class="secno">2.3.2</span> <span class="content">Conforming raster document</span></a>
        </ol>
+      <li><a href="#conform_imp"><span class="secno">2.4</span> <span class="content">Conforming implementation</span></a>
      </ol>
     <li>
-     <a href="#jim_conformance"><span class="secno">3</span> <span class="content">JIM Conformance</span></a>
-     <ol class="toc">
-      <li><a href="#mime_type"><span class="secno">3.1</span> <span class="content">JIM MIME type</span></a>
-      <li><a href="#conform_version"><span class="secno">3.2</span> <span class="content">Version conformance</span></a>
-      <li>
-       <a href="#conform_doc"><span class="secno">3.3</span> <span class="content">Conforming document</span></a>
-       <ol class="toc">
-        <li><a href="#conform_doc_svg"><span class="secno">3.3.1</span> <span class="content">Conforming SVG document</span></a>
-        <li><a href="#conform_doc_raster"><span class="secno">3.3.2</span> <span class="content">Conforming raster document</span></a>
-       </ol>
-      <li><a href="#conform_imp"><span class="secno">3.4</span> <span class="content">Conforming implementation</span></a>
-     </ol>
-    <li>
-     <a href="#schema"><span class="secno">4</span> <span class="content">Schema</span></a>
+     <a href="#schema"><span class="secno">3</span> <span class="content">Schema</span></a>
      <ol class="toc">
       <li>
-       <a href="#datasets"><span class="secno">4.1</span> <span class="content">Datasets</span></a>
+       <a href="#datasets"><span class="secno">3.1</span> <span class="content">Datasets</span></a>
        <ol class="toc">
         <li>
-         <a href="#dataset_fidelity"><span class="secno">4.1.1</span> <span class="content">Fidelity in dataset representation</span></a>
+         <a href="#dataset_fidelity"><span class="secno">3.1.1</span> <span class="content">Fidelity in dataset representation</span></a>
          <ol class="toc">
-          <li><a href="#data_superset"><span class="secno">4.1.1.1</span> <span class="content">Superset datasets</span></a>
-          <li><a href="#dataset_sync"><span class="secno">4.1.1.2</span> <span class="content">Synchronizing datasets and representations</span></a>
-          <li><a href="#misrepresent"><span class="secno">4.1.1.3</span> <span class="content">Conforming misrepresentation of datasets</span></a>
+          <li><a href="#data_superset"><span class="secno">3.1.1.1</span> <span class="content">Superset datasets</span></a>
+          <li><a href="#dataset_sync"><span class="secno">3.1.1.2</span> <span class="content">Synchronizing datasets and representations</span></a>
+          <li><a href="#misrepresent"><span class="secno">3.1.1.3</span> <span class="content">Conforming misrepresentation of datasets</span></a>
          </ol>
         <li>
-         <a href="#dataset_structures"><span class="secno">4.1.2</span> <span class="content">Dataset structures</span></a>
+         <a href="#dataset_structures"><span class="secno">3.1.2</span> <span class="content">Dataset structures</span></a>
          <ol class="toc">
-          <li><a href="#structured_data"><span class="secno">4.1.2.1</span> <span class="content">Structured data</span></a>
-          <li><a href="#unstructured_data"><span class="secno">4.1.2.2</span> <span class="content">Unstructured data</span></a>
+          <li><a href="#structured_data"><span class="secno">3.1.2.1</span> <span class="content">Structured data</span></a>
+          <li><a href="#unstructured_data"><span class="secno">3.1.2.2</span> <span class="content">Unstructured data</span></a>
          </ol>
-        <li><a href="#ataset_keys"><span class="secno">4.1.3</span> <span class="content">Dataset keys</span></a>
-        <li><a href="#title_data_block"><span class="secno">4.1.4</span> <span class="content">The <code>title</code> key</span></a>
-        <li><a href="#subtitle_data_block"><span class="secno">4.1.5</span> <span class="content">The <code>subtitle</code> key</span></a>
-        <li><a href="#description_data_block"><span class="secno">4.1.6</span> <span class="content">The <code>description</code> key</span></a>
+        <li><a href="#ataset_keys"><span class="secno">3.1.3</span> <span class="content">Dataset keys</span></a>
+        <li><a href="#title_data_block"><span class="secno">3.1.4</span> <span class="content">The <code>title</code> key</span></a>
+        <li><a href="#subtitle_data_block"><span class="secno">3.1.5</span> <span class="content">The <code>subtitle</code> key</span></a>
+        <li><a href="#description_data_block"><span class="secno">3.1.6</span> <span class="content">The <code>description</code> key</span></a>
         <li>
-         <a href="#representation_data_block"><span class="secno">4.1.7</span> <span class="content">The <code>representation</code> key</span></a>
+         <a href="#representation_data_block"><span class="secno">3.1.7</span> <span class="content">The <code>representation</code> key</span></a>
          <ol class="toc">
-          <li><a href="#charttype_data_block"><span class="secno">4.1.7.1</span> <span class="content">The <code>chartType</code> key</span></a>
-         </ol>
-        <li>
-         <a href="#facets_data_block"><span class="secno">4.1.8</span> <span class="content">The <code>facets</code> key</span></a>
-         <ol class="toc">
-          <li><a href="#facetstring_data_block"><span class="secno">4.1.8.1</span> <span class="content">The <code>[facet-string]</code> key</span></a>
+          <li><a href="#charttype_data_block"><span class="secno">3.1.7.1</span> <span class="content">The <code>chartType</code> key</span></a>
          </ol>
         <li>
-         <a href="#series_data_block"><span class="secno">4.1.9</span> <span class="content">The <code>series</code> key</span></a>
+         <a href="#facets_data_block"><span class="secno">3.1.8</span> <span class="content">The <code>facets</code> key</span></a>
          <ol class="toc">
-          <li><a href="#series_name_data_block"><span class="secno">4.1.9.1</span> <span class="content">The <code>name</code> key</span></a>
-          <li><a href="#series_type_data_block"><span class="secno">4.1.9.2</span> <span class="content">The <code>type</code> key</span></a>
-          <li><a href="#series_records_data_block"><span class="secno">4.1.9.3</span> <span class="content">The <code>records</code> key</span></a>
-          <li><a href="#items_data_block"><span class="secno">4.1.9.4</span> <span class="content">The <code>items</code> key</span></a>
-          <li><a href="#source_data_block"><span class="secno">4.1.9.5</span> <span class="content">The <code>source</code> key</span></a>
+          <li><a href="#facetstring_data_block"><span class="secno">3.1.8.1</span> <span class="content">The <code>[facet-string]</code> key</span></a>
          </ol>
-        <li><a href="#href_data_block"><span class="secno">4.1.10</span> <span class="content">The <code>href</code> key in a <code>datasets</code> block</span></a>
+        <li>
+         <a href="#series_data_block"><span class="secno">3.1.9</span> <span class="content">The <code>series</code> key</span></a>
+         <ol class="toc">
+          <li><a href="#series_name_data_block"><span class="secno">3.1.9.1</span> <span class="content">The <code>name</code> key</span></a>
+          <li><a href="#series_type_data_block"><span class="secno">3.1.9.2</span> <span class="content">The <code>type</code> key</span></a>
+          <li><a href="#series_records_data_block"><span class="secno">3.1.9.3</span> <span class="content">The <code>records</code> key</span></a>
+          <li><a href="#items_data_block"><span class="secno">3.1.9.4</span> <span class="content">The <code>items</code> key</span></a>
+          <li><a href="#source_data_block"><span class="secno">3.1.9.5</span> <span class="content">The <code>source</code> key</span></a>
+         </ol>
+        <li><a href="#href_data_block"><span class="secno">3.1.10</span> <span class="content">The <code>href</code> key in a <code>datasets</code> block</span></a>
        </ol>
       <li>
-       <a href="#selectors"><span class="secno">4.2</span> <span class="content">Selectors</span></a>
+       <a href="#selectors"><span class="secno">3.2</span> <span class="content">Selectors</span></a>
        <ol class="toc">
         <li>
-         <a href="#inline_data"><span class="secno">4.2.1</span> <span class="content">Inline data</span></a>
+         <a href="#selectors_block"><span class="secno">3.2.1</span> <span class="content">The <code>selectors</code> block data</span></a>
+         <ol class="toc">
+          <li><a href="#selectorstring_data_block"><span class="secno">3.2.1.1</span> <span class="content">The <code>[selector-string]</code> key</span></a>
+          <li><a href="#selectorstring_target_selector"><span class="secno">3.2.1.2</span> <span class="content"><code>[selector-string]</code> as target selector</span></a>
+         </ol>
+        <li>
+         <a href="#inline_data"><span class="secno">3.2.2</span> <span class="content">Inline data</span></a>
          <ol class="toc">
           <li>
-           <a href="#linking_data"><span class="secno">4.2.1.1</span> <span class="content">Linking data and representational elements</span></a>
+           <a href="#linking_data"><span class="secno">3.2.2.1</span> <span class="content">Linking data and representational elements</span></a>
            <ol class="toc">
-            <li><a href="#data_model_cardinality"><span class="secno">4.2.1.1.1</span> <span class="content">Data model cardinality</span></a>
+            <li><a href="#data_model_cardinality"><span class="secno">3.2.2.1.1</span> <span class="content">Data model cardinality</span></a>
            </ol>
-          <li><a href="#selector_attribute"><span class="secno">4.2.1.2</span> <span class="content">The <code>selector</code> attribute</span></a>
          </ol>
-        <li><a href="#external_data_ref"><span class="secno">4.2.2</span> <span class="content">External data reference</span></a>
+        <li><a href="#external_data_ref"><span class="secno">3.2.3</span> <span class="content">External data reference</span></a>
        </ol>
-      <li><a href="#external_files"><span class="secno">4.3</span> <span class="content">External files</span></a>
+      <li><a href="#external_files"><span class="secno">3.3</span> <span class="content">External files</span></a>
       <li>
-       <a href="#behaviors"><span class="secno">4.4</span> <span class="content">Behaviors</span></a>
+       <a href="#behaviors"><span class="secno">3.4</span> <span class="content">Behaviors</span></a>
        <ol class="toc">
-        <li><a href="#behavior_generators"><span class="secno">4.4.1</span> <span class="content">Behavior and conforming generators</span></a>
-        <li><a href="#behavior_events"><span class="secno">4.4.2</span> <span class="content">Behavior events</span></a>
+        <li><a href="#behavior_generators"><span class="secno">3.4.1</span> <span class="content">Behavior and conforming generators</span></a>
+        <li><a href="#behavior_events"><span class="secno">3.4.2</span> <span class="content">Behavior events</span></a>
         <li>
-         <a href="#behavior_types"><span class="secno">4.4.3</span> <span class="content">Behavior types</span></a>
+         <a href="#behavior_types"><span class="secno">3.4.3</span> <span class="content">Behavior types</span></a>
          <ol class="toc">
-          <li><a href="#announcement_behaviors"><span class="secno">4.4.3.1</span> <span class="content">Announcement Behaviors</span></a>
-          <li><a href="#audio_behaviors"><span class="secno">4.4.3.2</span> <span class="content">Audio Behaviors</span></a>
-          <li><a href="#embossing_behaviors"><span class="secno">4.4.3.3</span> <span class="content">Embossing Behaviors</span></a>
-          <li><a href="#haptic_behaviors"><span class="secno">4.4.3.4</span> <span class="content">Haptic Behaviors</span></a>
-          <li><a href="#refreshable_pin_display_behaviors"><span class="secno">4.4.3.5</span> <span class="content">Refreshable Pin Display Behaviors</span></a>
-          <li><a href="#sonification_behaviors"><span class="secno">4.4.3.6</span> <span class="content">Sonification Behaviors</span></a>
-          <li><a href="#tactile_behaviors"><span class="secno">4.4.3.7</span> <span class="content">Tactile Behaviors</span></a>
-          <li><a href="#contrast_behaviors"><span class="secno">4.4.3.8</span> <span class="content">Visual Contrast Behaviors</span></a>
+          <li><a href="#announcement_behaviors"><span class="secno">3.4.3.1</span> <span class="content">Announcement Behaviors</span></a>
+          <li><a href="#audio_behaviors"><span class="secno">3.4.3.2</span> <span class="content">Audio Behaviors</span></a>
+          <li><a href="#embossing_behaviors"><span class="secno">3.4.3.3</span> <span class="content">Embossing Behaviors</span></a>
+          <li><a href="#haptic_behaviors"><span class="secno">3.4.3.4</span> <span class="content">Haptic Behaviors</span></a>
+          <li><a href="#refreshable_pin_display_behaviors"><span class="secno">3.4.3.5</span> <span class="content">Refreshable Pin Display Behaviors</span></a>
+          <li><a href="#sonification_behaviors"><span class="secno">3.4.3.6</span> <span class="content">Sonification Behaviors</span></a>
+          <li><a href="#tactile_behaviors"><span class="secno">3.4.3.7</span> <span class="content">Tactile Behaviors</span></a>
+          <li><a href="#contrast_behaviors"><span class="secno">3.4.3.8</span> <span class="content">Visual Contrast Behaviors</span></a>
          </ol>
        </ol>
       <li>
-       <a href="#provenance"><span class="secno">4.5</span> <span class="content">Provenance</span></a>
+       <a href="#provenance"><span class="secno">3.5</span> <span class="content">Provenance</span></a>
        <ol class="toc">
-        <li><a href="#notes"><span class="secno">4.5.1</span> <span class="content">Notes</span></a>
+        <li><a href="#notes"><span class="secno">3.5.1</span> <span class="content">Notes</span></a>
        </ol>
       <li>
-       <a href="#tags"><span class="secno">4.6</span> <span class="content">Tags</span></a>
+       <a href="#tags"><span class="secno">3.6</span> <span class="content">Tags</span></a>
        <ol class="toc">
-        <li><a href="#keywords"><span class="secno">4.6.1</span> <span class="content">Keywords</span></a>
-        <li><a href="#capabilities_ratings"><span class="secno">4.6.2</span> <span class="content">Capabilities and ratings</span></a>
+        <li><a href="#keywords"><span class="secno">3.6.1</span> <span class="content">Keywords</span></a>
+        <li><a href="#capabilities_ratings"><span class="secno">3.6.2</span> <span class="content">Capabilities and ratings</span></a>
        </ol>
-      <li><a href="#version"><span class="secno">4.7</span> <span class="content">Version</span></a>
+      <li><a href="#version"><span class="secno">3.7</span> <span class="content">Version</span></a>
      </ol>
     <li>
-     <a href="#regions"><span class="secno">5</span> <span class="content">Regions</span></a>
+     <a href="#targets"><span class="secno">4</span> <span class="content">Targets</span></a>
      <ol class="toc">
-      <li><a href="#region_element_selector"><span class="secno">5.1</span> <span class="content">Region element <code>selector</code></span></a>
-      <li><a href="#region_shape"><span class="secno">5.2</span> <span class="content">Region shape</span></a>
-     </ol>
-    <li>
-     <a href="#announcements"><span class="secno">6</span> <span class="content">Announcements</span></a>
-     <ol class="toc">
-      <li><a href="##announcement_name"><span class="secno">6.1</span> <span class="content">Announcement name</span></a>
-      <li><a href="##announcement_description"><span class="secno">6.2</span> <span class="content">Announcement description</span></a>
-      <li><a href="#announcement_detail"><span class="secno">6.3</span> <span class="content">Announcement detail</span></a>
-      <li><a href="##announcement_hint"><span class="secno">6.4</span> <span class="content">Announcement hint</span></a>
-     </ol>
-    <li>
-     <a href="#audio"><span class="secno">7</span> <span class="content">Audio</span></a>
-     <ol class="toc">
-      <li><a href="#audio_files"><span class="secno">7.1</span> <span class="content">Audio files</span></a>
-      <li><a href="#earcons"><span class="secno">7.2</span> <span class="content">Earcons</span></a>
       <li>
-       <a href="#adsr"><span class="secno">7.3</span> <span class="content">ADSR</span></a>
+       <a href="#target_selector_key"><span class="secno">4.1</span> <span class="content">Target <code>selector</code> key</span></a>
        <ol class="toc">
-        <li><a href="#adsr_definitions"><span class="secno">7.3.1</span> <span class="content">ADSR definitions</span></a>
-        <li><a href="#adsr_envelopes"><span class="secno">7.3.2</span> <span class="content">ADSR envelopes</span></a>
+        <li><a href="#target_element_selector"><span class="secno">4.1.1</span> <span class="content">Target <code>selector</code> for elements</span></a>
+        <li><a href="#target_selector_set_selector"><span class="secno">4.1.2</span> <span class="content">Target <code>selector</code> for selector sets</span></a>
+        <li><a href="#target_shape"><span class="secno">4.1.3</span> <span class="content">Target shape</span></a>
        </ol>
      </ol>
     <li>
-     <a href="#haptics"><span class="secno">8</span> <span class="content">Haptics</span></a>
+     <a href="#announcements"><span class="secno">5</span> <span class="content">Announcements</span></a>
      <ol class="toc">
-      <li><a href="#haptic_block"><span class="secno">8.1</span> <span class="content">The <code>haptic</code> key</span></a>
-      <li><a href="#vibration_patterns"><span class="secno">8.2</span> <span class="content">Vibration patterns</span></a>
-      <li><a href="#intensity_patterns"><span class="secno">8.3</span> <span class="content">Intensity patterns</span></a>
-      <li><a href="#haptic_examples"><span class="secno">8.4</span> <span class="content">Haptic examples</span></a>
-     </ol>
-    <li><a href="#sonification"><span class="secno">9</span> <span class="content">Sonification</span></a>
-    <li>
-     <a href="#select_device"><span class="secno">10</span> <span class="content">Selective Device Capabilities</span></a>
-     <ol class="toc">
-      <li><a href="#tactile_capabilities"><span class="secno">10.1</span> <span class="content">Tactile Capabilities</span></a>
+      <li><a href="##announcement_name"><span class="secno">5.1</span> <span class="content">Announcement name</span></a>
+      <li><a href="##announcement_description"><span class="secno">5.2</span> <span class="content">Announcement description</span></a>
+      <li><a href="#announcement_detail"><span class="secno">5.3</span> <span class="content">Announcement detail</span></a>
+      <li><a href="##announcement_hint"><span class="secno">5.4</span> <span class="content">Announcement hint</span></a>
      </ol>
     <li>
-     <a href="#tech_relationship"><span class="secno">11</span> <span class="content">Relationship to other technologies</span></a>
+     <a href="#audio"><span class="secno">6</span> <span class="content">Audio</span></a>
+     <ol class="toc">
+      <li><a href="#audio_files"><span class="secno">6.1</span> <span class="content">Audio files</span></a>
+      <li><a href="#earcons"><span class="secno">6.2</span> <span class="content">Earcons</span></a>
+      <li>
+       <a href="#adsr"><span class="secno">6.3</span> <span class="content">ADSR</span></a>
+       <ol class="toc">
+        <li><a href="#adsr_definitions"><span class="secno">6.3.1</span> <span class="content">ADSR definitions</span></a>
+        <li><a href="#adsr_envelopes"><span class="secno">6.3.2</span> <span class="content">ADSR envelopes</span></a>
+       </ol>
+     </ol>
+    <li>
+     <a href="#haptics"><span class="secno">7</span> <span class="content">Haptics</span></a>
+     <ol class="toc">
+      <li><a href="#haptic_block"><span class="secno">7.1</span> <span class="content">The <code>haptic</code> key</span></a>
+      <li><a href="#vibration_patterns"><span class="secno">7.2</span> <span class="content">Vibration patterns</span></a>
+      <li><a href="#intensity_patterns"><span class="secno">7.3</span> <span class="content">Intensity patterns</span></a>
+      <li><a href="#haptic_examples"><span class="secno">7.4</span> <span class="content">Haptic examples</span></a>
+     </ol>
+    <li><a href="#sonification"><span class="secno">8</span> <span class="content">Sonification</span></a>
+    <li>
+     <a href="#select_device"><span class="secno">9</span> <span class="content">Selective Device Capabilities</span></a>
+     <ol class="toc">
+      <li><a href="#tactile_capabilities"><span class="secno">9.1</span> <span class="content">Tactile Capabilities</span></a>
+     </ol>
+    <li>
+     <a href="#tech_relationship"><span class="secno">10</span> <span class="content">Relationship to other technologies</span></a>
      <ol class="toc">
       <li>
-       <a href="#svg"><span class="secno">11.1</span> <span class="content">Scalable Vector Graphics (SVG)</span></a>
+       <a href="#svg"><span class="secno">10.1</span> <span class="content">Scalable Vector Graphics (SVG)</span></a>
        <ol class="toc">
-        <li><a href="#svg_metadata_element"><span class="secno">11.1.1</span> <span class="content">The SVG <code>metadata</code> element</span></a>
+        <li><a href="#svg_metadata_element"><span class="secno">10.1.1</span> <span class="content">The SVG <code>metadata</code> element</span></a>
        </ol>
       <li>
-       <a href="#css"><span class="secno">11.2</span> <span class="content">Cascading Style Sheets (CSS)</span></a>
+       <a href="#css"><span class="secno">10.2</span> <span class="content">Cascading Style Sheets (CSS)</span></a>
        <ol class="toc">
-        <li><a href="#css_format"><span class="secno">11.2.1</span> <span class="content">CSS format</span></a>
-        <li><a href="#css_selectors"><span class="secno">11.2.2</span> <span class="content">CSS selectors</span></a>
-        <li><a href="#intended_authoring"><span class="secno">11.2.3</span> <span class="content">Intended authoring usage</span></a>
-        <li><a href="#css_conflicts"><span class="secno">11.2.4</span> <span class="content">Conflicts</span></a>
-        <li><a href="#future_css"><span class="secno">11.2.5</span> <span class="content">Future adoption and integration into CSS</span></a>
+        <li><a href="#css_format"><span class="secno">10.2.1</span> <span class="content">CSS format</span></a>
+        <li><a href="#css_selectors"><span class="secno">10.2.2</span> <span class="content">CSS selectors</span></a>
+        <li><a href="#intended_authoring"><span class="secno">10.2.3</span> <span class="content">Intended authoring usage</span></a>
+        <li><a href="#css_conflicts"><span class="secno">10.2.4</span> <span class="content">Conflicts</span></a>
+        <li><a href="#future_css"><span class="secno">10.2.5</span> <span class="content">Future adoption and integration into CSS</span></a>
+       </ol>
+     </ol>
+    <li>
+     <a href="#goals"><span class="secno">11</span> <span class="content">Specification Goals</span></a>
+     <ol class="toc">
+      <li><a href="#interoperability"><span class="secno">11.1</span> <span class="content">Interoperability</span></a>
+      <li><a href="#personalization"><span class="secno">11.2</span> <span class="content">Personalization</span></a>
+      <li><a href="#security"><span class="secno">11.3</span> <span class="content">Security</span></a>
+      <li><a href="#privacy"><span class="secno">11.4</span> <span class="content">Privacy</span></a>
+      <li><a href="#portability"><span class="secno">11.5</span> <span class="content">Portability</span></a>
+      <li><a href="#reuseability"><span class="secno">11.6</span> <span class="content">Reuseability</span></a>
+      <li><a href="#familiarity"><span class="secno">11.7</span> <span class="content">Familiarity</span></a>
+      <li><a href="#flexibility"><span class="secno">11.8</span> <span class="content">Flexibility</span></a>
+      <li><a href="#searching_categorization"><span class="secno">11.9</span> <span class="content">Searching and categorization</span></a>
+      <li><a href="#provenance_expression"><span class="secno">11.10</span> <span class="content">Provenance expression</span></a>
+      <li><a href="#encapsulation"><span class="secno">11.11</span> <span class="content">Encapsulation</span></a>
+      <li>
+       <a href="#nongoals"><span class="secno">11.12</span> <span class="content">Non-goals</span></a>
+       <ol class="toc">
+        <li><a href="#formal_semantics_namespaces"><span class="secno">11.12.1</span> <span class="content">Formal semantics and namespaces</span></a>
+        <li><a href="#generic_styling"><span class="secno">11.12.2</span> <span class="content">Generic styling</span></a>
+        <li><a href="#aria_syntax"><span class="secno">11.12.3</span> <span class="content">ARIA Syntax for Data Visualization</span></a>
        </ol>
      </ol>
     <li>
@@ -2263,78 +2276,35 @@ Parts of this work may be from another specification document.  If so, those par
    <p>By standardizing the accessibility features of a document, we enable users (such as people with disabilities, or teachers or caregivers of people with disabilities) to easily find content that matches their needs, or to find content they want to adapt or have adapted for their needs. This provides a meaningful path towards the curation, creation, and adaptation of accessible content, which is one of the primary gaps in accessibility today, particularly in education.</p>
    <p>Of particular note is support for hybrid physical-digital documents, such as printed or embossed images that are overlaid on a touch screen where the digital equivalent is mirrored, so that a tactile experience can be enhanced with haptics or voicing. Similarly, a 3D-printed object could be used with a camera scanner to associate sections of the object with specific metadata.</p>
    <p>This specification uses familiar technologies such as JSON and CSS Selectors, for ease of implementation and authoring.</p>
-   <h2 class="heading settled" data-level="2" id="goals"><span class="secno">2. </span><span class="content">Goals</span><a class="self-link" href="#goals"></a></h2>
-   <h3 class="heading settled" data-level="2.1" id="interoperability"><span class="secno">2.1. </span><span class="content">Interoperability</span><a class="self-link" href="#interoperability"></a></h3>
-   <p>This specification should be complete and definitive with the state of the art, to prevent the need for additional or competing specifications that would decrease interoperability.</p>
-   <h3 class="heading settled" data-level="2.2" id="personalization"><span class="secno">2.2. </span><span class="content">Personalization</span><a class="self-link" href="#personalization"></a></h3>
-   <p>This assistive technology must enable the user to select which of the available accommodations are enabled at any time, and at which available effect level. This must be able to set as a default in the user agent, and must be overrideable by the user to meet their specific need at any time.</p>
-   <p>Any given end-user might have multiple disabilities, with varying degrees of effect at any given time; any given document might have multiple accommodations enabled and encoded in it; any given user agent might suport multiple assistive technologies; any given environment might have different affordances and constraints.</p>
-   <div class="example" id="xmp_low_vision_high_contrast"><a class="self-link" href="#xmp_low_vision_high_contrast"></a> A low vision user might wish to enable very high contrast in a bright environment or when they are tired, and lower contrast when they are in a more moderately lighted environment and well-rested. </div>
-   <div class="example" id="xmp_blind_env_conditions"><a class="self-link" href="#xmp_blind_env_conditions"></a> A blind user might wish to enable haptics and braille output when they are in a quiet zone or noisy environment, and sonification and spoken output when they are in a private, quiet environment. </div>
-   <h3 class="heading settled" data-level="2.3" id="security"><span class="secno">2.3. </span><span class="content">Security</span><a class="self-link" href="#security"></a></h3>
-   <p>The distribution of interactive content presents a conflict between innovative capabilities and user security. In the web platform, most advanced interactivity can only be achieved through JavaScript, but allowing JavaScript in a file opens the user’s system up to possible security holes.</p>
-   <p>This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as conent management systems or email servers) might strip out the <code>script</code> element, disabling the interactivity of the content.</p>
-   <p>By defining a set of declarative syntaxes for different assistive technologies, including parameters and conditional execution triggers, this specification enables the user agent to provide the interactivity defined by the author, without compromising security. This specification refers to such declarative capabilities as "behaviors".</p>
-   <h3 class="heading settled" data-level="2.4" id="privacy"><span class="secno">2.4. </span><span class="content">Privacy</span><a class="self-link" href="#privacy"></a></h3>
-   <p>By enabling security through declarative behaviors, this specification ensures the privacy of the user from third parties. Note that data collection might still be performed through some primary user agents and content providers, but this should be done only with the user’s consent.</p>
-   <h3 class="heading settled" data-level="2.5" id="portability"><span class="secno">2.5. </span><span class="content">Portability</span><a class="self-link" href="#portability"></a></h3>
-   <p>Data visualizations can often lose their association with their context, including the article they were published in or the data they represent. This specification must define a way to include the raw data and the provenance in the image file, so the context can be preserved as the document is shared through various means.</p>
-   <h3 class="heading settled" data-level="2.6" id="reuseability"><span class="secno">2.6. </span><span class="content">Reuseability</span><a class="self-link" href="#reuseability"></a></h3>
-   <p>This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, creaste different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.</p>
-   <p>In addition, a visual image can be enhanced with different metadata to serve a different purpose, such as providing a different set of descriptions for an audience at different reading levels, or translating the document into another language.</p>
-   <h3 class="heading settled" data-level="2.7" id="familiarity"><span class="secno">2.7. </span><span class="content">Familiarity</span><a class="self-link" href="#familiarity"></a></h3>
-   <p>Document technologies are most useful when the syntax and model is familiar and unambiguous. This allows for ease of implementation, increased interoperability, and ease of authoring. This specification should use common technologies like JSON and CSS as its underpinnings.</p>
-   <h3 class="heading settled" data-level="2.8" id="flexibility"><span class="secno">2.8. </span><span class="content">Flexibility</span><a class="self-link" href="#flexibility"></a></h3>
-   <p>This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accomodate other techniques in the future.</p>
-   <p>At the same time, this specification should establish defaults and baselines based on best practices, wherever possible, to encourage good authoring and normalize user experience.</p>
-   <h3 class="heading settled" data-level="2.9" id="searching_categorization"><span class="secno">2.9. </span><span class="content">Searching and categorization</span><a class="self-link" href="#searching_categorization"></a></h3>
-   <p>This specification must define easy ways to enable the distribution and discovery of content based on user needs and accommodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.</p>
-   <h3 class="heading settled" data-level="2.10" id="provenance_expression"><span class="secno">2.10. </span><span class="content">Provenance expression</span><a class="self-link" href="#provenance_expression"></a></h3>
-   <p>Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more content by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be shared, while also providing credit to the original author or publisher.</p>
-   <h3 class="heading settled" data-level="2.11" id="encapsulation"><span class="secno">2.11. </span><span class="content">Encapsulation</span><a class="self-link" href="#encapsulation"></a></h3>
-   <p>Through encapsulation, more than one metadata profile can be included for any given image document, much like a stylesheet can change the appearance of the same HMTL file. This specification should not require any changes to the markup of SVG or other files, with 2 exceptions:</p>
-   <ol>
-    <li data-md>
-     <p>The inclusion of a <code>metadata</code> element and its contents.</p>
-    <li data-md>
-     <p>The encouragement of the use of <code>id</code> attributes on key elements. This is not necessary, since selector syntax can target any point in a DOM tree, but the inclusion of <code>id</code>s makes creating and maintaining the markup easier.</p>
-   </ol>
-   <h3 class="heading settled" data-level="2.12" id="nongoals"><span class="secno">2.12. </span><span class="content">Non-goals</span><a class="self-link" href="#nongoals"></a></h3>
-   <h4 class="heading settled" data-level="2.12.1" id="formal_semantics_namespaces"><span class="secno">2.12.1. </span><span class="content">Formal semantics and namespaces</span><a class="self-link" href="#formal_semantics_namespaces"></a></h4>
-   <p>While namespaces allow a flexible extensibility and modularity, they also hamper and complicate authoring and reading. This document will avoid the use of namespaces, and related technologies such as JSON-LD. Future supplements to this specification might define a JSON-LD schema, if demand exists for it.</p>
-   <h4 class="heading settled" data-level="2.12.2" id="generic_styling"><span class="secno">2.12.2. </span><span class="content">Generic styling</span><a class="self-link" href="#generic_styling"></a></h4>
-   <p>While this specification does include some accessibility-specific extensions of CSS, such as a finer control of color contrast settings, it must not define or be used to supercede CSS.</p>
-   <h4 class="heading settled" data-level="2.12.3" id="aria_syntax"><span class="secno">2.12.3. </span><span class="content">ARIA Syntax for Data Visualization</span><a class="self-link" href="#aria_syntax"></a></h4>
-   <p>This specification is complementary and orthogonal to the W3C specifications defining <code>role</code> attributes, including the <a href="https://www.w3.org/TR/graphics-aria-1.0/">WAI-ARIA Graphics Module</a> and the <a href="https://www.w3.org/TR/svg-aam-1.0/">SVG Accessibility API Mappings</a>.</p>
-   <h2 class="heading settled" data-level="3" id="jim_conformance"><span class="secno">3. </span><span class="content">JIM Conformance</span><a class="self-link" href="#jim_conformance"></a></h2>
-   <h3 class="heading settled" data-level="3.1" id="mime_type"><span class="secno">3.1. </span><span class="content">JIM MIME type</span><a class="self-link" href="#mime_type"></a></h3>
+   <h2 class="heading settled" data-level="2" id="jim_conformance"><span class="secno">2. </span><span class="content">JIM Conformance</span><a class="self-link" href="#jim_conformance"></a></h2>
+   <h3 class="heading settled" data-level="2.1" id="mime_type"><span class="secno">2.1. </span><span class="content">JIM MIME type</span><a class="self-link" href="#mime_type"></a></h3>
    <p>The MIME type for a JSON Image Metadata document is <code>text/jim+json</code>.</p>
-   <h3 class="heading settled" data-level="3.2" id="conform_version"><span class="secno">3.2. </span><span class="content">Version conformance</span><a class="self-link" href="#conform_version"></a></h3>
+   <h3 class="heading settled" data-level="2.2" id="conform_version"><span class="secno">2.2. </span><span class="content">Version conformance</span><a class="self-link" href="#conform_version"></a></h3>
    <p>This specification defines a <a href="https://semver.org/">semantic version</a> [Semantic Versioning 2.0.0].</p>
    <p>A document conforming to this specification should specify the version number of the specification to which it conforms, in the <code>jim</code> key of the <code>version</code> block.</p>
    <p>An implementation conforming to this specification must store internally the version number of the specification to which it conforms, and should expose the version number to the end user. If the implementation opens a JIM document which specifies an incompatible version of JIM, the implementation must warn the end user.</p>
    <div class="note" role="note"> Note that this specification is being developed in parallel with several experimental implementations, on a milestone basis, as part of the Inclusio Project. The minor version number (MAJOR.MINOR.PATCH) corresponds to the project milestone number across the Inclusio Project implementations. </div>
    <div class="note" role="note"> Note that version 0.3.0 of this specification is the first version to use Semantic Versioning, and includes breaking changes to the specification due to implementation experience. Future versions of this specification will adhere to the practice of incrementing the major version number for breaking changes. </div>
-   <h3 class="heading settled" data-level="3.3" id="conform_doc"><span class="secno">3.3. </span><span class="content">Conforming document</span><a class="self-link" href="#conform_doc"></a></h3>
+   <h3 class="heading settled" data-level="2.3" id="conform_doc"><span class="secno">2.3. </span><span class="content">Conforming document</span><a class="self-link" href="#conform_doc"></a></h3>
    <p>A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty <code>datasets</code> block or one non-empty <code>behaviors</code> block.</p>
    <p>This specification assumes the format of the metadata is in a JSON object. Other conforming serializations are possible, such as XML or a binary format, as long as they adhere to the structure of the defined JSON schema, and can be serialized as JSON.</p>
    <p>A conforming document must provide a means to discover the metadata block.</p>
-   <h4 class="heading settled" data-level="3.3.1" id="conform_doc_svg"><span class="secno">3.3.1. </span><span class="content">Conforming SVG document</span><a class="self-link" href="#conform_doc_svg"></a></h4>
+   <h4 class="heading settled" data-level="2.3.1" id="conform_doc_svg"><span class="secno">2.3.1. </span><span class="content">Conforming SVG document</span><a class="self-link" href="#conform_doc_svg"></a></h4>
    <p>In SVG, the metadata block must be the content of a <code>metadata</code> element with an attribute <code>data-type</code> with the attribute value <code>text/jim+json</code>, the MIME type for a JIM document.</p>
-   <h4 class="heading settled" data-level="3.3.2" id="conform_doc_raster"><span class="secno">3.3.2. </span><span class="content">Conforming raster document</span><a class="self-link" href="#conform_doc_raster"></a></h4>
+   <h4 class="heading settled" data-level="2.3.2" id="conform_doc_raster"><span class="secno">2.3.2. </span><span class="content">Conforming raster document</span><a class="self-link" href="#conform_doc_raster"></a></h4>
    <p>For raster image documents, the JIM content block must be included in the metadata section of the raster image file.</p>
-   <h3 class="heading settled" data-level="3.4" id="conform_imp"><span class="secno">3.4. </span><span class="content">Conforming implementation</span><a class="self-link" href="#conform_imp"></a></h3>
+   <h3 class="heading settled" data-level="2.4" id="conform_imp"><span class="secno">2.4. </span><span class="content">Conforming implementation</span><a class="self-link" href="#conform_imp"></a></h3>
    <p>An implementation conforming to this specification must access the contents of the metadata block. For an SVG-capable implementation displaying an SVG document, a conforming implementation must read the JSON data in the indicated <code>metadata</code> element.</p>
    <p>A conforming implementation must provide a means for the end user to extract the contents of the <code>datasets</code> block.</p>
    <p>A conforming implementation must resolve all selectors and execute all supported features of the <code>behaviors</code> block.</p>
-   <h2 class="heading settled" data-level="4" id="schema"><span class="secno">4. </span><span class="content">Schema</span><a class="self-link" href="#schema"></a></h2>
+   <h2 class="heading settled" data-level="3" id="schema"><span class="secno">3. </span><span class="content">Schema</span><a class="self-link" href="#schema"></a></h2>
    <div class="note" role="note"> Note that the examples below are notional, and intended for illustrative purposes. They are not a formal definition. The final definitions will be expressed in JSON Schema <a data-link-type="biblio" href="#biblio-json-schema" title="JSON Schema: A Media Type for Describing JSON Documents">[JSON-Schema]</a>, and will include data types for each member. </div>
    <p>This vocabulary is defined in terms of "blocks", or objects identified by a key with a defined set of optional sub-keys. This includes the <code>datasets</code>, <code>provenance</code>, <code>tags</code>, and <code>behaviors</code> blocks.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
   <c- p>],</c->
-  <c- f>"selectors"</c-><c- p>:</c-> <c- p>[</c->
-  <c- p>],</c->
+  <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
+  <c- p>},</c->
   <c- f>"behaviors"</c-><c- p>:</c-> <c- p>[</c->
   <c- p>],</c->
   <c- f>"provenance"</c-><c- p>:</c-> <c- p>{</c->
@@ -2345,7 +2315,7 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h3 class="heading settled" data-level="4.1" id="datasets"><span class="secno">4.1. </span><span class="content">Datasets</span><a class="self-link" href="#datasets"></a></h3>
+   <h3 class="heading settled" data-level="3.1" id="datasets"><span class="secno">3.1. </span><span class="content">Datasets</span><a class="self-link" href="#datasets"></a></h3>
    <p>Datasets refer to the raw data which the image represents.</p>
    <p>There are two ways to link the data to the image file: inline; and external reference. These methods can be used together in some ways, defined below.</p>
    <p>A <code>datasets</code> block is an array of objects with the key <code>datasets</code>. Each child object represents a discrete dataset represented in the graphic.</p>
@@ -2358,13 +2328,13 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    <p class="note" role="note"><span class="marker">Note:</span> Multiple datasets serve the use cases of: representing more than one type of chart in the same rendered chart, such as a line chart superimposed over a bar chart; representing multiple scales, such as a line chart with 2 series, each of which is on a different scale (e.g. where there are two y-axes, one on each side of the chart); dashboards with multiple charts, especially when two of the charts are closely related or show different aspects of the same data; and data that is comes from disparate sources or provenance.</p>
    <p class="note" role="note"><span class="marker">Note:</span> As a heuristic, if all of the facets (and sources) are identical between two or more datasets, they can be merged into a single dataset object; but if any of the facets (or sources) is different, they are better represented as different datasets.</p>
-   <h4 class="heading settled" data-level="4.1.1" id="dataset_fidelity"><span class="secno">4.1.1. </span><span class="content">Fidelity in dataset representation</span><a class="self-link" href="#dataset_fidelity"></a></h4>
+   <h4 class="heading settled" data-level="3.1.1" id="dataset_fidelity"><span class="secno">3.1.1. </span><span class="content">Fidelity in dataset representation</span><a class="self-link" href="#dataset_fidelity"></a></h4>
    <p>A document conforming to this specification must maintain an accurate visual and/or structural representation of the dataset specified in the <code>datasets</code> block, including the selectors that yoke a DOM representation to the JSONPath of the represented data.</p>
    <p>A conforming graphical document which represents structured data must also contain the corresponding dataset in JSON or must link to the dataset in some other format.</p>
    <blockquote>
     <p>Not all graphical documents, especially those that show illustrations rather than structured charts, have an obvious or useful JSON representation. If no schema defined in this specification matches the type of graphics depicted in the document, then a JIM block can still be useful in providing the title, description, provenance, and other information.</p>
    </blockquote>
-   <h5 class="heading settled" data-level="4.1.1.1" id="data_superset"><span class="secno">4.1.1.1. </span><span class="content">Superset datasets</span><a class="self-link" href="#data_superset"></a></h5>
+   <h5 class="heading settled" data-level="3.1.1.1" id="data_superset"><span class="secno">3.1.1.1. </span><span class="content">Superset datasets</span><a class="self-link" href="#data_superset"></a></h5>
    <p>A conforming document may include more data than is represented in the visualization, so long as the visual and structural representation is an accurate representation of a subset of the datasets.</p>
    <p>Valid examples of data supersets include (but are not limited to):</p>
    <ul>
@@ -2378,26 +2348,26 @@ Parts of this work may be from another specification document.  If so, those par
    <blockquote>
     <p>There are a number of useful scenarios where a data superset occurs. For example, an author may wish for others to have their whole dataset for independent verification, even though the author focuses a visualization on only one aspect of that dataset; or, a user may "zoom in" on a shorter range of the data, in an interactive chart that enables that.</p>
    </blockquote>
-   <h5 class="heading settled" data-level="4.1.1.2" id="dataset_sync"><span class="secno">4.1.1.2. </span><span class="content">Synchronizing datasets and representations</span><a class="self-link" href="#dataset_sync"></a></h5>
+   <h5 class="heading settled" data-level="3.1.1.2" id="dataset_sync"><span class="secno">3.1.1.2. </span><span class="content">Synchronizing datasets and representations</span><a class="self-link" href="#dataset_sync"></a></h5>
    <p>Conforming authoring tools, including any software that enables editing of graphics or data, must ensure that any changes to the graphics that represent data are also changed in the corresponding data, that any changes to the data are also changed in the corresponding graphics, and that any relevant selectors still yoke the corresponding data and representation.</p>
-   <h5 class="heading settled" data-level="4.1.1.3" id="misrepresent"><span class="secno">4.1.1.3. </span><span class="content">Conforming misrepresentation of datasets</span><a class="self-link" href="#misrepresent"></a></h5>
+   <h5 class="heading settled" data-level="3.1.1.3" id="misrepresent"><span class="secno">3.1.1.3. </span><span class="content">Conforming misrepresentation of datasets</span><a class="self-link" href="#misrepresent"></a></h5>
    <p>This specification does not place conformance restrictions on the accuracy, aptness, or honesty of the data representation.</p>
    <p>A visualization which contains mistakes in the dataset itself or in the visualization, which uses the wrong type of chart for the data, or which is deliberately misleading does not necessarily fail in conformance to this specification, so long as the document uses accurate <code>datasets</code> and corresponding <code>selectors</code>.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The authors of this specification strongly condemn misrepresenting data with a visualization. However, this is an ethical issue, not a technical or interoperability issue.</p>
-   <h4 class="heading settled" data-level="4.1.2" id="dataset_structures"><span class="secno">4.1.2. </span><span class="content">Dataset structures</span><a class="self-link" href="#dataset_structures"></a></h4>
+   <h4 class="heading settled" data-level="3.1.2" id="dataset_structures"><span class="secno">3.1.2. </span><span class="content">Dataset structures</span><a class="self-link" href="#dataset_structures"></a></h4>
    <p>This specification requires that an inline dataset must be in JSON format, but does not mandate a particular structure for a dataset.</p>
    <p>No single dataset structure optimally represents every different kind of data or chart type. Often, an inline dataset might reflect the internal model used by the software that generated the image, diagram, or data visualization.</p>
    <p>Instead, this specification defines the <code>selector</code> attribute, which can be added to an object in an arbitrary JSON data structure to indicate a link between a data point and its graphical representation element.</p>
    <p>This specification does include a set of canonical dataset structures which may be used. However, conforming implementations may express the dataset in a different JSON structure, so long as it includes the same set of keys as in the schema.</p>
-   <h5 class="heading settled" data-level="4.1.2.1" id="structured_data"><span class="secno">4.1.2.1. </span><span class="content">Structured data</span><a class="self-link" href="#structured_data"></a></h5>
+   <h5 class="heading settled" data-level="3.1.2.1" id="structured_data"><span class="secno">3.1.2.1. </span><span class="content">Structured data</span><a class="self-link" href="#structured_data"></a></h5>
    <p>Structured data includes faceted data, whether qualitative or quantitative, that can be represented by a chart or graph.</p>
    <p>This data must be included in objects in the <code>facets</code> and <code>series</code> keys.</p>
    <p class="note" role="note"><span class="marker">Note:</span> A future version of this specification will define schemata for a canonical dataset structure or set of structures for different types of data visualization.</p>
-   <h5 class="heading settled" data-level="4.1.2.2" id="unstructured_data"><span class="secno">4.1.2.2. </span><span class="content">Unstructured data</span><a class="self-link" href="#unstructured_data"></a></h5>
+   <h5 class="heading settled" data-level="3.1.2.2" id="unstructured_data"><span class="secno">3.1.2.2. </span><span class="content">Unstructured data</span><a class="self-link" href="#unstructured_data"></a></h5>
    <p>Unstructured data includes many types of diagrams, illustrations, pictorial graphics, or infographics. There may be some informal structure to such graphics, including hierarchies such as section headings, but they are not formatted in a defined manner.</p>
    <p>Labels, descriptions, and other unstructured metadata may optionally be included in objects in the <code>items</code> key.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Certain types of diagram that denote steps, stages, or relationships between objects, such as the water evaporation cycle, can be represented as structured data with the <code>graph</code> schema.</p>
-   <h4 class="heading settled" data-level="4.1.3" id="ataset_keys"><span class="secno">4.1.3. </span><span class="content">Dataset keys</span><a class="self-link" href="#ataset_keys"></a></h4>
+   <h4 class="heading settled" data-level="3.1.3" id="ataset_keys"><span class="secno">3.1.3. </span><span class="content">Dataset keys</span><a class="self-link" href="#ataset_keys"></a></h4>
    <p>The notional dataset described in this specification includes exemplar entities which should be included in any inline dataset for optimal correlation to common graphical representation elements.</p>
    <p>These entities include the <code>title</code>, <code>subtitle</code>, <code>description</code>, <code>representation</code>, <code>facets</code>, <code>series</code>, <code>items</code>, <code>source</code>, and <code>href</code> keys and their values.</p>
    <table class="data">
@@ -2477,16 +2447,16 @@ Parts of this work may be from another specification document.  If so, those par
     <p>TODO: add example</p>
    </blockquote>
    <p>The individual entries of the <code>datasets</code> block are defined in [Inline data].</p>
-   <h4 class="heading settled" data-level="4.1.4" id="title_data_block"><span class="secno">4.1.4. </span><span class="content">The <code>title</code> key</span><a class="self-link" href="#title_data_block"></a></h4>
+   <h4 class="heading settled" data-level="3.1.4" id="title_data_block"><span class="secno">3.1.4. </span><span class="content">The <code>title</code> key</span><a class="self-link" href="#title_data_block"></a></h4>
    <p>The title of the graphic document.</p>
-   <h4 class="heading settled" data-level="4.1.5" id="subtitle_data_block"><span class="secno">4.1.5. </span><span class="content">The <code>subtitle</code> key</span><a class="self-link" href="#subtitle_data_block"></a></h4>
+   <h4 class="heading settled" data-level="3.1.5" id="subtitle_data_block"><span class="secno">3.1.5. </span><span class="content">The <code>subtitle</code> key</span><a class="self-link" href="#subtitle_data_block"></a></h4>
    <p>The subtitle of the graphic document.</p>
-   <h4 class="heading settled" data-level="4.1.6" id="description_data_block"><span class="secno">4.1.6. </span><span class="content">The <code>description</code> key</span><a class="self-link" href="#description_data_block"></a></h4>
+   <h4 class="heading settled" data-level="3.1.6" id="description_data_block"><span class="secno">3.1.6. </span><span class="content">The <code>description</code> key</span><a class="self-link" href="#description_data_block"></a></h4>
    <p>A meaningful summary of the graphic document.</p>
-   <h4 class="heading settled" data-level="4.1.7" id="representation_data_block"><span class="secno">4.1.7. </span><span class="content">The <code>representation</code> key</span><a class="self-link" href="#representation_data_block"></a></h4>
+   <h4 class="heading settled" data-level="3.1.7" id="representation_data_block"><span class="secno">3.1.7. </span><span class="content">The <code>representation</code> key</span><a class="self-link" href="#representation_data_block"></a></h4>
    <p>Various aspects of the representation, such as the type of chart.</p>
    <p>The <code>representation</code> object contains the <code>chartType</code> key.</p>
-   <h5 class="heading settled" data-level="4.1.7.1" id="charttype_data_block"><span class="secno">4.1.7.1. </span><span class="content">The <code>chartType</code> key</span><a class="self-link" href="#charttype_data_block"></a></h5>
+   <h5 class="heading settled" data-level="3.1.7.1" id="charttype_data_block"><span class="secno">3.1.7.1. </span><span class="content">The <code>chartType</code> key</span><a class="self-link" href="#charttype_data_block"></a></h5>
    <table class="data">
     <thead>
      <tr>
@@ -2501,7 +2471,7 @@ Parts of this work may be from another specification document.  If so, those par
       <td>The type of chart, such as <code>bar</code>, <code>line</code>, or <code>scatterplot</code>
       <td>optional for unstructured data, required for structured data
    </table>
-   <h4 class="heading settled" data-level="4.1.8" id="facets_data_block"><span class="secno">4.1.8. </span><span class="content">The <code>facets</code> key</span><a class="self-link" href="#facets_data_block"></a></h4>
+   <h4 class="heading settled" data-level="3.1.8" id="facets_data_block"><span class="secno">3.1.8. </span><span class="content">The <code>facets</code> key</span><a class="self-link" href="#facets_data_block"></a></h4>
    <p>The <code>facets</code> block contains details of each facet in the dataset, such as x and y axes or legend keys, for structured data.</p>
    <p>The <code>facets</code> object contains one or more <code>[facet-string]</code> keys. A <code>[facet-string]</code> key may be any value allowed by the schema for the representation type, and will normally represent the axes (e.g. <code>"x"</code> and <code>"y"</code>), a legend (i.e. '"legend"'), a magnitude, or any other type of recorded data being represented. Each <code>[facet-string]</code> is the key to an object which defines the parameters, value type, and descriptors for the corresponding key in the child objects of the <code>records</code> array in the <code>series</code> array.</p>
    <p>These <code>[facet-string]</code> keys must consist of a string of ASCII letters, digits, '_', and '-', with no whitespace. Each <code>[facet-string]</code> key must be a unique value.</p>
@@ -2549,7 +2519,7 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    </div>
-   <h5 class="heading settled" data-level="4.1.8.1" id="facetstring_data_block"><span class="secno">4.1.8.1. </span><span class="content">The <code>[facet-string]</code> key</span><a class="self-link" href="#facetstring_data_block"></a></h5>
+   <h5 class="heading settled" data-level="3.1.8.1" id="facetstring_data_block"><span class="secno">3.1.8.1. </span><span class="content">The <code>[facet-string]</code> key</span><a class="self-link" href="#facetstring_data_block"></a></h5>
    <table class="data">
     <thead>
      <tr>
@@ -2627,7 +2597,7 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    </div>
-   <h4 class="heading settled" data-level="4.1.9" id="series_data_block"><span class="secno">4.1.9. </span><span class="content">The <code>series</code> key</span><a class="self-link" href="#series_data_block"></a></h4>
+   <h4 class="heading settled" data-level="3.1.9" id="series_data_block"><span class="secno">3.1.9. </span><span class="content">The <code>series</code> key</span><a class="self-link" href="#series_data_block"></a></h4>
    <p>The <code>series</code> block contains the information about each series of the dataset for structured data, including the raw data values of each record in each series.</p>
    <p>The <code>series</code> object contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
    <table class="data">
@@ -2653,35 +2623,144 @@ Parts of this work may be from another specification document.  If so, those par
       <td>The raw data values for each facet of each record of this series
       <td>optional for unstructured data, required for structured data
    </table>
-   <h5 class="heading settled" data-level="4.1.9.1" id="series_name_data_block"><span class="secno">4.1.9.1. </span><span class="content">The <code>name</code> key</span><a class="self-link" href="#series_name_data_block"></a></h5>
+   <h5 class="heading settled" data-level="3.1.9.1" id="series_name_data_block"><span class="secno">3.1.9.1. </span><span class="content">The <code>name</code> key</span><a class="self-link" href="#series_name_data_block"></a></h5>
    <p>The <code>name</code> key has a value that is a string that is the name for this series, normally used as the series label.</p>
-   <h5 class="heading settled" data-level="4.1.9.2" id="series_type_data_block"><span class="secno">4.1.9.2. </span><span class="content">The <code>type</code> key</span><a class="self-link" href="#series_type_data_block"></a></h5>
+   <h5 class="heading settled" data-level="3.1.9.2" id="series_type_data_block"><span class="secno">3.1.9.2. </span><span class="content">The <code>type</code> key</span><a class="self-link" href="#series_type_data_block"></a></h5>
    <p>The <code>type</code> key has a value that is a string defining the type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>datasets</code>.</p>
-   <h5 class="heading settled" data-level="4.1.9.3" id="series_records_data_block"><span class="secno">4.1.9.3. </span><span class="content">The <code>records</code> key</span><a class="self-link" href="#series_records_data_block"></a></h5>
+   <h5 class="heading settled" data-level="3.1.9.3" id="series_records_data_block"><span class="secno">3.1.9.3. </span><span class="content">The <code>records</code> key</span><a class="self-link" href="#series_records_data_block"></a></h5>
    <p>The <code>records</code> block contains the raw data values for each facet of each record of this series.</p>
    <p>The <code>series</code> array contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
-   <h5 class="heading settled" data-level="4.1.9.4" id="items_data_block"><span class="secno">4.1.9.4. </span><span class="content">The <code>items</code> key</span><a class="self-link" href="#items_data_block"></a></h5>
+   <h5 class="heading settled" data-level="3.1.9.4" id="items_data_block"><span class="secno">3.1.9.4. </span><span class="content">The <code>items</code> key</span><a class="self-link" href="#items_data_block"></a></h5>
    <p>A loosely organized collection of items for unstructured data, such as labels, values, and descriptions for diagrams.</p>
    <p>TODO: describe the <code>items</code> object</p>
-   <h5 class="heading settled" data-level="4.1.9.5" id="source_data_block"><span class="secno">4.1.9.5. </span><span class="content">The <code>source</code> key</span><a class="self-link" href="#source_data_block"></a></h5>
+   <h5 class="heading settled" data-level="3.1.9.5" id="source_data_block"><span class="secno">3.1.9.5. </span><span class="content">The <code>source</code> key</span><a class="self-link" href="#source_data_block"></a></h5>
    <p>The provenance of the dataset.</p>
    <p>TODO: describe the <code>source</code> object</p>
-   <h4 class="heading settled" data-level="4.1.10" id="href_data_block"><span class="secno">4.1.10. </span><span class="content">The <code>href</code> key in a <code>datasets</code> block</span><a class="self-link" href="#href_data_block"></a></h4>
+   <h4 class="heading settled" data-level="3.1.10" id="href_data_block"><span class="secno">3.1.10. </span><span class="content">The <code>href</code> key in a <code>datasets</code> block</span><a class="self-link" href="#href_data_block"></a></h4>
    <p>The <code>href</code> key defines an object that refers to an external data file. The content model and processing of the <code>href</code> key are different in the <code>datasets</code> block than in other metadata blocks.</p>
    <p>This external file can be used to link data to graphical elements, as defined in [Inline data].</p>
-   <h3 class="heading settled" data-level="4.2" id="selectors"><span class="secno">4.2. </span><span class="content">Selectors</span><a class="self-link" href="#selectors"></a></h3>
+   <h3 class="heading settled" data-level="3.2" id="selectors"><span class="secno">3.2. </span><span class="content">Selectors</span><a class="self-link" href="#selectors"></a></h3>
    <p>In order to identify and link between the DOM of an SVG document and the JSON metadata, this specification uses CSS Selectors and JSONPath.</p>
    <p>CSS Selectors <a data-link-type="biblio" href="#biblio-selectors-4" title="Selectors Level 4">[Selectors-4]</a> enables the matching of DOM nodes, such as graphical or textual elements.</p>
    <p>JSONPath <a data-link-type="biblio" href="#biblio-jsonpath" title="JSONPath: Query expressions for JSON">[JSONPath]</a> enables the matching of JSON keys or values in the JSON metadata.</p>
    <blockquote>
     <p>TODO: include more details about linking</p>
    </blockquote>
-   <h4 class="heading settled" data-level="4.2.1" id="inline_data"><span class="secno">4.2.1. </span><span class="content">Inline data</span><a class="self-link" href="#inline_data"></a></h4>
+   <h4 class="heading settled" data-level="3.2.1" id="selectors_block"><span class="secno">3.2.1. </span><span class="content">The <code>selectors</code> block data</span><a class="self-link" href="#selectors_block"></a></h4>
+   <p>The <code>selectors</code> block is an object containing sets of selectors.</p>
+   <p>The <code>selectors</code> object contains one or more <code>[selector-string]</code> keys. A <code>[selector-string]</code> key may be any value allowed by the schema for the representation type, and will normally represent a human-readable identifier for the selector set (e.g. <code>"title"</code>, <code>"bar-3"</code>, or <code>"axis_labels"</code>). Each <code>[selector-string]</code> is the key to an object which defines the DOM selectors, JSONPath selectors, and optional descriptor for the selector set.</p>
+   <p>These <code>[selector-string]</code> keys must consist of a string of ASCII letters, digits, and '_', with no whitespace. Each <code>[selector-string]</code> key must be a unique value.</p>
+   <h5 class="heading settled" data-level="3.2.1.1" id="selectorstring_data_block"><span class="secno">3.2.1.1. </span><span class="content">The <code>[selector-string]</code> key</span><a class="self-link" href="#selectorstring_data_block"></a></h5>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> value type 
+      <th> description 
+      <th> requirement 
+    <tbody>
+     <tr>
+      <td><code>dom</code>
+      <td>A string of a valid CSS selector, or an array of strings of a valid CSS selectors
+      <td>The DOM selector (i.e. CSS selector) or selectors indicating a DOM element or set of elements that is the representation of a component of a JIM dataset.
+      <td>required
+     <tr>
+      <td><code>json</code>
+      <td>A string of a valid JSONPath selector, or an array of strings of a valid JSONPath selectors
+      <td>The JSONPath selector or selectors indicating a JIM key or set of JIM keys that is basis for the DOM representation.
+      <td>required
+     <tr>
+      <td><code>note</code>
+      <td>non-empty string
+      <td>A human-readable description of what the selector set represents. This is informational only.
+      <td>optional
+   </table>
+   <blockquote>
+    <p>TODO: Maybe we could also add an option for a <code>class</code> key (with an array of strings as the value), so all selectors sets with a certain class can be addressed by target selectors?</p>
+   </blockquote>
+   <div class="example" id="xmp_selector_syntax">
+    <a class="self-link" href="#xmp_selector_syntax"></a> An example of a <code>selectors</code> block with three selector set object entries. 
+    <p>The first selector set object selects an element with the <code>id="chart-title"</code> as the target element, and associates that with the object key for the title of the first dataset in the JSON.</p>
+    <p>The second selector set object selects an element with a complex DOM selector for an element without an <code>id</code> attribute as the target element, and associates that with the object key for a label of a record in the dataset of the JSON.</p>
+    <p>The third selector set object selects an element with <code>id="datapoint-Sunday_2000"</code> as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"title"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#chart-title"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- u>"$.datasets[0].title"</c->
+    <c- p>},</c->
+    <c- f>"xLabel3"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#x-axis g:nth-child(3) text"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- u>"$.datasets[0].series[0].records[2].x"</c->
+    <c- p>},</c->
+    <c- f>"dp5"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#datapoint-Thursday_2000"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- u>"$.datasets[0].series[0].records[4].*"</c-><c- p>,</c->
+      <c- f>"note"</c-><c- p>:</c-> <c- u>"x/y value for Thursday 2000"</c->
+    <c- p>}</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <div class="example" id="xmp_selector_alternate_syntax">
+    <a class="self-link" href="#xmp_selector_alternate_syntax"></a> An example of a <code>selectors</code> block with two selector set object entries with alternate syntaxes for the same kind of connection. 
+    <p>The first selector set object selects an element with the <code>id="datapoint-Sunday_2000"</code> as the target element, and associates that with the object key for the <code>x</code> and <code>y</code> values of a record in the dataset of the JSON, using an array of JSONPath selectors.</p>
+    <p>The second selector set object selects an element with <code>id="datapoint-Monday_2000"</code> as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.</p>
+    <p>Assuming a record structure with only <code>x</code> and <code>y</code> keys, these selectors would yeild the same outcome, making the wildcard selector a shorthand for the array syntax.</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"dp0"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#datapoint-Sunday_2000"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- p>[</c->
+        <c- u>"$.datasets[0].series[0].records[0].x"</c-><c- p>,</c->
+        <c- u>"$.datasets[0].series[0].records[0].y"</c->
+      <c- p>]</c->
+    <c- p>},</c->
+    <c- f>"dp1"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#datapoint-Monday_2000"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- u>"$.datasets[0].series[0].records[1].*"</c->
+    <c- p>}</c->
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <blockquote>
+    <p>TODO: provide examples of one-to-many,  many-to-one, and  many-to-many selector sets.</p>
+   </blockquote>
+   <h5 class="heading settled" data-level="3.2.1.2" id="selectorstring_target_selector"><span class="secno">3.2.1.2. </span><span class="content"><code>[selector-string]</code> as target selector</span><a class="self-link" href="#selectorstring_target_selector"></a></h5>
+   <p>The JSONPath for any given <code>[selector-string]</code> key can be used as the value of a behavior <a href="#targets">target selector</a>.</p>
+   <div class="example" id="xmp_selector_behavior">
+    <a class="self-link" href="#xmp_selector_behavior"></a> An example of a <code>selector</code> block with one selector set object entry, and a <code>behaviors</code> block with an entry referencing that selector set by its JSONPath. 
+<pre class="highlight"><c- p>{</c->
+  <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"dp5"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#datapoint-Thursday_2000"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- u>"$.datasets[0].series[0].records[4].*"</c->
+    <c- p>}</c->
+  <c- p>},</c->
+  <c- f>"behaviors"</c-><c- p>:</c-> <c- p>[</c->
+    <c- p>{</c->
+      <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
+        <c- f>"selector"</c-><c- p>:</c-> <c- u>"$.selectors.dp5"</c->
+      <c- p>},</c->
+      <c- f>"enter"</c-><c- p>:</c-> <c- p>{</c->
+        <c- p>{</c->
+          <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
+            <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>50</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>150</c-> <c- p>]</c->
+          <c- p>}</c->
+        <c- p>}</c->
+      <c- p>}</c->
+    <c- p>}</c->
+  <c- p>]</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <h4 class="heading settled" data-level="3.2.2" id="inline_data"><span class="secno">3.2.2. </span><span class="content">Inline data</span><a class="self-link" href="#inline_data"></a></h4>
    <p>If a dataset is fairly small, it is best to include it in the image file directly.</p>
-   <h5 class="heading settled" data-level="4.2.1.1" id="linking_data"><span class="secno">4.2.1.1. </span><span class="content">Linking data and representational elements</span><a class="self-link" href="#linking_data"></a></h5>
+   <h5 class="heading settled" data-level="3.2.2.1" id="linking_data"><span class="secno">3.2.2.1. </span><span class="content">Linking data and representational elements</span><a class="self-link" href="#linking_data"></a></h5>
    <p>Each data point in the raw data <code>may</code> be represented visually in the image. There are multiple benefits in providing a mechanism to link a data point in the dataset to its representation, such as enabling users to drill down into the raw data value for a data element, or selecting a label in a different language than the graphical text label.</p>
    <p>This specification defines a <code>selector</code> attribute to enable this relationship between a graphical element and the data point it represents.</p>
-   <h6 class="heading settled" data-level="4.2.1.1.1" id="data_model_cardinality"><span class="secno">4.2.1.1.1. </span><span class="content">Data model cardinality</span><a class="self-link" href="#data_model_cardinality"></a></h6>
+   <h6 class="heading settled" data-level="3.2.2.1.1" id="data_model_cardinality"><span class="secno">3.2.2.1.1. </span><span class="content">Data model cardinality</span><a class="self-link" href="#data_model_cardinality"></a></h6>
    <p>The relationship between a graphical element and the data it represents might be complex.</p>
    <p>Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a bar in a bar chart, where the height of the bar signifies a specific numerical value.</p>
    <p>Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where , or a line chart where a , or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)</p>
@@ -2690,19 +2769,15 @@ Parts of this work may be from another specification document.  If so, those par
     <p>TODO: provide a many-to-many example.</p>
    </blockquote>
    <p>On occassion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.</p>
-   <h5 class="heading settled" data-level="4.2.1.2" id="selector_attribute"><span class="secno">4.2.1.2. </span><span class="content">The <code>selector</code> attribute</span><a class="self-link" href="#selector_attribute"></a></h5>
-   <p>Typically,</p>
    <blockquote>
     <p>TODO: talk about label elements and their representation.</p>
    </blockquote>
    <blockquote>
     <p>TODO: cover rounding and precision in visual labels vs raw data</p>
    </blockquote>
-   <p>or a line segment in a line chart</p>
-   <p class="note" role="note"><span class="marker">Note:</span> We might define specific formats for chart data, but this could be complex and time consuming. We might wish to standardize on Vega/Vega-Lite, or another common way to represent raw data.</p>
-   <h4 class="heading settled" data-level="4.2.2" id="external_data_ref"><span class="secno">4.2.2. </span><span class="content">External data reference</span><a class="self-link" href="#external_data_ref"></a></h4>
+   <h4 class="heading settled" data-level="3.2.3" id="external_data_ref"><span class="secno">3.2.3. </span><span class="content">External data reference</span><a class="self-link" href="#external_data_ref"></a></h4>
    <p class="note" role="note"><span class="marker">Note:</span> It might seem unintuitive to refer to data as metadata, but in the context of a graphics image file, the "data" of the file is the graphical elements that compose the file, while the raw data (the dataset) that is being represented is the metadata.</p>
-   <h3 class="heading settled" data-level="4.3" id="external_files"><span class="secno">4.3. </span><span class="content">External files</span><a class="self-link" href="#external_files"></a></h3>
+   <h3 class="heading settled" data-level="3.3" id="external_files"><span class="secno">3.3. </span><span class="content">External files</span><a class="self-link" href="#external_files"></a></h3>
    <p>A metadata object can be inline in the file, or referenced as an external file, in whole or in part. There are several reasons to support external metadata files. Two major use cases include size restrictions and shared resources.</p>
    <p>Size restrictions: While including the raw data in the image is a best practice, sometimes a dataset is simply too large to pragmatically include inline. In this case, referencing a raw data file is the best practical approach.</p>
    <p>Shared resources: An author might wish to share a common metadata file or set of files for a set of image documents. This allows the metadata files to be updated independently, reduces duplication and file size, enables cacheing in the user agent, and allows for a modular approach with well-tested rules.</p>
@@ -2726,12 +2801,12 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h3 class="heading settled" data-level="4.4" id="behaviors"><span class="secno">4.4. </span><span class="content">Behaviors</span><a class="self-link" href="#behaviors"></a></h3>
-   <p>A <code>behaviors</code> block is an array with the key <code>behaviors</code>, which contains one or more objects including at least a target (defined by the <code>region</code> key), and an event type containing one or more of the behaviors, including <code>haptic</code>, <code>audio</code>, <code>sonification</code>, <code>announcement</code>, <code>contrast</code>, and <code>tactile</code>.</p>
-   <h4 class="heading settled" data-level="4.4.1" id="behavior_generators"><span class="secno">4.4.1. </span><span class="content">Behavior and conforming generators</span><a class="self-link" href="#behavior_generators"></a></h4>
+   <h3 class="heading settled" data-level="3.4" id="behaviors"><span class="secno">3.4. </span><span class="content">Behaviors</span><a class="self-link" href="#behaviors"></a></h3>
+   <p>A <code>behaviors</code> block is an array with the key <code>behaviors</code>, which contains one or more objects including at least a target (defined by the <code>target</code> key), and an event type containing one or more of the behaviors, including <code>haptic</code>, <code>audio</code>, <code>sonification</code>, <code>announcement</code>, <code>contrast</code>, and <code>tactile</code>.</p>
+   <h4 class="heading settled" data-level="3.4.1" id="behavior_generators"><span class="secno">3.4.1. </span><span class="content">Behavior and conforming generators</span><a class="self-link" href="#behavior_generators"></a></h4>
    <p>A generator conforming to this specification is not required to add behaviors to graphics, only a dataset and selectors.</p>
    <p class="note" role="note"><span class="marker">Note:</span> While this specification does not define best practices for different behaviors for different classes of user agent and graphics, a companion best practices document is under development. A conforming generator might be much more useful if it also follows that guidance and generates graphic documents with behaviors optimized for the target user agent capabilities.</p>
-   <h4 class="heading settled" data-level="4.4.2" id="behavior_events"><span class="secno">4.4.2. </span><span class="content">Behavior events</span><a class="self-link" href="#behavior_events"></a></h4>
+   <h4 class="heading settled" data-level="3.4.2" id="behavior_events"><span class="secno">3.4.2. </span><span class="content">Behavior events</span><a class="self-link" href="#behavior_events"></a></h4>
    <p>An event block is an object with the one of the <code>enter</code>, <code>details</code>, <code>activate</code>, and <code>exit</code> keys, and a value which is a list of key-value pairs defining specific behaviors.</p>
    <table class="data">
     <thead>
@@ -2753,40 +2828,40 @@ Parts of this work may be from another specification document.  If so, those par
       <td>Dispatched when the user-guided pointer moves off of the element
    </table>
    <p>Moving from one event state to another must cancel any currently active behavior, and initiate the new event behavior.</p>
-   <h4 class="heading settled" data-level="4.4.3" id="behavior_types"><span class="secno">4.4.3. </span><span class="content">Behavior types</span><a class="self-link" href="#behavior_types"></a></h4>
-   <h5 class="heading settled" data-level="4.4.3.1" id="announcement_behaviors"><span class="secno">4.4.3.1. </span><span class="content">Announcement Behaviors</span><a class="self-link" href="#announcement_behaviors"></a></h5>
+   <h4 class="heading settled" data-level="3.4.3" id="behavior_types"><span class="secno">3.4.3. </span><span class="content">Behavior types</span><a class="self-link" href="#behavior_types"></a></h4>
+   <h5 class="heading settled" data-level="3.4.3.1" id="announcement_behaviors"><span class="secno">3.4.3.1. </span><span class="content">Announcement Behaviors</span><a class="self-link" href="#announcement_behaviors"></a></h5>
    <p>Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text. An announcement is defined in an <code>announcement</code> block.</p>
    <p>Details on the syntax of an <code>announcement</code> block are defined in the <a href="#announcements">Announcements section</a>.</p>
-   <h5 class="heading settled" data-level="4.4.3.2" id="audio_behaviors"><span class="secno">4.4.3.2. </span><span class="content">Audio Behaviors</span><a class="self-link" href="#audio_behaviors"></a></h5>
+   <h5 class="heading settled" data-level="3.4.3.2" id="audio_behaviors"><span class="secno">3.4.3.2. </span><span class="content">Audio Behaviors</span><a class="self-link" href="#audio_behaviors"></a></h5>
    <p>Audio playback is the use of sound to provide feedback to the user as they interact with an image or object.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The <code>audio</code> block is distinct from the related <code>sonification</code> block in that it plays back a static prerecorded audio file or earcon, while the <code>sonification</code> block dynamically generates the audio given the dataset and selected element.</p>
    <p>Details on the syntax of an <code>audio</code> block are defined in the <a href="#audio">Audio section</a>.</p>
-   <h5 class="heading settled" data-level="4.4.3.3" id="embossing_behaviors"><span class="secno">4.4.3.3. </span><span class="content">Embossing Behaviors</span><a class="self-link" href="#embossing_behaviors"></a></h5>
-   <h5 class="heading settled" data-level="4.4.3.4" id="haptic_behaviors"><span class="secno">4.4.3.4. </span><span class="content">Haptic Behaviors</span><a class="self-link" href="#haptic_behaviors"></a></h5>
+   <h5 class="heading settled" data-level="3.4.3.3" id="embossing_behaviors"><span class="secno">3.4.3.3. </span><span class="content">Embossing Behaviors</span><a class="self-link" href="#embossing_behaviors"></a></h5>
+   <h5 class="heading settled" data-level="3.4.3.4" id="haptic_behaviors"><span class="secno">3.4.3.4. </span><span class="content">Haptic Behaviors</span><a class="self-link" href="#haptic_behaviors"></a></h5>
    <p>Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.</p>
    <p>Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their pointer over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API <a data-link-type="biblio" href="#biblio-vibration" title="Vibration API (Second Edition)">[vibration]</a>. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.</p>
    <p>Haptic feedback may be accompanied or supplemented by auditory feedback.</p>
-   <p>Each instance of haptic feedback is associated with a <code>region</code> and event type, and is composed of a <code>haptic</code> block, with a <code>durations</code> key and optional <code>intensities</code>, <code>repetitionInterval</code>, and <code>repetitionIndex</code> keys.</p>
+   <p>Each instance of haptic feedback is associated with a <code>target</code> and event type, and is composed of a <code>haptic</code> block, with a <code>durations</code> key and optional <code>intensities</code>, <code>repeatInterval</code>, and <code>repeatIndex</code> keys.</p>
    <p>The behavior must be triggered when the user moves a pointer over the target region, and must stop immediately when the user moves their pointer outside the target region.</p>
    <div class="example" id="xmp_haptic_behavior">
-    <a class="self-link" href="#xmp_haptic_behavior"></a> An example of <code>haptic</code> block with two haptic object entries in an array. The first haptic object selects an element with the <code>id</code>=<code>bar_1</code> as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the region is first triggered. 
+    <a class="self-link" href="#xmp_haptic_behavior"></a> An example of a <code>haptic</code> block with two haptic object entries in an array. The first haptic object selects an element with the <code>id</code>=<code>bar_1</code> as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the target is first triggered. 
 <pre class="highlight"><c- p>{</c->
   <c- f>"behaviors"</c-><c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
-      <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
         <c- f>"selector"</c-><c- p>:</c-> <c- u>"#bar_1"</c->
       <c- p>},</c->
-      `e<c- kc>nter</c->`<c- p>:</c-> <c- p>{</c->
+      <c- f>"enter"</c-><c- p>:</c-> <c- p>{</c->
         <c- p>{</c->
           <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
             <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>50</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
-            <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>250</c->
+            <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>250</c->
           <c- p>}</c->
         <c- p>}</c->
       <c- p>}</c->
-    <c- p>}</c->
+    <c- p>},</c->
     <c- p>{</c->
-      <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
         <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
           <c- f>"circle"</c-><c- p>:</c-> <c- p>{</c->
             <c- f>"cx"</c-><c- p>:</c-> <c- mi>100</c-><c- p>,</c->
@@ -2795,11 +2870,11 @@ Parts of this work may be from another specification document.  If so, those par
           <c- p>}</c->
         <c- p>}</c->
       <c- p>},</c->
-      `e<c- kc>nter</c->`<c- p>:</c-> <c- p>{</c->
+      <c- f>"enter"</c-><c- p>:</c-> <c- p>{</c->
         <c- p>{</c->
           <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
             <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
-            <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>250</c->
+            <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>250</c->
           <c- p>}</c->
         <c- p>}</c->
         <c- f>"audio"</c-><c- p>:</c-> <c- p>{</c->
@@ -2812,17 +2887,18 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    </div>
-   <h5 class="heading settled" data-level="4.4.3.5" id="refreshable_pin_display_behaviors"><span class="secno">4.4.3.5. </span><span class="content">Refreshable Pin Display Behaviors</span><a class="self-link" href="#refreshable_pin_display_behaviors"></a></h5>
+   <h5 class="heading settled" data-level="3.4.3.5" id="refreshable_pin_display_behaviors"><span class="secno">3.4.3.5. </span><span class="content">Refreshable Pin Display Behaviors</span><a class="self-link" href="#refreshable_pin_display_behaviors"></a></h5>
+   <p class="note" role="note"><span class="marker">Note:</span> Depending on the refresh rate of the refreshable pin display, the haptic pattern might be applicable and useful here.</p>
    <blockquote>
     <p><strong>TODO</strong>: Cover refreshable braille displays and tactile tablets like the Graphiti, Dot pad, Monarch, and single-line braille displays.</p>
    </blockquote>
-   <h5 class="heading settled" data-level="4.4.3.6" id="sonification_behaviors"><span class="secno">4.4.3.6. </span><span class="content">Sonification Behaviors</span><a class="self-link" href="#sonification_behaviors"></a></h5>
+   <h5 class="heading settled" data-level="3.4.3.6" id="sonification_behaviors"><span class="secno">3.4.3.6. </span><span class="content">Sonification Behaviors</span><a class="self-link" href="#sonification_behaviors"></a></h5>
    <p>Sonification is the audio playback of sounds to represent data. A sonification is defined in an <code>sonification</code> block.</p>
    <p>Details on the syntax of an <code>sonification</code> block are defined in the <a href="#sonification">Sonification section</a>.</p>
-   <h5 class="heading settled" data-level="4.4.3.7" id="tactile_behaviors"><span class="secno">4.4.3.7. </span><span class="content">Tactile Behaviors</span><a class="self-link" href="#tactile_behaviors"></a></h5>
-   <h5 class="heading settled" data-level="4.4.3.8" id="contrast_behaviors"><span class="secno">4.4.3.8. </span><span class="content">Visual Contrast Behaviors</span><a class="self-link" href="#contrast_behaviors"></a></h5>
+   <h5 class="heading settled" data-level="3.4.3.7" id="tactile_behaviors"><span class="secno">3.4.3.7. </span><span class="content">Tactile Behaviors</span><a class="self-link" href="#tactile_behaviors"></a></h5>
+   <h5 class="heading settled" data-level="3.4.3.8" id="contrast_behaviors"><span class="secno">3.4.3.8. </span><span class="content">Visual Contrast Behaviors</span><a class="self-link" href="#contrast_behaviors"></a></h5>
    <div class="todo"> <b>TODO:</b> Reference and expand on CSS prefers-dark-mode media query. </div>
-   <h3 class="heading settled" data-level="4.5" id="provenance"><span class="secno">4.5. </span><span class="content">Provenance</span><a class="self-link" href="#provenance"></a></h3>
+   <h3 class="heading settled" data-level="3.5" id="provenance"><span class="secno">3.5. </span><span class="content">Provenance</span><a class="self-link" href="#provenance"></a></h3>
    <p>Provenance describes where a document came from. This includes entries such as authors, organizations, date and time created or modified, where it was first published, the title of the paper or article it supplemented, or the original work on which it was based.</p>
    <p>A <code>provenance</code> block is an object with the key <code>provenance</code>.</p>
 <pre class="highlight"><c- p>{</c->
@@ -2834,7 +2910,7 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h4 class="heading settled" data-level="4.5.1" id="notes"><span class="secno">4.5.1. </span><span class="content">Notes</span><a class="self-link" href="#notes"></a></h4>
+   <h4 class="heading settled" data-level="3.5.1" id="notes"><span class="secno">3.5.1. </span><span class="content">Notes</span><a class="self-link" href="#notes"></a></h4>
    <p>The <code>notes</code> key defines an array where any details not covered by specific keys can be identified. This might include the name of the organization or individuals who sponsored the work, a dedications to a meaningful person in the author’s life, and so on.</p>
    <p>Each item should be a quoted non-empty string separated by a comma.</p>
 <pre class="highlight"><c- p>{</c->
@@ -2846,10 +2922,10 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->  
 </pre>
-   <h3 class="heading settled" data-level="4.6" id="tags"><span class="secno">4.6. </span><span class="content">Tags</span><a class="self-link" href="#tags"></a></h3>
-   <p>Tags are a way to categorize the file, either by the the content, by the capabilities, or by a rating system, or some combination thereof.</p>
+   <h3 class="heading settled" data-level="3.6" id="tags"><span class="secno">3.6. </span><span class="content">Tags</span><a class="self-link" href="#tags"></a></h3>
+   <p>Tags are a way to categorize the file, either by the content, by the capabilities, or by a rating system, or some combination thereof.</p>
    <p>Tags are used to aid in the filtering and searching for content.</p>
-   <h4 class="heading settled" data-level="4.6.1" id="keywords"><span class="secno">4.6.1. </span><span class="content">Keywords</span><a class="self-link" href="#keywords"></a></h4>
+   <h4 class="heading settled" data-level="3.6.1" id="keywords"><span class="secno">3.6.1. </span><span class="content">Keywords</span><a class="self-link" href="#keywords"></a></h4>
    <p>The <code>keywords</code> key denotes an array of user-defined non-empty strings. Examples of keywords include labels from a folksonomy, terms defined in a formal document, steps in a workflow process, short descriptions of items depicted in the image, or any other strings.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"tags"</c-><c- p>:</c-> <c- p>{</c->
@@ -2862,7 +2938,7 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h4 class="heading settled" data-level="4.6.2" id="capabilities_ratings"><span class="secno">4.6.2. </span><span class="content">Capabilities and ratings</span><a class="self-link" href="#capabilities_ratings"></a></h4>
+   <h4 class="heading settled" data-level="3.6.2" id="capabilities_ratings"><span class="secno">3.6.2. </span><span class="content">Capabilities and ratings</span><a class="self-link" href="#capabilities_ratings"></a></h4>
    <p class="note" role="note"><span class="marker">Note:</span> This is a rough notion of how we might define capabilities</p>
    <p>The <code>capabilities</code> key denotes an object that includes which accommodations have been defined in the image document, and some system of rating that scores the effectiveness of that accommodation.</p>
    <p>Each capability defines an array of capability instances, each of which consists of a least a condition of applicability, and a rating.</p>
@@ -2896,7 +2972,7 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    <p class="note" role="note"><span class="marker">Note:</span> Consider splitting out capabilities and ratings into separate entries.</p>
    <p class="note" role="note"><span class="marker">Note:</span> To be defined further.</p>
-   <h3 class="heading settled" data-level="4.7" id="version"><span class="secno">4.7. </span><span class="content">Version</span><a class="self-link" href="#version"></a></h3>
+   <h3 class="heading settled" data-level="3.7" id="version"><span class="secno">3.7. </span><span class="content">Version</span><a class="self-link" href="#version"></a></h3>
    <p>A conforming document may include an optional <code>version</code> key.</p>
    <p>An <code>version</code> block is an object with the key <code>version</code>, which contains one or more key-value pairs including one or more of the keys <code>document</code> and <code>jim</code> and their values.</p>
    <p>The value of the optional <code>jim</code> key, if present, must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (<code>.</code>). The default value of the <code>jim</code> key is <code>1.0.0</code>.</p>
@@ -2927,52 +3003,80 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h2 class="heading settled" data-level="5" id="regions"><span class="secno">5. </span><span class="content">Regions</span><a class="self-link" href="#regions"></a></h2>
-   <p>A region is an area of an diagram image that is associated with a particular behavior.</p>
-   <p>Regions may consist of one of two possible values:</p>
+   <h2 class="heading settled" data-level="4" id="targets"><span class="secno">4. </span><span class="content">Targets</span><a class="self-link" href="#targets"></a></h2>
+   <p>A target is an area of an diagram image that is associated with a particular behavior.</p>
+   <p>Targets may consist of one of three possible values:</p>
    <ol>
     <li data-md>
      <p><strong>An element link</strong>: a selector indicating a specific element or set of elements in the DOM of a SVG file;</p>
     <li data-md>
+     <p><strong>An JSONPath link</strong>: a selector indicating a specific selector set in the JIM of a SVG file;</p>
+    <li data-md>
      <p><strong>A</strong> <code>shape</code> <strong>object</strong>: an object that defines a shape to be dynamically represented in the diagram file.</p>
    </ol>
-   <h3 class="heading settled" data-level="5.1" id="region_element_selector"><span class="secno">5.1. </span><span class="content">Region element <code>selector</code></span><a class="self-link" href="#region_element_selector"></a></h3>
-   <p>A region may consist of a <code>selector</code> key with a valid selector pointing to one or more elements in the DOM of an SVG file. The target may be a textual element, a shape element, or a container element. If the selector target is a container element, the shape region is all targetable elements within that container, but not the bounding box of the container element itself.</p>
-   <p>If the selector is not valid, or if the target element is not found, the <code>region</code> definition is ignored.</p>
-   <div class="example" id="xmp_region_selector_single">
-    <a class="self-link" href="#xmp_region_selector_single"></a> A region selector targeting a single shape element. 
+   <h3 class="heading settled" data-level="4.1" id="target_selector_key"><span class="secno">4.1. </span><span class="content">Target <code>selector</code> key</span><a class="self-link" href="#target_selector_key"></a></h3>
+   <p>A target may consist of a <code>selector</code> key with a valid selector, either a DOM selector pointing to one or more elements in the DOM of an SVG file, or a JSONPath selector pointing to a selector set.</p>
+   <h4 class="heading settled" data-level="4.1.1" id="target_element_selector"><span class="secno">4.1.1. </span><span class="content">Target <code>selector</code> for elements</span><a class="self-link" href="#target_element_selector"></a></h4>
+   <p>An element target may be a textual element, a shape element, or a container element. If the selector target is a container element, the shape target is all targetable elements within that container, but not the bounding box of the container element itself.</p>
+   <p>If the selector is not valid, or if the target element is not found, the <code>target</code> definition is ignored.</p>
+   <div class="example" id="xmp_target_selector_single">
+    <a class="self-link" href="#xmp_target_selector_single"></a> A target selector targeting a single shape element. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+  <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"selector"</c-><c- p>:</c-> <c- u>"#bar_1"</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
    </div>
-   <div class="example" id="xmp_region_selector_class">
-    <a class="self-link" href="#xmp_region_selector_class"></a> A region selector targeting all elements with the class <code>line</code> in the container element <code>graph_area</code>. 
+   <div class="example" id="xmp_target_selector_class">
+    <a class="self-link" href="#xmp_target_selector_class"></a> A target selector targeting all elements with the class <code>line</code> in the container element <code>graph_area</code>. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+  <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"selector"</c-><c- p>:</c-> <c- u>"#graph_area .line"</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
    </div>
-   <div class="example" id="xmp_region_selector_container">
-    <a class="self-link" href="#xmp_region_selector_container"></a> A region selector targeting all elements in the container element <code>graph_area</code>. 
+   <div class="example" id="xmp_target_selector_container">
+    <a class="self-link" href="#xmp_target_selector_container"></a> A target selector targeting all elements in the container element <code>graph_area</code>. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+  <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"selector"</c-><c- p>:</c-> <c- u>"#graph_area"</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
    </div>
-   <h3 class="heading settled" data-level="5.2" id="region_shape"><span class="secno">5.2. </span><span class="content">Region shape</span><a class="self-link" href="#region_shape"></a></h3>
-   <p>A shape definition consists of an SVG shape element tag name, with an object of keys representing the required attributes. The definitive list of shapes is defined by the SVG 2.0 <a data-link-type="biblio" href="#biblio-svg2" title="Scalable Vector Graphics (SVG) 2">[SVG2]</a> specification. All SVG shape elements are valid.</p>
-   <p>Any attributes not defined by the region shape definition default to the SVG lacunae values for that attribute. Any attributes</p>
-   <div class="example" id="xmp_region_shape_circle">
-    <a class="self-link" href="#xmp_region_shape_circle"></a> A region describing a circular area with a centerpoint at <code>100, 121</code> and a radius of <code>32</code> pixels. 
+   <h4 class="heading settled" data-level="4.1.2" id="target_selector_set_selector"><span class="secno">4.1.2. </span><span class="content">Target <code>selector</code> for selector sets</span><a class="self-link" href="#target_selector_set_selector"></a></h4>
+   <p>An selector set target may be a JSONPath selector pointing to a selector set, or an array of such JSONPath selectors.</p>
+   <blockquote>
+    <p>TODO: Expand on this.</p>
+   </blockquote>
+   <div class="example" id="xmp_selector_set_selector">
+    <a class="self-link" href="#xmp_selector_set_selector"></a> An example of a <code>target</code> block with a <code>selector</code> key which has a JSONPath selector addressing a labeled selector set. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+  <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"dp5"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#datapoint-Thursday_2000"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- u>"$.datasets[0].series[0].records[4].*"</c->
+    <c- p>}</c->
+  <c- p>},</c->
+  <c- f>"behaviors"</c-><c- p>:</c-> <c- p>[</c->
+    <c- p>{</c->
+      <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
+        <c- f>"selector"</c-><c- p>:</c-> <c- u>"$.selectors.dp5"</c->
+      <c- p>}</c->
+    <c- p>}</c->
+  <c- p>]</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <h4 class="heading settled" data-level="4.1.3" id="target_shape"><span class="secno">4.1.3. </span><span class="content">Target shape</span><a class="self-link" href="#target_shape"></a></h4>
+   <p>A shape definition consists of an SVG shape element tag name, with an object of keys representing the required attributes. The definitive list of shapes is defined by the SVG 2.0 <a data-link-type="biblio" href="#biblio-svg2" title="Scalable Vector Graphics (SVG) 2">[SVG2]</a> specification. All SVG shape elements are valid.</p>
+   <p>Any attributes not defined by the target shape definition default to the SVG lacunae values for that attribute. Any attributes</p>
+   <div class="example" id="xmp_target_shape_circle">
+    <a class="self-link" href="#xmp_target_shape_circle"></a> A target describing a circular area with a centerpoint at <code>100, 121</code> and a radius of <code>32</code> pixels. 
+<pre class="highlight"><c- p>{</c->
+  <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
       <c- f>"circle"</c-><c- p>:</c-> <c- p>{</c->
         <c- f>"cx"</c-><c- p>:</c-> <c- mi>100</c-><c- p>,</c->
@@ -2984,10 +3088,10 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    </div>
-   <div class="example" id="xmp_region_shape_complex">
-    <a class="self-link" href="#xmp_region_shape_complex"></a> A region describing an irregular area using the <code>path</code> definition and a rectangle definition, which together make a single region. The rectangle definition elides the "x" attribute, which defaults to <code>0</code>, per the SVG 2 specification. 
+   <div class="example" id="xmp_target_shape_complex">
+    <a class="self-link" href="#xmp_target_shape_complex"></a> A target describing an irregular area using the <code>path</code> definition and a rectangle definition, which together make a single target. The rectangle definition elides the "x" attribute, which defaults to <code>0</code>, per the SVG 2 specification. 
 <pre class="highlight"><c- p>{</c->
-  <c- f>"region"</c-><c- p>:</c-> <c- p>{</c->
+  <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
       <c- f>"path"</c-><c- p>:</c-> <c- p>{</c->
         <c- f>"d"</c-><c- p>:</c-> <c- u>"M0,12 L6.3,9 V15 Z M7.3,9 H17 V15 H7.3 Z M18,9 H18.4 Q21.4,9 21.4,12 Q21.4,15 18.4,15 H18 Z"</c->
@@ -3004,7 +3108,7 @@ Parts of this work may be from another specification document.  If so, those par
    </div>
    <p>For each shape definition, a conforming implementation must instantiate a corresponding shape matching the element type and attributes.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.</p>
-   <h2 class="heading settled" data-level="6" id="announcements"><span class="secno">6. </span><span class="content">Announcements</span><a class="self-link" href="#announcements"></a></h2>
+   <h2 class="heading settled" data-level="5" id="announcements"><span class="secno">5. </span><span class="content">Announcements</span><a class="self-link" href="#announcements"></a></h2>
    <p>Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text.</p>
    <p>WCAG defines two primary types of announcement: the <b>accessible name</b>; and the <b>accessible description</b>. This specification defines analogs to that convention as <b>announcement name</b> and <b>announcement description</b>, and adds two more types, <b>announcement details</b> and <b>announcement hints</b>.</p>
    <p>An <code>announcement</code> block is an object with the key <code>announcement</code>, which contains one or more key-value pairs including one or more of the keys <code>name</code>, <code>description</code>, <code>details</code>, and <code>hint</code> keys and their values.</p>
@@ -3042,7 +3146,7 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h3 class="heading settled" data-level="6.1" id="#announcement_name"><span class="secno">6.1. </span><span class="content">Announcement name</span><a class="self-link" href="#%23announcement_name"></a></h3>
+   <h3 class="heading settled" data-level="5.1" id="#announcement_name"><span class="secno">5.1. </span><span class="content">Announcement name</span><a class="self-link" href="#%23announcement_name"></a></h3>
    <p>The <b>announcement name</b> is normally short, 1-3 words, and serves two primary purposes:</p>
    <ol>
     <li data-md>
@@ -3057,7 +3161,7 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h3 class="heading settled" data-level="6.2" id="#announcement_description"><span class="secno">6.2. </span><span class="content">Announcement description</span><a class="self-link" href="#%23announcement_description"></a></h3>
+   <h3 class="heading settled" data-level="5.2" id="#announcement_description"><span class="secno">5.2. </span><span class="content">Announcement description</span><a class="self-link" href="#%23announcement_description"></a></h3>
    <p>The <b>announcement description</b> is a longer text passage that provides additional information for an element, such as visual or structural details, relationship to other elements, or annotations.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"announcement"</c-><c- p>:</c-> <c- p>{</c->
@@ -3065,7 +3169,7 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h3 class="heading settled" data-level="6.3" id="announcement_detail"><span class="secno">6.3. </span><span class="content">Announcement detail</span><a class="self-link" href="#announcement_detail"></a></h3>
+   <h3 class="heading settled" data-level="5.3" id="announcement_detail"><span class="secno">5.3. </span><span class="content">Announcement detail</span><a class="self-link" href="#announcement_detail"></a></h3>
    <p>The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"announcement"</c-><c- p>:</c-> <c- p>{</c->
@@ -3073,7 +3177,7 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h3 class="heading settled" data-level="6.4" id="#announcement_hint"><span class="secno">6.4. </span><span class="content">Announcement hint</span><a class="self-link" href="#%23announcement_hint"></a></h3>
+   <h3 class="heading settled" data-level="5.4" id="#announcement_hint"><span class="secno">5.4. </span><span class="content">Announcement hint</span><a class="self-link" href="#%23announcement_hint"></a></h3>
    <p>The <b>announcement hint</b> is a text passage (ideally short) that provides instructions for interaction with the graphical element.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"announcement"</c-><c- p>:</c-> <c- p>{</c->
@@ -3081,7 +3185,7 @@ Parts of this work may be from another specification document.  If so, those par
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h2 class="heading settled" data-level="7" id="audio"><span class="secno">7. </span><span class="content">Audio</span><a class="self-link" href="#audio"></a></h2>
+   <h2 class="heading settled" data-level="6" id="audio"><span class="secno">6. </span><span class="content">Audio</span><a class="self-link" href="#audio"></a></h2>
    <p>Audio feedback can take one of three forms:</p>
    <ol>
     <li data-md>
@@ -3091,7 +3195,7 @@ Parts of this work may be from another specification document.  If so, those par
     <li data-md>
      <p>Dynamic generation of a sound with an ADSR envelope definition</p>
    </ol>
-   <h3 class="heading settled" data-level="7.1" id="audio_files"><span class="secno">7.1. </span><span class="content">Audio files</span><a class="self-link" href="#audio_files"></a></h3>
+   <h3 class="heading settled" data-level="6.1" id="audio_files"><span class="secno">6.1. </span><span class="content">Audio files</span><a class="self-link" href="#audio_files"></a></h3>
    <p>An audio file is a prerecorded external sound file that is referenced through a file path in an <code>href</code> key.</p>
    <p>An external link may be to a local file or a file on the Web. Local audio files are recommended for lack of latency. This specification does not define how audio files are distributed or packaged with diagram files; a separate specification may define a packaging format.</p>
    <p>Conforming user agents must support the following audio formats for audio playback:</p>
@@ -3119,15 +3223,15 @@ Parts of this work may be from another specification document.  If so, those par
       <td><code>.wav</code>
       <td><code>audio/wav</code>
    </table>
-   <h3 class="heading settled" data-level="7.2" id="earcons"><span class="secno">7.2. </span><span class="content">Earcons</span><a class="self-link" href="#earcons"></a></h3>
+   <h3 class="heading settled" data-level="6.2" id="earcons"><span class="secno">6.2. </span><span class="content">Earcons</span><a class="self-link" href="#earcons"></a></h3>
    <p>An earcon is a brief, distinctive sound which represents a specific event or conveys other information. It is the audio equivalent of an icon. This specification defines a mechanism for playback of a pre-defined set of earcons that conforming user agents must support. An <code>earcon</code> consists of a unique name and an audio definition. A list of earcon definitions will be defined in a separate specification.</p>
-   <h3 class="heading settled" data-level="7.3" id="adsr"><span class="secno">7.3. </span><span class="content">ADSR</span><a class="self-link" href="#adsr"></a></h3>
-   <h4 class="heading settled" data-level="7.3.1" id="adsr_definitions"><span class="secno">7.3.1. </span><span class="content">ADSR definitions</span><a class="self-link" href="#adsr_definitions"></a></h4>
+   <h3 class="heading settled" data-level="6.3" id="adsr"><span class="secno">6.3. </span><span class="content">ADSR</span><a class="self-link" href="#adsr"></a></h3>
+   <h4 class="heading settled" data-level="6.3.1" id="adsr_definitions"><span class="secno">6.3.1. </span><span class="content">ADSR definitions</span><a class="self-link" href="#adsr_definitions"></a></h4>
    <blockquote>
     <p>TODO: provide more details here.</p>
    </blockquote>
    <p>See <a href="#adsr_envelopes">ADSR envelopes</a> for more details.</p>
-   <h4 class="heading settled" data-level="7.3.2" id="adsr_envelopes"><span class="secno">7.3.2. </span><span class="content">ADSR envelopes</span><a class="self-link" href="#adsr_envelopes"></a></h4>
+   <h4 class="heading settled" data-level="6.3.2" id="adsr_envelopes"><span class="secno">6.3.2. </span><span class="content">ADSR envelopes</span><a class="self-link" href="#adsr_envelopes"></a></h4>
    <p>Timed media, such as haptic or sonification effects, are defined in this specification with the common Attack-Decay-Sustain-Release envelope.</p>
    <p>This is the most common kind of envelope generator, and it has four stages: attack, decay, sustain, and release (ADSR). Attack, decay, and release all refer to time, while sustain refers to effect level. Each of these stages is defined by an attribute</p>
    <ul>
@@ -3153,12 +3257,12 @@ Parts of this work may be from another specification document.  If so, those par
    <p class="note" role="note"><span class="marker">Note:</span> Consider using A-weighted decibels (dBA) instead of dB. The dB scale is based only on sound intensity, while the dBA scale is based on intensity and on how the human ear responds, which better describes when sound can damage your hearing.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Consider whether or not to include pitch as an effect type. It might be easier for authoring if the author is a musician, but it can be looked up and expressed as frequency. But it’s a nice-to-have.</p>
    <p>Any given rule can have multiple effect types. For example, a sonification could simultaneously change amplitude and frequency.</p>
-   <h2 class="heading settled" data-level="8" id="haptics"><span class="secno">8. </span><span class="content">Haptics</span><a class="self-link" href="#haptics"></a></h2>
+   <h2 class="heading settled" data-level="7" id="haptics"><span class="secno">7. </span><span class="content">Haptics</span><a class="self-link" href="#haptics"></a></h2>
    <p>Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.</p>
    <p>Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their pointer over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API <a data-link-type="biblio" href="#biblio-vibration" title="Vibration API (Second Edition)">[vibration]</a>. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with options for an additional value for repetition of that pattern with a fixed interval between pattern instances, a repetition index, and a matching amplitude array.</p>
-   <p>A <code>haptics</code> block is an object with the key <code>haptics</code>, which contains one or more key-value pairs including one or more of the keys <code>durations</code>, <code>intensities</code>, <code>repetitionInterval</code>, and <code>repetitionIndex</code> keys and their values.</p>
-   <h3 class="heading settled" data-level="8.1" id="haptic_block"><span class="secno">8.1. </span><span class="content">The <code>haptic</code> key</span><a class="self-link" href="#haptic_block"></a></h3>
+   <p>A <code>haptics</code> block is an object with the key <code>haptics</code>, which contains one or more key-value pairs including one or more of the keys <code>durations</code>, <code>intensities</code>, <code>repeatInterval</code>, and <code>repeatIndex</code> keys and their values.</p>
+   <h3 class="heading settled" data-level="7.1" id="haptic_block"><span class="secno">7.1. </span><span class="content">The <code>haptic</code> key</span><a class="self-link" href="#haptic_block"></a></h3>
    <table class="data">
     <thead>
      <tr>
@@ -3182,19 +3286,19 @@ Parts of this work may be from another specification document.  If so, those par
        <p>The even entries in the array (starting with index <code>0</code>) correspond to the pauses between vibrations and be ignored. The odd entries in the array must define the amplitude of the vibration for the corresponding vibration duration in the <code>duration</code> array.</p>
       <td>optional
      <tr>
-      <td><code>repetitionInterval</code>
+      <td><code>repeatInterval</code>
       <td>integer
       <td>The time in milliseconds before the <code>duration</code> array begins repeating. If the value is <code>0</code> or a positive integer, the haptic pattern must repeat until the activating behavior is terminated (such as by the user moving their finger off the target region). If the value is a negative integer, or if the value is omitted, the haptic pattern must not repeat.
       <td>optional
      <tr>
-      <td><code>repetitionIndex</code>
+      <td><code>repeatIndex</code>
       <td>integer
-      <td>The index of the <code>duration</code> array that is the starting duration for repetition, if any. If the value is <code>0</code> or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the <code>0</code> index. Repetition must only occur according to the value of the <code>repetitionInterval</code>.
+      <td>The index of the <code>duration</code> array that is the starting duration for repetition, if any. If the value is <code>0</code> or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the <code>0</code> index. Repetition must only occur according to the value of the <code>repeatInterval</code>.
       <td>optional
    </table>
-   <h3 class="heading settled" data-level="8.2" id="vibration_patterns"><span class="secno">8.2. </span><span class="content">Vibration patterns</span><a class="self-link" href="#vibration_patterns"></a></h3>
+   <h3 class="heading settled" data-level="7.2" id="vibration_patterns"><span class="secno">7.2. </span><span class="content">Vibration patterns</span><a class="self-link" href="#vibration_patterns"></a></h3>
    <p>A haptic vibration pattern, denoted by a <code>durations</code> key of the <code>haptic</code> object, is an array of integers defining a sequence of vibration durations. The sequence of durations is an alternating pattern of vibrations and pauses, starting with an initial pause before the first vibration starts.</p>
-   <h3 class="heading settled" data-level="8.3" id="intensity_patterns"><span class="secno">8.3. </span><span class="content">Intensity patterns</span><a class="self-link" href="#intensity_patterns"></a></h3>
+   <h3 class="heading settled" data-level="7.3" id="intensity_patterns"><span class="secno">7.3. </span><span class="content">Intensity patterns</span><a class="self-link" href="#intensity_patterns"></a></h3>
    <p>The sequence of intensities is an array of numbers describing an alternating pattern of vibration intensities and pauses, indexed to the same sequence as the vibration <code>duration</code> array.</p>
    <p>The <code>intensities</code> key value array defines how strong the vibration is for each value in the <code>durations</code> array. The intensity is a value from 0 to 1. Any values outside the range 0.0 (no intensity) to 1.0 (highest intensity) will be clamped to this range.</p>
    <p>Each intensity value is a percentage of the maximum vibration amplitude of the device or the implementation. An implementation may define a range of amplitudes that is narrower than the device’s capabilities.</p>
@@ -3202,7 +3306,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p class="note" role="note"><span class="marker">Note:</span> The W3C Vibration API does not currently define any capabilities for the amplitude of vibration, and will ignore the <code>amplitudes</code>. This specification includes the <code>amplitudes</code> key to support the Android Vibration API and the iOS Core Haptics API.</p>
    <p>If the platform or operating system does not support variable intensities, the <code>intensities</code> key and value must be ignored.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The <code>intensities</code> array is defined to mirror the vibration <code>duration</code> array, for ease of authoring. The values of "blank" (even-numbered) indexes have no effect, and can be defined as <code>0</code> to avoid confusion.</p>
-   <h3 class="heading settled" data-level="8.4" id="haptic_examples"><span class="secno">8.4. </span><span class="content">Haptic examples</span><a class="self-link" href="#haptic_examples"></a></h3>
+   <h3 class="heading settled" data-level="7.4" id="haptic_examples"><span class="secno">7.4. </span><span class="content">Haptic examples</span><a class="self-link" href="#haptic_examples"></a></h3>
    <div class="example" id="xmp_haptic_duration_simple">
     <a class="self-link" href="#xmp_haptic_duration_simple"></a> A simple haptic pattern that will trigger a single vibration lasting 200 milliseconds. 
 <pre class="highlight"><c- p>{</c->
@@ -3217,7 +3321,7 @@ Parts of this work may be from another specification document.  If so, those par
 <pre class="highlight"><c- p>{</c->
   <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>200</c-> <c- p>],</c->
-    <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>500</c->
+    <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>500</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
@@ -3227,8 +3331,8 @@ Parts of this work may be from another specification document.  If so, those par
 <pre class="highlight"><c- p>{</c->
   <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>10</c-><c- p>,</c-> <c- mi>50</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
-    <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>250</c-><c- p>,</c->
-    <c- f>"repetitionIndex"</c-><c- p>:</c-> <c- mi>1</c->
+    <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>250</c-><c- p>,</c->
+    <c- f>"repeatIndex"</c-><c- p>:</c-> <c- mi>1</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
@@ -3239,8 +3343,8 @@ Parts of this work may be from another specification document.  If so, those par
   <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>200</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>200</c-> <c- p>],</c->
     <c- f>"intensities"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mf>0.3</c-><c- p>,</c-> <c- mi>0</c-><c- p>,</c-> <c- mf>0.6</c-> <c- p>],</c->
-    <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>500</c-><c- p>,</c->
-    <c- f>"repetitionIndex"</c-><c- p>:</c-> <c- mi>1</c->
+    <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>500</c-><c- p>,</c->
+    <c- f>"repeatIndex"</c-><c- p>:</c-> <c- mi>1</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
@@ -3261,15 +3365,15 @@ second pair will collectively last for 250 milliseconds, with the intensity drop
    <blockquote>
     <p>TODO: provide examples with the selector, to illustrate authoring</p>
    </blockquote>
-   <h2 class="heading settled" data-level="9" id="sonification"><span class="secno">9. </span><span class="content">Sonification</span><a class="self-link" href="#sonification"></a></h2>
+   <h2 class="heading settled" data-level="8" id="sonification"><span class="secno">8. </span><span class="content">Sonification</span><a class="self-link" href="#sonification"></a></h2>
    <p>The <code>sonification</code> block dynamically generates audio feedback given the dataset, selected element, and optionally cursor position.</p>
-   <h2 class="heading settled" data-level="10" id="select_device"><span class="secno">10. </span><span class="content">Selective Device Capabilities</span><a class="self-link" href="#select_device"></a></h2>
+   <h2 class="heading settled" data-level="9" id="select_device"><span class="secno">9. </span><span class="content">Selective Device Capabilities</span><a class="self-link" href="#select_device"></a></h2>
    <p>All devices, including assistive technology devices, have specific capabilities distinct from other similar devices. Some of those capabilities require specific changes to a graphical document’s appearance, such as hiding or showing certain objects or layers to simplify a document for embossing vs printing, or rendering a thicker stroke on shapes so there’s a larger "hit box" for haptics.</p>
    <p>This specification defines a set of device capabilities for assistive technology devices such that the most appropriate stylesheet can be selected for displaying the document on that device.</p>
    <p class="note" role="note"><span class="marker">Note:</span> This is similar to and informed by the CSS Media Queries capabilities, but dedicated specifically to the various capabilities relevant for assistive technology devices, at a finer-grained level of detail than CSS currently defines. A future CSS specification might adopt these device capabilities, especially if the assistive technology device industry adopts this mechanism and enough content uses it.</p>
    <p class="note" role="note"><span class="marker">Note:</span> This specification will not define styles for best practices for these different capabilities, but only the mechanism to switch or select stylesheets. Another companion specification or specifications might define best styling practice guidelines for specific media and devices.</p>
    <p>TODO: Add device capabilities for haptics</p>
-   <h3 class="heading settled" data-level="10.1" id="tactile_capabilities"><span class="secno">10.1. </span><span class="content">Tactile Capabilities</span><a class="self-link" href="#tactile_capabilities"></a></h3>
+   <h3 class="heading settled" data-level="9.1" id="tactile_capabilities"><span class="secno">9.1. </span><span class="content">Tactile Capabilities</span><a class="self-link" href="#tactile_capabilities"></a></h3>
    <p>Embossers, swell paper, and other tactile printing technologies each have a different set of capabilities. Some tactile printing technologies may have multiple levels of dot height, while others may have only possible 1 or 2 dot heights. Some technologies rely on the width of a line to determine the height of the raised surface, while others use color to determine surface height and pattern. Some allow fine details, while others require a sparse layout.</p>
    <p>To enable a single document to be applicable to multiple tactile output techniques, this specification defines a capabilities switch with different CSS stylesheets to hide or show different elements, to increase line width, to use particular color palettes, and so forth.</p>
    <p>The <code>tactile</code> key defines an object that defines conditional device capabilities, each of which is associated with its appropriate external CSS stylesheet file for print media. The appropriate external CSS file must be loaded by the user agent based on the target printer, and applied following the same processing rules as an inline CSS rule set.</p>
@@ -3299,31 +3403,75 @@ second pair will collectively last for 250 milliseconds, with the intensity drop
 </pre>
    </div>
    <p>TODO: Define and describe mechanisms for setting layers on objects (e.g. print only, print and tactile, emboss only, braille)</p>
-   <h2 class="heading settled" data-level="11" id="tech_relationship"><span class="secno">11. </span><span class="content">Relationship to other technologies</span><a class="self-link" href="#tech_relationship"></a></h2>
-   <h3 class="heading settled" data-level="11.1" id="svg"><span class="secno">11.1. </span><span class="content">Scalable Vector Graphics (SVG)</span><a class="self-link" href="#svg"></a></h3>
+   <h2 class="heading settled" data-level="10" id="tech_relationship"><span class="secno">10. </span><span class="content">Relationship to other technologies</span><a class="self-link" href="#tech_relationship"></a></h2>
+   <h3 class="heading settled" data-level="10.1" id="svg"><span class="secno">10.1. </span><span class="content">Scalable Vector Graphics (SVG)</span><a class="self-link" href="#svg"></a></h3>
    <p>This specification is designed specifically with SVG in mind, though the metadata format can be used in other image types.</p>
-   <h4 class="heading settled" data-level="11.1.1" id="svg_metadata_element"><span class="secno">11.1.1. </span><span class="content">The SVG <code>metadata</code> element</span><a class="self-link" href="#svg_metadata_element"></a></h4>
+   <h4 class="heading settled" data-level="10.1.1" id="svg_metadata_element"><span class="secno">10.1.1. </span><span class="content">The SVG <code>metadata</code> element</span><a class="self-link" href="#svg_metadata_element"></a></h4>
    <p>The SVG <a data-link-type="biblio" href="#biblio-svg11" title="Scalable Vector Graphics (SVG) 1.1 (Second Edition)">[SVG11]</a> specification defines a <code>metadata</code> element (or "tag"), which can contain this metadata format. In the SVG 2.0 specification, defined in the late 1990s, it was expected that metadata would be expressed in XML; the SVG 2.0 <a data-link-type="biblio" href="#biblio-svg2" title="Scalable Vector Graphics (SVG) 2">[SVG2]</a> specification lifts this restriction, and defines the <code>metadata</code> child content model as text content. This allows any structured or unstructured text, including structured content like JSON.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The SVG 2.0 specification is not yet approved, and has not yet reached W3C Recommentation status.</p>
    <p>Parts of it are implemented in browsers and other user agents, but some validation tools might still flag non-XML content in the <code>metadata</code> element as a violation. This might impact some organizational requirements that all HTML or SVG documents are required to pass validation in order to be accessible. These tools <span class="allow-2119">should</span> be urged to update to the SVG 2.0 specification for processing the <code>metadata</code> element.</p>
    <p>It is important to note that currently, SVG does not define a processing algorithm or behavior for metadata. A user agent <code>may</code> process the metadata in any manner it supports. Currently, no general purpose web browser processes the contents of the <code>metadata</code> element.</p>
    <p>Because the SVG <code>metadata</code> element does not have any defined attributes (such as an <code>href</code> attribute), there is no defined way to link to external resources; this contrasts with the <code>style</code> element in SVG, which can contain CSS rules as the child content of the element, or can reference external CSS files through the <code>href</code> attribute. Thus, this specification defines a linking syntax to allow external metadata files to be applied in whole or in part to the referring image document.</p>
-   <h3 class="heading settled" data-level="11.2" id="css"><span class="secno">11.2. </span><span class="content">Cascading Style Sheets (CSS)</span><a class="self-link" href="#css"></a></h3>
+   <h3 class="heading settled" data-level="10.2" id="css"><span class="secno">10.2. </span><span class="content">Cascading Style Sheets (CSS)</span><a class="self-link" href="#css"></a></h3>
    <p>Some features of this specification, such as contrast control, overlap with capabilities of CSS, such as the <code>prefers-high-contrast</code> media query. This specification is designed to complement and extend such capabilities.</p>
-   <h4 class="heading settled" data-level="11.2.1" id="css_format"><span class="secno">11.2.1. </span><span class="content">CSS format</span><a class="self-link" href="#css_format"></a></h4>
+   <h4 class="heading settled" data-level="10.2.1" id="css_format"><span class="secno">10.2.1. </span><span class="content">CSS format</span><a class="self-link" href="#css_format"></a></h4>
    <p>CSS defines its own syntax, processing model, and format, initially defined in the 1990s. It requires a custom processor.</p>
    <p>This specification uses the common JSON format, which can be processed by any JSON tools, including web browser contexts, JavaScript, and many other tools.</p>
    <p>This specification attempts to define its rules in a way that CSS might be expresssed in JSON.</p>
-   <h4 class="heading settled" data-level="11.2.2" id="css_selectors"><span class="secno">11.2.2. </span><span class="content">CSS selectors</span><a class="self-link" href="#css_selectors"></a></h4>
+   <h4 class="heading settled" data-level="10.2.2" id="css_selectors"><span class="secno">10.2.2. </span><span class="content">CSS selectors</span><a class="self-link" href="#css_selectors"></a></h4>
    <p>This specification uses the CSS selector syntax to link specific metadata entries to specific markup elements, to classes on markup elements, or other linking mechanisms. Unlike CSS, however, it does not use selectors as an "object key", but rather as a value for a <code>selector</code> attribute, to fit the JSON schema and allow multiple rules to use the same selector.</p>
-   <h4 class="heading settled" data-level="11.2.3" id="intended_authoring"><span class="secno">11.2.3. </span><span class="content">Intended authoring usage</span><a class="self-link" href="#intended_authoring"></a></h4>
+   <h4 class="heading settled" data-level="10.2.3" id="intended_authoring"><span class="secno">10.2.3. </span><span class="content">Intended authoring usage</span><a class="self-link" href="#intended_authoring"></a></h4>
    <p>To enable a CSS feature that is extended in this specification, the author can include the rule in either the metadata definition or the CSS definition.</p>
    <p>If the rule is defined in the metadata, a user agent must apply in the same manner as if it were defined in the CSS. For a user agent that supports this specification, this can provide a greater degree of user control, ease authoring and maintenance, and decrease synchronization conflicts.</p>
    <p>The author does not need to define it in both the metadata and the CSS, but might wish to do so for a user agent (such as a general-purpose web browser) that supports the feature in CSS but does not support this specification.</p>
-   <h4 class="heading settled" data-level="11.2.4" id="css_conflicts"><span class="secno">11.2.4. </span><span class="content">Conflicts</span><a class="self-link" href="#css_conflicts"></a></h4>
+   <h4 class="heading settled" data-level="10.2.4" id="css_conflicts"><span class="secno">10.2.4. </span><span class="content">Conflicts</span><a class="self-link" href="#css_conflicts"></a></h4>
    <p>If a rule in a document’s metadata conflicts with a hard-coded CSS rule, the CSS rule should take precedence, unless the user has made a preference selection, through a default settting or a specific selection at the time of viewing.</p>
-   <h4 class="heading settled" data-level="11.2.5" id="future_css"><span class="secno">11.2.5. </span><span class="content">Future adoption and integration into CSS</span><a class="self-link" href="#future_css"></a></h4>
+   <h4 class="heading settled" data-level="10.2.5" id="future_css"><span class="secno">10.2.5. </span><span class="content">Future adoption and integration into CSS</span><a class="self-link" href="#future_css"></a></h4>
    <p>This specification defines some of its functionality in a way that could be integrated into future versions of CSS. Among other examples, the features that involve timing, such as haptics or sonification, are modeled after the animation syntax in CSS.</p>
+   <h2 class="heading settled" data-level="11" id="goals"><span class="secno">11. </span><span class="content">Specification Goals</span><a class="self-link" href="#goals"></a></h2>
+   <p>The goals of this specification are varied. We also define non-goals, things this specification deliberately avoids doing.</p>
+   <h3 class="heading settled" data-level="11.1" id="interoperability"><span class="secno">11.1. </span><span class="content">Interoperability</span><a class="self-link" href="#interoperability"></a></h3>
+   <p>This specification should be complete and definitive with the state of the art, to prevent the need for additional or competing specifications that would decrease interoperability.</p>
+   <h3 class="heading settled" data-level="11.2" id="personalization"><span class="secno">11.2. </span><span class="content">Personalization</span><a class="self-link" href="#personalization"></a></h3>
+   <p>This assistive technology must enable the user to select which of the available accommodations are enabled at any time, and at which available effect level. This must be able to set as a default in the user agent, and must be overrideable by the user to meet their specific need at any time.</p>
+   <p>Any given end-user might have multiple disabilities, with varying degrees of effect at any given time; any given document might have multiple accommodations enabled and encoded in it; any given user agent might suport multiple assistive technologies; any given environment might have different affordances and constraints.</p>
+   <div class="example" id="xmp_low_vision_high_contrast"><a class="self-link" href="#xmp_low_vision_high_contrast"></a> A low vision user might wish to enable very high contrast in a bright environment or when they are tired, and lower contrast when they are in a more moderately lighted environment and well-rested. </div>
+   <div class="example" id="xmp_blind_env_conditions"><a class="self-link" href="#xmp_blind_env_conditions"></a> A blind user might wish to enable haptics and braille output when they are in a quiet zone or noisy environment, and sonification and spoken output when they are in a private, quiet environment. </div>
+   <h3 class="heading settled" data-level="11.3" id="security"><span class="secno">11.3. </span><span class="content">Security</span><a class="self-link" href="#security"></a></h3>
+   <p>The distribution of interactive content presents a conflict between innovative capabilities and user security. In the web platform, most advanced interactivity can only be achieved through JavaScript, but allowing JavaScript in a file opens the user’s system up to possible security holes.</p>
+   <p>This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as conent management systems or email servers) might strip out the <code>script</code> element, disabling the interactivity of the content.</p>
+   <p>By defining a set of declarative syntaxes for different assistive technologies, including parameters and conditional execution triggers, this specification enables the user agent to provide the interactivity defined by the author, without compromising security. This specification refers to such declarative capabilities as "behaviors".</p>
+   <h3 class="heading settled" data-level="11.4" id="privacy"><span class="secno">11.4. </span><span class="content">Privacy</span><a class="self-link" href="#privacy"></a></h3>
+   <p>By enabling security through declarative behaviors, this specification ensures the privacy of the user from third parties. Note that data collection might still be performed through some primary user agents and content providers, but this should be done only with the user’s consent.</p>
+   <h3 class="heading settled" data-level="11.5" id="portability"><span class="secno">11.5. </span><span class="content">Portability</span><a class="self-link" href="#portability"></a></h3>
+   <p>Data visualizations can often lose their association with their context, including the article they were published in or the data they represent. This specification must define a way to include the raw data and the provenance in the image file, so the context can be preserved as the document is shared through various means.</p>
+   <h3 class="heading settled" data-level="11.6" id="reuseability"><span class="secno">11.6. </span><span class="content">Reuseability</span><a class="self-link" href="#reuseability"></a></h3>
+   <p>This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, creaste different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.</p>
+   <p>In addition, a visual image can be enhanced with different metadata to serve a different purpose, such as providing a different set of descriptions for an audience at different reading levels, or translating the document into another language.</p>
+   <h3 class="heading settled" data-level="11.7" id="familiarity"><span class="secno">11.7. </span><span class="content">Familiarity</span><a class="self-link" href="#familiarity"></a></h3>
+   <p>Document technologies are most useful when the syntax and model is familiar and unambiguous. This allows for ease of implementation, increased interoperability, and ease of authoring. This specification should use common technologies like JSON and CSS as its underpinnings.</p>
+   <h3 class="heading settled" data-level="11.8" id="flexibility"><span class="secno">11.8. </span><span class="content">Flexibility</span><a class="self-link" href="#flexibility"></a></h3>
+   <p>This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accomodate other techniques in the future.</p>
+   <p>At the same time, this specification should establish defaults and baselines based on best practices, wherever possible, to encourage good authoring and normalize user experience.</p>
+   <h3 class="heading settled" data-level="11.9" id="searching_categorization"><span class="secno">11.9. </span><span class="content">Searching and categorization</span><a class="self-link" href="#searching_categorization"></a></h3>
+   <p>This specification must define easy ways to enable the distribution and discovery of content based on user needs and accommodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.</p>
+   <h3 class="heading settled" data-level="11.10" id="provenance_expression"><span class="secno">11.10. </span><span class="content">Provenance expression</span><a class="self-link" href="#provenance_expression"></a></h3>
+   <p>Where, when, and by whom an image was created is often very important information, not least because it can enable the user to find more content by any given author, or to verify the quality of the source. It can also provide a "provenance chain", where content that has been adapted to specific needs beyond its original publisher can be shared, while also providing credit to the original author or publisher.</p>
+   <h3 class="heading settled" data-level="11.11" id="encapsulation"><span class="secno">11.11. </span><span class="content">Encapsulation</span><a class="self-link" href="#encapsulation"></a></h3>
+   <p>Through encapsulation, more than one metadata profile can be included for any given image document, much like a stylesheet can change the appearance of the same HMTL file. This specification should not require any changes to the markup of SVG or other files, with 2 exceptions:</p>
+   <ol>
+    <li data-md>
+     <p>The inclusion of a <code>metadata</code> element and its contents.</p>
+    <li data-md>
+     <p>The encouragement of the use of <code>id</code> attributes on key elements. This is not necessary, since selector syntax can target any point in a DOM tree, but the inclusion of <code>id</code>s makes creating and maintaining the markup easier.</p>
+   </ol>
+   <h3 class="heading settled" data-level="11.12" id="nongoals"><span class="secno">11.12. </span><span class="content">Non-goals</span><a class="self-link" href="#nongoals"></a></h3>
+   <h4 class="heading settled" data-level="11.12.1" id="formal_semantics_namespaces"><span class="secno">11.12.1. </span><span class="content">Formal semantics and namespaces</span><a class="self-link" href="#formal_semantics_namespaces"></a></h4>
+   <p>While namespaces allow a flexible extensibility and modularity, they also hamper and complicate authoring and reading. This document will avoid the use of namespaces, and related technologies such as JSON-LD. Future supplements to this specification might define a JSON-LD schema, if demand exists for it.</p>
+   <h4 class="heading settled" data-level="11.12.2" id="generic_styling"><span class="secno">11.12.2. </span><span class="content">Generic styling</span><a class="self-link" href="#generic_styling"></a></h4>
+   <p>While this specification does include some accessibility-specific extensions of CSS, such as a finer control of color contrast settings, it must not define or be used to supercede CSS.</p>
+   <h4 class="heading settled" data-level="11.12.3" id="aria_syntax"><span class="secno">11.12.3. </span><span class="content">ARIA Syntax for Data Visualization</span><a class="self-link" href="#aria_syntax"></a></h4>
+   <p>This specification is complementary and orthogonal to the W3C specifications defining <code>role</code> attributes, including the <a href="https://www.w3.org/TR/graphics-aria-1.0/">WAI-ARIA Graphics Module</a> and the <a href="https://www.w3.org/TR/svg-aam-1.0/">SVG Accessibility API Mappings</a>.</p>
    <h2 class="heading settled" data-level="12" id="definitions"><span class="secno">12. </span><span class="content">Definitions</span><a class="self-link" href="#definitions"></a></h2>
    <h3 class="heading settled" data-level="12.1" id="inline"><span class="secno">12.1. </span><span class="content">inline</span><a class="self-link" href="#inline"></a></h3>
    <p>In the context of this specification, "inline" refers to content that is included textually in the document itself, in contrast to external content that is referenced, but not incorporated into the document. This is akin to the concept of inclusion by value versus inclusion by reference.</p>
