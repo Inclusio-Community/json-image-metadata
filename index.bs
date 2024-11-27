@@ -760,7 +760,7 @@ Haptic feedback typically uses vibration patterns on a touch surface to provide 
 
 Haptic feedback may be accompanied or supplemented by auditory feedback.
 
-Each instance of haptic feedback is associated with a `region` and event type, and is composed of a `haptic` block, with a `durations` key and optional `intensities`, `repetitionInterval`, and `repetitionIndex` keys.
+Each instance of haptic feedback is associated with a `region` and event type, and is composed of a `haptic` block, with a `durations` key and optional `intensities`, `repeatInterval`, and `repeatIndex` keys.
 
 The behavior must be triggered when the user moves a pointer over the target region, and must stop immediately when the user moves their pointer outside the target region.
 
@@ -778,7 +778,7 @@ An example of `haptic` block with two haptic object entries in an array. The fir
         {
           "haptic": {
             "durations": [ 50, 100, 150 ],
-            "repetitionInterval": 250
+            "repeatInterval": 250
           }
         }
       }
@@ -797,7 +797,7 @@ An example of `haptic` block with two haptic object entries in an array. The fir
         {
           "haptic": {
             "durations": [ 0, 150 ],
-            "repetitionInterval": 250
+            "repeatInterval": 250
           }
         }
         "audio": {
@@ -1312,7 +1312,7 @@ Note: The W3C Vibration API defines only a simple non-repeating sequence of dura
 
 <!-- This specification does not currently add capabilities for defining target region or other haptic qualities, due to limitations in the W3C Vibration API and device capabilities. -->
 
-A `haptics` block is an object with the key `haptics`, which contains one or more key-value pairs including one or more of the keys `durations`, `intensities`, `repetitionInterval`, and `repetitionIndex` keys and their values.
+A `haptics` block is an object with the key `haptics`, which contains one or more key-value pairs including one or more of the keys `durations`, `intensities`, `repeatInterval`, and `repeatIndex` keys and their values.
 
 ## The `haptic` key ## {#haptic_block}
 
@@ -1357,16 +1357,16 @@ A `haptics` block is an object with the key `haptics`, which contains one or mor
     </tr>
 
     <tr>
-      <td>`repetitionInterval`</td>
+      <td>`repeatInterval`</td>
       <td>integer</td>
       <td>The time in milliseconds before the `duration` array begins repeating. If the value is `0` or a positive integer, the haptic pattern must repeat until the activating behavior is terminated (such as by the user moving their finger off the target region). If the value is a negative integer, or if the value is omitted, the haptic pattern must not repeat.</td>
       <td>optional</td>
     </tr>
 
     <tr>
-      <td>`repetitionIndex`</td>
+      <td>`repeatIndex`</td>
       <td>integer</td>
-      <td>The index of the `duration` array that is the starting duration for repetition, if any. If the value is `0` or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the `0` index. Repetition must only occur according to the value of the `repetitionInterval`.</td>
+      <td>The index of the `duration` array that is the starting duration for repetition, if any. If the value is `0` or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the `0` index. Repetition must only occur according to the value of the `repeatInterval`.</td>
       <td>optional</td>
     </tr>
   </tbody>
@@ -1415,7 +1415,7 @@ A haptic pattern that will trigger a single vibration lasting 200 milliseconds, 
 {
   "haptic": {
     "durations": [ 0, 200 ],
-    "repetitionInterval": 500
+    "repeatInterval": 500
   }
 }
 </xmp>
@@ -1428,8 +1428,8 @@ A complex haptic pattern that will trigger a sequence of vibrations 10 milliseco
 {
   "haptic": {
     "durations": [ 10, 50, 100, 150 ],
-    "repetitionInterval": 250,
-    "repetitionIndex": 1
+    "repeatInterval": 250,
+    "repeatIndex": 1
   }
 }
 </xmp>
@@ -1444,8 +1444,8 @@ A set of duration and amplitude patterns that will trigger a pair of vibrations 
   "haptic": {
     "durations": [ 0, 200, 100, 200 ],
     "intensities": [ 0, 0.3, 0, 0.6 ],
-    "repetitionInterval": 500,
-    "repetitionIndex": 1
+    "repeatInterval": 500,
+    "repeatIndex": 1
   }
 }
 </xmp>

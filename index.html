@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="a7c103a98990051e4d30abcf135dd5e5013ceab0" name="revision">
+  <meta content="480a66ee9efb91abc53547fb167fcdb5a71bce6e" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2726,7 +2726,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p>Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.</p>
    <p>Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their pointer over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API <a data-link-type="biblio" href="#biblio-vibration" title="Vibration API (Second Edition)">[vibration]</a>. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.</p>
    <p>Haptic feedback may be accompanied or supplemented by auditory feedback.</p>
-   <p>Each instance of haptic feedback is associated with a <code>region</code> and event type, and is composed of a <code>haptic</code> block, with a <code>durations</code> key and optional <code>intensities</code>, <code>repetitionInterval</code>, and <code>repetitionIndex</code> keys.</p>
+   <p>Each instance of haptic feedback is associated with a <code>region</code> and event type, and is composed of a <code>haptic</code> block, with a <code>durations</code> key and optional <code>intensities</code>, <code>repeatInterval</code>, and <code>repeatIndex</code> keys.</p>
    <p>The behavior must be triggered when the user moves a pointer over the target region, and must stop immediately when the user moves their pointer outside the target region.</p>
    <div class="example" id="xmp_haptic_behavior">
     <a class="self-link" href="#xmp_haptic_behavior"></a> An example of <code>haptic</code> block with two haptic object entries in an array. The first haptic object selects an element with the <code>id</code>=<code>bar_1</code> as the target region, and defines a repeating vibration pattern. The second haptic object defines a circle as the target region, defines a simple repeating vibration pattern, and links to an external audio file that will be played once when the region is first triggered. 
@@ -2740,7 +2740,7 @@ Parts of this work may be from another specification document.  If so, those par
         <c- p>{</c->
           <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
             <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>50</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
-            <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>250</c->
+            <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>250</c->
           <c- p>}</c->
         <c- p>}</c->
       <c- p>}</c->
@@ -2759,7 +2759,7 @@ Parts of this work may be from another specification document.  If so, those par
         <c- p>{</c->
           <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
             <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
-            <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>250</c->
+            <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>250</c->
           <c- p>}</c->
         <c- p>}</c->
         <c- f>"audio"</c-><c- p>:</c-> <c- p>{</c->
@@ -3117,7 +3117,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p>Haptics is the use of vibration to provide feedback to the user as they interact with an image or object.</p>
    <p>Haptic feedback typically uses vibration patterns on a touch surface to provide the user with information when the user moves their pointer over a particular region of the screen. In a web browser, this is enabled through the W3C Vibration API <a data-link-type="biblio" href="#biblio-vibration" title="Vibration API (Second Edition)">[vibration]</a>. Other haptic feedback methods may be used on specialized devices, and unless otherwise stated, they will use the same haptic pattern syntax as for vibrations.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The W3C Vibration API defines only a simple non-repeating sequence of durations. This specification extends that with options for an additional value for repetition of that pattern with a fixed interval between pattern instances, a repetition index, and a matching amplitude array.</p>
-   <p>A <code>haptics</code> block is an object with the key <code>haptics</code>, which contains one or more key-value pairs including one or more of the keys <code>durations</code>, <code>intensities</code>, <code>repetitionInterval</code>, and <code>repetitionIndex</code> keys and their values.</p>
+   <p>A <code>haptics</code> block is an object with the key <code>haptics</code>, which contains one or more key-value pairs including one or more of the keys <code>durations</code>, <code>intensities</code>, <code>repeatInterval</code>, and <code>repeatIndex</code> keys and their values.</p>
    <h3 class="heading settled" data-level="7.1" id="haptic_block"><span class="secno">7.1. </span><span class="content">The <code>haptic</code> key</span><a class="self-link" href="#haptic_block"></a></h3>
    <table class="data">
     <thead>
@@ -3142,14 +3142,14 @@ Parts of this work may be from another specification document.  If so, those par
        <p>The even entries in the array (starting with index <code>0</code>) correspond to the pauses between vibrations and be ignored. The odd entries in the array must define the amplitude of the vibration for the corresponding vibration duration in the <code>duration</code> array.</p>
       <td>optional
      <tr>
-      <td><code>repetitionInterval</code>
+      <td><code>repeatInterval</code>
       <td>integer
       <td>The time in milliseconds before the <code>duration</code> array begins repeating. If the value is <code>0</code> or a positive integer, the haptic pattern must repeat until the activating behavior is terminated (such as by the user moving their finger off the target region). If the value is a negative integer, or if the value is omitted, the haptic pattern must not repeat.
       <td>optional
      <tr>
-      <td><code>repetitionIndex</code>
+      <td><code>repeatIndex</code>
       <td>integer
-      <td>The index of the <code>duration</code> array that is the starting duration for repetition, if any. If the value is <code>0</code> or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the <code>0</code> index. Repetition must only occur according to the value of the <code>repetitionInterval</code>.
+      <td>The index of the <code>duration</code> array that is the starting duration for repetition, if any. If the value is <code>0</code> or a positive integer, each repetition of the haptic pattern must start at the indicated index and continue to the end of vibration duration array. If the value is a negative integer, or if the value is omitted, the haptic pattern must start at the <code>0</code> index. Repetition must only occur according to the value of the <code>repeatInterval</code>.
       <td>optional
    </table>
    <h3 class="heading settled" data-level="7.2" id="vibration_patterns"><span class="secno">7.2. </span><span class="content">Vibration patterns</span><a class="self-link" href="#vibration_patterns"></a></h3>
@@ -3177,7 +3177,7 @@ Parts of this work may be from another specification document.  If so, those par
 <pre class="highlight"><c- p>{</c->
   <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>200</c-> <c- p>],</c->
-    <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>500</c->
+    <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>500</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
@@ -3187,8 +3187,8 @@ Parts of this work may be from another specification document.  If so, those par
 <pre class="highlight"><c- p>{</c->
   <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>10</c-><c- p>,</c-> <c- mi>50</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
-    <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>250</c-><c- p>,</c->
-    <c- f>"repetitionIndex"</c-><c- p>:</c-> <c- mi>1</c->
+    <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>250</c-><c- p>,</c->
+    <c- f>"repeatIndex"</c-><c- p>:</c-> <c- mi>1</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
@@ -3199,8 +3199,8 @@ Parts of this work may be from another specification document.  If so, those par
   <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>200</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>200</c-> <c- p>],</c->
     <c- f>"intensities"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mf>0.3</c-><c- p>,</c-> <c- mi>0</c-><c- p>,</c-> <c- mf>0.6</c-> <c- p>],</c->
-    <c- f>"repetitionInterval"</c-><c- p>:</c-> <c- mi>500</c-><c- p>,</c->
-    <c- f>"repetitionIndex"</c-><c- p>:</c-> <c- mi>1</c->
+    <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>500</c-><c- p>,</c->
+    <c- f>"repeatIndex"</c-><c- p>:</c-> <c- mi>1</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
