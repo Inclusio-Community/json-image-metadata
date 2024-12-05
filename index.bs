@@ -383,7 +383,7 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
           "variableType": "dependent",
           "measure": "ratio",
           "units": "degrees Fahrenheit",
-          "multiplier": "1"
+          "multiplier": 1
         }
       },
       "series": [
@@ -483,7 +483,7 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
           "variableType": "dependent",
           "measure": "ratio",
           "units": "degrees Fahrenheit",
-          "multiplier": "1"
+          "multiplier": 1
         }
       },
       "series": [
