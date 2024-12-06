@@ -1269,8 +1269,8 @@ A target describing an irregular area using the `path` definition and a rectangl
       },
       "rect": {
         "y": 44,
-        "width": "130",
-        "height": "25"
+        "width": 130,
+        "height": 25
       }
     }
   }
