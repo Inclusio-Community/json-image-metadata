@@ -695,7 +695,7 @@ The first selector set object selects an element with the `id="datapoint-Sunday_
 
 The second selector set object selects an element with `id="datapoint-Monday_2000"` as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.
 
-Assuming a record structure with only `x` and `y` keys, these selectors would yeild the same outcome, making the wildcard selector a shorthand for the array syntax.
+Assuming a record structure with only `x` and `y` keys, these selectors would yield the same outcome, making the wildcard selector a shorthand for the array syntax.
 
 <xmp highlight='json'>
 {
