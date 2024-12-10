@@ -1095,7 +1095,7 @@ Note: To be defined further.
 
 A conforming document may include an optional `version` key.
 
-An `version` block is an object with the key `version`, which contains one or more key-value pairs including one or more of the keys `document` and `jim` and their values.
+A `version` block is an object with the key `version`, which contains one or more key-value pairs including one or more of the keys `document` and `jim` and their values.
 
 The value of the optional `jim` key, if present, must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (`.`). The default value of the `jim` key is `1.0.0`.
 
