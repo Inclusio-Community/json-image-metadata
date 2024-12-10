@@ -305,7 +305,7 @@ An example of a `datasets` block (with elided values) for a structured data repr
   
 > TODO: add example
 
-The individual entries of the `datasets` block are defined in [Inline data].
+The individual entries of the `datasets` block are defined in [Inline data](#inline_data).
 
 ### The `title` key ### {#title_data_block}
 
@@ -590,7 +590,7 @@ TODO: describe the `source` object
 
 The `href` key defines an object that refers to an external data file. The content model and processing of the `href` key are different in the `datasets` block than in other metadata blocks.
 
-This external file can be used to link data to graphical elements, as defined in [Inline data].
+This external file can be used to link data to graphical elements, as defined in [Inline data](#inline_data).
 
 
 ## Selectors ## {#selectors}
