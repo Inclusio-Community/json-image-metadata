@@ -777,7 +777,7 @@ Rarely, you might have a many-to-many relationship.
 
 > TODO: provide a many-to-many example.
 
-On occassion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.
+On occasion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.
 
 > TODO: talk about label elements and their representation.
 
