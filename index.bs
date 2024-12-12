@@ -769,7 +769,7 @@ This specification defines a `selector` attribute to enable this relationship be
 
 The relationship between a graphical element and the data it represents might be complex.
 
-Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a bar in a bar chart, where the height of the bar signifies a specific numerical value.
+Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a specific bar in a bar chart, where the height of the bar signifies a specific numerical value.
 
 Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where , or a line chart where a , or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)
 
