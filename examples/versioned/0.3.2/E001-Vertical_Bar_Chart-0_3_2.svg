@@ -44,12 +44,14 @@
             "x": {
               "label": "Time (Days)",
               "variableType": "independent",
-              "labelType": "x axis"
+              "labelType": "x axis",
+              "measure": "interval"
             },
             "y": {
               "label": "Recorded Temperatures",
               "variableType": "dependent",
-              "labelType": "y axis"
+              "labelType": "y axis",
+              "measure": "ratio"
             }
           },
           "series": [
