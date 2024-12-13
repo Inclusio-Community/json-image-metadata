@@ -928,11 +928,9 @@ An example of a `haptic` block with two haptic object entries in an array. The f
         "selector": "#bar_1"
       },
       "enter": {
-        {
-          "haptic": {
-            "durations": [ 50, 100, 150 ],
-            "repeatInterval": 250
-          }
+        "haptic": {
+          "durations": [ 50, 100, 150 ],
+          "repeatInterval": 250
         }
       }
     },
@@ -947,12 +945,10 @@ An example of a `haptic` block with two haptic object entries in an array. The f
         }
       },
       "enter": {
-        {
-          "haptic": {
-            "durations": [ 0, 150 ],
-            "repeatInterval": 250
-          }
-        }
+        "haptic": {
+          "durations": [ 0, 150 ],
+          "repeatInterval": 250
+        },
         "audio": {
           "href": "./assets/example.mp3",
           "repeat": "none"
