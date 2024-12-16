@@ -1200,7 +1200,7 @@ A target selector targeting all elements in the container element `graph_area`.
 
 ### Target `selector` for selector sets ### {#target_selector_set_selector}
 
-An selector set target may be a JSONPath selector pointing to a selector set, or an array of such JSONPath selectors.
+A selector set target may be a JSONPath selector pointing to a selector set, or an array of such JSONPath selectors.
 
 > TODO: Expand on this.
 
