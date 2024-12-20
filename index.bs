@@ -1815,7 +1815,7 @@ Data visualizations can often lose their association with their context, includi
 
 ## Reuseability ## {#reuseability}
 
-This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, creaste different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.
+This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, create different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.
 
 In addition, a visual image can be enhanced with different metadata to serve a different purpose, such as providing a different set of descriptions for an audience at different reading levels, or translating the document into another language.
 
