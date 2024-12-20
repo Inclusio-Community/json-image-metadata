@@ -1801,7 +1801,7 @@ A blind user might wish to enable haptics and braille output when they are in a 
 
 The distribution of interactive content presents a conflict between innovative capabilities and user security. In the web platform, most advanced interactivity can only be achieved through JavaScript, but allowing JavaScript in a file opens the user's system up to possible security holes.
 
-This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as conent management systems or email servers) might strip out the `script` element, disabling the interactivity of the content.
+This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as content management systems or email servers) might strip out the `script` element, disabling the interactivity of the content.
 
 By defining a set of declarative syntaxes for different assistive technologies, including parameters and conditional execution triggers, this specification enables the user agent to provide the interactivity defined by the author, without compromising security. This specification refers to such declarative capabilities as "behaviors".
 
