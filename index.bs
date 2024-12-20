@@ -1825,7 +1825,7 @@ Document technologies are most useful when the syntax and model is familiar and 
 
 ## Flexibility ## {#flexibility}
 
-This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accomodate other techniques in the future.
+This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accommodate other techniques in the future.
 
 At the same time, this specification should establish defaults and baselines based on best practices, wherever possible, to encourage good authoring and normalize user experience.
 
