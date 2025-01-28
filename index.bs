@@ -606,15 +606,19 @@ JSONPath [[JSONPath]] enables the matching of JSON keys or values in the JSON me
 
 ### The `selectors` block data ### {#selectors_block}
 
-The `selectors` block is an object with one or more `[selector-string]` keys and `[selector-set-object]` values.
+The `selectors` block is an object with one or more `[selector-string]` keys and `[selector-object]` values.
 
-A `[selector-string]` key must consist of a non-empty string of ASCII letters, digits, and '_', with no whitespace. These `[selector-string]` keys may be any string allowed by the schema for the representation type, and will normally represent a human-readable identifier for the `[selector-set-object]` (e.g. `"title"`, `"bar-3"`, or `"axis_labels"`). Each `[selector-string]` key must be a unique value.
+A `[selector-string]` key must consist of a non-empty string of ASCII letters, digits, and '_', with no whitespace. These `[selector-string]` keys may be any string allowed by the schema for the representation type, and will normally represent a human-readable identifier for the `[selector-object]` (e.g. `"title"`, `"bar-3"`, or `"axis_labels"`). Each `[selector-string]` key must be a unique value.
 
-Each `[selector-string]` is the key to an `[selector-set-object]` which defines the DOM selectors, JSONPath selectors, and optional descriptor for the selector set.
+Each `[selector-string]` is the key to an `[selector-object]` value which defines (directly or indirectly) the DOM selectors, JSONPath selectors, and an optional descriptor for the selector set.
 
 #### The `[selector-string]` key #### {#selectorstring_data_block}
 
-The value of a `[selector-string]` key in a `selectors` block must be a `[selector-set-object]`. `[selector-set-objects]` have the following properties:
+The value of a `[selector-string]` key in a `selectors` block must be a `[selector-object]`. There are two kinds of `[selector-object]`: `[selector-set-objects]` and `[selector-pattern-objects]`. `[selector-set-objects]` directly specify DOM and JSONPath selectors, while `[selector-pattern-objects]` specify DOM and JSONPath selectors in terms of a pattern those specifiers match.
+
+##### `[selector-set-object]` ##### {#selector_set_object}
+
+`[selector-set-objects]` have the following properties:
 
 <table class="data">
   <thead>
