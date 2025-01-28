@@ -606,13 +606,15 @@ JSONPath [[JSONPath]] enables the matching of JSON keys or values in the JSON me
 
 ### The `selectors` block data ### {#selectors_block}
 
-The `selectors` block is an object containing sets of selectors.  
+The `selectors` block is an object with one or more `[selector-string]` keys and `[selector-set-object]` values.
 
-The `selectors` object contains one or more `[selector-string]` keys. A `[selector-string]` key may be any value allowed by the schema for the representation type, and will normally represent a human-readable identifier for the selector set (e.g. `"title"`, `"bar-3"`, or `"axis_labels"`). Each `[selector-string]` is the key to an object which defines the DOM selectors, JSONPath selectors, and optional descriptor for the selector set.
+A `[selector-string]` key must consist of a non-empty string of ASCII letters, digits, and '_', with no whitespace. These `[selector-string]` keys may be any string allowed by the schema for the representation type, and will normally represent a human-readable identifier for the `[selector-set-object]` (e.g. `"title"`, `"bar-3"`, or `"axis_labels"`). Each `[selector-string]` key must be a unique value.
 
-These `[selector-string]` keys must consist of a string of ASCII letters, digits, and '_', with no whitespace. Each `[selector-string]` key must be a unique value.
+Each `[selector-string]` is the key to an `[selector-set-object]` which defines the DOM selectors, JSONPath selectors, and optional descriptor for the selector set.
 
 #### The `[selector-string]` key #### {#selectorstring_data_block}
+
+The value of a `[selector-string]` key in a `selectors` block must be a `[selector-set-object]`. `[selector-set-objects]` have the following properties:
 
 <table class="data">
   <thead>
@@ -657,13 +659,13 @@ These `[selector-string]` keys must consist of a string of ASCII letters, digits
 
 
 <div id='xmp_selector_syntax' class='example'>
-An example of a `selectors` block with three selector set object entries. 
+An example of a `selectors` block with three `[selector-set-object]` entries. 
 
-The first selector set object selects an element with the `id="chart-title"` as the target element, and associates that with the object key for the title of the first dataset in the JSON.
+The first `[selector-set-object]` selects an element with the `id="chart-title"` as the target element, and associates that with the object key for the title of the first dataset in the JSON.
 
-The second selector set object selects an element with a complex DOM selector for an element without an `id` attribute as the target element, and associates that with the object key for a label of a record in the dataset of the JSON.
+The second `[selector-set-object]` selects an element with a complex DOM selector for an element without an `id` attribute as the target element, and associates that with the object key for a label of a record in the dataset of the JSON.
 
-The third selector set object selects an element with `id="datapoint-Sunday_2000"` as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard. 
+The third `[selector-set-object]` selects an element with `id="datapoint-Sunday_2000"` as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard. 
 
 <xmp highlight='json'>
 {
@@ -687,13 +689,13 @@ The third selector set object selects an element with `id="datapoint-Sunday_2000
 </div>
 
 <div id='xmp_selector_alternate_syntax' class='example'>
-An example of a `selectors` block with two selector set object entries with alternate syntaxes for the same kind of connection. 
+An example of a `selectors` block with two `[selector-set-object]` entries with alternate syntaxes for the same kind of connection. 
 
-The first selector set object selects an element with the `id="datapoint-Sunday_2000"` as the target element, and associates that with the object key for the `x` and `y` values of a record in the dataset of the JSON, using an array of JSONPath selectors. 
+The first `[selector-set-object]` selects an element with the `id="datapoint-Sunday_2000"` as the target element, and associates that with the object key for the `x` and `y` values of a record in the dataset of the JSON, using an array of JSONPath selectors. 
 
-The second selector set object selects an element with `id="datapoint-Monday_2000"` as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.
+The second `[selector-set-object]` selects an element with `id="datapoint-Monday_2000"` as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.
 
-Assuming a record structure with only `x` and `y` keys, these selectors would yeild the same outcome, making the wildcard selector a shorthand for the array syntax.
+Assuming a record structure with only `x` and `y` keys, these selectors would yield the same outcome, making the wildcard selector a shorthand for the array syntax.
 
 <xmp highlight='json'>
 {
