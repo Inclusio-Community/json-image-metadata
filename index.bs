@@ -814,6 +814,123 @@ The same `[selector-set-object]` appears multiple times, with only the relevant 
   </tbody>
 </table>
 
+###### `[selector-iterable-object]` ###### {#selector-iterable-object}
+
+`[selector-iterable-objects]` are objects which specify sequences of values which are interpolated into selector set patterns. 
+
+`[selector-iterable-objects]` have the following properties:
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`var`</td>
+      <td>A non-empty string containing only ASCII letters, and '_'</td>
+      <td>The variable symbol which represents this iterable in `[selector-interpolation-slots]`.</td>
+      <td>required</td>
+    </tr>
+    <tr>
+      <td>`range`</td>
+      <td>Either a `[iterable-numeric-range]` or a `[iterable-data-range]` object.</td>
+      <td>Specifies the values which this iterable iterates over.</td>
+      <td>required</td>
+    </tr>
+  </tbody>
+</table>
+
+`[selector-iterable-objects]` can contain two different kinds of range: `[iterable-numeric-ranges]` and `[iterable-data-range]`. 
+
+`[iterable-numeric-ranges]` are iterable ranges which iterate over integer values specified in terms of a `start` integer, a `stop` integer, and an optional `step` integer. They have the following properties:
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`start`</td>
+      <td>An integer value.</td>
+      <td>The first value of the iteration.</td>
+      <td>required</td>
+    </tr>
+    <tr>
+      <td>`stop`</td>
+      <td>An integer value.</td>
+      <td>An upper bound (or lower bound, if `step` is negative) for the values of the iteration.</td>
+      <td>required</td>
+    </tr>
+    <tr>
+      <td>`step`</td>
+      <td>An integer value.</td>
+      <td>The difference between each value of the iteration and the previous value. Defaults to 1.</td>
+      <td>optional</td>
+    </tr>
+  </tbody>
+</table>
+
+The iteration of a `[iterable-numeric-range]` starts with the `start` value, and then continues by adding the `step` value (or 1 if the step value is not specified) until a value greater than or equal to (or less than or equal to, if `step` is negative) the `stop` value is reached. This final value is not included in the iteration. A negative `step` value causes the iterable to iterate downwards.
+
+`[iterable-data-ranges]` are iterable ranges which iterate over an array of data values specified using a JSONPath selector. They have the following properties:
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`selector`</td>
+      <td>A string of a valid JSONPath selector.</td>
+      <td>Represents an array of values selected from the JIM document or external data.</td>
+      <td>required</td>
+    </tr>
+  </tbody>
+</table>
+
+If the selector returns no values, then no values will be iterated over (i.e. it is treated as an empty array). If only one value is returned then it is the only value iterated over (i.e. it is treated as an array of length 1).
+
+> TODO: Do JSONPath selectors return values in a specified order? If not, should be specify an order here, or state that no order is specified? (NOTE: with no order, the generation of selector sets would be non-deterministic).
+
 
 
 #### `[selector-string]` as target selector #### {#selectorstring_target_selector}
