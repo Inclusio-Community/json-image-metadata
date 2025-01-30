@@ -931,6 +931,22 @@ If the selector returns no values, then no values will be iterated over (i.e. it
 
 > TODO: Do JSONPath selectors return values in a specified order? If not, should be specify an order here, or state that no order is specified? (NOTE: with no order, the generation of selector sets would be non-deterministic).
 
+###### `[selector-interpolation-slots]` ###### {#selector-interpolation-slot}
+
+The `keyPattern`, `domPatterns`, and `jsonPatterns` string values may contain `[selector-interpolation-slots]`. These slots are replaced by values from the iterables when the selector sets are generated. If the pattern contains no slots, then the original value is returned with no interpolation performed.
+
+Each pattern must return a valid instances of the relevant type after the slots it contains are interpolated by any of the relevant iterable values (including if there are no slots). Specifically:
+- The `keyPattern` must be a non-empty string containing only ASCII letters, digits, '_'.
+- The `domPatterns` must be strings of valid CSS selectors.
+- The `jsonPatterns` must be strings of valid JSONPath selectors.
+
+`[selector-interpolation-slots]` are strings with the following syntax:
+- `${<var>}` is replaced by values from the iterable with the `var` property `<var>`
+- `${\i{<var>}}` is replaced by the index of the iterable with the `var` property `<var>`
+- `${\i}` is replaced by the index of entire iteration
+
+> TODO: Check that all of this syntax does not conflict with CSS or JSONPath syntax
+
 
 
 #### `[selector-string]` as target selector #### {#selectorstring_target_selector}
