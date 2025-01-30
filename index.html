@@ -1488,10 +1488,11 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
+  <meta content="Bikeshed version c67c745b1, updated Fri Jan 17 14:27:28 2025 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="61774ff2eeb28f32479b492832df0b7ecd5fc2cc" name="revision">
+  <meta content="669e7ad51ed7245ca5c51419d7290d59a58e0352" name="revision">
+  <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2016,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-27">27 November 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2025-01-30">30 January 2025</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2032,9 +2033,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 27 November 2024,
-the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
-which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
+In addition, as of 30 January 2025,
+the editors have made this specification available under the <a href="https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
+which is available at https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
    <hr title="Separator for header">
   </div>
@@ -2114,7 +2115,15 @@ Parts of this work may be from another specification document.  If so, those par
         <li>
          <a href="#selectors_block"><span class="secno">3.2.1</span> <span class="content">The <code>selectors</code> block data</span></a>
          <ol class="toc">
-          <li><a href="#selectorstring_data_block"><span class="secno">3.2.1.1</span> <span class="content">The <code>[selector-string]</code> key</span></a>
+          <li>
+           <a href="#selectorstring_data_block"><span class="secno">3.2.1.1</span> <span class="content">The <code>[selector-string]</code> key</span></a>
+           <ol class="toc">
+            <li><a href="#selector_set_object"><span class="secno">3.2.1.1.1</span> <span class="content"><code>[selector-set-object]</code></span></a>
+            <li><a href="#selector_pattern_object"><span class="secno">3.2.1.1.2</span> <span class="content"><code>[selector-pattern-object]</code></span></a>
+            <li><a href="#selector-iterable-object"><span class="secno">3.2.1.1.3</span> <span class="content"><code>[selector-iterable-object]</code></span></a>
+            <li><a href="#selector-interpolation-slot"><span class="secno">3.2.1.1.4</span> <span class="content"><code>[selector-interpolation-slots]</code></span></a>
+            <li><a href="#selector-pattern-set-generation"><span class="secno">3.2.1.1.5</span> <span class="content"><code>[selector-pattern-objects]</code> Selector Set Generation</span></a>
+           </ol>
           <li><a href="#selectorstring_target_selector"><span class="secno">3.2.1.2</span> <span class="content"><code>[selector-string]</code> as target selector</span></a>
          </ol>
         <li>
@@ -2647,10 +2656,13 @@ Parts of this work may be from another specification document.  If so, those par
     <p>TODO: include more details about linking</p>
    </blockquote>
    <h4 class="heading settled" data-level="3.2.1" id="selectors_block"><span class="secno">3.2.1. </span><span class="content">The <code>selectors</code> block data</span><a class="self-link" href="#selectors_block"></a></h4>
-   <p>The <code>selectors</code> block is an object containing sets of selectors.</p>
-   <p>The <code>selectors</code> object contains one or more <code>[selector-string]</code> keys. A <code>[selector-string]</code> key may be any value allowed by the schema for the representation type, and will normally represent a human-readable identifier for the selector set (e.g. <code>"title"</code>, <code>"bar-3"</code>, or <code>"axis_labels"</code>). Each <code>[selector-string]</code> is the key to an object which defines the DOM selectors, JSONPath selectors, and optional descriptor for the selector set.</p>
-   <p>These <code>[selector-string]</code> keys must consist of a string of ASCII letters, digits, and '_', with no whitespace. Each <code>[selector-string]</code> key must be a unique value.</p>
+   <p>The <code>selectors</code> block is an object with one or more <code>[selector-string]</code> keys and <code>[selector-object]</code> values.</p>
+   <p>A <code>[selector-string]</code> key must consist of a non-empty string of ASCII letters, digits, and '_', with no whitespace. These <code>[selector-string]</code> keys may be any string allowed by the schema for the representation type, and will normally represent a human-readable identifier for the <code>[selector-object]</code> (e.g. <code>"title"</code>, <code>"bar-3"</code>, or <code>"axis_labels"</code>). Each <code>[selector-string]</code> key must be a unique value.</p>
+   <p>Each <code>[selector-string]</code> is the key to an <code>[selector-object]</code> value which defines (directly or indirectly) the DOM selectors, JSONPath selectors, and an optional descriptor for the selector set.</p>
    <h5 class="heading settled" data-level="3.2.1.1" id="selectorstring_data_block"><span class="secno">3.2.1.1. </span><span class="content">The <code>[selector-string]</code> key</span><a class="self-link" href="#selectorstring_data_block"></a></h5>
+   <p>The value of a <code>[selector-string]</code> key in a <code>selectors</code> block must be a <code>[selector-object]</code>. There are two kinds of <code>[selector-object]</code>: <code>[selector-set-objects]</code> and <code>[selector-pattern-objects]</code>. A <code>[selector-set-object]</code> directly specifies a selector set, while a <code>[selector-pattern-object]</code> generates multiple selector sets by iterating over DOM and JSONPath selector patterns.</p>
+   <h6 class="heading settled" data-level="3.2.1.1.1" id="selector_set_object"><span class="secno">3.2.1.1.1. </span><span class="content"><code>[selector-set-object]</code></span><a class="self-link" href="#selector_set_object"></a></h6>
+   <p><code>[selector-set-objects]</code> have the following properties:</p>
    <table class="data">
     <thead>
      <tr>
@@ -2679,10 +2691,10 @@ Parts of this work may be from another specification document.  If so, those par
     <p>TODO: Maybe we could also add an option for a <code>class</code> key (with an array of strings as the value), so all selectors sets with a certain class can be addressed by target selectors?</p>
    </blockquote>
    <div class="example" id="xmp_selector_syntax">
-    <a class="self-link" href="#xmp_selector_syntax"></a> An example of a <code>selectors</code> block with three selector set object entries. 
-    <p>The first selector set object selects an element with the <code>id="chart-title"</code> as the target element, and associates that with the object key for the title of the first dataset in the JSON.</p>
-    <p>The second selector set object selects an element with a complex DOM selector for an element without an <code>id</code> attribute as the target element, and associates that with the object key for a label of a record in the dataset of the JSON.</p>
-    <p>The third selector set object selects an element with <code>id="datapoint-Sunday_2000"</code> as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.</p>
+    <a class="self-link" href="#xmp_selector_syntax"></a> An example of a <code>selectors</code> block with three <code>[selector-set-object]</code> entries. 
+    <p>The first <code>[selector-set-object]</code> selects an element with the <code>id="chart-title"</code> as the target element, and associates that with the object key for the title of the first dataset in the JSON.</p>
+    <p>The second <code>[selector-set-object]</code> selects an element with a complex DOM selector for an element without an <code>id</code> attribute as the target element, and associates that with the object key for a label of a record in the dataset of the JSON.</p>
+    <p>The third <code>[selector-set-object]</code> selects an element with <code>id="datapoint-Sunday_2000"</code> as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"title"</c-><c- p>:</c-> <c- p>{</c->
@@ -2703,10 +2715,10 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    </div>
    <div class="example" id="xmp_selector_alternate_syntax">
-    <a class="self-link" href="#xmp_selector_alternate_syntax"></a> An example of a <code>selectors</code> block with two selector set object entries with alternate syntaxes for the same kind of connection. 
-    <p>The first selector set object selects an element with the <code>id="datapoint-Sunday_2000"</code> as the target element, and associates that with the object key for the <code>x</code> and <code>y</code> values of a record in the dataset of the JSON, using an array of JSONPath selectors.</p>
-    <p>The second selector set object selects an element with <code>id="datapoint-Monday_2000"</code> as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.</p>
-    <p>Assuming a record structure with only <code>x</code> and <code>y</code> keys, these selectors would yeild the same outcome, making the wildcard selector a shorthand for the array syntax.</p>
+    <a class="self-link" href="#xmp_selector_alternate_syntax"></a> An example of a <code>selectors</code> block with two <code>[selector-set-object]</code> entries with alternate syntaxes for the same kind of connection. 
+    <p>The first <code>[selector-set-object]</code> selects an element with the <code>id="datapoint-Sunday_2000"</code> as the target element, and associates that with the object key for the <code>x</code> and <code>y</code> values of a record in the dataset of the JSON, using an array of JSONPath selectors.</p>
+    <p>The second <code>[selector-set-object]</code> selects an element with <code>id="datapoint-Monday_2000"</code> as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.</p>
+    <p>Assuming a record structure with only <code>x</code> and <code>y</code> keys, these selectors would yield the same outcome, making the wildcard selector a shorthand for the array syntax.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"dp0"</c-><c- p>:</c-> <c- p>{</c->
@@ -2726,6 +2738,191 @@ Parts of this work may be from another specification document.  If so, those par
    </div>
    <blockquote>
     <p>TODO: provide examples of one-to-many,  many-to-one, and  many-to-many selector sets.</p>
+   </blockquote>
+   <h6 class="heading settled" data-level="3.2.1.1.2" id="selector_pattern_object"><span class="secno">3.2.1.1.2. </span><span class="content"><code>[selector-pattern-object]</code></span><a class="self-link" href="#selector_pattern_object"></a></h6>
+   <p>Direct specification of selector sets using <code>[selector-set-objects]</code> can be very repetitive. Consider this example:</p>
+   <div class="example" id="xmp_selector_repetition">
+    <a class="self-link" href="#xmp_selector_repetition"></a> 
+<pre class="highlight"><c- p>{</c->
+  <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"datapoint0"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#datapoint-Sunday_2000"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- p>[</c->
+        <c- u>"$.datasets[0].series[0].name"</c-><c- p>,</c->
+        <c- u>"$.datasets[0].series[0].records[0].*"</c->
+      <c- p>]</c->
+    <c- p>},</c->
+    <c- f>"datapoint1"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#datapoint-Monday_2000"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- p>[</c->
+        <c- u>"$.datasets[0].series[0].name"</c-><c- p>,</c->
+        <c- u>"$.datasets[0].series[0].records[1].*"</c->
+      <c- p>]</c->
+    <c- p>},</c->
+    <c- f>"datapoint2"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#datapoint-Tuesday_2000"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- p>[</c->
+        <c- u>"$.datasets[0].series[0].name"</c-><c- p>,</c->
+        <c- u>"$.datasets[0].series[0].records[2].*"</c->
+      <c- p>]</c->
+    <c- p>},</c->
+    ...
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <p>The same <code>[selector-set-object]</code> appears multiple times, with only the relevant datapoint incremented. To conserve the memory which would otherwise be used by these redundant specifications, sequences of selector sets can instead be specified using a single <code>[selector-pattern-object]</code>.</p>
+   <p><code>[selector-pattern-objects]</code> generate selector sets in terms of the patterns and <code>[selector-iterable-objects]</code> they contain. A pattern in a <code>[selector-pattern-object]</code> is a string which contains zero or more <code>[selector-interpolation-slots]</code>. A <code>[selector-iterable-object]</code> is a specification of a sequence of values. A <code>[selector-pattern-object]</code> generates a sequence of selector sets by replacing each <code>[selector-interpolation-slot]</code> in each pattern with every relevant value generated by the <code>[selector-iterable-objects]</code> it contains.</p>
+   <p><code>[selector-pattern-objects]</code> have the following properties:</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> value type 
+      <th> description 
+      <th> requirement 
+    <tbody>
+     <tr>
+      <td><code>iterables</code>
+      <td>A (possibly empty) array of <code>[selector-iterable-objects]</code>
+      <td>The specifications of the values which the pattern iterates over to create the selector patterns.
+      <td>required
+     <tr>
+      <td><code>keyPattern</code>
+      <td>A non-empty string containing only ASCII letters, digits, '_' and <code>[selector-interpolation-slots]</code>
+      <td>The pattern which each <code>[selector-string]</code> key matches.
+      <td>required
+     <tr>
+      <td><code>domPatterns</code>
+      <td>A string of an otherwise valid CSS selector possibly with <code>[selector-interpolation-slots]</code>, or an array of strings of an otherwise valid CSS selector possibly with <code>[selector-interpolation-slots]</code>
+      <td>The pattern which each DOM selector or selectors matches.
+      <td>required
+     <tr>
+      <td><code>jsonPatterns</code>
+      <td>A string of an otherwise valid JSONPath selector possibly with <code>[selector-interpolation-slots]</code>, or an array of strings of an otherwise valid JSONPath selector possibly with <code>[selector-interpolation-slots]</code>
+      <td>The pattern which each JSONPath selector or selectors matches.
+      <td>required
+     <tr>
+      <td><code>note</code>
+      <td>non-empty string
+      <td>A human-readable description of what the selector sets represent. This is informational only. Note that every selector set generated by the pattern will have the same note.
+      <td>optional
+   </table>
+   <h6 class="heading settled" data-level="3.2.1.1.3" id="selector-iterable-object"><span class="secno">3.2.1.1.3. </span><span class="content"><code>[selector-iterable-object]</code></span><a class="self-link" href="#selector-iterable-object"></a></h6>
+   <p><code>[selector-iterable-objects]</code> are objects which specify sequences of values which are interpolated into selector set patterns.</p>
+   <p><code>[selector-iterable-objects]</code> have the following properties:</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> value type 
+      <th> description 
+      <th> requirement 
+    <tbody>
+     <tr>
+      <td><code>var</code>
+      <td>A non-empty string containing only ASCII letters, and '_'
+      <td>The variable symbol which represents this iterable in <code>[selector-interpolation-slots]</code>.
+      <td>required
+     <tr>
+      <td><code>range</code>
+      <td>Either a <code>[iterable-numeric-range]</code> or a <code>[iterable-data-range]</code> object.
+      <td>Specifies the values which this iterable iterates over.
+      <td>required
+   </table>
+   <p><code>[selector-iterable-objects]</code> can contain two different kinds of range: <code>[iterable-numeric-range]</code> and <code>[iterable-data-range]</code>.</p>
+   <p><code>[iterable-numeric-ranges]</code> are iterable ranges which iterate over integer values specified in terms of a <code>start</code> integer, a <code>stop</code> integer, and an optional <code>step</code> integer. They have the following properties:</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> value type 
+      <th> description 
+      <th> requirement 
+    <tbody>
+     <tr>
+      <td><code>start</code>
+      <td>An integer value.
+      <td>The first value of the iteration.
+      <td>required
+     <tr>
+      <td><code>stop</code>
+      <td>An integer value.
+      <td>An upper bound (or lower bound, if <code>step</code> is negative) for the values of the iteration.
+      <td>required
+     <tr>
+      <td><code>step</code>
+      <td>An integer value.
+      <td>The difference between each value of the iteration and the previous value. Defaults to 1.
+      <td>optional
+   </table>
+   <p>The iteration of a <code>[iterable-numeric-range]</code> starts with the <code>start</code> value, and then continues by adding the <code>step</code> value (or 1 if the step value is not specified) until a value greater than or equal to (or less than or equal to, if <code>step</code> is negative) the <code>stop</code> value is reached. This final value is not included in the iteration. A negative <code>step</code> value causes the iterable to iterate downwards.</p>
+   <p><code>[iterable-data-ranges]</code> are iterable ranges which iterate over an array of data values specified using a JSONPath selector. They have the following properties:</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> value type 
+      <th> description 
+      <th> requirement 
+    <tbody>
+     <tr>
+      <td><code>selector</code>
+      <td>A string of a valid JSONPath selector.
+      <td>Represents an array of values selected from the JIM document or external data.
+      <td>required
+   </table>
+   <p>If the selector returns no values, then no values will be iterated over (i.e. it is treated as an empty array). If only one value is returned then it is the only value iterated over (i.e. it is treated as an array of length 1).</p>
+   <blockquote>
+    <p>TODO: Do JSONPath selectors return values in a specified order? If not, should be specify an order here, or state that no order is specified? (NOTE: with no order, the generation of selector sets would be non-deterministic).</p>
+   </blockquote>
+   <h6 class="heading settled" data-level="3.2.1.1.4" id="selector-interpolation-slot"><span class="secno">3.2.1.1.4. </span><span class="content"><code>[selector-interpolation-slots]</code></span><a class="self-link" href="#selector-interpolation-slot"></a></h6>
+   <p>The <code>keyPattern</code>, <code>domPatterns</code>, and <code>jsonPatterns</code> string values may contain <code>[selector-interpolation-slots]</code>. These slots are replaced by values from the iterables when the selector sets are generated. If the pattern contains no slots, then the original value is returned with no interpolation performed.</p>
+   <p>Each pattern must return a valid instances of the relevant type after the slots it contains are interpolated by any of the relevant iterable values (including if there are no slots). Specifically:</p>
+   <ul>
+    <li data-md>
+     <p>The <code>keyPattern</code> must be a non-empty string containing only ASCII letters, digits, and '_'.</p>
+    <li data-md>
+     <p>The <code>domPatterns</code> must be strings of valid CSS selectors.</p>
+    <li data-md>
+     <p>The <code>jsonPatterns</code> must be strings of valid JSONPath selectors.</p>
+   </ul>
+   <p><code>[selector-interpolation-slots]</code> are strings with the following semantics:</p>
+   <ul>
+    <li data-md>
+     <p><code>${&lt;var>}</code> is replaced by values from the iterable with the <code>var</code> property <code>&lt;var></code>.</p>
+    <li data-md>
+     <p><code>${\i{&lt;var>}}</code> is replaced by the index of the iterable with the <code>var</code> property <code>&lt;var></code>.</p>
+    <li data-md>
+     <p><code>${\i}</code> is replaced by the index of entire iteration.</p>
+   </ul>
+   <blockquote>
+    <p>TODO: Check that none of this syntax conflicts with CSS or JSONPath syntax.</p>
+   </blockquote>
+   <h6 class="heading settled" data-level="3.2.1.1.5" id="selector-pattern-set-generation"><span class="secno">3.2.1.1.5. </span><span class="content"><code>[selector-pattern-objects]</code> Selector Set Generation</span><a class="self-link" href="#selector-pattern-set-generation"></a></h6>
+   <p>Selector sets are generated from <code>[selector-pattern-objects]</code> in the following way:</p>
+   <ol>
+    <li data-md>
+     <p>Each of the iterables are iterated to generate the values associated with each variable.</p>
+     <ol>
+      <li data-md>
+       <p>Iteration proceeds lexicographically across each iterable in a <code>[selector-pattern-object]</code> working downwards. As such, the iteration will iterate through all the values of the second iterable before advancing to the second value of the first iterator and iterate through all the values of the second iterable again, and so on.</p>
+      <li data-md>
+       <p>Each value of each iterable is associated with a zero-based index which reflects the numerical position of the value in the iterator.</p>
+      <li data-md>
+       <p>Each sequence of values of the iterators is associated with a zero-based index which reflects the numerical position of that sequence within the entire iteration.</p>
+     </ol>
+    <li data-md>
+     <p>A selector set is generated for each sequence of values returned from the overall iteration.</p>
+     <ol>
+      <li data-md>
+       <p>A selector set is generated for a given sequence by interpolating the values and indices of that sequence into the <code>[selector-interpolation-slots]</code> of the patterns of the <code>[selector-pattern-object]</code>.</p>
+     </ol>
+    <li data-md>
+     <p>If any identical selector sets are generated, which could occur if not every variable is used in the patterns of a <code>[selector-pattern-object]</code>, then only one copy of the sets is kept.</p>
+   </ol>
+   <blockquote>
+    <p>TODO: It is possible for multiple different generated selector sets to have the same key, which would prevent <code>[selector-pattern-objects]</code> being easily turned into <code>[selector-set-objects]</code>.</p>
    </blockquote>
    <h5 class="heading settled" data-level="3.2.1.2" id="selectorstring_target_selector"><span class="secno">3.2.1.2. </span><span class="content"><code>[selector-string]</code> as target selector</span><a class="self-link" href="#selectorstring_target_selector"></a></h5>
    <p>The JSONPath for any given <code>[selector-string]</code> key can be used as the value of a behavior <a href="#targets">target selector</a>.</p>
@@ -3649,7 +3846,7 @@ second pair will collectively last for 250 milliseconds, with the intensity drop
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-json-schema">[JSON-Schema]
-   <dd>Austin Wright; et al. <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema"><cite>JSON Schema: A Media Type for Describing JSON Documents</cite></a>. 8 December 2020. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema">https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema</a>
+   <dd>Austin Wright; et al. <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema"><cite>JSON Schema: A Media Type for Describing JSON Documents</cite></a>. 10 June 2022. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema">https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema</a>
    <dt id="biblio-jsonpath">[JSONPath]
    <dd>S. Gössner; G. Normington; C. Bormann. <a href="https://www.rfc-editor.org/rfc/rfc9535"><cite>JSONPath: Query expressions for JSON</cite></a>. Internet-Draft. URL: <a href="https://www.rfc-editor.org/rfc/rfc9535">https://www.rfc-editor.org/rfc/rfc9535</a>
    <dt id="biblio-selectors-4">[Selectors-4]
