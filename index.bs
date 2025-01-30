@@ -940,14 +940,25 @@ Each pattern must return a valid instances of the relevant type after the slots 
 - The `domPatterns` must be strings of valid CSS selectors.
 - The `jsonPatterns` must be strings of valid JSONPath selectors.
 
-`[selector-interpolation-slots]` are strings with the following syntax:
+`[selector-interpolation-slots]` are strings with the following semantics:
 - `${<var>}` is replaced by values from the iterable with the `var` property `<var>`
 - `${\i{<var>}}` is replaced by the index of the iterable with the `var` property `<var>`
 - `${\i}` is replaced by the index of entire iteration
 
-> TODO: Check that all of this syntax does not conflict with CSS or JSONPath syntax
+> TODO: Check that none of this syntax conflicts with CSS or JSONPath syntax
 
+###### `[selector-pattern-objects]` Selector Set Generation ###### {#selector-pattern-set-generation}
 
+Selector sets are generated from `[selector-pattern-objects]` in the following way:
+1. Each of the iterables are iterated to generate the values associated with each variable.
+  a. Iteration proceeds lexicographically across each iterable in a `[selector-pattern-object]` working downwards. As such, the iteration will iterate through all the values of the second iterable before advancing to the second value of the first iterator and iterate through all the values of the second iterable again, and so on.
+  b. Each value of each iterable is associated with a zero-based index which reflects the numerical position of the value in the iterator.
+  c. Each sequence of values of the iterators is associated with a zero-based index which reflects the numerical position of that sequence within the entire iteration.
+2. A selector set is generated for each sequence of values returned from the overall iteration.
+  a. A selector set is generated for a given sequence by interpolating the values and indices of that sequence into the `[selector-interpolation-slots]` of the patterns of the `[selector-pattern-object]`.
+3. If any identical selector sets are generated, which could occur if not every variable is used in the patterns of a `[selector-pattern-object]`, then only one copy of the sets is kept.
+
+> TODO: It is possible for multiple different generated selector sets to have the same key, which would prevent `[selector-pattern-objects]` being easily turned into `[selector-set-objects]`.
 
 #### `[selector-string]` as target selector #### {#selectorstring_target_selector}
 
