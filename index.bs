@@ -283,27 +283,29 @@ These entities include the `title`, `subtitle`, `description`, `representation`,
 An example of a `datasets` block (with elided values) for a structured data representation, such as a bar chart. 
 
 <xmp highlight='json'>
-"datasets": {
-  "title": "Chart Title",
-  "subtitle": "Chart Subtitle",
-  "description": "A description of the chart.",
-  "representation": {
-  },
-  "facets": {
-  },
-  "series": [
-  ],
-  "source": {
-  },
-  "href": {
+"datasets": [
+  {
+    "title": "Chart Title",
+    "subtitle": "Chart Subtitle",
+    "description": "A description of the chart.",
+    "representation": {
+    },
+    "facets": {
+    },
+    "series": [
+    ],
+    "source": {
+    },
+    "href": {
+    }
   }
-}
+]
 </xmp>
 </div>
   
 > TODO: add example
 
-The individual entries of the `datasets` block are defined in [Inline data].
+The individual entries of the `datasets` block are defined in [Inline data](#inline_data).
 
 ### The `title` key ### {#title_data_block}
 
@@ -380,12 +382,12 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
           "variableType": "dependent",
           "measure": "ratio",
           "units": "degrees Fahrenheit",
-          "multiplier": "1"
+          "multiplier": 1
         }
       },
       "series": [
         {
-          "name": "Average montly temperatures",
+          "name": "Average monthly temperatures",
           "type": "column",
           "records": [
             {
@@ -480,12 +482,12 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
           "variableType": "dependent",
           "measure": "ratio",
           "units": "degrees Fahrenheit",
-          "multiplier": "1"
+          "multiplier": 1
         }
       },
       "series": [
         {
-          "name": "Average montly temperatures",
+          "name": "Average monthly temperatures",
           "type": "column",
           "records": [
             {
@@ -588,7 +590,7 @@ TODO: describe the `source` object
 
 The `href` key defines an object that refers to an external data file. The content model and processing of the `href` key are different in the `datasets` block than in other metadata blocks.
 
-This external file can be used to link data to graphical elements, as defined in [Inline data].
+This external file can be used to link data to graphical elements, as defined in [Inline data](#inline_data).
 
 
 ## Selectors ## {#selectors}
@@ -693,7 +695,7 @@ The first selector set object selects an element with the `id="datapoint-Sunday_
 
 The second selector set object selects an element with `id="datapoint-Monday_2000"` as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.
 
-Assuming a record structure with only `x` and `y` keys, these selectors would yeild the same outcome, making the wildcard selector a shorthand for the array syntax.
+Assuming a record structure with only `x` and `y` keys, these selectors would yield the same outcome, making the wildcard selector a shorthand for the array syntax.
 
 <xmp highlight='json'>
 {
@@ -767,7 +769,7 @@ This specification defines a `selector` attribute to enable this relationship be
 
 The relationship between a graphical element and the data it represents might be complex.
 
-Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a bar in a bar chart, where the height of the bar signifies a specific numerical value.
+Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a specific bar in a bar chart, where the height of the bar signifies a specific numerical value.
 
 Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where , or a line chart where a , or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)
 
@@ -775,7 +777,7 @@ Rarely, you might have a many-to-many relationship.
 
 > TODO: provide a many-to-many example.
 
-On occassion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.
+On occasion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.
 
 > TODO: talk about label elements and their representation.
 
@@ -926,11 +928,9 @@ An example of a `haptic` block with two haptic object entries in an array. The f
         "selector": "#bar_1"
       },
       "enter": {
-        {
-          "haptic": {
-            "durations": [ 50, 100, 150 ],
-            "repeatInterval": 250
-          }
+        "haptic": {
+          "durations": [ 50, 100, 150 ],
+          "repeatInterval": 250
         }
       }
     },
@@ -945,12 +945,10 @@ An example of a `haptic` block with two haptic object entries in an array. The f
         }
       },
       "enter": {
-        {
-          "haptic": {
-            "durations": [ 0, 150 ],
-            "repeatInterval": 250
-          }
-        }
+        "haptic": {
+          "durations": [ 0, 150 ],
+          "repeatInterval": 250
+        },
         "audio": {
           "href": "./assets/example.mp3",
           "repeat": "none"
@@ -1093,7 +1091,7 @@ Note: To be defined further.
 
 A conforming document may include an optional `version` key.
 
-An `version` block is an object with the key `version`, which contains one or more key-value pairs including one or more of the keys `document` and `jim` and their values.
+A `version` block is an object with the key `version`, which contains one or more key-value pairs including one or more of the keys `document` and `jim` and their values.
 
 The value of the optional `jim` key, if present, must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (`.`). The default value of the `jim` key is `1.0.0`.
 
@@ -1202,7 +1200,7 @@ A target selector targeting all elements in the container element `graph_area`.
 
 ### Target `selector` for selector sets ### {#target_selector_set_selector}
 
-An selector set target may be a JSONPath selector pointing to a selector set, or an array of such JSONPath selectors.
+A selector set target may be a JSONPath selector pointing to a selector set, or an array of such JSONPath selectors.
 
 > TODO: Expand on this.
 
@@ -1267,8 +1265,8 @@ A target describing an irregular area using the `path` definition and a rectangl
       },
       "rect": {
         "y": 44,
-        "width": "130",
-        "height": "25"
+        "width": 130,
+        "height": 25
       }
     }
   }
@@ -1803,7 +1801,7 @@ A blind user might wish to enable haptics and braille output when they are in a 
 
 The distribution of interactive content presents a conflict between innovative capabilities and user security. In the web platform, most advanced interactivity can only be achieved through JavaScript, but allowing JavaScript in a file opens the user's system up to possible security holes.
 
-This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as conent management systems or email servers) might strip out the `script` element, disabling the interactivity of the content.
+This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as content management systems or email servers) might strip out the `script` element, disabling the interactivity of the content.
 
 By defining a set of declarative syntaxes for different assistive technologies, including parameters and conditional execution triggers, this specification enables the user agent to provide the interactivity defined by the author, without compromising security. This specification refers to such declarative capabilities as "behaviors".
 
@@ -1817,7 +1815,7 @@ Data visualizations can often lose their association with their context, includi
 
 ## Reuseability ## {#reuseability}
 
-This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, creaste different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.
+This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, create different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.
 
 In addition, a visual image can be enhanced with different metadata to serve a different purpose, such as providing a different set of descriptions for an audience at different reading levels, or translating the document into another language.
 
@@ -1827,7 +1825,7 @@ Document technologies are most useful when the syntax and model is familiar and 
 
 ## Flexibility ## {#flexibility}
 
-This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accomodate other techniques in the future.
+This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accommodate other techniques in the future.
 
 At the same time, this specification should establish defaults and baselines based on best practices, wherever possible, to encourage good authoring and normalize user experience.
 
