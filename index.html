@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="f80dc5fdbdd833b36debb8ee304f1a408cc5093d" name="revision">
+  <meta content="e7b2e5f55d8fade9aec066c490001effb4fa73ff" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2565,50 +2565,6 @@ Parts of this work may be from another specification document.  If so, those par
       <td>The multiplier for numeric values, e.g. <code>1000</code> for "(in thousands)", <code>1000000</code> for "(in millions)"
       <td>optional for unstructured data, required for structured and semi-structured data
    </table>
-   <div class="example" id="xmp_facets_series">
-    <a class="self-link" href="#xmp_facets_series"></a> An example of a <code>facets</code> block with two <code>[facet-string]</code> object entries, <code>"x"</code> and <code>"y"</code>, and the . The values <code>"x"</code> and <code>"y"</code> are matched in the <code>records</code> block objects, which contain the actual values for those facets. 
-<pre class="highlight"><c- p>{</c->
-  <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
-    <c- p>{</c->
-      <c- f>"facets"</c-><c- p>:</c-> <c- p>{</c->
-        <c- f>"x"</c-><c- p>:</c-> <c- p>{</c->
-          <c- f>"label"</c-><c- p>:</c-> <c- u>"Month"</c-><c- p>,</c->
-          <c- f>"variableType"</c-><c- p>:</c-> <c- u>"independent"</c-><c- p>,</c->
-          <c- f>"measure"</c-><c- p>:</c-> <c- u>"ordinal"</c->
-        <c- p>},</c->
-        <c- f>"y"</c-><c- p>:</c-> <c- p>{</c->
-          <c- f>"label"</c-><c- p>:</c-> <c- u>"Temperature"</c-><c- p>,</c->
-          <c- f>"variableType"</c-><c- p>:</c-> <c- u>"dependent"</c-><c- p>,</c->
-          <c- f>"measure"</c-><c- p>:</c-> <c- u>"ratio"</c-><c- p>,</c->
-          <c- f>"units"</c-><c- p>:</c-> <c- u>"degrees Fahrenheit"</c-><c- p>,</c->
-          <c- f>"multiplier"</c-><c- p>:</c-> <c- mi>1</c->
-        <c- p>}</c->
-      <c- p>},</c->
-      <c- f>"series"</c-><c- p>:</c-> <c- p>[</c->
-        <c- p>{</c->
-          <c- f>"name"</c-><c- p>:</c-> <c- u>"Average monthly temperatures"</c-><c- p>,</c->
-          <c- f>"type"</c-><c- p>:</c-> <c- u>"column"</c-><c- p>,</c->
-          <c- f>"records"</c-><c- p>:</c-> <c- p>[</c->
-            <c- p>{</c->
-              <c- f>"x"</c-><c- p>:</c-> <c- u>"January"</c-><c- p>,</c->
-              <c- f>"y"</c-><c- p>:</c-> <c- u>"23"</c->
-            <c- p>},</c->
-            <c- p>{</c->
-              <c- f>"x"</c-><c- p>:</c-> <c- u>"February"</c-><c- p>,</c->
-              <c- f>"y"</c-><c- p>:</c-> <c- u>"42"</c->
-            <c- p>},</c->
-            <c- p>{</c->
-              <c- f>"x"</c-><c- p>:</c-> <c- u>"March"</c-><c- p>,</c->
-              <c- f>"y"</c-><c- p>:</c-> <c- u>"55"</c->
-            <c- p>}</c->
-          <c- p>]</c->
-        <c- p>}</c->
-      <c- p>]</c->
-    <c- p>}</c->
-  <c- p>]</c->
-<c- p>}</c->
-</pre>
-   </div>
    <h4 class="heading settled" data-level="3.1.9" id="series_data_block"><span class="secno">3.1.9. </span><span class="content">The <code>series</code> key</span><a class="self-link" href="#series_data_block"></a></h4>
    <p>The <code>series</code> block contains the information about each series of the dataset for structured and semi-structured data, including the raw data values of each record in each series.</p>
    <p>The <code>series</code> object contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
@@ -2776,7 +2732,7 @@ Parts of this work may be from another specification document.  If so, those par
    <h6 class="heading settled" data-level="3.2.2.1.1" id="data_model_cardinality"><span class="secno">3.2.2.1.1. </span><span class="content">Data model cardinality</span><a class="self-link" href="#data_model_cardinality"></a></h6>
    <p>The relationship between a graphical element and the data it represents might be complex.</p>
    <p>Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a specific bar in a bar chart, where the height of the bar signifies a specific numerical value.</p>
-   <p>Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where , or a line chart where a , or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)</p>
+   <p>Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where the height of the bar and the numeric label of the bar both represent the same value, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)</p>
    <p>Rarely, you might have a many-to-many relationship.</p>
    <blockquote>
     <p>TODO: provide a many-to-many example.</p>

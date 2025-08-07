@@ -470,54 +470,6 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
   </tbody>
 </table>
 
-<div id='xmp_facets_series' class='example'>
-An example of a `facets` block with two `[facet-string]` object entries, `"x"` and `"y"`, and the . The values `"x"` and `"y"` are matched in the `records` block objects, which contain the actual values for those facets. 
-
-<xmp highlight='json'>
-{
-  "datasets": [
-    {
-      "facets": {
-        "x": {
-          "label": "Month",
-          "variableType": "independent",
-          "measure": "ordinal"
-        },
-        "y": {
-          "label": "Temperature",
-          "variableType": "dependent",
-          "measure": "ratio",
-          "units": "degrees Fahrenheit",
-          "multiplier": 1
-        }
-      },
-      "series": [
-        {
-          "name": "Average monthly temperatures",
-          "type": "column",
-          "records": [
-            {
-              "x": "January",
-              "y": "23"
-            },
-            {
-              "x": "February",
-              "y": "42"
-            },
-            {
-              "x": "March",
-              "y": "55"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-</xmp>
-</div>
-
-
 ### The `series` key ### {#series_data_block}
 
 The `series` block contains the information about each series of the dataset for structured and semi-structured data, including the raw data values of each record in each series.
@@ -778,7 +730,7 @@ The relationship between a graphical element and the data it represents might be
 
 Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a specific bar in a bar chart, where the height of the bar signifies a specific numerical value.
 
-Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where , or a line chart where a , or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)
+Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where the height of the bar and the numeric label of the bar both represent the same value, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)
 
 Rarely, you might have a many-to-many relationship.
 
