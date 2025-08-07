@@ -3,7 +3,7 @@ Title: JSON Image Metadata
 Shortname: jim
 Level: 1
 Status: fido/ED
-!Semantic Version: 0.3.2
+!Semantic Version: 0.3.3
 Group: Inclusio Project
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
@@ -182,20 +182,25 @@ This specification does include a set of canonical dataset structures which may 
 
 #### Structured data #### {#structured_data}
 
-Structured data includes faceted data, whether qualitative or quantitative, that can be represented by a chart or graph.
+Structured data includes faceted data, whether qualitative or quantitative, that can be conform to a well-defined schema. Normally, structured data is represented by a chart or graph.
 
 This data must be included in objects in the `facets` and `series` keys.
 
-Note: A future version of this specification will define schemata for a canonical dataset structure or set of structures for different types of data visualization.
+Note: A future version of this specification will define schemas for a canonical dataset structure or set of structures for different types of data visualization.
 
-#### Unstructured data #### {#unstructured_data}
+#### Semi-structured data #### {#semistructured_data}
 
-Unstructured data includes many types of diagrams, illustrations, pictorial graphics, or infographics. There may be some informal structure to such graphics, including hierarchies such as section headings, but they are not formatted in a defined manner.
+Semi-structured data includes data that may include structured data, but also includes unstructured data that is significant to the representation. Semi-structured data may be represented by some type of diagrams, illustrations, pictorial graphics, or infographics. There is usually a grouping or hierarchies, but they do not conform to a schema.
 
-Labels, descriptions, and other unstructured metadata may optionally be included in objects in the `items` key.
+Labels, descriptions, and other semi-structured metadata may optionally be included in objects in the `items` key.
 
 Note: Certain types of diagram that denote steps, stages, or relationships between objects, such as the water evaporation cycle, can be represented as structured data with the `graph` schema.
 
+#### Unstructured data #### {#unstructured_data}
+
+Unstructured data includes many types of illustrations, pictorial graphics, or infographics. There may be some informal structure to such graphics, including hierarchies such as groupings or section headings, but they are not formatted in a defined manner.
+
+Labels, descriptions, and other unstructured metadata may optionally be included in objects in the `items` key.
 
 ### Dataset keys ### {#ataset_keys}
 
@@ -248,14 +253,14 @@ These entities include the `title`, `subtitle`, `description`, `representation`,
     <tr>
       <td>`facets`</td>
       <td>array</td>
-      <td>Details of each facet in the dataset, such as x and y axes or legend keys, for structured data</td>
-      <td>optional for unstructured data, required for structured data</td>
+      <td>Details of each facet in the dataset, such as x and y axes or legend keys, for structured and semi-structured data</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
     <tr>
       <td>`series`</td>
       <td>array</td>
-      <td>Raw data values of each record in each series of the dataset for structured data</td>
-      <td>optional for unstructured data, required for structured data</td>
+      <td>Raw data values of each record in each series of the dataset for structured and semi-structured data</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
     <tr>
       <td>`items`</td>
@@ -349,7 +354,7 @@ The `representation` object contains the `chartType` key.
       <td>`chartType`</td>
       <td>string</td>
       <td>The type of chart, such as `bar`, `line`, or `scatterplot`</td>
-      <td>optional for unstructured data, required for structured data</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
   </tbody>
 </table>
@@ -357,7 +362,7 @@ The `representation` object contains the `chartType` key.
 
 ### The `facets` key ### {#facets_data_block}
 
-The `facets` block contains details of each facet in the dataset, such as x and y axes or legend keys, for structured data.
+The `facets` block contains details of each facet in the dataset, such as x and y axes or legend keys, for structured and semi-structured data.
 
 The `facets` object contains one or more `[facet-string]` keys. A `[facet-string]` key may be any value allowed by the schema for the representation type, and will normally represent the axes (e.g. `"x"` and `"y"`), a legend (i.e. '"legend"'), a magnitude, or any other type of recorded data being represented. Each `[facet-string]` is the key to an object which defines the parameters, value type, and descriptors for the corresponding key in the child objects of the `records` array in the `series` array.
 
@@ -436,85 +441,38 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
       <td>`label`</td>
       <td>non-empty string</td>
       <td>The title for the facet</td>
-      <td>optional for unstructured data, required for structured data</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
     <tr>
       <td>`variableType`</td>
       <td>string</td>
       <td>The type of measure for that facet. Allowed values are: `independent` and `dependent`</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
     <tr>
       <td>`measure`</td>
       <td>string</td>
       <td>In any given facet, what the scale of measure for that facet is. Allowed values are: `nominal`, `ordinal`, `interval`, or `ratio`</td>
-      <td>optional for unstructured data, required for structured data</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
     <tr>
       <td>`units`</td>
       <td>non-empty string</td>
       <td>The type of thing being measured</td>
-      <td>optional for unstructured data, required for structured data</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
     <tr>
       <td>`multiplier`</td>
       <td>number</td>
       <td>The multiplier for numeric values, e.g. `1000` for "(in thousands)", `1000000` for "(in millions)"</td>
-      <td>optional for unstructured data, required for structured data</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
   </tbody>
 </table>
 
-<div id='xmp_facets_series' class='example'>
-An example of a `facets` block with two `[facet-string]` object entries, `"x"` and `"y"`, and the . The values `"x"` and `"y"` are matched in the `records` block objects, which contain the actual values for those facets. 
-
-<xmp highlight='json'>
-{
-  "datasets": [
-    {
-      "facets": {
-        "x": {
-          "label": "Month",
-          "variableType": "independent",
-          "measure": "ordinal"
-        },
-        "y": {
-          "label": "Temperature",
-          "variableType": "dependent",
-          "measure": "ratio",
-          "units": "degrees Fahrenheit",
-          "multiplier": 1
-        }
-      },
-      "series": [
-        {
-          "name": "Average monthly temperatures",
-          "type": "column",
-          "records": [
-            {
-              "x": "January",
-              "y": "23"
-            },
-            {
-              "x": "February",
-              "y": "42"
-            },
-            {
-              "x": "March",
-              "y": "55"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-</xmp>
-</div>
-
-
 ### The `series` key ### {#series_data_block}
 
-The `series` block contains the information about each series of the dataset for structured data, including the raw data values of each record in each series.
+The `series` block contains the information about each series of the dataset for structured and semi-structured data, including the raw data values of each record in each series.
 
 The `series` object contains one or more objects, each of which contains one or more `[facet-string]` keys, each with a corresponding value. Each `[facet-string]` key in a `series` array object must be defined in the `facets` block, and the value for that `[facet-string]` key must conform to the datatype and other properties defined for it in the `facets` block.
 
@@ -540,18 +498,19 @@ The `series` object contains one or more objects, each of which contains one or 
       <td>`name`</td>
       <td>non-empty string</td>
       <td>The name for this series, normally used as the series label</td>
-      <td>optional for unstructured data, required for structured data</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
     <tr>
       <td>`type`</td>
       <td>non-empty string</td>
       <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the `chartType` key of the `representation` block of the parent `datasets`</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
     <tr>
       <td>`records`</td>
       <td>array</td>
       <td>The raw data values for each facet of each record of this series</td>
-      <td>optional for unstructured data, required for structured data</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
   </tbody>
 </table>
@@ -771,7 +730,7 @@ The relationship between a graphical element and the data it represents might be
 
 Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a specific bar in a bar chart, where the height of the bar signifies a specific numerical value.
 
-Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where , or a line chart where a , or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)
+Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where the height of the bar and the numeric label of the bar both represent the same value, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)
 
 Rarely, you might have a many-to-many relationship.
 
@@ -936,13 +895,14 @@ An example of a `haptic` block with two haptic object entries in an array. The f
     },
     {
       "target": {
-        "shape": {
-          "circle": {
+        "shapes": [
+          {
+            "element": "circle",
             "cx": 100,
             "cy": 121,
             "r": 32
           }
-        }
+        ]
       },
       "enter": {
         "haptic": {
@@ -1093,9 +1053,11 @@ A conforming document may include an optional `version` key.
 
 A `version` block is an object with the key `version`, which contains one or more key-value pairs including one or more of the keys `document` and `jim` and their values.
 
-The value of the optional `jim` key, if present, must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (`.`). The default value of the `jim` key is `1.0.0`.
+A `version` block, if present, must be at the root level of the JIM document. 
 
-The value of the optional `document` key may be any non-empty string that is meaningful to the author, but it should be a string conforming to the Semantic Versioning 2.0.0 specification.
+A `version` block, if present, must include a `jim` key with a valid value. The value of the `jim` key must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (`.`). The default value of the `jim` key is `1.0.0`. The value must refer to a published version of the JIM specification.
+
+The optional `document` key defines the version of the document itself. The value of the optional `document` key, if present, may be any non-empty string that is meaningful to the author, but it should be a string conforming to the Semantic Versioning 2.0.0 specification.
 
 <table class="data">
   <thead>
@@ -1118,14 +1080,14 @@ The value of the optional `document` key may be any non-empty string that is mea
     <tr>
       <td>`document`</td>
       <td>non-empty string</td>
-      <td>The version of the document</td>
+      <td>The version of the document itself</td>
       <td>optional</td>
     </tr>
     <tr>
       <td>`jim`</td>
       <td>semantic version string</td>
       <td>The version of the JIM specification the document conforms to</td>
-      <td>optional</td>
+      <td>required</td>
     </tr>
   </tbody>
 </table>
@@ -1149,7 +1111,7 @@ Targets may consist of one of three possible values:
 
 1. **An element link**: a selector indicating a specific element or set of elements in the DOM of a SVG file;
 2. **An JSONPath link**: a selector indicating a specific selector set in the JIM of a SVG file;
-3. **A** `shape` **object**: an object that defines a shape to be dynamically represented in the diagram file.
+3. **A** `shapes` **array**: an array of objects that defines a shape to be dynamically represented in the diagram file.
 
 ## Target `selector` key ## {#target_selector_key}
 
@@ -1162,7 +1124,7 @@ An element target may be a textual element, a shape element, or a container elem
 If the selector is not valid, or if the target element is not found, the `target` definition is ignored.
 
 <div id='xmp_target_selector_single' class='example'>
-A target selector targeting a single shape element.
+A target selector targeting a single element with an `id`.
 
 <xmp highlight='json'>
 {
@@ -1229,11 +1191,56 @@ An example of a `target` block with a `selector` key which has a JSONPath select
 
 
 
-### Target shape ### {#target_shape}
+### Target shapes ### {#target_shapes}
 
-A shape definition consists of an SVG shape element tag name, with an object of keys representing the required attributes. The definitive list of shapes is defined by the SVG 2.0 [[SVG2]] specification. All SVG shape elements are valid.
 
-Any attributes not defined by the target shape definition default to the SVG lacunae values for that attribute. Any attributes 
+The `shapes` block is an array that contains a set of shapes that must be automatically generated by a conforming implementations and overlay in the top rendering layer of the document. These shapes must intercept pointer events, but must not be rendered by default.  
+
+A conforming implementation, particularly a generator, may render a overlay shape, particularly on user request.
+
+#### Target shape `fill` and `stroke`
+
+The `fill` and `stroke` attributes control whether that shape's fill or stroke area of that shape, respectively, must intercept pointer events. If the `fill` attribute is defined, the fill area of the shape must intercept pointer events. If the `stroke` attribute is defined, the stroke area of the shape, with a thickness defined by the `stroke-width` attribute, must intercept pointer events.
+
+If the values of the `fill` or `stroke` attributes are valid color definitions, and a conforming implementation is rendering the overlay shape, the implemention should render that overlay shape with the colors defined.
+
+#### Target shape keys
+
+A `shapes` block is an array of objects, each of which contains a set of keys representing the shape `element` (the SVG shape element tag name) and the required attributes. The definitive list of shapes is defined by the SVG 2.0 [[SVG2]] specification. All SVG shape elements are valid.
+
+Any attributes not defined by the target shape definition default to the SVG lacunae values for that attribute. Any attributes with attribute values not conforming to the SVG 2.0 specification must be discarded.
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`element`</td>
+      <td>non-empty string</td>
+      <td>The name of the element, per the SVG 2 definition</td>
+      <td>required</td>
+    </tr>
+    <tr>
+      <td>`[attribute-name]`</td>
+      <td>non-empty string</td>
+      <td>The name of the SVG element attribute. Allowed values conform to the definition of the attributes for the element in the SVG 2 specification</td>
+    </tr>
+  </tbody>
+</table>
 
 <div id='xmp_target_shape_circle' class='example'>
 A target describing a circular area with a centerpoint at `100, 121` and a radius of `32` pixels.
@@ -1241,34 +1248,44 @@ A target describing a circular area with a centerpoint at `100, 121` and a radiu
 <xmp highlight='json'>
 {
   "target": {
-    "shape": {
-      "circle": {
+    "shapes": [
+      {
+        "element": "circle",
         "cx": 100,
         "cy": 121,
         "r": 32
       }
-    }
+    ]
   }
 }
 </xmp>
 </div>
 
 <div id='xmp_target_shape_complex' class='example'>
-A target describing an irregular area using the `path` definition and a rectangle definition, which together make a single target. The rectangle definition elides the "x" attribute, which defaults to `0`, per the SVG 2 specification.
+A target describing a hexagonal area using the `path` definition and two rectangle definitions, which together make a single target. The first rectangle definition elides the "x" attribute, which defaults to `0`, per the SVG 2 specification.
 
 <xmp highlight='json'>
 {
   "target": {
-    "shape": {
-      "path": {
-        "d": "M0,12 L6.3,9 V15 Z M7.3,9 H17 V15 H7.3 Z M18,9 H18.4 Q21.4,9 21.4,12 Q21.4,15 18.4,15 H18 Z"
+    "shapes": [
+      {
+        "element": "path",
+        "d": "M200,50 L269,90 V170 L200,210 L131,170 V90 Z"
       },
-      "rect": {
-        "y": 44,
-        "width": 130,
-        "height": 25
+      {
+        "element": "rect",
+        "y": "90",
+        "width": "120",
+        "height": "80"
+      },
+      {
+        "element": "rect",
+        "x": "279",
+        "y": "90",
+        "width": "60",
+        "height": "80"
       }
-    }
+    ]
   }
 }
 </xmp>
