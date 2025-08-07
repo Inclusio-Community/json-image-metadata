@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="61774ff2eeb28f32479b492832df0b7ecd5fc2cc" name="revision">
+  <meta content="c30974c199e5f74c0fac19c24a5b58d5ed3f7d3c" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2024-11-27">27 November 2024</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2025-08-07">7 August 2025</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2026,13 +2026,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dt>Semantic Version:
-     <dd>0.3.2
+     <dd>0.3.3
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 27 November 2024,
+In addition, as of 7 August 2025,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2081,7 +2081,8 @@ Parts of this work may be from another specification document.  If so, those par
          <a href="#dataset_structures"><span class="secno">3.1.2</span> <span class="content">Dataset structures</span></a>
          <ol class="toc">
           <li><a href="#structured_data"><span class="secno">3.1.2.1</span> <span class="content">Structured data</span></a>
-          <li><a href="#unstructured_data"><span class="secno">3.1.2.2</span> <span class="content">Unstructured data</span></a>
+          <li><a href="#semistructured_data"><span class="secno">3.1.2.2</span> <span class="content">Semi-structured data</span></a>
+          <li><a href="#unstructured_data"><span class="secno">3.1.2.3</span> <span class="content">Unstructured data</span></a>
          </ol>
         <li><a href="#ataset_keys"><span class="secno">3.1.3</span> <span class="content">Dataset keys</span></a>
         <li><a href="#title_data_block"><span class="secno">3.1.4</span> <span class="content">The <code>title</code> key</span></a>
@@ -2168,7 +2169,12 @@ Parts of this work may be from another specification document.  If so, those par
        <ol class="toc">
         <li><a href="#target_element_selector"><span class="secno">4.1.1</span> <span class="content">Target <code>selector</code> for elements</span></a>
         <li><a href="#target_selector_set_selector"><span class="secno">4.1.2</span> <span class="content">Target <code>selector</code> for selector sets</span></a>
-        <li><a href="#target_shape"><span class="secno">4.1.3</span> <span class="content">Target shape</span></a>
+        <li>
+         <a href="#target_shapes"><span class="secno">4.1.3</span> <span class="content">Target shapes</span></a>
+         <ol class="toc">
+          <li><a href="#target-shape-fill-and-stroke"><span class="secno">4.1.3.1</span> <span class="content">Target shape <code>fill</code> and <code>stroke</code></span></a>
+          <li><a href="#target-shape-keys"><span class="secno">4.1.3.2</span> <span class="content">Target shape keys</span></a>
+         </ol>
        </ol>
      </ol>
     <li>
@@ -2360,13 +2366,16 @@ Parts of this work may be from another specification document.  If so, those par
    <p>Instead, this specification defines the <code>selector</code> attribute, which can be added to an object in an arbitrary JSON data structure to indicate a link between a data point and its graphical representation element.</p>
    <p>This specification does include a set of canonical dataset structures which may be used. However, conforming implementations may express the dataset in a different JSON structure, so long as it includes the same set of keys as in the schema.</p>
    <h5 class="heading settled" data-level="3.1.2.1" id="structured_data"><span class="secno">3.1.2.1. </span><span class="content">Structured data</span><a class="self-link" href="#structured_data"></a></h5>
-   <p>Structured data includes faceted data, whether qualitative or quantitative, that can be represented by a chart or graph.</p>
+   <p>Structured data includes faceted data, whether qualitative or quantitative, that can be conform to a well-defined schema. Normally, structured data is represented by a chart or graph.</p>
    <p>This data must be included in objects in the <code>facets</code> and <code>series</code> keys.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> A future version of this specification will define schemata for a canonical dataset structure or set of structures for different types of data visualization.</p>
-   <h5 class="heading settled" data-level="3.1.2.2" id="unstructured_data"><span class="secno">3.1.2.2. </span><span class="content">Unstructured data</span><a class="self-link" href="#unstructured_data"></a></h5>
-   <p>Unstructured data includes many types of diagrams, illustrations, pictorial graphics, or infographics. There may be some informal structure to such graphics, including hierarchies such as section headings, but they are not formatted in a defined manner.</p>
-   <p>Labels, descriptions, and other unstructured metadata may optionally be included in objects in the <code>items</code> key.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> A future version of this specification will define schemas for a canonical dataset structure or set of structures for different types of data visualization.</p>
+   <h5 class="heading settled" data-level="3.1.2.2" id="semistructured_data"><span class="secno">3.1.2.2. </span><span class="content">Semi-structured data</span><a class="self-link" href="#semistructured_data"></a></h5>
+   <p>Semi-structured data includes data that may include structured data, but also includes unstructured data that is significant to the representation. Semi-structured data may be represented by some type of diagrams, illustrations, pictorial graphics, or infographics. There is usually a grouping or hierarchies, but they do not conform to a schema.</p>
+   <p>Labels, descriptions, and other semi-structured metadata may optionally be included in objects in the <code>items</code> key.</p>
    <p class="note" role="note"><span class="marker">Note:</span> Certain types of diagram that denote steps, stages, or relationships between objects, such as the water evaporation cycle, can be represented as structured data with the <code>graph</code> schema.</p>
+   <h5 class="heading settled" data-level="3.1.2.3" id="unstructured_data"><span class="secno">3.1.2.3. </span><span class="content">Unstructured data</span><a class="self-link" href="#unstructured_data"></a></h5>
+   <p>Unstructured data includes many types of illustrations, pictorial graphics, or infographics. There may be some informal structure to such graphics, including hierarchies such as groupings or section headings, but they are not formatted in a defined manner.</p>
+   <p>Labels, descriptions, and other unstructured metadata may optionally be included in objects in the <code>items</code> key.</p>
    <h4 class="heading settled" data-level="3.1.3" id="ataset_keys"><span class="secno">3.1.3. </span><span class="content">Dataset keys</span><a class="self-link" href="#ataset_keys"></a></h4>
    <p>The notional dataset described in this specification includes exemplar entities which should be included in any inline dataset for optimal correlation to common graphical representation elements.</p>
    <p>These entities include the <code>title</code>, <code>subtitle</code>, <code>description</code>, <code>representation</code>, <code>facets</code>, <code>series</code>, <code>items</code>, <code>source</code>, and <code>href</code> keys and their values.</p>
@@ -2401,13 +2410,13 @@ Parts of this work may be from another specification document.  If so, those par
      <tr>
       <td><code>facets</code>
       <td>array
-      <td>Details of each facet in the dataset, such as x and y axes or legend keys, for structured data
-      <td>optional for unstructured data, required for structured data
+      <td>Details of each facet in the dataset, such as x and y axes or legend keys, for structured and semi-structured data
+      <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
       <td><code>series</code>
       <td>array
-      <td>Raw data values of each record in each series of the dataset for structured data
-      <td>optional for unstructured data, required for structured data
+      <td>Raw data values of each record in each series of the dataset for structured and semi-structured data
+      <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
       <td><code>items</code>
       <td>object
@@ -2426,27 +2435,29 @@ Parts of this work may be from another specification document.  If so, those par
    </table>
    <div class="example" id="xmp_dataset_structured">
     <a class="self-link" href="#xmp_dataset_structured"></a> An example of a <code>datasets</code> block (with elided values) for a structured data representation, such as a bar chart. 
-<pre class="highlight"><c- f>"datasets"</c-><c- p>:</c-> <c- p>{</c->
-  <c- f>"title"</c-><c- p>:</c-> <c- u>"Chart Title"</c-><c- p>,</c->
-  <c- f>"subtitle"</c-><c- p>:</c-> <c- u>"Chart Subtitle"</c-><c- p>,</c->
-  <c- f>"description"</c-><c- p>:</c-> <c- u>"A description of the chart."</c-><c- p>,</c->
-  <c- f>"representation"</c-><c- p>:</c-> <c- p>{</c->
-  <c- p>},</c->
-  <c- f>"facets"</c-><c- p>:</c-> <c- p>{</c->
-  <c- p>},</c->
-  <c- f>"series"</c-><c- p>:</c-> <c- p>[</c->
-  <c- p>],</c->
-  <c- f>"source"</c-><c- p>:</c-> <c- p>{</c->
-  <c- p>},</c->
-  <c- f>"href"</c-><c- p>:</c-> <c- p>{</c->
+<pre class="highlight"><c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
+  <c- p>{</c->
+    <c- f>"title"</c-><c- p>:</c-> <c- u>"Chart Title"</c-><c- p>,</c->
+    <c- f>"subtitle"</c-><c- p>:</c-> <c- u>"Chart Subtitle"</c-><c- p>,</c->
+    <c- f>"description"</c-><c- p>:</c-> <c- u>"A description of the chart."</c-><c- p>,</c->
+    <c- f>"representation"</c-><c- p>:</c-> <c- p>{</c->
+    <c- p>},</c->
+    <c- f>"facets"</c-><c- p>:</c-> <c- p>{</c->
+    <c- p>},</c->
+    <c- f>"series"</c-><c- p>:</c-> <c- p>[</c->
+    <c- p>],</c->
+    <c- f>"source"</c-><c- p>:</c-> <c- p>{</c->
+    <c- p>},</c->
+    <c- f>"href"</c-><c- p>:</c-> <c- p>{</c->
+    <c- p>}</c->
   <c- p>}</c->
-<c- p>}</c->
+<c- p>]</c->
 </pre>
    </div>
    <blockquote>
     <p>TODO: add example</p>
    </blockquote>
-   <p>The individual entries of the <code>datasets</code> block are defined in [Inline data].</p>
+   <p>The individual entries of the <code>datasets</code> block are defined in <a href="#inline_data">Inline data</a>.</p>
    <h4 class="heading settled" data-level="3.1.4" id="title_data_block"><span class="secno">3.1.4. </span><span class="content">The <code>title</code> key</span><a class="self-link" href="#title_data_block"></a></h4>
    <p>The title of the graphic document.</p>
    <h4 class="heading settled" data-level="3.1.5" id="subtitle_data_block"><span class="secno">3.1.5. </span><span class="content">The <code>subtitle</code> key</span><a class="self-link" href="#subtitle_data_block"></a></h4>
@@ -2469,10 +2480,10 @@ Parts of this work may be from another specification document.  If so, those par
       <td><code>chartType</code>
       <td>string
       <td>The type of chart, such as <code>bar</code>, <code>line</code>, or <code>scatterplot</code>
-      <td>optional for unstructured data, required for structured data
+      <td>optional for unstructured data, required for structured and semi-structured data
    </table>
    <h4 class="heading settled" data-level="3.1.8" id="facets_data_block"><span class="secno">3.1.8. </span><span class="content">The <code>facets</code> key</span><a class="self-link" href="#facets_data_block"></a></h4>
-   <p>The <code>facets</code> block contains details of each facet in the dataset, such as x and y axes or legend keys, for structured data.</p>
+   <p>The <code>facets</code> block contains details of each facet in the dataset, such as x and y axes or legend keys, for structured and semi-structured data.</p>
    <p>The <code>facets</code> object contains one or more <code>[facet-string]</code> keys. A <code>[facet-string]</code> key may be any value allowed by the schema for the representation type, and will normally represent the axes (e.g. <code>"x"</code> and <code>"y"</code>), a legend (i.e. '"legend"'), a magnitude, or any other type of recorded data being represented. Each <code>[facet-string]</code> is the key to an object which defines the parameters, value type, and descriptors for the corresponding key in the child objects of the <code>records</code> array in the <code>series</code> array.</p>
    <p>These <code>[facet-string]</code> keys must consist of a string of ASCII letters, digits, '_', and '-', with no whitespace. Each <code>[facet-string]</code> key must be a unique value.</p>
    <div class="example" id="xmp_facets">
@@ -2491,12 +2502,12 @@ Parts of this work may be from another specification document.  If so, those par
           <c- f>"variableType"</c-><c- p>:</c-> <c- u>"dependent"</c-><c- p>,</c->
           <c- f>"measure"</c-><c- p>:</c-> <c- u>"ratio"</c-><c- p>,</c->
           <c- f>"units"</c-><c- p>:</c-> <c- u>"degrees Fahrenheit"</c-><c- p>,</c->
-          <c- f>"multiplier"</c-><c- p>:</c-> <c- u>"1"</c->
+          <c- f>"multiplier"</c-><c- p>:</c-> <c- mi>1</c->
         <c- p>}</c->
       <c- p>},</c->
       <c- f>"series"</c-><c- p>:</c-> <c- p>[</c->
         <c- p>{</c->
-          <c- f>"name"</c-><c- p>:</c-> <c- u>"Average montly temperatures"</c-><c- p>,</c->
+          <c- f>"name"</c-><c- p>:</c-> <c- u>"Average monthly temperatures"</c-><c- p>,</c->
           <c- f>"type"</c-><c- p>:</c-> <c- u>"column"</c-><c- p>,</c->
           <c- f>"records"</c-><c- p>:</c-> <c- p>[</c->
             <c- p>{</c->
@@ -2532,26 +2543,27 @@ Parts of this work may be from another specification document.  If so, those par
       <td><code>label</code>
       <td>non-empty string
       <td>The title for the facet
-      <td>optional for unstructured data, required for structured data
+      <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
       <td><code>variableType</code>
       <td>string
       <td>The type of measure for that facet. Allowed values are: <code>independent</code> and <code>dependent</code>
+      <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
       <td><code>measure</code>
       <td>string
       <td>In any given facet, what the scale of measure for that facet is. Allowed values are: <code>nominal</code>, <code>ordinal</code>, <code>interval</code>, or <code>ratio</code>
-      <td>optional for unstructured data, required for structured data
+      <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
       <td><code>units</code>
       <td>non-empty string
       <td>The type of thing being measured
-      <td>optional for unstructured data, required for structured data
+      <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
       <td><code>multiplier</code>
       <td>number
       <td>The multiplier for numeric values, e.g. <code>1000</code> for "(in thousands)", <code>1000000</code> for "(in millions)"
-      <td>optional for unstructured data, required for structured data
+      <td>optional for unstructured data, required for structured and semi-structured data
    </table>
    <div class="example" id="xmp_facets_series">
     <a class="self-link" href="#xmp_facets_series"></a> An example of a <code>facets</code> block with two <code>[facet-string]</code> object entries, <code>"x"</code> and <code>"y"</code>, and the . The values <code>"x"</code> and <code>"y"</code> are matched in the <code>records</code> block objects, which contain the actual values for those facets. 
@@ -2569,12 +2581,12 @@ Parts of this work may be from another specification document.  If so, those par
           <c- f>"variableType"</c-><c- p>:</c-> <c- u>"dependent"</c-><c- p>,</c->
           <c- f>"measure"</c-><c- p>:</c-> <c- u>"ratio"</c-><c- p>,</c->
           <c- f>"units"</c-><c- p>:</c-> <c- u>"degrees Fahrenheit"</c-><c- p>,</c->
-          <c- f>"multiplier"</c-><c- p>:</c-> <c- u>"1"</c->
+          <c- f>"multiplier"</c-><c- p>:</c-> <c- mi>1</c->
         <c- p>}</c->
       <c- p>},</c->
       <c- f>"series"</c-><c- p>:</c-> <c- p>[</c->
         <c- p>{</c->
-          <c- f>"name"</c-><c- p>:</c-> <c- u>"Average montly temperatures"</c-><c- p>,</c->
+          <c- f>"name"</c-><c- p>:</c-> <c- u>"Average monthly temperatures"</c-><c- p>,</c->
           <c- f>"type"</c-><c- p>:</c-> <c- u>"column"</c-><c- p>,</c->
           <c- f>"records"</c-><c- p>:</c-> <c- p>[</c->
             <c- p>{</c->
@@ -2598,7 +2610,7 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    </div>
    <h4 class="heading settled" data-level="3.1.9" id="series_data_block"><span class="secno">3.1.9. </span><span class="content">The <code>series</code> key</span><a class="self-link" href="#series_data_block"></a></h4>
-   <p>The <code>series</code> block contains the information about each series of the dataset for structured data, including the raw data values of each record in each series.</p>
+   <p>The <code>series</code> block contains the information about each series of the dataset for structured and semi-structured data, including the raw data values of each record in each series.</p>
    <p>The <code>series</code> object contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
    <table class="data">
     <thead>
@@ -2612,16 +2624,17 @@ Parts of this work may be from another specification document.  If so, those par
       <td><code>name</code>
       <td>non-empty string
       <td>The name for this series, normally used as the series label
-      <td>optional for unstructured data, required for structured data
+      <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
       <td><code>type</code>
       <td>non-empty string
       <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>datasets</code>
+      <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
       <td><code>records</code>
       <td>array
       <td>The raw data values for each facet of each record of this series
-      <td>optional for unstructured data, required for structured data
+      <td>optional for unstructured data, required for structured and semi-structured data
    </table>
    <h5 class="heading settled" data-level="3.1.9.1" id="series_name_data_block"><span class="secno">3.1.9.1. </span><span class="content">The <code>name</code> key</span><a class="self-link" href="#series_name_data_block"></a></h5>
    <p>The <code>name</code> key has a value that is a string that is the name for this series, normally used as the series label.</p>
@@ -2638,7 +2651,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p>TODO: describe the <code>source</code> object</p>
    <h4 class="heading settled" data-level="3.1.10" id="href_data_block"><span class="secno">3.1.10. </span><span class="content">The <code>href</code> key in a <code>datasets</code> block</span><a class="self-link" href="#href_data_block"></a></h4>
    <p>The <code>href</code> key defines an object that refers to an external data file. The content model and processing of the <code>href</code> key are different in the <code>datasets</code> block than in other metadata blocks.</p>
-   <p>This external file can be used to link data to graphical elements, as defined in [Inline data].</p>
+   <p>This external file can be used to link data to graphical elements, as defined in <a href="#inline_data">Inline data</a>.</p>
    <h3 class="heading settled" data-level="3.2" id="selectors"><span class="secno">3.2. </span><span class="content">Selectors</span><a class="self-link" href="#selectors"></a></h3>
    <p>In order to identify and link between the DOM of an SVG document and the JSON metadata, this specification uses CSS Selectors and JSONPath.</p>
    <p>CSS Selectors <a data-link-type="biblio" href="#biblio-selectors-4" title="Selectors Level 4">[Selectors-4]</a> enables the matching of DOM nodes, such as graphical or textual elements.</p>
@@ -2706,7 +2719,7 @@ Parts of this work may be from another specification document.  If so, those par
     <a class="self-link" href="#xmp_selector_alternate_syntax"></a> An example of a <code>selectors</code> block with two selector set object entries with alternate syntaxes for the same kind of connection. 
     <p>The first selector set object selects an element with the <code>id="datapoint-Sunday_2000"</code> as the target element, and associates that with the object key for the <code>x</code> and <code>y</code> values of a record in the dataset of the JSON, using an array of JSONPath selectors.</p>
     <p>The second selector set object selects an element with <code>id="datapoint-Monday_2000"</code> as the target element, and associates that with the object key for all of the values of a record in the dataset of the JSON, using a wildcard.</p>
-    <p>Assuming a record structure with only <code>x</code> and <code>y</code> keys, these selectors would yeild the same outcome, making the wildcard selector a shorthand for the array syntax.</p>
+    <p>Assuming a record structure with only <code>x</code> and <code>y</code> keys, these selectors would yield the same outcome, making the wildcard selector a shorthand for the array syntax.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"dp0"</c-><c- p>:</c-> <c- p>{</c->
@@ -2762,13 +2775,13 @@ Parts of this work may be from another specification document.  If so, those par
    <p>This specification defines a <code>selector</code> attribute to enable this relationship between a graphical element and the data point it represents.</p>
    <h6 class="heading settled" data-level="3.2.2.1.1" id="data_model_cardinality"><span class="secno">3.2.2.1.1. </span><span class="content">Data model cardinality</span><a class="self-link" href="#data_model_cardinality"></a></h6>
    <p>The relationship between a graphical element and the data it represents might be complex.</p>
-   <p>Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a bar in a bar chart, where the height of the bar signifies a specific numerical value.</p>
+   <p>Sometimes this is a one-to-one relationship, where one element or set of elements represents exactly one data point, such as a specific bar in a bar chart, where the height of the bar signifies a specific numerical value.</p>
    <p>Sometimes this is a one-to-many relationship, where one image element represents multiple data points, such as a symbol in a scatterplot that represents two values (the independent or x-axis value and the dependent or y-axis value), or a single bar in a histogram that represents an aggregated set of values, or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair). The one-to-many relationship might go the other way, where multiple graphical elements represent the same data point, such as in a bar chart where , or a line chart where a , or a segment in a line chart that represents the change in x/y value pairs at the beginning and end of each time period (possibly with a symbol representing one specific x/y data point pair)</p>
    <p>Rarely, you might have a many-to-many relationship.</p>
    <blockquote>
     <p>TODO: provide a many-to-many example.</p>
    </blockquote>
-   <p>On occassion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.</p>
+   <p>On occasion, there are extra data points in the raw dataset that are not currently depicted in the visualization, either because they have been actively filtered out, or because the author chose not to include that data point, such as when it presents an extraneous factor or is outside the range subset the visualization depicts. In this case, inclusion of this dataset in the metadata might be for context or completeness.</p>
    <blockquote>
     <p>TODO: talk about label elements and their representation.</p>
    </blockquote>
@@ -2852,31 +2865,28 @@ Parts of this work may be from another specification document.  If so, those par
         <c- f>"selector"</c-><c- p>:</c-> <c- u>"#bar_1"</c->
       <c- p>},</c->
       <c- f>"enter"</c-><c- p>:</c-> <c- p>{</c->
-        <c- p>{</c->
-          <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
-            <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>50</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
-            <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>250</c->
-          <c- p>}</c->
+        <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
+          <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>50</c-><c- p>,</c-> <c- mi>100</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
+          <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>250</c->
         <c- p>}</c->
       <c- p>}</c->
     <c- p>},</c->
     <c- p>{</c->
       <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
-        <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
-          <c- f>"circle"</c-><c- p>:</c-> <c- p>{</c->
+        <c- f>"shapes"</c-><c- p>:</c-> <c- p>[</c->
+          <c- p>{</c->
+            <c- f>"element"</c-><c- p>:</c-> <c- u>"circle"</c-><c- p>,</c->
             <c- f>"cx"</c-><c- p>:</c-> <c- mi>100</c-><c- p>,</c->
             <c- f>"cy"</c-><c- p>:</c-> <c- mi>121</c-><c- p>,</c->
             <c- f>"r"</c-><c- p>:</c-> <c- mi>32</c->
           <c- p>}</c->
-        <c- p>}</c->
+        <c- p>]</c->
       <c- p>},</c->
       <c- f>"enter"</c-><c- p>:</c-> <c- p>{</c->
-        <c- p>{</c->
-          <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
-            <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
-            <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>250</c->
-          <c- p>}</c->
-        <c- p>}</c->
+        <c- f>"haptic"</c-><c- p>:</c-> <c- p>{</c->
+          <c- f>"durations"</c-><c- p>:</c-> <c- p>[</c-> <c- mi>0</c-><c- p>,</c-> <c- mi>150</c-> <c- p>],</c->
+          <c- f>"repeatInterval"</c-><c- p>:</c-> <c- mi>250</c->
+        <c- p>},</c->
         <c- f>"audio"</c-><c- p>:</c-> <c- p>{</c->
           <c- f>"href"</c-><c- p>:</c-> <c- u>"./assets/example.mp3"</c-><c- p>,</c->
           <c- f>"repeat"</c-><c- p>:</c-> <c- u>"none"</c->
@@ -2974,7 +2984,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p class="note" role="note"><span class="marker">Note:</span> To be defined further.</p>
    <h3 class="heading settled" data-level="3.7" id="version"><span class="secno">3.7. </span><span class="content">Version</span><a class="self-link" href="#version"></a></h3>
    <p>A conforming document may include an optional <code>version</code> key.</p>
-   <p>An <code>version</code> block is an object with the key <code>version</code>, which contains one or more key-value pairs including one or more of the keys <code>document</code> and <code>jim</code> and their values.</p>
+   <p>A <code>version</code> block is an object with the key <code>version</code>, which contains one or more key-value pairs including one or more of the keys <code>document</code> and <code>jim</code> and their values.</p>
    <p>The value of the optional <code>jim</code> key, if present, must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (<code>.</code>). The default value of the <code>jim</code> key is <code>1.0.0</code>.</p>
    <p>The value of the optional <code>document</code> key may be any non-empty string that is meaningful to the author, but it should be a string conforming to the Semantic Versioning 2.0.0 specification.</p>
    <table class="data">
@@ -3012,7 +3022,7 @@ Parts of this work may be from another specification document.  If so, those par
     <li data-md>
      <p><strong>An JSONPath link</strong>: a selector indicating a specific selector set in the JIM of a SVG file;</p>
     <li data-md>
-     <p><strong>A</strong> <code>shape</code> <strong>object</strong>: an object that defines a shape to be dynamically represented in the diagram file.</p>
+     <p><strong>A</strong> <code>shapes</code> <strong>array</strong>: an array of objects that defines a shape to be dynamically represented in the diagram file.</p>
    </ol>
    <h3 class="heading settled" data-level="4.1" id="target_selector_key"><span class="secno">4.1. </span><span class="content">Target <code>selector</code> key</span><a class="self-link" href="#target_selector_key"></a></h3>
    <p>A target may consist of a <code>selector</code> key with a valid selector, either a DOM selector pointing to one or more elements in the DOM of an SVG file, or a JSONPath selector pointing to a selector set.</p>
@@ -3020,7 +3030,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p>An element target may be a textual element, a shape element, or a container element. If the selector target is a container element, the shape target is all targetable elements within that container, but not the bounding box of the container element itself.</p>
    <p>If the selector is not valid, or if the target element is not found, the <code>target</code> definition is ignored.</p>
    <div class="example" id="xmp_target_selector_single">
-    <a class="self-link" href="#xmp_target_selector_single"></a> A target selector targeting a single shape element. 
+    <a class="self-link" href="#xmp_target_selector_single"></a> A target selector targeting a single element with an <code>id</code>. 
 <pre class="highlight"><c- p>{</c->
   <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"selector"</c-><c- p>:</c-> <c- u>"#bar_1"</c->
@@ -3047,7 +3057,7 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    </div>
    <h4 class="heading settled" data-level="4.1.2" id="target_selector_set_selector"><span class="secno">4.1.2. </span><span class="content">Target <code>selector</code> for selector sets</span><a class="self-link" href="#target_selector_set_selector"></a></h4>
-   <p>An selector set target may be a JSONPath selector pointing to a selector set, or an array of such JSONPath selectors.</p>
+   <p>A selector set target may be a JSONPath selector pointing to a selector set, or an array of such JSONPath selectors.</p>
    <blockquote>
     <p>TODO: Expand on this.</p>
    </blockquote>
@@ -3070,38 +3080,72 @@ Parts of this work may be from another specification document.  If so, those par
 <c- p>}</c->
 </pre>
    </div>
-   <h4 class="heading settled" data-level="4.1.3" id="target_shape"><span class="secno">4.1.3. </span><span class="content">Target shape</span><a class="self-link" href="#target_shape"></a></h4>
-   <p>A shape definition consists of an SVG shape element tag name, with an object of keys representing the required attributes. The definitive list of shapes is defined by the SVG 2.0 <a data-link-type="biblio" href="#biblio-svg2" title="Scalable Vector Graphics (SVG) 2">[SVG2]</a> specification. All SVG shape elements are valid.</p>
-   <p>Any attributes not defined by the target shape definition default to the SVG lacunae values for that attribute. Any attributes</p>
+   <h4 class="heading settled" data-level="4.1.3" id="target_shapes"><span class="secno">4.1.3. </span><span class="content">Target shapes</span><a class="self-link" href="#target_shapes"></a></h4>
+   <p>The <code>shapes</code> block is an array that contains a set of shapes that must be automatically generated by a conforming implementations and overlay in the top rendering layer of the document. These shapes must intercept pointer events, but must not be rendered by default.</p>
+   <p>A conforming implementation, particularly a generator, may render a overlay shape, particularly on user request.</p>
+   <h5 class="heading settled" data-level="4.1.3.1" id="target-shape-fill-and-stroke"><span class="secno">4.1.3.1. </span><span class="content">Target shape <code>fill</code> and <code>stroke</code></span><a class="self-link" href="#target-shape-fill-and-stroke"></a></h5>
+   <p>The <code>fill</code> and <code>stroke</code> attributes control whether that shape’s fill or stroke area of that shape, respectively, must intercept pointer events. If the <code>fill</code> attribute is defined, the fill area of the shape must intercept pointer events. If the <code>stroke</code> attribute is defined, the stroke area of the shape, with a thickness defined by the <code>stroke-width</code> attribute, must intercept pointer events.</p>
+   <p>If the values of the <code>fill</code> or <code>stroke</code> attributes are valid color definitions, and a conforming implementation is rendering the overlay shape, the implemention should render that overlay shape with the colors defined.</p>
+   <h5 class="heading settled" data-level="4.1.3.2" id="target-shape-keys"><span class="secno">4.1.3.2. </span><span class="content">Target shape keys</span><a class="self-link" href="#target-shape-keys"></a></h5>
+   <p>A <code>shapes</code> block is an array of objects, each of which contains a set of keys representing the shape <code>element</code> (the SVG shape element tag name) and the required attributes. The definitive list of shapes is defined by the SVG 2.0 <a data-link-type="biblio" href="#biblio-svg2" title="Scalable Vector Graphics (SVG) 2">[SVG2]</a> specification. All SVG shape elements are valid.</p>
+   <p>Any attributes not defined by the target shape definition default to the SVG lacunae values for that attribute. Any attributes with attribute values not conforming to the SVG 2.0 specification must be discarded.</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th> key 
+      <th> value type 
+      <th> description 
+      <th> requirement 
+    <tbody>
+     <tr>
+      <td><code>element</code>
+      <td>non-empty string
+      <td>The name of the element, per the SVG 2 definition
+      <td>required
+     <tr>
+      <td><code>[attribute-name]</code>
+      <td>non-empty string
+      <td>The name of the SVG element attribute. Allowed values conform to the definition of the attributes for the element in the SVG 2 specification
+   </table>
    <div class="example" id="xmp_target_shape_circle">
     <a class="self-link" href="#xmp_target_shape_circle"></a> A target describing a circular area with a centerpoint at <code>100, 121</code> and a radius of <code>32</code> pixels. 
 <pre class="highlight"><c- p>{</c->
   <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
-    <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
-      <c- f>"circle"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"shapes"</c-><c- p>:</c-> <c- p>[</c->
+      <c- p>{</c->
+        <c- f>"element"</c-><c- p>:</c-> <c- u>"circle"</c-><c- p>,</c->
         <c- f>"cx"</c-><c- p>:</c-> <c- mi>100</c-><c- p>,</c->
         <c- f>"cy"</c-><c- p>:</c-> <c- mi>121</c-><c- p>,</c->
         <c- f>"r"</c-><c- p>:</c-> <c- mi>32</c->
       <c- p>}</c->
-    <c- p>}</c->
+    <c- p>]</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
    </div>
    <div class="example" id="xmp_target_shape_complex">
-    <a class="self-link" href="#xmp_target_shape_complex"></a> A target describing an irregular area using the <code>path</code> definition and a rectangle definition, which together make a single target. The rectangle definition elides the "x" attribute, which defaults to <code>0</code>, per the SVG 2 specification. 
+    <a class="self-link" href="#xmp_target_shape_complex"></a> A target describing a hexagonal area using the <code>path</code> definition and two rectangle definitions, which together make a single target. The first rectangle definition elides the "x" attribute, which defaults to <code>0</code>, per the SVG 2 specification. 
 <pre class="highlight"><c- p>{</c->
   <c- f>"target"</c-><c- p>:</c-> <c- p>{</c->
-    <c- f>"shape"</c-><c- p>:</c-> <c- p>{</c->
-      <c- f>"path"</c-><c- p>:</c-> <c- p>{</c->
-        <c- f>"d"</c-><c- p>:</c-> <c- u>"M0,12 L6.3,9 V15 Z M7.3,9 H17 V15 H7.3 Z M18,9 H18.4 Q21.4,9 21.4,12 Q21.4,15 18.4,15 H18 Z"</c->
+    <c- f>"shapes"</c-><c- p>:</c-> <c- p>[</c->
+      <c- p>{</c->
+        <c- f>"element"</c-><c- p>:</c-> <c- u>"path"</c-><c- p>,</c->
+        <c- f>"d"</c-><c- p>:</c-> <c- u>"M200,50 L269,90 V170 L200,210 L131,170 V90 Z"</c->
       <c- p>},</c->
-      <c- f>"rect"</c-><c- p>:</c-> <c- p>{</c->
-        <c- f>"y"</c-><c- p>:</c-> <c- mi>44</c-><c- p>,</c->
-        <c- f>"width"</c-><c- p>:</c-> <c- u>"130"</c-><c- p>,</c->
-        <c- f>"height"</c-><c- p>:</c-> <c- u>"25"</c->
+      <c- p>{</c->
+        <c- f>"element"</c-><c- p>:</c-> <c- u>"rect"</c-><c- p>,</c->
+        <c- f>"y"</c-><c- p>:</c-> <c- u>"90"</c-><c- p>,</c->
+        <c- f>"width"</c-><c- p>:</c-> <c- u>"120"</c-><c- p>,</c->
+        <c- f>"height"</c-><c- p>:</c-> <c- u>"80"</c->
+      <c- p>},</c->
+      <c- p>{</c->
+        <c- f>"element"</c-><c- p>:</c-> <c- u>"rect"</c-><c- p>,</c->
+        <c- f>"x"</c-><c- p>:</c-> <c- u>"279"</c-><c- p>,</c->
+        <c- f>"y"</c-><c- p>:</c-> <c- u>"90"</c-><c- p>,</c->
+        <c- f>"width"</c-><c- p>:</c-> <c- u>"60"</c-><c- p>,</c->
+        <c- f>"height"</c-><c- p>:</c-> <c- u>"80"</c->
       <c- p>}</c->
-    <c- p>}</c->
+    <c- p>]</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
@@ -3439,19 +3483,19 @@ second pair will collectively last for 250 milliseconds, with the intensity drop
    <div class="example" id="xmp_blind_env_conditions"><a class="self-link" href="#xmp_blind_env_conditions"></a> A blind user might wish to enable haptics and braille output when they are in a quiet zone or noisy environment, and sonification and spoken output when they are in a private, quiet environment. </div>
    <h3 class="heading settled" data-level="11.3" id="security"><span class="secno">11.3. </span><span class="content">Security</span><a class="self-link" href="#security"></a></h3>
    <p>The distribution of interactive content presents a conflict between innovative capabilities and user security. In the web platform, most advanced interactivity can only be achieved through JavaScript, but allowing JavaScript in a file opens the user’s system up to possible security holes.</p>
-   <p>This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as conent management systems or email servers) might strip out the <code>script</code> element, disabling the interactivity of the content.</p>
+   <p>This is often unexpected and overlooked in images, but SVG (unlike most image formats) allows the inclusion of arbitrary JavaScript, including remote references to external JavaScript files. For this reason, many software applications (such as content management systems or email servers) might strip out the <code>script</code> element, disabling the interactivity of the content.</p>
    <p>By defining a set of declarative syntaxes for different assistive technologies, including parameters and conditional execution triggers, this specification enables the user agent to provide the interactivity defined by the author, without compromising security. This specification refers to such declarative capabilities as "behaviors".</p>
    <h3 class="heading settled" data-level="11.4" id="privacy"><span class="secno">11.4. </span><span class="content">Privacy</span><a class="self-link" href="#privacy"></a></h3>
    <p>By enabling security through declarative behaviors, this specification ensures the privacy of the user from third parties. Note that data collection might still be performed through some primary user agents and content providers, but this should be done only with the user’s consent.</p>
    <h3 class="heading settled" data-level="11.5" id="portability"><span class="secno">11.5. </span><span class="content">Portability</span><a class="self-link" href="#portability"></a></h3>
    <p>Data visualizations can often lose their association with their context, including the article they were published in or the data they represent. This specification must define a way to include the raw data and the provenance in the image file, so the context can be preserved as the document is shared through various means.</p>
    <h3 class="heading settled" data-level="11.6" id="reuseability"><span class="secno">11.6. </span><span class="content">Reuseability</span><a class="self-link" href="#reuseability"></a></h3>
-   <p>This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, creaste different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.</p>
+   <p>This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, create different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.</p>
    <p>In addition, a visual image can be enhanced with different metadata to serve a different purpose, such as providing a different set of descriptions for an audience at different reading levels, or translating the document into another language.</p>
    <h3 class="heading settled" data-level="11.7" id="familiarity"><span class="secno">11.7. </span><span class="content">Familiarity</span><a class="self-link" href="#familiarity"></a></h3>
    <p>Document technologies are most useful when the syntax and model is familiar and unambiguous. This allows for ease of implementation, increased interoperability, and ease of authoring. This specification should use common technologies like JSON and CSS as its underpinnings.</p>
    <h3 class="heading settled" data-level="11.8" id="flexibility"><span class="secno">11.8. </span><span class="content">Flexibility</span><a class="self-link" href="#flexibility"></a></h3>
-   <p>This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accomodate other techniques in the future.</p>
+   <p>This specification should be able to define the full range of expression for any assistive technology technique. The current version should detail parameters for haptics, sonification, tactiles, high contrast, voicing, and braille, and should be extensible to accommodate other techniques in the future.</p>
    <p>At the same time, this specification should establish defaults and baselines based on best practices, wherever possible, to encourage good authoring and normalize user experience.</p>
    <h3 class="heading settled" data-level="11.9" id="searching_categorization"><span class="secno">11.9. </span><span class="content">Searching and categorization</span><a class="self-link" href="#searching_categorization"></a></h3>
    <p>This specification must define easy ways to enable the distribution and discovery of content based on user needs and accommodation provided in the document. One way to do this is to provide a standardized way to express keyword tags, ratings, and capabilities within the document itself.</p>
