@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="c30974c199e5f74c0fac19c24a5b58d5ed3f7d3c" name="revision">
+  <meta content="f80dc5fdbdd833b36debb8ee304f1a408cc5093d" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2985,8 +2985,9 @@ Parts of this work may be from another specification document.  If so, those par
    <h3 class="heading settled" data-level="3.7" id="version"><span class="secno">3.7. </span><span class="content">Version</span><a class="self-link" href="#version"></a></h3>
    <p>A conforming document may include an optional <code>version</code> key.</p>
    <p>A <code>version</code> block is an object with the key <code>version</code>, which contains one or more key-value pairs including one or more of the keys <code>document</code> and <code>jim</code> and their values.</p>
-   <p>The value of the optional <code>jim</code> key, if present, must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (<code>.</code>). The default value of the <code>jim</code> key is <code>1.0.0</code>.</p>
-   <p>The value of the optional <code>document</code> key may be any non-empty string that is meaningful to the author, but it should be a string conforming to the Semantic Versioning 2.0.0 specification.</p>
+   <p>A <code>version</code> block, if present, must be at the root level of the JIM document.</p>
+   <p>A <code>version</code> block, if present, must include a <code>jim</code> key with a valid value. The value of the <code>jim</code> key must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (<code>.</code>). The default value of the <code>jim</code> key is <code>1.0.0</code>. The value must refer to a published version of the JIM specification.</p>
+   <p>The optional <code>document</code> key defines the version of the document itself. The value of the optional <code>document</code> key, if present, may be any non-empty string that is meaningful to the author, but it should be a string conforming to the Semantic Versioning 2.0.0 specification.</p>
    <table class="data">
     <thead>
      <tr>
@@ -2998,13 +2999,13 @@ Parts of this work may be from another specification document.  If so, those par
      <tr>
       <td><code>document</code>
       <td>non-empty string
-      <td>The version of the document
+      <td>The version of the document itself
       <td>optional
      <tr>
       <td><code>jim</code>
       <td>semantic version string
       <td>The version of the JIM specification the document conforms to
-      <td>optional
+      <td>required
    </table>
 <pre class="highlight"><c- p>{</c->
   <c- f>"version"</c-><c- p>:</c-> <c- p>{</c->

@@ -1101,9 +1101,11 @@ A conforming document may include an optional `version` key.
 
 A `version` block is an object with the key `version`, which contains one or more key-value pairs including one or more of the keys `document` and `jim` and their values.
 
-The value of the optional `jim` key, if present, must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (`.`). The default value of the `jim` key is `1.0.0`.
+A `version` block, if present, must be at the root level of the JIM document. 
 
-The value of the optional `document` key may be any non-empty string that is meaningful to the author, but it should be a string conforming to the Semantic Versioning 2.0.0 specification.
+A `version` block, if present, must include a `jim` key with a valid value. The value of the `jim` key must be a string conforming to the Semantic Versioning 2.0.0 specification, 3 integers separated by periods (`.`). The default value of the `jim` key is `1.0.0`. The value must refer to a published version of the JIM specification.
+
+The optional `document` key defines the version of the document itself. The value of the optional `document` key, if present, may be any non-empty string that is meaningful to the author, but it should be a string conforming to the Semantic Versioning 2.0.0 specification.
 
 <table class="data">
   <thead>
@@ -1126,14 +1128,14 @@ The value of the optional `document` key may be any non-empty string that is mea
     <tr>
       <td>`document`</td>
       <td>non-empty string</td>
-      <td>The version of the document</td>
+      <td>The version of the document itself</td>
       <td>optional</td>
     </tr>
     <tr>
       <td>`jim`</td>
       <td>semantic version string</td>
       <td>The version of the JIM specification the document conforms to</td>
-      <td>optional</td>
+      <td>required</td>
     </tr>
   </tbody>
 </table>
