@@ -3,7 +3,7 @@ Title: JSON Image Metadata
 Shortname: jim
 Level: 1
 Status: fido/ED
-!Semantic Version: 0.4.0
+!Semantic Version: 0.4.1
 Group: Inclusio Project
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
@@ -848,7 +848,62 @@ Moving from one event state to another must cancel any currently active behavior
 
 Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text. An announcement is defined in an `announcement` block.
 
-Details on the syntax of an `announcement` block are defined in the [Announcements section](#announcements).
+##### Default announcements ##### {#default_announcements}
+
+By default, a conforming JIM viewer must generate an implicit announcement `name` for any element identified by a `dom` selector that has a valid `json` JSONPath selector that resolves to an endpoint (i.e., a `location` per the JSONPath specification), triggered as for the `enter` event.
+
+For each valid JSONPath endpoint that resolves to a key-value pair, the default announcement must be the text of the value.
+
+For each valid JSONPath endpoint that resolves to an object, the default announcement must be the text of each value that is a direct child of the object, as a comma-separated list.
+
+For each valid JSONPath endpoint that resolves to an wildcard (`*`), the default announcement must be the text of each value that matches the wildcard, as a comma-separated list.
+
+A conforming user agent may allow a user to change the default announcement content to include both the key and the value for any valid endpoint.
+
+
+<div id='xmp_selector_syntax' class='example'>
+An example of a default implicit announcment based on a `selectors` block. 
+
+In this example, when the user moves the pointer over the SVG element with the `id` of `datapoint-Sunday_2000`, the conforming SVG viewer would announce, "2000, Sunday, 57".
+
+<xmp highlight='json'>
+{
+  "datasets": [
+    {
+      …
+      "series": [
+        {
+          "name": "2000",
+          "type": "column",
+          "records": [
+            {
+              "x": "Sunday",
+              "y": "57"
+            },
+            …
+          ]
+        },
+        …
+      ]
+    }
+  ],
+  "selectors": {
+    "Sunday 2000": {
+      "dom": "#datapoint-Sunday_2000",
+      "json": [
+        "$.datasets[0].series[0].name",
+        "$.datasets[0].series[0].records[0].*"
+      ]
+    },
+    …
+  }
+}
+</xmp>
+</div>
+
+##### Explicit announcements ##### {#explicit_announcements}
+
+For more control over the content, type, and event triggers of an announcement, details on the syntax of an `announcement` block are defined in the [Announcements section](#announcements).
 
 
 #### Audio Behaviors #### {#audio_behaviors}

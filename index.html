@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="944dec26ac99afb9a75a782059ec91f18e991ff8" name="revision">
+  <meta content="6e9dd0c631652f9dfb0bd14259108e8736ba799f" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2025-09-03">3 September 2025</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2025-09-19">19 September 2025</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2026,13 +2026,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dt>Semantic Version:
-     <dd>0.4.0
+     <dd>0.4.1
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 3 September 2025,
+In addition, as of 19 September 2025,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2138,7 +2138,12 @@ Parts of this work may be from another specification document.  If so, those par
         <li>
          <a href="#behavior_types"><span class="secno">3.4.3</span> <span class="content">Behavior types</span></a>
          <ol class="toc">
-          <li><a href="#announcement_behaviors"><span class="secno">3.4.3.1</span> <span class="content">Announcement Behaviors</span></a>
+          <li>
+           <a href="#announcement_behaviors"><span class="secno">3.4.3.1</span> <span class="content">Announcement Behaviors</span></a>
+           <ol class="toc">
+            <li><a href="#default_announcements"><span class="secno">3.4.3.1.1</span> <span class="content">Default announcements</span></a>
+            <li><a href="#explicit_announcements"><span class="secno">3.4.3.1.2</span> <span class="content">Explicit announcements</span></a>
+           </ol>
           <li><a href="#audio_behaviors"><span class="secno">3.4.3.2</span> <span class="content">Audio Behaviors</span></a>
           <li><a href="#embossing_behaviors"><span class="secno">3.4.3.3</span> <span class="content">Embossing Behaviors</span></a>
           <li><a href="#haptic_behaviors"><span class="secno">3.4.3.4</span> <span class="content">Haptic Behaviors</span></a>
@@ -2801,7 +2806,50 @@ Parts of this work may be from another specification document.  If so, those par
    <h4 class="heading settled" data-level="3.4.3" id="behavior_types"><span class="secno">3.4.3. </span><span class="content">Behavior types</span><a class="self-link" href="#behavior_types"></a></h4>
    <h5 class="heading settled" data-level="3.4.3.1" id="announcement_behaviors"><span class="secno">3.4.3.1. </span><span class="content">Announcement Behaviors</span><a class="self-link" href="#announcement_behaviors"></a></h5>
    <p>Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text. An announcement is defined in an <code>announcement</code> block.</p>
-   <p>Details on the syntax of an <code>announcement</code> block are defined in the <a href="#announcements">Announcements section</a>.</p>
+   <h6 class="heading settled" data-level="3.4.3.1.1" id="default_announcements"><span class="secno">3.4.3.1.1. </span><span class="content">Default announcements</span><a class="self-link" href="#default_announcements"></a></h6>
+   <p>By default, a conforming JIM viewer must generate an implicit announcement <code>name</code> for any element identified by a <code>dom</code> selector that has a valid <code>json</code> JSONPath selector that resolves to an endpoint (i.e., a <code>location</code> per the JSONPath specification), triggered as for the <code>enter</code> event.</p>
+   <p>For each valid JSONPath endpoint that resolves to a key-value pair, the default announcement must be the text of the value.</p>
+   <p>For each valid JSONPath endpoint that resolves to an object, the default announcement must be the text of each value that is a direct child of the object, as a comma-separated list.</p>
+   <p>For each valid JSONPath endpoint that resolves to an wildcard (<code>*</code>), the default announcement must be the text of each value that matches the wildcard, as a comma-separated list.</p>
+   <p>A conforming user agent may allow a user to change the default announcement content to include both the key and the value for any valid endpoint.</p>
+   <div class="example" id="xmp_selector_syntax①">
+    <a class="self-link" href="#xmp_selector_syntax①"></a> An example of a default implicit announcment based on a <code>selectors</code> block. 
+    <p>In this example, when the user moves the pointer over the SVG element with the <code>id</code> of <code>datapoint-Sunday_2000</code>, the conforming SVG viewer would announce, "2000, Sunday, 57".</p>
+<pre class="highlight"><c- p>{</c->
+  <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
+    <c- p>{</c->
+      …
+      <c- f>"series"</c-><c- p>:</c-> <c- p>[</c->
+        <c- p>{</c->
+          <c- f>"name"</c-><c- p>:</c-> <c- u>"2000"</c-><c- p>,</c->
+          <c- f>"type"</c-><c- p>:</c-> <c- u>"column"</c-><c- p>,</c->
+          <c- f>"records"</c-><c- p>:</c-> <c- p>[</c->
+            <c- p>{</c->
+              <c- f>"x"</c-><c- p>:</c-> <c- u>"Sunday"</c-><c- p>,</c->
+              <c- f>"y"</c-><c- p>:</c-> <c- u>"57"</c->
+            <c- p>},</c->
+            …
+          <c- p>]</c->
+        <c- p>},</c->
+        …
+      <c- p>]</c->
+    <c- p>}</c->
+  <c- p>],</c->
+  <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"Sunday 2000"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"dom"</c-><c- p>:</c-> <c- u>"#datapoint-Sunday_2000"</c-><c- p>,</c->
+      <c- f>"json"</c-><c- p>:</c-> <c- p>[</c->
+        <c- u>"$.datasets[0].series[0].name"</c-><c- p>,</c->
+        <c- u>"$.datasets[0].series[0].records[0].*"</c->
+      <c- p>]</c->
+    <c- p>},</c->
+    …
+  <c- p>}</c->
+<c- p>}</c->
+</pre>
+   </div>
+   <h6 class="heading settled" data-level="3.4.3.1.2" id="explicit_announcements"><span class="secno">3.4.3.1.2. </span><span class="content">Explicit announcements</span><a class="self-link" href="#explicit_announcements"></a></h6>
+   <p>For more control over the content, type, and event triggers of an announcement, details on the syntax of an <code>announcement</code> block are defined in the <a href="#announcements">Announcements section</a>.</p>
    <h5 class="heading settled" data-level="3.4.3.2" id="audio_behaviors"><span class="secno">3.4.3.2. </span><span class="content">Audio Behaviors</span><a class="self-link" href="#audio_behaviors"></a></h5>
    <p>Audio playback is the use of sound to provide feedback to the user as they interact with an image or object.</p>
    <p class="note" role="note"><span class="marker">Note:</span> The <code>audio</code> block is distinct from the related <code>sonification</code> block in that it plays back a static prerecorded audio file or earcon, while the <code>sonification</code> block dynamically generates the audio given the dataset and selected element.</p>
