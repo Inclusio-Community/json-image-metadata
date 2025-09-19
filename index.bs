@@ -3,7 +3,7 @@ Title: JSON Image Metadata
 Shortname: jim
 Level: 1
 Status: fido/ED
-!Semantic Version: 0.3.3
+!Semantic Version: 0.4.1
 Group: Inclusio Project
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
@@ -848,7 +848,62 @@ Moving from one event state to another must cancel any currently active behavior
 
 Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text. An announcement is defined in an `announcement` block.
 
-Details on the syntax of an `announcement` block are defined in the [Announcements section](#announcements).
+##### Default announcements ##### {#default_announcements}
+
+By default, a conforming JIM viewer must generate an implicit announcement `name` for any element identified by a `dom` selector that has a valid `json` JSONPath selector that resolves to an endpoint (i.e., a `location` per the JSONPath specification), triggered as for the `enter` event.
+
+For each valid JSONPath endpoint that resolves to a key-value pair, the default announcement must be the text of the value.
+
+For each valid JSONPath endpoint that resolves to an object, the default announcement must be the text of each value that is a direct child of the object, as a comma-separated list.
+
+For each valid JSONPath endpoint that resolves to an wildcard (`*`), the default announcement must be the text of each value that matches the wildcard, as a comma-separated list.
+
+A conforming user agent may allow a user to change the default announcement content to include both the key and the value for any valid endpoint.
+
+
+<div id='xmp_selector_syntax' class='example'>
+An example of a default implicit announcment based on a `selectors` block. 
+
+In this example, when the user moves the pointer over the SVG element with the `id` of `datapoint-Sunday_2000`, the conforming SVG viewer would announce, "2000, Sunday, 57".
+
+<xmp highlight='json'>
+{
+  "datasets": [
+    {
+      …
+      "series": [
+        {
+          "name": "2000",
+          "type": "column",
+          "records": [
+            {
+              "x": "Sunday",
+              "y": "57"
+            },
+            …
+          ]
+        },
+        …
+      ]
+    }
+  ],
+  "selectors": {
+    "Sunday 2000": {
+      "dom": "#datapoint-Sunday_2000",
+      "json": [
+        "$.datasets[0].series[0].name",
+        "$.datasets[0].series[0].records[0].*"
+      ]
+    },
+    …
+  }
+}
+</xmp>
+</div>
+
+##### Explicit announcements ##### {#explicit_announcements}
+
+For more control over the content, type, and event triggers of an announcement, details on the syntax of an `announcement` block are defined in the [Announcements section](#announcements).
 
 
 #### Audio Behaviors #### {#audio_behaviors}
@@ -1235,9 +1290,28 @@ Any attributes not defined by the target shape definition default to the SVG lac
       <td>required</td>
     </tr>
     <tr>
+      <td>`fill`</td>
+      <td>CSS color string</td>
+      <td>The fill color for the shape, if it is rendered. If this key is present and has a non-empty string value, the shape's fill area must intercept pointer events. Non-color values should be ignored for purposes of rendering.</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`stroke`</td>
+      <td>CSS color string</td>
+      <td>The stroke color for the shape, if it is rendered. If this key is present and has a non-empty string value, the shape's stroke area, with the thickness defined by the `stroke-width` key, must intercept pointer events. Non-color values should be ignored for purposes of rendering.</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`stroke-width`</td>
+      <td>number</td>
+      <td>The width of the `stroke`, as defined in the SVG 2.0 specification.</td>
+      <td>optional</td>
+    </tr>
+    <tr>
       <td>`[attribute-name]`</td>
       <td>non-empty string</td>
       <td>The name of the SVG element attribute. Allowed values conform to the definition of the attributes for the element in the SVG 2 specification</td>
+      <td>optional, but should be defined to provide the position and shape of the element</td>
     </tr>
   </tbody>
 </table>
@@ -1737,6 +1811,12 @@ Device capabilities….
 </div>
 
 TODO: Define and describe mechanisms for setting layers on objects (e.g. print only, print and tactile, emboss only, braille)
+
+## Object Search Capabilities ## {#object_search_capabilities}
+
+For touch screen and similar devices, by way of aiding the user's orientation withi a graphic document, a conforming reader should provide a means to guide an end user to any target object (that is, any object with a selector, accessible name, or text content) in the graphic document. 
+
+The means that the conforming reader uses to guide the user may vary. At the minimum, the reader should allow the end user to chose any target object from a list of all available target objects, and provide verbal, auditory, or haptic cues that guides the end user from their current pointer position to the chosen target object. 
 
 
 # Relationship to other technologies # {#tech_relationship}

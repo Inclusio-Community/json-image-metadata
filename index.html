@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="e7b2e5f55d8fade9aec066c490001effb4fa73ff" name="revision">
+  <meta content="944dec26ac99afb9a75a782059ec91f18e991ff8" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2025-08-07">7 August 2025</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2025-09-03">3 September 2025</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2026,13 +2026,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dt>Semantic Version:
-     <dd>0.3.3
+     <dd>0.4.0
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 7 August 2025,
+In addition, as of 3 September 2025,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2210,6 +2210,7 @@ Parts of this work may be from another specification document.  If so, those par
      <a href="#select_device"><span class="secno">9</span> <span class="content">Selective Device Capabilities</span></a>
      <ol class="toc">
       <li><a href="#tactile_capabilities"><span class="secno">9.1</span> <span class="content">Tactile Capabilities</span></a>
+      <li><a href="#object_search_capabilities"><span class="secno">9.2</span> <span class="content">Object Search Capabilities</span></a>
      </ol>
     <li>
      <a href="#tech_relationship"><span class="secno">10</span> <span class="content">Relationship to other technologies</span></a>
@@ -3060,9 +3061,25 @@ Parts of this work may be from another specification document.  If so, those par
       <td>The name of the element, per the SVG 2 definition
       <td>required
      <tr>
+      <td><code>fill</code>
+      <td>CSS color string
+      <td>The fill color for the shape, if it is rendered. If this key is present and has a non-empty string value, the shape’s fill area must intercept pointer events. Non-color values should be ignored for purposes of rendering.
+      <td>optional
+     <tr>
+      <td><code>stroke</code>
+      <td>CSS color string
+      <td>The stroke color for the shape, if it is rendered. If this key is present and has a non-empty string value, the shape’s stroke area, with the thickness defined by the <code>stroke-width</code> key, must intercept pointer events. Non-color values should be ignored for purposes of rendering.
+      <td>optional
+     <tr>
+      <td><code>stroke-width</code>
+      <td>number
+      <td>The width of the <code>stroke</code>, as defined in the SVG 2.0 specification.
+      <td>optional
+     <tr>
       <td><code>[attribute-name]</code>
       <td>non-empty string
       <td>The name of the SVG element attribute. Allowed values conform to the definition of the attributes for the element in the SVG 2 specification
+      <td>optional, but should be defined to provide the position and shape of the element
    </table>
    <div class="example" id="xmp_target_shape_circle">
     <a class="self-link" href="#xmp_target_shape_circle"></a> A target describing a circular area with a centerpoint at <code>100, 121</code> and a radius of <code>32</code> pixels. 
@@ -3404,6 +3421,9 @@ second pair will collectively last for 250 milliseconds, with the intensity drop
 </pre>
    </div>
    <p>TODO: Define and describe mechanisms for setting layers on objects (e.g. print only, print and tactile, emboss only, braille)</p>
+   <h3 class="heading settled" data-level="9.2" id="object_search_capabilities"><span class="secno">9.2. </span><span class="content">Object Search Capabilities</span><a class="self-link" href="#object_search_capabilities"></a></h3>
+   <p>For touch screen and similar devices, by way of aiding the user’s orientation withi a graphic document, a conforming reader should provide a means to guide an end user to any target object (that is, any object with a selector, accessible name, or text content) in the graphic document.</p>
+   <p>The means that the conforming reader uses to guide the user may vary. At the minimum, the reader should allow the end user to chose any target object from a list of all available target objects, and provide verbal, auditory, or haptic cues that guides the end user from their current pointer position to the chosen target object.</p>
    <h2 class="heading settled" data-level="10" id="tech_relationship"><span class="secno">10. </span><span class="content">Relationship to other technologies</span><a class="self-link" href="#tech_relationship"></a></h2>
    <h3 class="heading settled" data-level="10.1" id="svg"><span class="secno">10.1. </span><span class="content">Scalable Vector Graphics (SVG)</span><a class="self-link" href="#svg"></a></h3>
    <p>This specification is designed specifically with SVG in mind, though the metadata format can be used in other image types.</p>
