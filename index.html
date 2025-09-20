@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="9f552a7832e910d5d10c285c2ecab3d87de57688" name="revision">
+  <meta content="01560b5f49635031fcfbe9bb1eb94bfc0e8a4055" name="revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -2015,7 +2015,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">JSON Image Metadata</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2025-09-19">19 September 2025</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2025-09-20">20 September 2025</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2026,13 +2026,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="p-org org" href="http://fizz.studio">Fizz Studio</a>)
      <dt>Semantic Version:
-     <dd>0.4.1
+     <dd>0.4.2
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 19 September 2025,
+In addition, as of 20 September 2025,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2296,7 +2296,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p>A document conforming to this specification should specify the version number of the specification to which it conforms, in the <code>jim</code> key of the <code>version</code> block.</p>
    <p>An implementation conforming to this specification must store internally the version number of the specification to which it conforms, and should expose the version number to the end user. If the implementation opens a JIM document which specifies an incompatible version of JIM, the implementation must warn the end user.</p>
    <div class="note" role="note"> Note that this specification is being developed in parallel with several experimental implementations, on a milestone basis, as part of the Inclusio Project. The minor version number (MAJOR.MINOR.PATCH) corresponds to the project milestone number across the Inclusio Project implementations. </div>
-   <div class="note" role="note"> Note that version 0.3.0 of this specification is the first version to use Semantic Versioning, and includes breaking changes to the specification due to implementation experience. Future versions of this specification will adhere to the practice of incrementing the major version number for breaking changes. </div>
+   <div class="note" role="note"> Note that version 0.3.0 of this specification is the first version to use Semantic Versioning. Future versions of this specification adhere to the practice of incrementing the major version number for breaking changes. </div>
    <h3 class="heading settled" data-level="2.3" id="conform_doc"><span class="secno">2.3. </span><span class="content">Conforming document</span><a class="self-link" href="#conform_doc"></a></h3>
    <p>A document conforming to this specification must contain a metadata block that matches the schema defined in this specification, and must have at least one non-empty <code>datasets</code> block or one non-empty <code>behaviors</code> block.</p>
    <p>This specification assumes the format of the metadata is in a JSON object. Other conforming serializations are possible, such as XML or a binary format, as long as they adhere to the structure of the defined JSON schema, and can be serialized as JSON.</p>
@@ -2624,7 +2624,7 @@ Parts of this work may be from another specification document.  If so, those par
    <h4 class="heading settled" data-level="3.2.1" id="selectors_block"><span class="secno">3.2.1. </span><span class="content">The <code>selectors</code> block data</span><a class="self-link" href="#selectors_block"></a></h4>
    <p>The <code>selectors</code> block is an object containing sets of selectors.</p>
    <p>The <code>selectors</code> object contains one or more <code>[selector-string]</code> keys. A <code>[selector-string]</code> key may be any value allowed by the schema for the representation type, and will normally represent a human-readable identifier for the selector set (e.g. <code>"title"</code>, <code>"bar-3"</code>, or <code>"axis_labels"</code>). Each <code>[selector-string]</code> is the key to an object which defines the DOM selectors, JSONPath selectors, and optional descriptor for the selector set.</p>
-   <p>These <code>[selector-string]</code> keys must consist of a string of ASCII letters, digits, and '_', with no whitespace. Each <code>[selector-string]</code> key must be a unique value.</p>
+   <p>These <code>[selector-string]</code> keys must consist of a string of ASCII letters, digits, and '_', and '-', with no whitespace. Each <code>[selector-string]</code> key must be a unique value.</p>
    <h5 class="heading settled" data-level="3.2.1.1" id="selectorstring_data_block"><span class="secno">3.2.1.1. </span><span class="content">The <code>[selector-string]</code> key</span><a class="self-link" href="#selectorstring_data_block"></a></h5>
    <table class="data">
     <thead>
@@ -2757,7 +2757,7 @@ Parts of this work may be from another specification document.  If so, those par
    <p>Size restrictions: While including the raw data in the image is a best practice, sometimes a dataset is simply too large to pragmatically include inline. In this case, referencing a raw data file is the best practical approach.</p>
    <p>Shared resources: An author might wish to share a common metadata file or set of files for a set of image documents. This allows the metadata files to be updated independently, reduces duplication and file size, enables cacheing in the user agent, and allows for a modular approach with well-tested rules.</p>
    <p>The <code>href</code> key defines an object that refers to an external file. This external file must be loaded by the user agent, and applied following the same processing rules as an inline metadata file, with the exception of the <code>datasets</code> block.</p>
-   <p>If an external metadata file contains rules that duplicate or conflict with rules defined in the inline metadata, the inline metadata takes precendence. This allows for customization of specific images while relying on generic common rules.</p>
+   <p>If an external metadata file contains rules that duplicate or conflict with rules defined in the inline metadata, the inline metadata takes precedence. This allows for customization of specific images while relying on generic common rules.</p>
    <p>An <code>href</code> key <code>may</code> be included at any level of the metadata, with the relevant key string as the attribute key and a valid URL string as the value for that attribute.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"href"</c-><c- p>:</c-> <c- p>{</c->
@@ -2836,7 +2836,7 @@ Parts of this work may be from another specification document.  If so, those par
     <c- p>}</c->
   <c- p>],</c->
   <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
-    <c- f>"Sunday 2000"</c-><c- p>:</c-> <c- p>{</c->
+    <c- f>"Sunday_2000"</c-><c- p>:</c-> <c- p>{</c->
       <c- f>"dom"</c-><c- p>:</c-> <c- u>"#datapoint-Sunday_2000"</c-><c- p>,</c->
       <c- f>"json"</c-><c- p>:</c-> <c- p>[</c->
         <c- u>"$.datasets[0].series[0].name"</c-><c- p>,</c->
@@ -2939,7 +2939,7 @@ Parts of this work may be from another specification document.  If so, those par
 </pre>
    <h3 class="heading settled" data-level="3.6" id="tags"><span class="secno">3.6. </span><span class="content">Tags</span><a class="self-link" href="#tags"></a></h3>
    <p>Tags are a way to categorize the file, either by the content, by the capabilities, or by a rating system, or some combination thereof.</p>
-   <p>Tags are used to aid in the filtering and searching for content.</p>
+   <p>Tags are used to aid in filtering and searching for content.</p>
    <h4 class="heading settled" data-level="3.6.1" id="keywords"><span class="secno">3.6.1. </span><span class="content">Keywords</span><a class="self-link" href="#keywords"></a></h4>
    <p>The <code>keywords</code> key denotes an array of user-defined non-empty strings. Examples of keywords include labels from a folksonomy, terms defined in a formal document, steps in a workflow process, short descriptions of items depicted in the image, or any other strings.</p>
 <pre class="highlight"><c- p>{</c->
@@ -3015,7 +3015,7 @@ Parts of this work may be from another specification document.  If so, those par
 <pre class="highlight"><c- p>{</c->
   <c- f>"version"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"document"</c-><c- p>:</c-> <c- u>"1.0.1"</c-><c- p>,</c->
-    <c- f>"jim"</c-><c- p>:</c-> <c- u>"0.3.0"</c-><c- p>,</c->
+    <c- f>"jim"</c-><c- p>:</c-> <c- u>"0.4.2"</c-><c- p>,</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
@@ -3417,7 +3417,7 @@ Parts of this work may be from another specification document.  If so, those par
    </div>
    <div class="example" id="xmp_haptic_amplitude_two_tone_pattern">
     <a class="self-link" href="#xmp_haptic_amplitude_two_tone_pattern"></a> A set of duration and amplitude patterns that simulate a set of rising and falling tones. 
-    <p>For each pair of virbation durations, there is a pause of 0 milliseconds between them, but a change of intensity between the first and second vibration, making it feel like a single vibration that changes intensities.</p>
+    <p>For each pair of vibration durations, there is a pause of 0 milliseconds between them, but a change of intensity between the first and second vibration, making it feel like a single vibration that changes intensities.</p>
     <p>The first pair will collectively last for 400 milliseconds, doubling in intensity halfway through; after a pause of 350 milliseconds the
 second pair will collectively last for 250 milliseconds, with the intensity dropping from full to one third after 150 milliseconds.</p>
 <pre class="highlight"><c- p>{</c->
