@@ -3,13 +3,12 @@ Title: JSON Image Metadata
 Shortname: jim
 Level: 1
 Status: fido/ED
-!Semantic Version: 0.4.2
-Group: Inclusio Project
+!Semantic Version: 1.0.0
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
 Editor: Doug Schepers, Fizz Studio http://fizz.studio, doug@fizz.studio
 Editor: Simon Varey, Fizz Studio http://fizz.studio, simon@fizz.studio
-Abstract: A specifiction for expressing technical image metadata, with an emphasis on accessibility of data visualizations.
+Abstract: A specification for expressing technical image metadata, with an emphasis on accessibility of data visualizations.
 Favicon: ./favicon.svg
 Complain About: accidental-2119 yes, missing-example-ids yes
 Markup Shorthands: markdown yes, css no
@@ -48,7 +47,7 @@ T: */
 
 ## JIM MIME type ## {#mime_type}
 
-The MIME type for a JSON Image Metadata document is `text/jim+json`.
+The MIME type for a JSON Image Metadata document is `application/jim+json`.
 
 ## Version conformance ## {#conform_version}
 
@@ -77,7 +76,7 @@ A conforming document must provide a means to discover the metadata block.
 
 ### Conforming SVG document ### {#conform_doc_svg}
 
-In SVG, the metadata block must be the content of a `metadata` element with an attribute `data-type` with the attribute value `text/jim+json`, the MIME type for a JIM document.
+In SVG, the metadata block must be the content of a `metadata` element with an attribute `data-type` with the attribute value `application/jim+json`, the MIME type for a JIM document.
 
 ### Conforming raster document ### {#conform_doc_raster}
 
@@ -140,7 +139,7 @@ Note: As a heuristic, if all of the facets (and sources) are identical between t
 
 ### Fidelity in dataset representation ### {#dataset_fidelity}
 
-A document conforming to this specification must maintain an accurate visual and/or structural representation of the dataset specified in the `datasets` block, including the selectors that yoke a DOM representation to the JSONPath of the represented data.
+A document conforming to this specification must maintain an accurate visual and/or structural representation of the dataset specified in the `datasets` block, including the selectors that bind a DOM representation to the JSONPath of the represented data.
 
 A conforming graphical document which represents structured data must also contain the corresponding dataset in JSON or must link to the dataset in some other format.
 
@@ -567,7 +566,7 @@ JSONPath [[JSONPath]] enables the matching of JSON keys or values in the JSON me
 
 ### The `selectors` block data ### {#selectors_block}
 
-The `selectors` block is an object containing sets of selectors.  
+The `selectors` block is an object containing named sets of selectors.  
 
 The `selectors` object contains one or more `[selector-string]` keys. A `[selector-string]` key may be any value allowed by the schema for the representation type, and will normally represent a human-readable identifier for the selector set (e.g. `"title"`, `"bar-3"`, or `"axis_labels"`). Each `[selector-string]` is the key to an object which defines the DOM selectors, JSONPath selectors, and optional descriptor for the selector set.
 
@@ -796,7 +795,7 @@ An additional `default` key is defined for referring to a single external metada
 
 ## Behaviors ## {#behaviors}
 
-A `behaviors` block is an array with the key `behaviors`, which contains one or more objects including at least a target (defined by the `target` key), and an event type containing one or more of the behaviors, including `haptic`, `audio`, `sonification`, `announcement`, `contrast`, and `tactile`.
+A `behaviors` block is an array with the key `behaviors`, which contains one or more objects including at least a target (defined by the `target` key), and an `announcement` and/or an event type containing  one or more of the behaviors, including `haptic`, `audio`, `sonification`, `contrast`, and `tactile`.
 
 ### Behavior and conforming generators ### {#behavior_generators}
 
@@ -848,63 +847,7 @@ Moving from one event state to another must cancel any currently active behavior
 
 Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text. An announcement is defined in an `announcement` block.
 
-##### Default announcements ##### {#default_announcements}
-
-By default, a conforming JIM viewer must generate an implicit announcement `name` for any element identified by a `dom` selector that has a valid `json` JSONPath selector that resolves to an endpoint (i.e., a `location` per the JSONPath specification), triggered as for the `enter` event.
-
-For each valid JSONPath endpoint that resolves to a key-value pair, the default announcement must be the text of the value.
-
-For each valid JSONPath endpoint that resolves to an object, the default announcement must be the text of each value that is a direct child of the object, as a comma-separated list.
-
-For each valid JSONPath endpoint that resolves to an wildcard (`*`), the default announcement must be the text of each value that matches the wildcard, as a comma-separated list.
-
-A conforming user agent may allow a user to change the default announcement content to include both the key and the value for any valid endpoint.
-
-
-<div id='xmp_selector_syntax' class='example'>
-An example of a default implicit announcment based on a `selectors` block. 
-
-In this example, when the user moves the pointer over the SVG element with the `id` of `datapoint-Sunday_2000`, the conforming SVG viewer would announce, "2000, Sunday, 57".
-
-<xmp highlight='json'>
-{
-  "datasets": [
-    {
-      …
-      "series": [
-        {
-          "name": "2000",
-          "type": "column",
-          "records": [
-            {
-              "x": "Sunday",
-              "y": "57"
-            },
-            …
-          ]
-        },
-        …
-      ]
-    }
-  ],
-  "selectors": {
-    "Sunday_2000": {
-      "dom": "#datapoint-Sunday_2000",
-      "json": [
-        "$.datasets[0].series[0].name",
-        "$.datasets[0].series[0].records[0].*"
-      ]
-    },
-    …
-  }
-}
-</xmp>
-</div>
-
-##### Explicit announcements ##### {#explicit_announcements}
-
-For more control over the content, type, and event triggers of an announcement, details on the syntax of an `announcement` block are defined in the [Announcements section](#announcements).
-
+Details on the syntax of an `announcement` block are defined in the [Announcements section](#announcements).
 
 #### Audio Behaviors #### {#audio_behaviors}
 
@@ -1253,13 +1196,16 @@ The `shapes` block is an array that contains a set of shapes that must be automa
 
 A conforming implementation, particularly a generator, may render a overlay shape, particularly on user request.
 
-#### Target shape `fill` and `stroke`
+Note: This feature is intended to enable drawing "invisible shapes" over areas of the image. Sample uses include creating larger hit-detection targets for small or fragmented graphical elements, grouping items, providing precision for overlaps, creating overlays for raster images that aren't vectorized, or for any other purpose where you don't want to rely on the native SVG hit detection for the graphical element. The intention is that these hidden shapes are isolated from the SVG itself, and are defined solely in the JSON metadata;the user agent dynamically generates these and inserts them into the DOM, keeps the source SVG file clean.
+
+
+#### Target shape `fill` and `stroke` #### {#target_shape_fill_stroke}
 
 The `fill` and `stroke` attributes control whether that shape's fill or stroke area of that shape, respectively, must intercept pointer events. If the `fill` attribute is defined, the fill area of the shape must intercept pointer events. If the `stroke` attribute is defined, the stroke area of the shape, with a thickness defined by the `stroke-width` attribute, must intercept pointer events.
 
 If the values of the `fill` or `stroke` attributes are valid color definitions, and a conforming implementation is rendering the overlay shape, the implemention should render that overlay shape with the colors defined.
 
-#### Target shape keys
+#### Target shape keys #### {#target_shape_keys}
 
 A `shapes` block is an array of objects, each of which contains a set of keys representing the shape `element` (the SVG shape element tag name) and the required attributes. The definitive list of shapes is defined by the SVG 2.0 [[SVG2]] specification. All SVG shape elements are valid.
 
@@ -1367,13 +1313,92 @@ A target describing a hexagonal area using the `path` definition and two rectang
 
 For each shape definition, a conforming implementation must instantiate a corresponding shape matching the element type and attributes.
 
-Note: Similar to your implementation, there will indeed be the ability to draw “invisible shapes” over areas of the image. This can be used to create larger hit-detection targets for small or fragmented graphical elements, to “group” things, to provide precision for overlaps, to create overlays for raster images that aren’t vectorized, or for any other purpose where you don’t want to rely on the native SVG hit detection for the graphical element. This behavior is already in the spec, though I need to explain the rationale. The intention is that these hidden shapes would not have to be part of the SVG itself, but are defined in the JSON metadata, and the user agent would dynamically generate these and insert them into the DOM; this keeps the SVG itself clean.
+
+
+
+
+
+
+
+
 
 
 
 # Announcements # {#announcements}
 
 Announcements (or "voicings" or "utterances") are textual statements associated with a user interface element that may be presented to the end user, either as screen reader prompts, braille display, or visual text.
+
+<xmp id='example_announcement_block' highlight='json'>
+{
+  "announcement": {
+  }
+}
+</xmp>
+
+Announcements may be implicit or explicit. Explicit `announcement` blocks must be defined in the top level of the `behavior` object, not in an event block. 
+
+Note: The motivation for separating announcments from other behaviors in deliberate. Announcements are fundamental and universal to all graphical document types, and are intended to be triggered by user-agent-specific mechanisms, while other behaviors are specific to particular graphical documents or document types, and require authorial intent.
+
+## Implicit (default) announcements ## {#implicit_announcements}
+
+By default, a conforming JIM viewer must generate an implicit announcement `name` for any element identified by a `dom` selector that has a valid `json` JSONPath selector that resolves to an endpoint (i.e., a `location` per the JSONPath specification), triggered as for the `enter` event.
+
+For each valid JSONPath endpoint that resolves to a key-value pair, the default announcement must be the text of the value.
+
+For each valid JSONPath endpoint that resolves to an object, the default announcement must be the text of each value that is a direct child of the object, as a comma-separated list.
+
+For each valid JSONPath endpoint that resolves to an wildcard (`*`), the default announcement must be the text of each value that matches the wildcard, as a comma-separated list.
+
+A conforming user agent may allow a user to change the default announcement content to include both the key and the value for any valid endpoint.
+
+
+<div id='xmp_implicit_announcement' class='example'>
+An example of a default implicit announcment based on a `selectors` block. 
+
+In this example, when the user moves the pointer over the SVG element with the `id` of `datapoint-Sunday_2000`, the conforming JIM viewer would announce, "2000, Sunday, 57".
+
+<xmp highlight='json'>
+{
+  "datasets": [
+    {
+      …
+      "series": [
+        {
+          "name": "2000",
+          "type": "column",
+          "records": [
+            {
+              "x": "Sunday",
+              "y": "57"
+            },
+            …
+          ]
+        },
+        …
+      ]
+    }
+  ],
+  "selectors": {
+    "Sunday_2000": {
+      "dom": "#datapoint-Sunday_2000",
+      "json": [
+        "$.datasets[0].series[0].name",
+        "$.datasets[0].series[0].records[0].*"
+      ]
+    },
+    …
+  }
+}
+</xmp>
+</div>
+
+## Explicit announcements ## {#explicit_announcements}
+
+For more control over the content, type, and event triggers of an announcement, the author can include an `announcement` block within a `behavior` block, using one or more [announcement types](#announcement_types).
+
+If an announcement block does not include a `name` announcement type, the implicit `name` announcement must be used.
+
+## Announcement types ## {#announcement_types}
 
 WCAG defines two primary types of announcement: the <b>accessible name</b>; and the <b>accessible description</b>. This specification defines analogs to that convention as <b>announcement name</b> and <b>announcement description</b>, and adds two more types, <b>announcement details</b> and <b>announcement hints</b>.
 
@@ -1424,14 +1449,8 @@ An `announcement` block is an object with the key `announcement`, which contains
   </tbody>
 </table>
 
-<xmp highlight='json'>
-{
-  "announcement": {
-  }
-}
-</xmp>
 
-## Announcement name ## {##announcement_name}
+### Announcement name ### {##announcement_name}
 
 The <b>announcement name</b> is normally short, 1-3 words, and serves two primary purposes:
 
@@ -1439,6 +1458,8 @@ The <b>announcement name</b> is normally short, 1-3 words, and serves two primar
 2. To distinguish the element from other elements in the graphic.
 
 A document conforming to this specification must define an <b>announcement name</b> for all visual elements that convey meaning, unless that element is deliberately excluded (such as to remove redundancy or simplify a graphic).
+
+As noted in the [implicit announcements section](#implicit_announcements), the default announcement name for a meaningful element is defined by the selector structure, and can be overridden in an explicit `announcement` block.
 
 <xmp highlight='json'>
 {
@@ -1448,7 +1469,7 @@ A document conforming to this specification must define an <b>announcement name<
 }
 </xmp>
 
-## Announcement description ## {##announcement_description}
+### Announcement description ### {##announcement_description}
 
 The <b>announcement description</b> is a longer text passage that provides additional information for an element, such as visual or structural details, relationship to other elements, or annotations.
 
@@ -1460,7 +1481,7 @@ The <b>announcement description</b> is a longer text passage that provides addit
 }
 </xmp>
 
-## Announcement detail ## {#announcement_detail}
+### Announcement detail ### {#announcement_detail}
 
 The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.
 
@@ -1472,10 +1493,9 @@ The <b>announcement detail</b> is a longer text passage that provides supplement
 }
 </xmp>
 
-## Announcement hint ## {##announcement_hint}
+### Announcement hint ### {#announcement_hint}
 
 The <b>announcement hint</b> is a text passage (ideally short) that provides instructions for interaction with the graphical element.
-
 
 <xmp highlight='json'>
 {
@@ -1484,6 +1504,74 @@ The <b>announcement hint</b> is a text passage (ideally short) that provides ins
   }
 }
 </xmp>
+
+## Complete announcement example ## {#complete_announcement_example}
+
+<div id='xmp_explicit_announcement' class='example'>
+An example of a default explicit announcment based on a `selectors` block. 
+
+An example of a `selector` block with one selector set object entry, a `behaviors` block with an entry referencing that selector set by its JSONPath, an `announcement` block, and a `haptic` block triggered on an `enter` event.
+
+In this example, when the user moves the pointer over the SVG element with the `id` of `datapoint-Sunday_2000`, the conforming JIM viewer might announce, "2000, Sunday: $57", and play the haptic feedback. If the user requested more information (e.g., with a double-tap, long tap, or simply waiting, depending on the viewer UI), the viewer would announce "This is an increase of $8 over the previous value".
+
+<xmp highlight='json'>
+{
+  "datasets": [
+    {
+      …
+      "series": [
+        {
+          "name": "2000",
+          "type": "column",
+          "records": [
+            {
+              "x": "Sunday",
+              "y": "57"
+            },
+            …
+          ]
+        },
+        …
+      ]
+    }
+  ],
+  "selectors": {
+    "Sunday_2000": {
+      "dom": "#datapoint-Sunday_2000",
+      "json": [
+        "$.datasets[0].series[0].name",
+        "$.datasets[0].series[0].records[0].*"
+      ]
+    },
+    "behaviors": [
+      {
+        "target": {
+          "selector": "$.selectors.Sunday_2000"
+        },
+        "announcement": {
+          "name": "Sunday, 2000: $57",
+          "description": "This is an increase of $8 over the previous value"
+        },
+        "enter": {
+          {
+            "haptic": {
+              "durations": [ 50, 100, 150 ]
+            }
+          }
+        }
+      }
+    ]
+    …
+  }
+}
+</xmp>
+</div>
+
+
+
+
+
+
 
 
 
@@ -1759,6 +1847,112 @@ The `sonification` block dynamically generates audio feedback given the dataset,
 
 
 
+
+
+# Views # {#views}
+
+The `views` block defines an object containing named sets of views of the graphical document. A view is composed of a `viewport` key and a set of selectors and style definitions states, along with a name and description of the view.
+
+If a JIM document includes views, a conforming JIM viewer should provide an affordance to enable an end user to select among those views, and adjust the digital document accordingly. The view selection affordance must include a way to return to the default initial implicit view.
+
+The `styles` block contains style definition states, composed of a DOM selector key which has a value of an object, containing style property names and values. A conforming JIM viewer must apply these styles via CSS when the view is active, and must revert to the document defaults for those style properties when the view is not active.
+
+Note: A JIM view is similar to, but more expansive than, an SVG `<view>` element. Both define a viewport (`viewBox` in SVG), but SVG does not define styling for views.
+
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`viewport`</td>
+      <td>object</td>
+      <td>An object defining the `x`, `y`, `width`, and `height` of the viewport</td>
+      <td>optional</td>
+    </tr>
+    <tr>
+      <td>`styles`</td>
+      <td>object</td>
+      <td>An object defining the `selector` key, which has an object with the style properties</td>
+      <td>optional</td>
+    </tr>
+    <!--
+    <tr>
+      <td>`json`</td>
+      <td>A string of a valid JSONPath selector, or an array of strings of a valid JSONPath selectors</td>
+      <td>The JSONPath selector or selectors indicating a JIM key or set of JIM keys that is basis for the DOM representation.</td>
+      <td>required</td>
+    </tr>
+    <tr>
+      <td>`note`</td>
+      <td>non-empty string</td>
+      <td>A human-readable description of what the selector set represents. This is informational only.</td>
+      <td>optional</td>
+    </tr>
+    -->
+  </tbody>
+</table>
+
+<xmp highlight='json'>
+{
+  "views": {
+    "state-nc": {
+      "name": "North Carolina",
+      "description": "The US state of North Carolina, with counties and major cities",
+      "viewport": {
+        "x": "279",
+        "y": "90",
+        "width": "60",
+        "height": "80"
+      },
+      "styles": {
+        ".county": {
+          "display": "inline"
+        },
+        ".city": {
+          "display": "inline",
+          "fill": "purple"
+        },
+        "text": {
+          "display": "inline"
+        } 
+      }
+    }
+  }
+}
+</xmp>
+
+
+
+<!--
+### The `selectors` block data ### {#selectors_block}
+
+The `selectors` block is an object containing named sets of selectors.  
+
+The `selectors` object contains one or more `[selector-string]` keys. A `[selector-string]` key may be any value allowed by the schema for the representation type, and will normally represent a human-readable identifier for the selector set (e.g. `"title"`, `"bar-3"`, or `"axis_labels"`). Each `[selector-string]` is the key to an object which defines the DOM selectors, JSONPath selectors, and optional descriptor for the selector set.
+
+These `[selector-string]` keys must consist of a string of ASCII letters, digits, and '_', and '-', with no whitespace. Each `[selector-string]` key must be a unique value.
+
+-->
+
+
+
+
+
 # Selective Device Capabilities # {#select_device}
 
 All devices, including assistive technology devices, have specific capabilities distinct from other similar devices. Some of those capabilities require specific changes to a graphical document's appearance, such as hiding or showing certain objects or layers to simplify a document for embossing vs printing, or rendering a thicker stroke on shapes so there's a larger "hit box" for haptics.
@@ -1814,9 +2008,9 @@ TODO: Define and describe mechanisms for setting layers on objects (e.g. print o
 
 ## Object Search Capabilities ## {#object_search_capabilities}
 
-For touch screen and similar devices, by way of aiding the user's orientation withi a graphic document, a conforming reader should provide a means to guide an end user to any target object (that is, any object with a selector, accessible name, or text content) in the graphic document. 
+For touch screen and similar devices, by way of aiding the user's orientation withi a graphic document, a conforming JIM viewer should provide a means to guide an end user to any target object (that is, any object with a selector, accessible name, or text content) in the graphic document. 
 
-The means that the conforming reader uses to guide the user may vary. At the minimum, the reader should allow the end user to chose any target object from a list of all available target objects, and provide verbal, auditory, or haptic cues that guides the end user from their current pointer position to the chosen target object. 
+The means that the conforming JIM viewer uses to guide the user may vary. At the minimum, the viewer should allow the end user to chose any target object from a list of all available target objects, and provide verbal, auditory, or haptic cues that guides the end user from their current pointer position to the chosen target object. 
 
 
 # Relationship to other technologies # {#tech_relationship}
@@ -1910,7 +2104,7 @@ By enabling security through declarative behaviors, this specification ensures t
 
 Data visualizations can often lose their association with their context, including the article they were published in or the data they represent. This specification must define a way to include the raw data and the provenance in the image file, so the context can be preserved as the document is shared through various means.
 
-## Reuseability ## {#reuseability}
+## Reusability ## {##reusability}
 
 This specification should include a versatile way to include the raw data, or a link to it, in the data visualization file that represents it. By doing this, other authors are empowered to extract the data, create different representations, mix the data with other datasets, subset the data, verify the accuracy of the representation, and otherwise practice good data science.
 
