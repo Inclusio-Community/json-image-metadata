@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version be42ac8f6, updated Mon Dec 22 21:45:05 2025 +0000" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="b0e2462e82583f1ed43c74ed22d05c216956b16f" name="revision">
+  <meta content="f37476e1e735f9f61ad89715aa0f15b9e8e230ac" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2028,7 +2028,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd class="editor h-card p-author vcard"><a class="email fn p-name u-email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="org p-org" href="http://fizz.studio">Fizz Studio</a>)
      <dd class="editor h-card p-author vcard"><a class="email fn p-name u-email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="org p-org" href="http://fizz.studio">Fizz Studio</a>)
      <dt>Semantic Version:
-     <dd>1.0.1
+     <dd>1.0.2
     </dl>
    </div>
    <div data-fill-with="warning"></div>
@@ -2079,8 +2079,8 @@ Parts of this work may be from another specification document.  If so, those par
       <li><a href="#jim_block"><span class="secno">3.1</span> <span class="content"><code>jim</code> block</span></a>
       <li><a href="#extensions_block"><span class="secno">3.2</span> <span class="content"><code>extensions</code> block</span></a>
       <li><a href="#unknown_blocks"><span class="secno">3.3</span> <span class="content">Unknown blocks and forward compatibility</span></a>
-      <li><a href="#root-form-and-enveloped-form-compatibility"><span class="secno">3.4</span> <span class="content">Root form and enveloped form compatibility</span></a>
-      <li><a href="#examples"><span class="secno">3.5</span> <span class="content">Examples</span></a>
+      <li><a href="#root_envelope_compat"><span class="secno">3.4</span> <span class="content">Root form and enveloped form compatibility</span></a>
+      <li><a href="#root_envelope_examples"><span class="secno">3.5</span> <span class="content">Root form and enveloped form examples</span></a>
      </ol>
     <li>
      <a href="#jim_block_defs"><span class="secno">4</span> <span class="content">JIM block definitions</span></a>
@@ -2312,7 +2312,11 @@ Parts of this work may be from another specification document.  If so, those par
    <p>This specification uses familiar technologies such as JSON and CSS Selectors, for ease of implementation and authoring.</p>
    <h2 class="heading settled" data-level="2" id="jim_conformance"><span class="secno">2. </span><span class="content">JIM Conformance</span><a class="self-link" href="#jim_conformance"></a></h2>
    <h3 class="heading settled" data-level="2.1" id="mime_type"><span class="secno">2.1. </span><span class="content">JIM MIME type</span><a class="self-link" href="#mime_type"></a></h3>
-   <p>The MIME type for a JSON Image Metadata document is <code>application/jim+json</code>.</p>
+   <p>JIM documents are JSON texts and are encoded as UTF-8 JSON.</p>
+   <p>When a JSON Image Metadata (JIM) document is exchanged as a standalone resource (for example, as an HTTP response body or as a sidecar file), the intended media type is:</p>
+   <p><code>application/jim+json</code></p>
+   <p>JSON processing implementations that do not recognize the <code>application/jim+json</code> media type may treat JIM content as <code>application/json</code>.</p>
+   <p>This specification does not yet register application/jim+json with IANA. A future revision of this specification is expected to request formal registration of this media type.</p>
    <h3 class="heading settled" data-level="2.2" id="conform_version"><span class="secno">2.2. </span><span class="content">Version conformance</span><a class="self-link" href="#conform_version"></a></h3>
    <p>This specification defines a <a href="https://semver.org/">semantic version</a> [Semantic Versioning 2.0.0].</p>
    <p>A document conforming to this specification should specify the version number of the specification to which it conforms, in the <code>jim</code> key of the <code>version</code> block.</p>
@@ -2364,13 +2368,13 @@ Note that version 0.3.0 of this specification is the first version to use Semant
     <li data-md>
      <p>unknown blocks within the JIM object.</p>
    </ul>
-   <h3 class="heading settled" data-level="3.4" id="root-form-and-enveloped-form-compatibility"><span class="secno">3.4. </span><span class="content">Root form and enveloped form compatibility</span><a class="self-link" href="#root-form-and-enveloped-form-compatibility"></a></h3>
+   <h3 class="heading settled" data-level="3.4" id="root_envelope_compat"><span class="secno">3.4. </span><span class="content">Root form and enveloped form compatibility</span><a class="self-link" href="#root_envelope_compat"></a></h3>
    <p>Comforming JIM implementations must accept both forms.</p>
    <p>A document is in the enveloped form if and only if the JSON root contains a <code>jim</code> block whose value is a JSON object.</p>
    <p>If a document contains a <code>jim</code> block at the root, the <code>jim</code> object is authoritative for JIM-defined blocks. Generators must not duplicate JIM-defined items both at the document root and inside <code>jim</code>. If a consumer encounters such duplication, it must treat the document as invalid under this specification.</p>
-   <h3 class="heading settled" data-level="3.5" id="examples"><span class="secno">3.5. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h3>
+   <h3 class="heading settled" data-level="3.5" id="root_envelope_examples"><span class="secno">3.5. </span><span class="content">Root form and enveloped form examples</span><a class="self-link" href="#root_envelope_examples"></a></h3>
    <p>Root form:</p>
-<pre class="highlight language-json"><c- p>{</c->
+<pre class="highlight"><c- p>{</c->
  <c- f>"datasets"</c-><c- p>:</c-> <c- p>{</c->
     …
   <c- p>},</c->
@@ -2383,7 +2387,7 @@ Note that version 0.3.0 of this specification is the first version to use Semant
 <c- p>}</c->
 </pre>
    <p>Enveloped form:</p>
-<pre class="highlight language-json"><c- p>{</c->
+<pre class="highlight"><c- p>{</c->
   <c- f>"jim"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"datasets"</c-><c- p>:</c-> <c- p>{</c->
       …

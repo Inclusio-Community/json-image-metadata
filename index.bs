@@ -3,7 +3,7 @@ Title: JSON Image Metadata
 Shortname: jim
 Level: 1
 Status: fido/ED
-!Semantic Version: 1.0.1
+!Semantic Version: 1.0.2
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
 Editor: Doug Schepers, Fizz Studio http://fizz.studio, doug@fizz.studio
@@ -47,7 +47,16 @@ T: */
 
 ## JIM MIME type ## {#mime_type}
 
-The MIME type for a JSON Image Metadata document is `application/jim+json`.
+JIM documents are JSON texts and are encoded as UTF-8 JSON.
+
+When a JSON Image Metadata (JIM) document is exchanged as a standalone resource (for example, as an HTTP response body or as a sidecar file), the intended media type is:
+
+`application/jim+json`
+
+JSON processing implementations that do not recognize the `application/jim+json` media type may treat JIM content as `application/json`.
+
+This specification does not yet register application/jim+json with IANA. A future revision of this specification is expected to request formal registration of this media type.
+
 
 ## Version conformance ## {#conform_version}
 
@@ -132,7 +141,7 @@ Processors must ignore any JSON object blocks they do not recognize, except wher
 * unknown blocks at the envelope root (including future envelope blocks), and
 * unknown blocks within the JIM object.
 
-## Root form and enveloped form compatibility
+## Root form and enveloped form compatibility ## {#root_envelope_compat}
 
 Comforming JIM implementations must accept both forms.
 
@@ -140,11 +149,11 @@ A document is in the enveloped form if and only if the JSON root contains a `jim
 
 If a document contains a `jim` block at the root, the `jim` object is authoritative for JIM-defined blocks. Generators must not duplicate JIM-defined items both at the document root and inside `jim`. If a consumer encounters such duplication, it must treat the document as invalid under this specification.
 
-## Examples
+## Root form and enveloped form examples ## {#root_envelope_examples}
 
 Root form:
 
-```json
+<xmp highlight='json'>
 {
  "datasets": {
     …
@@ -156,11 +165,11 @@ Root form:
     …
   }
 }
-```
+</xmp>
 
 Enveloped form:
 
-```json
+<xmp highlight='json'>
 {
   "jim": {
     "datasets": {
@@ -181,7 +190,8 @@ Enveloped form:
     }
   }
 }
-```
+</xmp>
+
 
 
 
