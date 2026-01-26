@@ -3,7 +3,7 @@ Title: JSON Image Metadata
 Shortname: jim
 Level: 1
 Status: fido/ED
-!Semantic Version: 1.0.0
+!Semantic Version: 1.0.1
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
 Editor: Doug Schepers, Fizz Studio http://fizz.studio, doug@fizz.studio
@@ -90,11 +90,105 @@ A conforming implementation must provide a means for the end user to extract the
 
 A conforming implementation must resolve all selectors and execute all supported features of the `behaviors` block.
 
+### Classes of Conforming implementation ## {#conform_imp_classes}
 
-# Schema # {#schema} 
+This specification defines multiple classes of conforming implementations. A conforming implementation must satisfy the requirements of at least one defined class. An implementation may claim conformance to multiple classes if it meets the requirements of each.
+
+This specification defines requirements for conforming implementations that produce, consume, or process JSON Image Metadata (JIM). A conforming implementation must satisfy the requirements of at least one conformance class defined in this section. An implementation may claim conformance to multiple classes if it meets the requirements of each.
+
+Conformance does not imply any guarantees of content quality, accessibility outcomes, pedagogical suitability, or fitness for a particular purpose. Conformance solely indicates adherence to the interoperability requirements defined in this specification.
+
+
+
+# JIM metadata structure and forms ## {#jim_structure_forms}
+
+A JIM document may be represented either as a "root form" document (where JIM-defined blocks appear at the JSON root) or as an "enveloped form" document (where JIM-defined blocks appear under a nested `jim` block). Both forms represent the same conceptual information model.
+
+The enveloped form separates normative JIM metadata (`jim`) from optional non-JIM metadata (`extensions`). This separation makes trust boundaries explicit, supports vendor innovation without affecting conformance, and enables audit mechanisms to target the JIM-defined information model without binding unrelated metadata.
+
+When using the enveloped form, the JSON document root is an envelope object that may contain the following blocks:
+
+* `jim`: a JSON object containing all JIM-defined blocks and values.
+* `extensions`: a JSON object containing non-JIM metadata that is explicitly out of scope for this specification.
+
+Unless otherwise stated, all requirements and definitions in this specification that apply to "the JIM object" apply to the value of the `jim` block when the enveloped form is used, and apply to the JSON document root when the root form is used.
+
+## `jim` block ## {#jim_block}
+
+In the enveloped form, the `jim` block must be present and its value must be a JSON object. The `jim` object contains only blocks defined by this specification (or future revisions thereof). Generators must not place extension-only metadata inside the `jim` object.
+
+## `extensions` block ## {#extensions_block}
+
+If present, the `extensions` block must be a JSON object. The `extensions` object is reserved for metadata not defined by this specification. The semantics and validation of extension blocks are outside the scope of JIM.
+
+Keys within `extensions` should be collision-resistant namespace identifiers (for example, reverse-DNS identifiers or absolute URIs). The value associated with each namespaced key should be a JSON object.
+
+JIM processors must ignore `extensions` for the purposes of JIM conformance and semantic interpretation. JIM processors must not treat extension metadata as overriding, redefining, or contradicting JIM-defined semantics.
+
+## Unknown blocks and forward compatibility ## {#unknown_blocks}
+
+Processors must ignore any JSON object blocks they do not recognize, except where this specification explicitly defines error handling for a particular block. This requirement applies both to:
+
+* unknown blocks at the envelope root (including future envelope blocks), and
+* unknown blocks within the JIM object.
+
+## Root form and enveloped form compatibility
+
+Comforming JIM implementations must accept both forms.
+
+A document is in the enveloped form if and only if the JSON root contains a `jim` block whose value is a JSON object.
+
+If a document contains a `jim` block at the root, the `jim` object is authoritative for JIM-defined blocks. Generators must not duplicate JIM-defined items both at the document root and inside `jim`. If a consumer encounters such duplication, it must treat the document as invalid under this specification.
+
+## Examples
+
+Root form:
+
+```json
+{
+ "datasets": {
+    …
+  },
+  "selectors": {
+    …
+  },
+  "behaviors": {
+    …
+  }
+}
+```
+
+Enveloped form:
+
+```json
+{
+  "jim": {
+    "datasets": {
+      …
+    },
+    "selectors": {
+      …
+    },
+    "behaviors": {
+      …
+    }
+  },
+  "extensions": {
+    "org.example.charts": {
+      "settings": { 
+        "sonification-enabled": true 
+      }
+    }
+  }
+}
+```
+
+
+
+# JIM block definitions # {#jim_block_defs} 
 
 <div class='note'>
-Note that the examples below are notional, and intended for illustrative purposes. They are not a formal definition. The final definitions will be expressed in JSON Schema [[JSON-Schema]], and will include data types for each member.
+Note that the examples below are notional, and intended for illustrative purposes. They are not a formal definition. The final definitions will be expressed in JSON Schema [[JSON-Schema]], and will include data types for each block.
 </div>
 
 This vocabulary is defined in terms of "blocks", or objects identified by a key with a defined set of optional sub-keys. This includes the `datasets`, `provenance`, `tags`, and `behaviors` blocks.
@@ -159,7 +253,7 @@ Valid examples of data supersets include (but are not limited to):
 
 #### Synchronizing datasets and representations #### {#dataset_sync}
 
-Conforming authoring tools, including any software that enables editing of graphics or data, must ensure that any changes to the graphics that represent data are also changed in the corresponding data, that any changes to the data are also changed in the corresponding graphics, and that any relevant selectors still yoke the corresponding data and representation.  
+Conforming authoring tools, including any software that enables editing of graphics or data, must ensure that any changes to the graphics that represent data are also changed in the corresponding data, that any changes to the data are also changed in the corresponding graphics, and that any relevant selectors still bind the corresponding data and representation.  
 
 #### Conforming misrepresentation of datasets #### {#misrepresent}
 
@@ -558,7 +652,7 @@ In order to identify and link between the DOM of an SVG document and the JSON me
 
 CSS Selectors [[Selectors-4]] enables the matching of DOM nodes, such as graphical or textual elements.
 
-JSONPath [[JSONPath]] enables the matching of JSON keys or values in the JSON metadata.
+JSONPath [[JSONPath]] enables the matching of JSON keys or values in the JSON metadata. Conforming implementations must implement JSONPath (RFC 9535) semantics.
 
 > TODO: include more details about linking
 
