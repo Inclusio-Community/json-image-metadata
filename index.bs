@@ -3,7 +3,7 @@ Title: JSON Image Metadata
 Shortname: jim
 Level: 1
 Status: fido/ED
-!Semantic Version: 1.0.2
+!Semantic Version: 1.0.3
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
 Editor: Doug Schepers, Fizz Studio http://fizz.studio, doug@fizz.studio
@@ -103,13 +103,14 @@ A conforming implementation must resolve all selectors and execute all supported
 
 This specification defines multiple classes of conforming implementations. A conforming implementation must satisfy the requirements of at least one defined class. An implementation may claim conformance to multiple classes if it meets the requirements of each.
 
-This specification defines requirements for conforming implementations that produce, consume, or process JSON Image Metadata (JIM). A conforming implementation must satisfy the requirements of at least one conformance class defined in this section. An implementation may claim conformance to multiple classes if it meets the requirements of each.
+This specification defines requirements for conforming implementations that generate, consume, or process JSON Image Metadata (JIM). A conforming implementation must satisfy the requirements of at least one conformance class defined in this section. An implementation may claim conformance to multiple classes if it meets the requirements of each.
 
 Conformance does not imply any guarantees of content quality, accessibility outcomes, pedagogical suitability, or fitness for a particular purpose. Conformance solely indicates adherence to the interoperability requirements defined in this specification.
 
+> TODO: define conformance classes
 
 
-# JIM metadata structure and forms ## {#jim_structure_forms}
+# JIM metadata structure and forms # {#jim_structure_forms}
 
 A JIM document may be represented either as a "root form" document (where JIM-defined blocks appear at the JSON root) or as an "enveloped form" document (where JIM-defined blocks appear under a nested `jim` block). Both forms represent the same conceptual information model.
 
@@ -604,12 +605,6 @@ The `series` object contains one or more objects, each of which contains one or 
       <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
     <tr>
-      <td>`type`</td>
-      <td>non-empty string</td>
-      <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the `chartType` key of the `representation` block of the parent `datasets`</td>
-      <td>optional for unstructured data, required for structured and semi-structured data</td>
-    </tr>
-    <tr>
       <td>`records`</td>
       <td>array</td>
       <td>The raw data values for each facet of each record of this series</td>
@@ -622,10 +617,6 @@ The `series` object contains one or more objects, each of which contains one or 
 #### The `name` key #### {#series_name_data_block}
 
 The `name` key has a value that is a string that is the name for this series, normally used as the series label.
-
-#### The `type` key #### {#series_type_data_block}
-
-The `type` key has a value that is a string defining the type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the `chartType` key of the `representation` block of the parent `datasets`.
 
 #### The `records` key #### {#series_records_data_block}
 
@@ -1585,14 +1576,14 @@ The <b>announcement description</b> is a longer text passage that provides addit
 }
 </xmp>
 
-### Announcement detail ### {#announcement_detail}
+### Announcement details ### {#announcement_details}
 
-The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.
+The <b>announcement details</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.
 
 <xmp highlight='json'>
 {
   "announcement": {
-    "detail": "supplemental information for element interaction"
+    "details": "supplemental information for element interaction"
   }
 }
 </xmp>

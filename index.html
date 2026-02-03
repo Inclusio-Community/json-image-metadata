@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version be42ac8f6, updated Mon Dec 22 21:45:05 2025 +0000" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="f37476e1e735f9f61ad89715aa0f15b9e8e230ac" name="revision">
+  <meta content="7d9e7ceb9611f883e2f6cec19610c4cc09d1995a" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2017,7 +2017,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p data-fill-with="logo"></p>
    <h1 class="no-ref p-name" id="title">JSON Image Metadata</h1>
    <h2 class="heading no-num no-ref no-toc settled" id="profile-and-date"><span class="content">Editor’s Draft,
-    <time class="dt-updated" datetime="2026-01-26">26 January 2026</time></span></h2>
+    <time class="dt-updated" datetime="2026-02-02">2 February 2026</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2028,14 +2028,14 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd class="editor h-card p-author vcard"><a class="email fn p-name u-email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="org p-org" href="http://fizz.studio">Fizz Studio</a>)
      <dd class="editor h-card p-author vcard"><a class="email fn p-name u-email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="org p-org" href="http://fizz.studio">Fizz Studio</a>)
      <dt>Semantic Version:
-     <dd>1.0.2
+     <dd>1.0.3
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 26 January 2026,
+In addition, as of 2 February 2026,
 the editors have made this specification available under the
 <a href="https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0.
@@ -2074,7 +2074,7 @@ Parts of this work may be from another specification document.  If so, those par
        </ol>
      </ol>
     <li>
-     <a href="#jim_structure_forms"><span class="secno">3</span> <span class="content">JIM metadata structure and forms #</span></a>
+     <a href="#jim_structure_forms"><span class="secno">3</span> <span class="content">JIM metadata structure and forms</span></a>
      <ol class="toc">
       <li><a href="#jim_block"><span class="secno">3.1</span> <span class="content"><code>jim</code> block</span></a>
       <li><a href="#extensions_block"><span class="secno">3.2</span> <span class="content"><code>extensions</code> block</span></a>
@@ -2120,10 +2120,9 @@ Parts of this work may be from another specification document.  If so, those par
          <a href="#series_data_block"><span class="secno">4.1.9</span> <span class="content">The <code>series</code> key</span></a>
          <ol class="toc">
           <li><a href="#series_name_data_block"><span class="secno">4.1.9.1</span> <span class="content">The <code>name</code> key</span></a>
-          <li><a href="#series_type_data_block"><span class="secno">4.1.9.2</span> <span class="content">The <code>type</code> key</span></a>
-          <li><a href="#series_records_data_block"><span class="secno">4.1.9.3</span> <span class="content">The <code>records</code> key</span></a>
-          <li><a href="#items_data_block"><span class="secno">4.1.9.4</span> <span class="content">The <code>items</code> key</span></a>
-          <li><a href="#source_data_block"><span class="secno">4.1.9.5</span> <span class="content">The <code>source</code> key</span></a>
+          <li><a href="#series_records_data_block"><span class="secno">4.1.9.2</span> <span class="content">The <code>records</code> key</span></a>
+          <li><a href="#items_data_block"><span class="secno">4.1.9.3</span> <span class="content">The <code>items</code> key</span></a>
+          <li><a href="#source_data_block"><span class="secno">4.1.9.4</span> <span class="content">The <code>source</code> key</span></a>
          </ol>
         <li><a href="#href_data_block"><span class="secno">4.1.10</span> <span class="content">The <code>href</code> key in a <code>datasets</code> block</span></a>
        </ol>
@@ -2205,7 +2204,7 @@ Parts of this work may be from another specification document.  If so, those par
        <ol class="toc">
         <li><a href="##announcement_name"><span class="secno">6.3.1</span> <span class="content">Announcement name</span></a>
         <li><a href="##announcement_description"><span class="secno">6.3.2</span> <span class="content">Announcement description</span></a>
-        <li><a href="#announcement_detail"><span class="secno">6.3.3</span> <span class="content">Announcement detail</span></a>
+        <li><a href="#announcement_details"><span class="secno">6.3.3</span> <span class="content">Announcement details</span></a>
         <li><a href="#announcement_hint"><span class="secno">6.3.4</span> <span class="content">Announcement hint</span></a>
        </ol>
       <li><a href="#complete_announcement_example"><span class="secno">6.4</span> <span class="content">Complete announcement example</span></a>
@@ -2341,9 +2340,12 @@ Note that version 0.3.0 of this specification is the first version to use Semant
    <p>A conforming implementation must resolve all selectors and execute all supported features of the <code>behaviors</code> block.</p>
    <h4 class="heading settled" data-level="2.4.1" id="conform_imp_classes"><span class="secno">2.4.1. </span><span class="content">Classes of Conforming implementation ## {#conform_imp_classes}</span><a class="self-link" href="#conform_imp_classes"></a></h4>
    <p>This specification defines multiple classes of conforming implementations. A conforming implementation must satisfy the requirements of at least one defined class. An implementation may claim conformance to multiple classes if it meets the requirements of each.</p>
-   <p>This specification defines requirements for conforming implementations that produce, consume, or process JSON Image Metadata (JIM). A conforming implementation must satisfy the requirements of at least one conformance class defined in this section. An implementation may claim conformance to multiple classes if it meets the requirements of each.</p>
+   <p>This specification defines requirements for conforming implementations that generate, consume, or process JSON Image Metadata (JIM). A conforming implementation must satisfy the requirements of at least one conformance class defined in this section. An implementation may claim conformance to multiple classes if it meets the requirements of each.</p>
    <p>Conformance does not imply any guarantees of content quality, accessibility outcomes, pedagogical suitability, or fitness for a particular purpose. Conformance solely indicates adherence to the interoperability requirements defined in this specification.</p>
-   <h2 class="heading settled" data-level="3" id="jim_structure_forms"><span class="secno">3. </span><span class="content">JIM metadata structure and forms #</span><a class="self-link" href="#jim_structure_forms"></a></h2>
+   <blockquote>
+    <p>TODO: define conformance classes</p>
+   </blockquote>
+   <h2 class="heading settled" data-level="3" id="jim_structure_forms"><span class="secno">3. </span><span class="content">JIM metadata structure and forms</span><a class="self-link" href="#jim_structure_forms"></a></h2>
    <p>A JIM document may be represented either as a "root form" document (where JIM-defined blocks appear at the JSON root) or as an "enveloped form" document (where JIM-defined blocks appear under a nested <code>jim</code> block). Both forms represent the same conceptual information model.</p>
    <p>The enveloped form separates normative JIM metadata (<code>jim</code>) from optional non-JIM metadata (<code>extensions</code>). This separation makes trust boundaries explicit, supports vendor innovation without affecting conformance, and enables audit mechanisms to target the JIM-defined information model without binding unrelated metadata.</p>
    <p>When using the enveloped form, the JSON document root is an envelope object that may contain the following blocks:</p>
@@ -2727,11 +2729,6 @@ An example of a <code>facets</code> block with two <code>[facet-string]</code> o
       <td>The name for this series, normally used as the series label
       <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
-      <td><code>type</code>
-      <td>non-empty string
-      <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>datasets</code>
-      <td>optional for unstructured data, required for structured and semi-structured data
-     <tr>
       <td><code>records</code>
       <td>array
       <td>The raw data values for each facet of each record of this series
@@ -2739,15 +2736,13 @@ An example of a <code>facets</code> block with two <code>[facet-string]</code> o
    </table>
    <h5 class="heading settled" data-level="4.1.9.1" id="series_name_data_block"><span class="secno">4.1.9.1. </span><span class="content">The <code>name</code> key</span><a class="self-link" href="#series_name_data_block"></a></h5>
    <p>The <code>name</code> key has a value that is a string that is the name for this series, normally used as the series label.</p>
-   <h5 class="heading settled" data-level="4.1.9.2" id="series_type_data_block"><span class="secno">4.1.9.2. </span><span class="content">The <code>type</code> key</span><a class="self-link" href="#series_type_data_block"></a></h5>
-   <p>The <code>type</code> key has a value that is a string defining the type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>datasets</code>.</p>
-   <h5 class="heading settled" data-level="4.1.9.3" id="series_records_data_block"><span class="secno">4.1.9.3. </span><span class="content">The <code>records</code> key</span><a class="self-link" href="#series_records_data_block"></a></h5>
+   <h5 class="heading settled" data-level="4.1.9.2" id="series_records_data_block"><span class="secno">4.1.9.2. </span><span class="content">The <code>records</code> key</span><a class="self-link" href="#series_records_data_block"></a></h5>
    <p>The <code>records</code> block contains the raw data values for each facet of each record of this series.</p>
    <p>The <code>series</code> array contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
-   <h5 class="heading settled" data-level="4.1.9.4" id="items_data_block"><span class="secno">4.1.9.4. </span><span class="content">The <code>items</code> key</span><a class="self-link" href="#items_data_block"></a></h5>
+   <h5 class="heading settled" data-level="4.1.9.3" id="items_data_block"><span class="secno">4.1.9.3. </span><span class="content">The <code>items</code> key</span><a class="self-link" href="#items_data_block"></a></h5>
    <p>A loosely organized collection of items for unstructured data, such as labels, values, and descriptions for diagrams.</p>
    <p>TODO: describe the <code>items</code> object</p>
-   <h5 class="heading settled" data-level="4.1.9.5" id="source_data_block"><span class="secno">4.1.9.5. </span><span class="content">The <code>source</code> key</span><a class="self-link" href="#source_data_block"></a></h5>
+   <h5 class="heading settled" data-level="4.1.9.4" id="source_data_block"><span class="secno">4.1.9.4. </span><span class="content">The <code>source</code> key</span><a class="self-link" href="#source_data_block"></a></h5>
    <p>The provenance of the dataset.</p>
    <p>TODO: describe the <code>source</code> object</p>
    <h4 class="heading settled" data-level="4.1.10" id="href_data_block"><span class="secno">4.1.10. </span><span class="content">The <code>href</code> key in a <code>datasets</code> block</span><a class="self-link" href="#href_data_block"></a></h4>
@@ -3451,11 +3446,11 @@ An example of a default implicit announcment based on a <code>selectors</code> b
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h4 class="heading settled" data-level="6.3.3" id="announcement_detail"><span class="secno">6.3.3. </span><span class="content">Announcement detail</span><a class="self-link" href="#announcement_detail"></a></h4>
-   <p>The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.</p>
+   <h4 class="heading settled" data-level="6.3.3" id="announcement_details"><span class="secno">6.3.3. </span><span class="content">Announcement details</span><a class="self-link" href="#announcement_details"></a></h4>
+   <p>The <b>announcement details</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"announcement"</c-><c- p>:</c-> <c- p>{</c->
-    <c- f>"detail"</c-><c- p>:</c-> <c- u>"supplemental information for element interaction"</c->
+    <c- f>"details"</c-><c- p>:</c-> <c- u>"supplemental information for element interaction"</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
