@@ -828,6 +828,12 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
       <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
     <tr>
+      <td>`datatype`</td>
+      <td>non-empty string</td>
+      <td>The data type of the facet. Allowed values are: `string`, `number`, `boolean`, and `date`</td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
+    </tr>
+    <tr>
       <td>`variableType`</td>
       <td>string</td>
       <td>The type of measure for that facet. Allowed values are: `independent` and `dependent`</td>
@@ -839,14 +845,6 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
       <td>In any given facet, what the scale of measure for that facet is. Allowed values are: `nominal`, `ordinal`, `interval`, or `ratio`</td>
       <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
-    <!--
-    <tr>
-      <td>`datatype`</td>
-      <td>non-empty string</td>
-      <td></td>
-      <td>optional for unstructured data, required for structured and semi-structured data</td>
-    </tr>
-    -->
     <tr>
       <td>`units`</td>
       <td>non-empty string</td>
@@ -861,6 +859,71 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
     </tr>
   </tbody>
 </table>
+
+
+#### The `datatype` key #### {#datatype}
+
+A facet object may include a `datatype` member. When present, `datatype` must be a string identifying the semantic type used to interpret facet values.
+
+The value of `datatype` defines how facet values are interpreted for the purposes of comparison, ordering, filtering, and validation. Implementations must apply the semantics defined by the declared `datatype` when evaluating facet behavior. `datatype` is normative and is not merely a presentation hint.
+
+If `datatype` is not present, implementations must treat facet values as having the `"string"` datatype.
+
+##### core datatype values ##### {#datatype_values}
+
+A conforming implementation must recognize and support the following core datatype values:
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      value
+      </th>
+      <th>
+      description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`string`</td>
+      <td>Facet values are interpreted as Unicode strings and compared using code point-based lexical ordering.</td>
+    </tr>
+    <tr>
+      <td>`number`</td>
+      <td>Facet values are interpreted as numeric values. Implementations must attempt to parse values as finite real numbers. Comparison and ordering must be numeric rather than lexical.</td>
+    </tr>
+    <tr>
+      <td>`boolean`</td>
+      <td>Facet values are interpreted as boolean values. Implementations must recognize `true` and `false`. Other values must be treated as invalid.</td>
+    </tr>
+    <tr>
+      <td>`date`</td>
+      <td>Facet values are interpreted as temporal values. Implementations must parse values using a well-defined, implementation-documented date or date-time format and must compare values according to their temporal ordering.</td>
+    </tr>
+  </tbody>
+</table>
+  
+##### value coercion and validity ##### {#datatype_coercion}
+
+When evaluating facet values, implementations may perform type coercion consistent with the declared `datatype`. If coercion fails, the value must be treated as invalid for the purposes of facet evaluation.
+
+Invalid, missing, or unparsable values must not cause evaluation failure of the containing facet. Such values may be ignored, grouped separately, or surfaced as warnings, but implementations must behave consistently for a given `datatype`.
+
+##### extensibility ##### {#datatype_extensibility}
+
+Implementations may support additional, non-core `datatype` values. Unknown `datatype` values must not cause a facet to be rejected. If an implementation does not recognize a declared `datatype`, it must treat facet values as having the `"string"` datatype.
+
+Specifications or profiles may define additional datatypes and their associated semantics.
+
+##### conformance ##### {#datatype_conformance}
+
+A conforming implementation must apply the semantics defined by the declared `datatype` when the value is recognized. An implementation that ignores a recognized `datatype` when evaluating facet behavior does not conform to this specification.
+
+
+
+
+
 
 ### The `series` key ### {#series_data_block}
 

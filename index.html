@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version be42ac8f6, updated Mon Dec 22 21:45:05 2025 +0000" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="0744b2675d660e837cb132147474a4f9275c2d3d" name="revision">
+  <meta content="63747b734fa22d9c42f1d83e353513cc3e6fa42a" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2123,6 +2123,14 @@ Parts of this work may be from another specification document.  If so, those par
          <a href="#facets_data_block"><span class="secno">4.1.8</span> <span class="content">The <code>facets</code> key</span></a>
          <ol class="toc">
           <li><a href="#facetstring_data_block"><span class="secno">4.1.8.1</span> <span class="content">The <code>[facet-string]</code> key</span></a>
+          <li>
+           <a href="#datatype"><span class="secno">4.1.8.2</span> <span class="content">The <code>datatype</code> key</span></a>
+           <ol class="toc">
+            <li><a href="#datatype_values"><span class="secno">4.1.8.2.1</span> <span class="content">core datatype values</span></a>
+            <li><a href="#datatype_coercion"><span class="secno">4.1.8.2.2</span> <span class="content">value coercion and validity</span></a>
+            <li><a href="#datatype_extensibility"><span class="secno">4.1.8.2.3</span> <span class="content">extensibility</span></a>
+            <li><a href="#datatype_conformance"><span class="secno">4.1.8.2.4</span> <span class="content">conformance</span></a>
+           </ol>
          </ol>
         <li>
          <a href="#series_data_block"><span class="secno">4.1.9</span> <span class="content">The <code>series</code> key</span></a>
@@ -2896,6 +2904,11 @@ An example of a <code>facets</code> block with two <code>[facet-string]</code> o
       <td>The title for the facet
       <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
+      <td><code>datatype</code>
+      <td>non-empty string
+      <td>The data type of the facet. Allowed values are: <code>string</code>, <code>number</code>, <code>boolean</code>, and <code>date</code>
+      <td>optional for unstructured data, required for structured and semi-structured data
+     <tr>
       <td><code>variableType</code>
       <td>string
       <td>The type of measure for that facet. Allowed values are: <code>independent</code> and <code>dependent</code>
@@ -2916,6 +2929,43 @@ An example of a <code>facets</code> block with two <code>[facet-string]</code> o
       <td>The multiplier for numeric values, e.g. <code>1000</code> for "(in thousands)", <code>1000000</code> for "(in millions)"
       <td>optional for unstructured data, required for structured and semi-structured data
    </table>
+   <h5 class="heading settled" data-level="4.1.8.2" id="datatype"><span class="secno">4.1.8.2. </span><span class="content">The <code>datatype</code> key</span><a class="self-link" href="#datatype"></a></h5>
+   <p>A facet object may include a <code>datatype</code> member. When present, <code>datatype</code> must be a string identifying the semantic type used to interpret facet values.</p>
+   <p>The value of <code>datatype</code> defines how facet values are interpreted for the purposes of comparison, ordering, filtering, and validation. Implementations must apply the semantics defined by the declared <code>datatype</code> when evaluating facet behavior. <code>datatype</code> is normative and is not merely a presentation hint.</p>
+   <p>If <code>datatype</code> is not present, implementations must treat facet values as having the <code>"string"</code> datatype.</p>
+   <h6 class="heading settled" data-level="4.1.8.2.1" id="datatype_values"><span class="secno">4.1.8.2.1. </span><span class="content">core datatype values</span><a class="self-link" href="#datatype_values"></a></h6>
+   <p>A conforming implementation must recognize and support the following core datatype values:</p>
+   <table class="data">
+    <thead>
+     <tr>
+      <th>
+      value
+      
+      <th>
+      description
+      
+    <tbody>
+     <tr>
+      <td><code>string</code>
+      <td>Facet values are interpreted as Unicode strings and compared using code point-based lexical ordering.
+     <tr>
+      <td><code>number</code>
+      <td>Facet values are interpreted as numeric values. Implementations must attempt to parse values as finite real numbers. Comparison and ordering must be numeric rather than lexical.
+     <tr>
+      <td><code>boolean</code>
+      <td>Facet values are interpreted as boolean values. Implementations must recognize <code>true</code> and <code>false</code>. Other values must be treated as invalid.
+     <tr>
+      <td><code>date</code>
+      <td>Facet values are interpreted as temporal values. Implementations must parse values using a well-defined, implementation-documented date or date-time format and must compare values according to their temporal ordering.
+   </table>
+   <h6 class="heading settled" data-level="4.1.8.2.2" id="datatype_coercion"><span class="secno">4.1.8.2.2. </span><span class="content">value coercion and validity</span><a class="self-link" href="#datatype_coercion"></a></h6>
+   <p>When evaluating facet values, implementations may perform type coercion consistent with the declared <code>datatype</code>. If coercion fails, the value must be treated as invalid for the purposes of facet evaluation.</p>
+   <p>Invalid, missing, or unparsable values must not cause evaluation failure of the containing facet. Such values may be ignored, grouped separately, or surfaced as warnings, but implementations must behave consistently for a given <code>datatype</code>.</p>
+   <h6 class="heading settled" data-level="4.1.8.2.3" id="datatype_extensibility"><span class="secno">4.1.8.2.3. </span><span class="content">extensibility</span><a class="self-link" href="#datatype_extensibility"></a></h6>
+   <p>Implementations may support additional, non-core <code>datatype</code> values. Unknown <code>datatype</code> values must not cause a facet to be rejected. If an implementation does not recognize a declared <code>datatype</code>, it must treat facet values as having the <code>"string"</code> datatype.</p>
+   <p>Specifications or profiles may define additional datatypes and their associated semantics.</p>
+   <h6 class="heading settled" data-level="4.1.8.2.4" id="datatype_conformance"><span class="secno">4.1.8.2.4. </span><span class="content">conformance</span><a class="self-link" href="#datatype_conformance"></a></h6>
+   <p>A conforming implementation must apply the semantics defined by the declared <code>datatype</code> when the value is recognized. An implementation that ignores a recognized <code>datatype</code> when evaluating facet behavior does not conform to this specification.</p>
    <h4 class="heading settled" data-level="4.1.9" id="series_data_block"><span class="secno">4.1.9. </span><span class="content">The <code>series</code> key</span><a class="self-link" href="#series_data_block"></a></h4>
    <p>The <code>series</code> block contains the information about each series of the dataset for structured and semi-structured data, including the raw data values of each record in each series.</p>
    <p>The <code>series</code> object contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
