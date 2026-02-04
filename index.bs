@@ -3,7 +3,7 @@ Title: JSON Image Metadata
 Shortname: jim
 Level: 1
 Status: fido/ED
-!Semantic Version: 1.0.3
+!Semantic Version: 1.1.0
 Repository: Inclusio-Community/json-image-metadata
 URL: https://Inclusio-Community.github.io/json-image-metadata/
 Editor: Doug Schepers, Fizz Studio http://fizz.studio, doug@fizz.studio
@@ -99,7 +99,7 @@ A conforming implementation must provide a means for the end user to extract the
 
 A conforming implementation must resolve all selectors and execute all supported features of the `behaviors` block.
 
-### Classes of Conforming implementation ## {#conform_imp_classes}
+### Classes of Conforming implementation ### {#conform_imp_classes}
 
 This specification defines multiple classes of conforming implementations. A conforming implementation must satisfy the requirements of at least one defined class. An implementation may claim conformance to multiple classes if it meets the requirements of each.
 
@@ -156,15 +156,15 @@ Root form:
 
 <xmp highlight='json'>
 {
- "datasets": {
+ "datasets": [
     …
-  },
+  ],
   "selectors": {
     …
   },
-  "behaviors": {
+  "behaviors":  [
     …
-  }
+  ]
 }
 </xmp>
 
@@ -173,15 +173,15 @@ Enveloped form:
 <xmp highlight='json'>
 {
   "jim": {
-    "datasets": {
+    "datasets": [
       …
-    },
+    ],
     "selectors": {
       …
     },
-    "behaviors": {
+    "behaviors":  [
       …
-    }
+    ]
   },
   "extensions": {
     "org.example.charts": {
@@ -430,11 +430,11 @@ A meaningful summary of the graphic document.
 
 ### The `representation` key ### {#representation_data_block}
 
-Various aspects of the representation, such as the type of chart.
+The `representation` block describes high-level attributes of the dataset's representation. It is intended to support basic classification, discovery, and interoperable default rendering across consumers.
 
-The `representation` object contains the `chartType` key.
+The `representation` block may be present on a dataset. Consumers may ignore the `representation` block.
 
-#### The `chartType` key #### {#charttype_data_block}
+The `representation` object contains the `type`, `subtype`, and `structure` keys.
 
 <table class="data">
   <thead>
@@ -455,18 +455,298 @@ The `representation` object contains the `chartType` key.
   </thead>
   <tbody>
     <tr>
-      <td>`chartType`</td>
+      <td>`type`</td>
       <td>string</td>
-      <td>The type of chart, such as `bar`, `line`, or `scatterplot`</td>
+      <td>The type of representation, such as `chart`, `diagram`, or `illustration`</td>
+      <td>required if the `representation` block is present</td>
+    </tr>
+    <tr>
+      <td>`subtype`</td>
+      <td>string</td>
+      <td>The subtype of representation, such as a specific kind of `chart`, `diagram`, or `illustration`</td>
       <td>optional for unstructured data, required for structured and semi-structured data</td>
+    </tr>
+    <tr>
+      <td>`structure`</td>
+      <td>string</td>
+      <td>The structure steps of a subtype, organized by `role` and 'by'</td>
+      <td>optional</td>
     </tr>
   </tbody>
 </table>
 
+The `structure` key of the `representation` block is an optional ordered array that describes how a consumer may group, nest, or otherwise organize a representation using one or more facets. It is intended to provide declarative guidance for common organization patterns without defining a complete rendering grammar.
+
+
+#### The `type` key #### {#representation_type}
+
+The `type` key of the `representation` block identifies the broad category of what the graphic is intended to show. If the `representation` block is present, the `representation.type` key must be present.
+
+The value of `representation.type` must be one of the following lowercase ASCII tokens:
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      token
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      structure status
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`chart`</td>
+      <td>A visual representation primarily intended to communicate quantitative or categorical data relationships.</td>
+      <td>structured</td>
+    </tr>
+    <tr>
+      <td>`diagram`</td>
+      <td>A structured representation intended to explain relationships, processes, systems, or concepts that are not primarily statistical in nature.</td>
+      <td>structured or semi-structured</td>
+    </tr>
+    <tr>
+      <td>`map`</td>
+      <td>A representation that conveys spatial relationships tied to geographic or coordinate-based locations.</td>
+      <td>structured or semi-structured</td>
+    </tr>
+    <tr>
+      <td>`table`</td>
+      <td>A representation that presents data in a grid of rows and columns.</td>
+      <td>structured</td>
+    </tr>
+    <tr>
+      <td>`formula`</td>
+      <td>A representation whose primary content is a mathematical, logical, or symbolic expression.</td>
+      <td>structured</td>
+    </tr>
+    <tr>
+      <td>`illustration`</td>
+      <td>A representational or explanatory image that does not fall into the other defined categories and does not primarily encode structured data relationships.</td>
+      <td>semi-structured or unstructured</td>
+    </tr>
+    <tr>
+      <td>`other`</td>
+      <td>A fallback value used when none of the defined vocabulary terms apply.</td>
+      <td>structured, semi-structured, or unstructured</td>
+    </tr>
+  </tbody>
+</table>
+
+Generators must not invent new `representation.type` values. If none of the defined values apply, generators must use `other` and may provide additional classification using extensions.
+
+Consumers must not infer required data structures, rendering behavior, interaction affordances, accessibility semantics, or authorization decisions solely from the value of `representation.type`.
+
+#### The `subtype` key #### {#representation_subtype}
+
+The `subtype` key of the `representation` block optionally provides additional specialization within a given `representation.type`. It is intended to support interoperable default rendering and high-level accessibility workflows. It does not encode the full set of visual or semantic variations within a subtype.
+
+If `representation.subtype` is present, `representation.type` must also be present.
+
+Consumers may ignore `representation.subtype`. Consumers must not infer required data structure, interaction semantics, or accessibility semantics solely from `representation.subtype`.
+
+##### Chart subtype registry (external) ##### {#chart_subtype_registry}
+
+When `representation.type` is chart, `representation.subtype` should be a token defined in the [chart subtype registry](jim-representation-subtypesv1.1.0.json).
+
+The chart subtype registry is maintained by this project as a versioned document alongside this specification. Each published version of this specification corresponds to a specific revision of the registry.
+
+Generators should use registry-defined tokens when applicable. Generators may emit tokens not present in the registry; when doing so, generators should use `other` if interoperability is required, or should use a prefixed token (for example `vendorname:clustered-stacked`) to avoid collisions.
+
+Consumers may accept tokens not present in the registry. Consumers that validate `representation.subtype` against the registry should treat unrecognized tokens as non-fatal and may emit a warning.
+
+Consumers must not infer required data structures, rendering behavior, interaction affordances, or accessibility semantics solely from representation.subtype.
+
+##### Registry token format ##### {#registry_token_format}
+
+Registry tokens must be lowercase ASCII and must match the pattern:
+
+`^[a-z0-9]+(-[a-z0-9]+)*$`
+
+##### Example subtype registry (informative) ##### {#example_registry}
+
+This table shows a non-normative set of examples for the chart type registry. This table is included for reference only, and is not to be confused or conflated with the actual subtype registry. 
+
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      token
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      type host
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`bar`</td>
+      <td>A chart family that encodes values using rectangular bars.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`line`</td>
+      <td>A chart family that encodes values using line segments connecting ordered points.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`area`</td>
+      <td>A chart family that encodes values using a filled region.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`point`</td>
+      <td>A chart family that encodes values using discrete marks such as points or symbols.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`scatter`</td>
+      <td>A chart family that encodes relationships using point marks positioned by two quantitative or ordered dimensions.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`histogram`</td>
+      <td>A chart family that represents a distribution by binning a variable and encoding bin counts or densities.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`boxplot`</td>
+      <td>A chart family that represents distributions using quartiles, median, and whiskers.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`heatmap`</td>
+      <td>A chart family that encodes values using a color scale across a two-dimensional grid of categories or bins.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`pie`</td>
+      <td>A chart family that encodes part-to-whole proportions as angular segments of a circle.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`donut`</td>
+      <td>A pie-like chart family with a central hole.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`waterfall`</td>
+      <td>A chart family that encodes additive or subtractive contributions to a running total.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`funnel`</td>
+      <td>A chart family that encodes stage-based quantities decreasing through a process.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`radar`</td>
+      <td>A chart family that encodes values along multiple radial axes.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`other`</td>
+      <td>A fallback value used when none of the defined chart subtypes apply.</td>
+      <td>`chart`</td>
+    </tr>
+    <tr>
+      <td>`flowchart`</td>
+      <td>A diagram family that represents a process or workflow using nodes and directed connections.</td>
+      <td>`diagram`</td>
+    </tr>
+    <tr>
+      <td>`venn`</td>
+      <td>A diagram family that represents set relationships using overlapping regions.</td>
+      <td>`diagram`</td>
+    </tr>
+  </tbody>
+</table>
+
+Generators should use the chart subtype tokens defined above when applicable. If none apply, generators should use `other` and may provide additional specialization using extensions.
+
+Consumers that render charts should treat `representation.subtype` as a primary chart-family discriminator when present, and should use `facets`, `series`, and other dataset content to determine specifics.
+
+
+#### The `structure` key #### {#representation_structure}
+
+The `structure` key of the `representation` block is an optional ordered array that describes how a consumer may group, nest, or otherwise organize a representation using one or more facets. It is intended to provide declarative guidance for common organization patterns without defining a complete rendering grammar.
+
+Each entry in `representation.structure` is a structure step.
+
+Each structure step must be an object with the following members:
+
+
+<table class="data">
+  <thead>
+    <tr>
+      <th>
+      key
+      </th>
+      <th>
+      value type
+      </th>
+      <th>
+      description
+      </th>
+      <th>
+      requirement
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`role`</td>
+      <td>string</td>
+      <td>A lowercase ASCII token naming the intended organizational role of the step. This specification may define common roles for interoperability, but generators may use additional role values</td>
+      <td>required if the `structure` block is present</td>
+    </tr>
+    <tr>
+      <td>`facet-keys`</td>
+      <td>array of strings</td>
+      <td>A non-empty array of facet key strings. Each string must correspond to a key present in `facets`</td>
+      <td>required if the `structure` block is present</td>
+    </tr>
+  </tbody>
+</table>
+
+The order of entries in `representation.structure` is significant and defines a nesting sequence from outer to inner organization steps.
+
+The meaning of a structure step depends on `representation.type` and, when present, `representation.subtype`. Consumers may ignore unknown `role` values, may ignore `representation.structure` entirely, and should not treat it as an error if `representation.structure` is present but not understood.
+
+Consumers must not treat `representation.structure` as an authorization signal or as a trigger for privileged or unsafe behavior.
+
+<div id='xmp_representation' class='example'>
+An example of a `representation` block with two `structure` steps, `"cluster"` and `"stack"`. The values `"cluster"` and `"stack"` each match a `facet-string`. The result, in a supporting chart system, would be a multi-series bar chart with `"brand"` clusters, stacked by `"region"`.
+
+<xmp highlight='json'>
+{
+  "representation": {
+    "type": "chart",
+    "subtype": "bar",
+    "structure": [
+      { "role": "cluster", "facet-keys": ["brand"] },
+      { "role": "stack", "facet-keys": ["region"] }
+    ]
+  }
+}
+</xmp>
+</div>
+
+
+
+
 
 ### The `facets` key ### {#facets_data_block}
 
-The `facets` block contains details of each facet in the dataset, such as x and y axes or legend keys, for structured and semi-structured data.
+The `facets` block contains details of each facet in the dataset, such as `x` and `y` axes or `legend` keys, for structured and semi-structured data.
 
 The `facets` object contains one or more `[facet-string]` keys. A `[facet-string]` key may be any value allowed by the schema for the representation type, and will normally represent the axes (e.g. `"x"` and `"y"`), a legend (i.e. '"legend"'), a magnitude, or any other type of recorded data being represented. Each `[facet-string]` is the key to an object which defines the parameters, value type, and descriptors for the corresponding key in the child objects of the `records` array in the `series` array.
 
@@ -559,6 +839,14 @@ An example of a `facets` block with two `[facet-string]` object entries, `"x"` a
       <td>In any given facet, what the scale of measure for that facet is. Allowed values are: `nominal`, `ordinal`, `interval`, or `ratio`</td>
       <td>optional for unstructured data, required for structured and semi-structured data</td>
     </tr>
+    <!--
+    <tr>
+      <td>`datatype`</td>
+      <td>non-empty string</td>
+      <td></td>
+      <td>optional for unstructured data, required for structured and semi-structured data</td>
+    </tr>
+    -->
     <tr>
       <td>`units`</td>
       <td>non-empty string</td>
@@ -644,6 +932,9 @@ TODO: describe the `source` object
 The `href` key defines an object that refers to an external data file. The content model and processing of the `href` key are different in the `datasets` block than in other metadata blocks.
 
 This external file can be used to link data to graphical elements, as defined in [Inline data](#inline_data).
+
+
+
 
 
 ## Selectors ## {#selectors}
