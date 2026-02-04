@@ -1,0 +1,489 @@
+{
+  "registry": "jim-representation-subtypes",
+  "registryVersion": "1.1.0",
+  "lastUpdated": "2026-02-04",
+  "tokenFormat": "^[a-z0-9]+(-[a-z0-9]+)*$",
+  "notes": [
+    "This registry is intentionally shallow; tokens identify families, not complete semantics",
+    "Consumers may ignore any token; unknown tokens should be treated as non-fatal and may trigger warnings",
+    "Producers should prefer registry tokens when applicable; for niche or product-specific needs, consider a prefixed token via extensions rather than expanding this registry rapidly"
+  ],
+  "byType": {
+    "chart": {
+      "description": "chart family tokens used with representation.type = `chart`",
+      "tokens": {
+        "area": {
+          "status": "current",
+          "label": "area",
+          "description": "encodes values using a filled region, typically bounded by a line and an axis or baseline",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "bar": {
+          "status": "current",
+          "label": "bar",
+          "description": "encodes values using rectangular bars",
+          "aliases": ["column"],
+          "seeAlso": []
+        },
+        "boxplot": {
+          "status": "current",
+          "label": "boxplot",
+          "description": "represents distributions using quartiles, median, and whiskers",
+          "aliases": ["box-plot"],
+          "seeAlso": []
+        },
+        "donut": {
+          "status": "current",
+          "label": "donut",
+          "description": "pie-like chart with a central hole",
+          "aliases": ["doughnut"],
+          "seeAlso": ["pie"]
+        },
+        "funnel": {
+          "status": "current",
+          "label": "funnel",
+          "description": "encodes stage-based quantities decreasing through a process",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "heatmap": {
+          "status": "current",
+          "label": "heatmap",
+          "description": "encodes values using a color scale across a two-dimensional grid of categories or bins",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "histogram": {
+          "status": "current",
+          "label": "histogram",
+          "description": "represents a distribution by binning a variable and encoding bin counts or densities",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "line": {
+          "status": "current",
+          "label": "line",
+          "description": "encodes values using line segments connecting ordered points",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "pie": {
+          "status": "current",
+          "label": "pie",
+          "description": "encodes part-to-whole proportions as angular segments of a circle",
+          "aliases": [],
+          "seeAlso": ["donut"]
+        },
+        "point": {
+          "status": "current",
+          "label": "point",
+          "description": "encodes values using discrete marks such as points or symbols",
+          "aliases": ["dot"],
+          "seeAlso": ["scatter"]
+        },
+        "radar": {
+          "status": "current",
+          "label": "radar",
+          "description": "encodes values along multiple radial axes",
+          "aliases": ["spider"],
+          "seeAlso": []
+        },
+        "sankey": {
+          "status": "current",
+          "label": "sankey",
+          "description": "encodes flows between entities using directed bands whose widths represent magnitude",
+          "aliases": ["sankey-diagram"],
+          "seeAlso": []
+        },
+        "scatter": {
+          "status": "current",
+          "label": "scatter",
+          "description": "encodes relationships using point marks positioned by two quantitative or ordered dimensions",
+          "aliases": ["scatterplot"],
+          "seeAlso": ["point"]
+        },
+        "treemap": {
+          "status": "current",
+          "label": "treemap",
+          "description": "encodes hierarchical quantitative data using nested rectangles sized by value",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "waterfall": {
+          "status": "current",
+          "label": "waterfall",
+          "description": "encodes additive or subtractive contributions to a running total",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "other": {
+          "status": "current",
+          "label": "other",
+          "description": "fallback value used when none of the defined chart subtypes apply",
+          "aliases": [],
+          "seeAlso": []
+        }
+      }
+    },
+    "diagram": {
+      "description": "diagram family tokens used with representation.type = `diagram`",
+      "tokens": {
+        "anatomical-diagram": {
+          "status": "current",
+          "label": "anatomical diagram",
+          "description": "represents the structure of a biological organism or system",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "block-diagram": {
+          "status": "current",
+          "label": "block diagram",
+          "description": "represents a system as discrete functional blocks and their relationships",
+          "aliases": [],
+          "seeAlso": ["schematic"]
+        },
+        "circuit-diagram": {
+          "status": "current",
+          "label": "circuit diagram",
+          "description": "schematic representation of electrical or electronic components and their connections",
+          "aliases": [],
+          "seeAlso": ["schematic"]
+        },
+        "concept-map": {
+          "status": "current",
+          "label": "concept map",
+          "description": "represents concepts and their relationships, often with labeled connections",
+          "aliases": ["mind-map"],
+          "seeAlso": ["map-diagram"]
+        },
+        "flowchart": {
+          "status": "current",
+          "label": "flowchart",
+          "description": "represents a process or workflow using nodes and directed connections",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "geometric-diagram": {
+          "status": "current",
+          "label": "geometric diagram",
+          "description": "represents geometric figures, relationships, or constructions",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "map-diagram": {
+          "status": "current",
+          "label": "map diagram",
+          "description": "non-geographic diagram that uses spatial layout metaphorically",
+          "aliases": [],
+          "seeAlso": ["concept-map"]
+        },
+        "network-diagram": {
+          "status": "current",
+          "label": "network diagram",
+          "description": "represents entities and their connections in a non-hierarchical graph",
+          "aliases": ["graph-diagram"],
+          "seeAlso": ["tree-diagram"]
+        },
+        "schematic": {
+          "status": "current",
+          "label": "schematic",
+          "description": "simplified symbolic representation of a system or mechanism",
+          "aliases": [],
+          "seeAlso": ["block-diagram", "circuit-diagram"]
+        },
+        "sequence-diagram": {
+          "status": "current",
+          "label": "sequence diagram",
+          "description": "shows interactions over time between participants or components",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "state-diagram": {
+          "status": "current",
+          "label": "state diagram",
+          "description": "represents states and transitions between states",
+          "aliases": ["state-machine-diagram"],
+          "seeAlso": []
+        },
+        "timeline-diagram": {
+          "status": "current",
+          "label": "timeline diagram",
+          "description": "represents events or phases along a temporal axis",
+          "aliases": ["timeline"],
+          "seeAlso": []
+        },
+        "tree-diagram": {
+          "status": "current",
+          "label": "tree diagram",
+          "description": "represents hierarchical parent–child relationships",
+          "aliases": [],
+          "seeAlso": ["network-diagram"]
+        },
+        "venn-diagram": {
+          "status": "current",
+          "label": "venn diagram",
+          "description": "represents set relationships using overlapping regions",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "other": {
+          "status": "current",
+          "label": "other",
+          "description": "fallback value used when none of the defined diagram subtypes apply",
+          "aliases": [],
+          "seeAlso": []
+        }
+      }
+    },
+    "map": {
+      "description": "map family tokens used with representation.type = `map`",
+      "tokens": {
+        "choropleth": {
+          "status": "current",
+          "label": "choropleth",
+          "description": "encodes values by shading or coloring geographic regions",
+          "aliases": [],
+          "seeAlso": ["thematic-map"]
+        },
+        "proportional-symbol": {
+          "status": "current",
+          "label": "proportional symbol",
+          "description": "encodes values with symbol size at geographic locations",
+          "aliases": ["graduated-symbol"],
+          "seeAlso": ["symbol-map"]
+        },
+        "dot-density": {
+          "status": "current",
+          "label": "dot density",
+          "description": "encodes quantity by placing dots within geographic regions",
+          "aliases": [],
+          "seeAlso": ["thematic-map"]
+        },
+        "flow-map": {
+          "status": "current",
+          "label": "flow map",
+          "description": "shows movement or flow between locations using lines or arrows",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "cartogram": {
+          "status": "current",
+          "label": "cartogram",
+          "description": "distorts geography to reflect a data variable",
+          "aliases": [],
+          "seeAlso": ["choropleth"]
+        },
+        "topographic-map": {
+          "status": "current",
+          "label": "topographic map",
+          "description": "represents terrain and elevation, often with contour lines",
+          "aliases": ["contour-map"],
+          "seeAlso": []
+        },
+        "route-map": {
+          "status": "current",
+          "label": "route map",
+          "description": "emphasizes paths, routes, or networks over geography",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "thematic-map": {
+          "status": "current",
+          "label": "thematic map",
+          "description": "represents one or more themes or variables over geography",
+          "aliases": [],
+          "seeAlso": ["choropleth", "dot-density"]
+        },
+        "symbol-map": {
+          "status": "current",
+          "label": "symbol map",
+          "description": "uses symbols at locations to represent categories or attributes",
+          "aliases": [],
+          "seeAlso": ["proportional-symbol"]
+        },
+        "other": {
+          "status": "current",
+          "label": "other",
+          "description": "fallback value used when none of the defined map subtypes apply",
+          "aliases": [],
+          "seeAlso": []
+        }
+      }
+    },
+    "table": {
+      "description": "table family tokens used with representation.type = `table`",
+      "tokens": {
+        "data-table": {
+          "status": "current",
+          "label": "data table",
+          "description": "a general-purpose table of records with headers and cells",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "pivot-table": {
+          "status": "current",
+          "label": "pivot table",
+          "description": "a table that summarizes data by pivoting dimensions into rows and columns",
+          "aliases": [],
+          "seeAlso": ["cross-tab"]
+        },
+        "cross-tab": {
+          "status": "current",
+          "label": "cross tab",
+          "description": "a contingency table that aggregates measures by two or more dimensions",
+          "aliases": ["crosstab", "contingency-table"],
+          "seeAlso": ["pivot-table", "frequency-table"]
+        },
+        "frequency-table": {
+          "status": "current",
+          "label": "frequency table",
+          "description": "a table that reports counts or frequencies for categories or bins",
+          "aliases": [],
+          "seeAlso": ["cross-tab"]
+        },
+        "truth-table": {
+          "status": "current",
+          "label": "truth table",
+          "description": "a table that lists boolean inputs and outputs for a logical expression",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "matrix": {
+          "status": "current",
+          "label": "matrix",
+          "description": "a table interpreted as a mathematical or structural matrix",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "schedule-table": {
+          "status": "current",
+          "label": "schedule table",
+          "description": "a table organizing events, times, or stages in a grid format",
+          "aliases": ["timetable"],
+          "seeAlso": []
+        },
+        "other": {
+          "status": "current",
+          "label": "other",
+          "description": "fallback value used when none of the defined table subtypes apply",
+          "aliases": [],
+          "seeAlso": []
+        }
+      }
+    },
+    "formula": {
+      "description": "formula family tokens used with representation.type = `formula`",
+      "tokens": {
+        "equation": {
+          "status": "current",
+          "label": "equation",
+          "description": "a single mathematical or symbolic equality",
+          "aliases": [],
+          "seeAlso": ["equation-system"]
+        },
+        "equation-system": {
+          "status": "current",
+          "label": "equation system",
+          "description": "a set of equations intended to be considered together",
+          "aliases": ["system-of-equations"],
+          "seeAlso": ["equation"]
+        },
+        "inequality": {
+          "status": "current",
+          "label": "inequality",
+          "description": "a mathematical or symbolic inequality statement",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "function-definition": {
+          "status": "current",
+          "label": "function definition",
+          "description": "a definition of a function, mapping, or relation",
+          "aliases": ["function"],
+          "seeAlso": []
+        },
+        "expression": {
+          "status": "current",
+          "label": "expression",
+          "description": "a mathematical or symbolic expression without an explicit equality",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "derivation": {
+          "status": "current",
+          "label": "derivation",
+          "description": "a sequence of expressions or equations showing steps toward a result",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "other": {
+          "status": "current",
+          "label": "other",
+          "description": "fallback value used when none of the defined formula subtypes apply",
+          "aliases": [],
+          "seeAlso": []
+        }
+      }
+    },
+    "illustration": {
+      "description": "illustration family tokens used with representation.type = `illustration`",
+      "tokens": {
+        "photo": {
+          "status": "current",
+          "label": "photo",
+          "description": "a photographic image",
+          "aliases": ["photograph"],
+          "seeAlso": []
+        },
+        "drawing": {
+          "status": "current",
+          "label": "drawing",
+          "description": "a hand-drawn or digitally drawn illustration",
+          "aliases": ["sketch"],
+          "seeAlso": []
+        },
+        "icon": {
+          "status": "current",
+          "label": "icon",
+          "description": "a small symbolic graphic intended to represent an object or action",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "technical-illustration": {
+          "status": "current",
+          "label": "technical illustration",
+          "description": "an illustrative rendering intended to explain a technical object or concept",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "infographic": {
+          "status": "current",
+          "label": "infographic",
+          "description": "an explanatory graphic that may combine text, icons, and simple visual encodings",
+          "aliases": [],
+          "seeAlso": []
+        },
+        "other": {
+          "status": "current",
+          "label": "other",
+          "description": "fallback value used when none of the defined illustration subtypes apply",
+          "aliases": [],
+          "seeAlso": []
+        }
+      }
+    },
+    "other": {
+      "description": "subtype tokens used with representation.type = `other`",
+      "tokens": {
+        "other": {
+          "status": "current",
+          "label": "other",
+          "description": "fallback value used when none of the defined type-specific subtype registries apply",
+          "aliases": [],
+          "seeAlso": []
+        }
+      }
+    }
+  }
+}

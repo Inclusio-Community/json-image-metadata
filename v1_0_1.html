@@ -1491,7 +1491,7 @@ Possible extra rowspan handling
   <meta content="Bikeshed version be42ac8f6, updated Mon Dec 22 21:45:05 2025 +0000" name="generator">
   <link href="https://Inclusio-Community.github.io/json-image-metadata/" rel="canonical">
   <link href="./favicon.svg" rel="icon">
-  <meta content="63747b734fa22d9c42f1d83e353513cc3e6fa42a" name="revision">
+  <meta content="f37476e1e735f9f61ad89715aa0f15b9e8e230ac" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2017,7 +2017,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <p data-fill-with="logo"></p>
    <h1 class="no-ref p-name" id="title">JSON Image Metadata</h1>
    <h2 class="heading no-num no-ref no-toc settled" id="profile-and-date"><span class="content">Editor’s Draft,
-    <time class="dt-updated" datetime="2026-02-04">4 February 2026</time></span></h2>
+    <time class="dt-updated" datetime="2026-01-26">26 January 2026</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2028,14 +2028,14 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd class="editor h-card p-author vcard"><a class="email fn p-name u-email" href="mailto:doug@fizz.studio">Doug Schepers</a> (<a class="org p-org" href="http://fizz.studio">Fizz Studio</a>)
      <dd class="editor h-card p-author vcard"><a class="email fn p-name u-email" href="mailto:simon@fizz.studio">Simon Varey</a> (<a class="org p-org" href="http://fizz.studio">Fizz Studio</a>)
      <dt>Semantic Version:
-     <dd>1.1.0
+     <dd>1.0.2
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a>
 To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 4 February 2026,
+In addition, as of 26 January 2026,
 the editors have made this specification available under the
 <a href="https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0.
@@ -2070,11 +2070,11 @@ Parts of this work may be from another specification document.  If so, those par
       <li>
        <a href="#conform_imp"><span class="secno">2.4</span> <span class="content">Conforming implementation</span></a>
        <ol class="toc">
-        <li><a href="#conform_imp_classes"><span class="secno">2.4.1</span> <span class="content">Classes of Conforming implementation</span></a>
+        <li><a href="#conform_imp_classes"><span class="secno">2.4.1</span> <span class="content">Classes of Conforming implementation ## {#conform_imp_classes}</span></a>
        </ol>
      </ol>
     <li>
-     <a href="#jim_structure_forms"><span class="secno">3</span> <span class="content">JIM metadata structure and forms</span></a>
+     <a href="#jim_structure_forms"><span class="secno">3</span> <span class="content">JIM metadata structure and forms #</span></a>
      <ol class="toc">
       <li><a href="#jim_block"><span class="secno">3.1</span> <span class="content"><code>jim</code> block</span></a>
       <li><a href="#extensions_block"><span class="secno">3.2</span> <span class="content"><code>extensions</code> block</span></a>
@@ -2109,36 +2109,21 @@ Parts of this work may be from another specification document.  If so, those par
         <li>
          <a href="#representation_data_block"><span class="secno">4.1.7</span> <span class="content">The <code>representation</code> key</span></a>
          <ol class="toc">
-          <li><a href="#representation_type"><span class="secno">4.1.7.1</span> <span class="content">The <code>type</code> key</span></a>
-          <li>
-           <a href="#representation_subtype"><span class="secno">4.1.7.2</span> <span class="content">The <code>subtype</code> key</span></a>
-           <ol class="toc">
-            <li><a href="#chart_subtype_registry"><span class="secno">4.1.7.2.1</span> <span class="content">Chart subtype registry (external)</span></a>
-            <li><a href="#registry_token_format"><span class="secno">4.1.7.2.2</span> <span class="content">Registry token format</span></a>
-            <li><a href="#example_registry"><span class="secno">4.1.7.2.3</span> <span class="content">Example subtype registry (informative)</span></a>
-           </ol>
-          <li><a href="#representation_structure"><span class="secno">4.1.7.3</span> <span class="content">The <code>structure</code> key</span></a>
+          <li><a href="#charttype_data_block"><span class="secno">4.1.7.1</span> <span class="content">The <code>chartType</code> key</span></a>
          </ol>
         <li>
          <a href="#facets_data_block"><span class="secno">4.1.8</span> <span class="content">The <code>facets</code> key</span></a>
          <ol class="toc">
           <li><a href="#facetstring_data_block"><span class="secno">4.1.8.1</span> <span class="content">The <code>[facet-string]</code> key</span></a>
-          <li>
-           <a href="#datatype"><span class="secno">4.1.8.2</span> <span class="content">The <code>datatype</code> key</span></a>
-           <ol class="toc">
-            <li><a href="#datatype_values"><span class="secno">4.1.8.2.1</span> <span class="content">core datatype values</span></a>
-            <li><a href="#datatype_coercion"><span class="secno">4.1.8.2.2</span> <span class="content">value coercion and validity</span></a>
-            <li><a href="#datatype_extensibility"><span class="secno">4.1.8.2.3</span> <span class="content">extensibility</span></a>
-            <li><a href="#datatype_conformance"><span class="secno">4.1.8.2.4</span> <span class="content">conformance</span></a>
-           </ol>
          </ol>
         <li>
          <a href="#series_data_block"><span class="secno">4.1.9</span> <span class="content">The <code>series</code> key</span></a>
          <ol class="toc">
           <li><a href="#series_name_data_block"><span class="secno">4.1.9.1</span> <span class="content">The <code>name</code> key</span></a>
-          <li><a href="#series_records_data_block"><span class="secno">4.1.9.2</span> <span class="content">The <code>records</code> key</span></a>
-          <li><a href="#items_data_block"><span class="secno">4.1.9.3</span> <span class="content">The <code>items</code> key</span></a>
-          <li><a href="#source_data_block"><span class="secno">4.1.9.4</span> <span class="content">The <code>source</code> key</span></a>
+          <li><a href="#series_type_data_block"><span class="secno">4.1.9.2</span> <span class="content">The <code>type</code> key</span></a>
+          <li><a href="#series_records_data_block"><span class="secno">4.1.9.3</span> <span class="content">The <code>records</code> key</span></a>
+          <li><a href="#items_data_block"><span class="secno">4.1.9.4</span> <span class="content">The <code>items</code> key</span></a>
+          <li><a href="#source_data_block"><span class="secno">4.1.9.5</span> <span class="content">The <code>source</code> key</span></a>
          </ol>
         <li><a href="#href_data_block"><span class="secno">4.1.10</span> <span class="content">The <code>href</code> key in a <code>datasets</code> block</span></a>
        </ol>
@@ -2220,7 +2205,7 @@ Parts of this work may be from another specification document.  If so, those par
        <ol class="toc">
         <li><a href="##announcement_name"><span class="secno">6.3.1</span> <span class="content">Announcement name</span></a>
         <li><a href="##announcement_description"><span class="secno">6.3.2</span> <span class="content">Announcement description</span></a>
-        <li><a href="#announcement_details"><span class="secno">6.3.3</span> <span class="content">Announcement details</span></a>
+        <li><a href="#announcement_detail"><span class="secno">6.3.3</span> <span class="content">Announcement detail</span></a>
         <li><a href="#announcement_hint"><span class="secno">6.3.4</span> <span class="content">Announcement hint</span></a>
        </ol>
       <li><a href="#complete_announcement_example"><span class="secno">6.4</span> <span class="content">Complete announcement example</span></a>
@@ -2354,14 +2339,11 @@ Note that version 0.3.0 of this specification is the first version to use Semant
    <p>An implementation conforming to this specification must access the contents of the metadata block. For an SVG-capable implementation displaying an SVG document, a conforming implementation must read the JSON data in the indicated <code>metadata</code> element.</p>
    <p>A conforming implementation must provide a means for the end user to extract the contents of the <code>datasets</code> block.</p>
    <p>A conforming implementation must resolve all selectors and execute all supported features of the <code>behaviors</code> block.</p>
-   <h4 class="heading settled" data-level="2.4.1" id="conform_imp_classes"><span class="secno">2.4.1. </span><span class="content">Classes of Conforming implementation</span><a class="self-link" href="#conform_imp_classes"></a></h4>
+   <h4 class="heading settled" data-level="2.4.1" id="conform_imp_classes"><span class="secno">2.4.1. </span><span class="content">Classes of Conforming implementation ## {#conform_imp_classes}</span><a class="self-link" href="#conform_imp_classes"></a></h4>
    <p>This specification defines multiple classes of conforming implementations. A conforming implementation must satisfy the requirements of at least one defined class. An implementation may claim conformance to multiple classes if it meets the requirements of each.</p>
-   <p>This specification defines requirements for conforming implementations that generate, consume, or process JSON Image Metadata (JIM). A conforming implementation must satisfy the requirements of at least one conformance class defined in this section. An implementation may claim conformance to multiple classes if it meets the requirements of each.</p>
+   <p>This specification defines requirements for conforming implementations that produce, consume, or process JSON Image Metadata (JIM). A conforming implementation must satisfy the requirements of at least one conformance class defined in this section. An implementation may claim conformance to multiple classes if it meets the requirements of each.</p>
    <p>Conformance does not imply any guarantees of content quality, accessibility outcomes, pedagogical suitability, or fitness for a particular purpose. Conformance solely indicates adherence to the interoperability requirements defined in this specification.</p>
-   <blockquote>
-    <p>TODO: define conformance classes</p>
-   </blockquote>
-   <h2 class="heading settled" data-level="3" id="jim_structure_forms"><span class="secno">3. </span><span class="content">JIM metadata structure and forms</span><a class="self-link" href="#jim_structure_forms"></a></h2>
+   <h2 class="heading settled" data-level="3" id="jim_structure_forms"><span class="secno">3. </span><span class="content">JIM metadata structure and forms #</span><a class="self-link" href="#jim_structure_forms"></a></h2>
    <p>A JIM document may be represented either as a "root form" document (where JIM-defined blocks appear at the JSON root) or as an "enveloped form" document (where JIM-defined blocks appear under a nested <code>jim</code> block). Both forms represent the same conceptual information model.</p>
    <p>The enveloped form separates normative JIM metadata (<code>jim</code>) from optional non-JIM metadata (<code>extensions</code>). This separation makes trust boundaries explicit, supports vendor innovation without affecting conformance, and enables audit mechanisms to target the JIM-defined information model without binding unrelated metadata.</p>
    <p>When using the enveloped form, the JSON document root is an envelope object that may contain the following blocks:</p>
@@ -2393,29 +2375,29 @@ Note that version 0.3.0 of this specification is the first version to use Semant
    <h3 class="heading settled" data-level="3.5" id="root_envelope_examples"><span class="secno">3.5. </span><span class="content">Root form and enveloped form examples</span><a class="self-link" href="#root_envelope_examples"></a></h3>
    <p>Root form:</p>
 <pre class="highlight"><c- p>{</c->
- <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
+ <c- f>"datasets"</c-><c- p>:</c-> <c- p>{</c->
     …
-  <c- p>],</c->
+  <c- p>},</c->
   <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
     …
   <c- p>},</c->
-  <c- f>"behaviors"</c-><c- p>:</c->  <c- p>[</c->
+  <c- f>"behaviors"</c-><c- p>:</c-> <c- p>{</c->
     …
-  <c- p>]</c->
+  <c- p>}</c->
 <c- p>}</c->
 </pre>
    <p>Enveloped form:</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"jim"</c-><c- p>:</c-> <c- p>{</c->
-    <c- f>"datasets"</c-><c- p>:</c-> <c- p>[</c->
+    <c- f>"datasets"</c-><c- p>:</c-> <c- p>{</c->
       …
-    <c- p>],</c->
+    <c- p>},</c->
     <c- f>"selectors"</c-><c- p>:</c-> <c- p>{</c->
       …
     <c- p>},</c->
-    <c- f>"behaviors"</c-><c- p>:</c->  <c- p>[</c->
+    <c- f>"behaviors"</c-><c- p>:</c-> <c- p>{</c->
       …
-    <c- p>]</c->
+    <c- p>}</c->
   <c- p>},</c->
   <c- f>"extensions"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"org.example.charts"</c-><c- p>:</c-> <c- p>{</c->
@@ -2601,9 +2583,9 @@ An example of a <code>datasets</code> block (with elided values) for a structure
    <h4 class="heading settled" data-level="4.1.6" id="description_data_block"><span class="secno">4.1.6. </span><span class="content">The <code>description</code> key</span><a class="self-link" href="#description_data_block"></a></h4>
    <p>A meaningful summary of the graphic document.</p>
    <h4 class="heading settled" data-level="4.1.7" id="representation_data_block"><span class="secno">4.1.7. </span><span class="content">The <code>representation</code> key</span><a class="self-link" href="#representation_data_block"></a></h4>
-   <p>The <code>representation</code> block describes high-level attributes of the dataset’s representation. It is intended to support basic classification, discovery, and interoperable default rendering across consumers.</p>
-   <p>The <code>representation</code> block may be present on a dataset. Consumers may ignore the <code>representation</code> block.</p>
-   <p>The <code>representation</code> object contains the <code>type</code>, <code>subtype</code>, and <code>structure</code> keys.</p>
+   <p>Various aspects of the representation, such as the type of chart.</p>
+   <p>The <code>representation</code> object contains the <code>chartType</code> key.</p>
+   <h5 class="heading settled" data-level="4.1.7.1" id="charttype_data_block"><span class="secno">4.1.7.1. </span><span class="content">The <code>chartType</code> key</span><a class="self-link" href="#charttype_data_block"></a></h5>
    <table class="data">
     <thead>
      <tr>
@@ -2621,217 +2603,13 @@ An example of a <code>datasets</code> block (with elided values) for a structure
       
     <tbody>
      <tr>
-      <td><code>type</code>
+      <td><code>chartType</code>
       <td>string
-      <td>The type of representation, such as <code>chart</code>, <code>diagram</code>, or <code>illustration</code>
-      <td>required if the <code>representation</code> block is present
-     <tr>
-      <td><code>subtype</code>
-      <td>string
-      <td>The subtype of representation, such as a specific kind of <code>chart</code>, <code>diagram</code>, or <code>illustration</code>
+      <td>The type of chart, such as <code>bar</code>, <code>line</code>, or <code>scatterplot</code>
       <td>optional for unstructured data, required for structured and semi-structured data
-     <tr>
-      <td><code>structure</code>
-      <td>string
-      <td>The structure steps of a subtype, organized by <code>role</code> and 'by'
-      <td>optional
    </table>
-   <p>The <code>structure</code> key of the <code>representation</code> block is an optional ordered array that describes how a consumer may group, nest, or otherwise organize a representation using one or more facets. It is intended to provide declarative guidance for common organization patterns without defining a complete rendering grammar.</p>
-   <h5 class="heading settled" data-level="4.1.7.1" id="representation_type"><span class="secno">4.1.7.1. </span><span class="content">The <code>type</code> key</span><a class="self-link" href="#representation_type"></a></h5>
-   <p>The <code>type</code> key of the <code>representation</code> block identifies the broad category of what the graphic is intended to show. If the <code>representation</code> block is present, the <code>representation.type</code> key must be present.</p>
-   <p>The value of <code>representation.type</code> must be one of the following lowercase ASCII tokens:</p>
-   <table class="data">
-    <thead>
-     <tr>
-      <th>
-      token
-      
-      <th>
-      description
-      
-      <th>
-      structure status
-      
-    <tbody>
-     <tr>
-      <td><code>chart</code>
-      <td>A visual representation primarily intended to communicate quantitative or categorical data relationships.
-      <td>structured
-     <tr>
-      <td><code>diagram</code>
-      <td>A structured representation intended to explain relationships, processes, systems, or concepts that are not primarily statistical in nature.
-      <td>structured or semi-structured
-     <tr>
-      <td><code>map</code>
-      <td>A representation that conveys spatial relationships tied to geographic or coordinate-based locations.
-      <td>structured or semi-structured
-     <tr>
-      <td><code>table</code>
-      <td>A representation that presents data in a grid of rows and columns.
-      <td>structured
-     <tr>
-      <td><code>formula</code>
-      <td>A representation whose primary content is a mathematical, logical, or symbolic expression.
-      <td>structured
-     <tr>
-      <td><code>illustration</code>
-      <td>A representational or explanatory image that does not fall into the other defined categories and does not primarily encode structured data relationships.
-      <td>semi-structured or unstructured
-     <tr>
-      <td><code>other</code>
-      <td>A fallback value used when none of the defined vocabulary terms apply.
-      <td>structured, semi-structured, or unstructured
-   </table>
-   <p>Generators must not invent new <code>representation.type</code> values. If none of the defined values apply, generators must use <code>other</code> and may provide additional classification using extensions.</p>
-   <p>Consumers must not infer required data structures, rendering behavior, interaction affordances, accessibility semantics, or authorization decisions solely from the value of <code>representation.type</code>.</p>
-   <h5 class="heading settled" data-level="4.1.7.2" id="representation_subtype"><span class="secno">4.1.7.2. </span><span class="content">The <code>subtype</code> key</span><a class="self-link" href="#representation_subtype"></a></h5>
-   <p>The <code>subtype</code> key of the <code>representation</code> block optionally provides additional specialization within a given <code>representation.type</code>. It is intended to support interoperable default rendering and high-level accessibility workflows. It does not encode the full set of visual or semantic variations within a subtype.</p>
-   <p>If <code>representation.subtype</code> is present, <code>representation.type</code> must also be present.</p>
-   <p>Consumers may ignore <code>representation.subtype</code>. Consumers must not infer required data structure, interaction semantics, or accessibility semantics solely from <code>representation.subtype</code>.</p>
-   <h6 class="heading settled" data-level="4.1.7.2.1" id="chart_subtype_registry"><span class="secno">4.1.7.2.1. </span><span class="content">Chart subtype registry (external)</span><a class="self-link" href="#chart_subtype_registry"></a></h6>
-   <p>When <code>representation.type</code> is chart, <code>representation.subtype</code> should be a token defined in the <a href="jim-representation-subtypesv1.1.0.json">chart subtype registry</a>.</p>
-   <p>The chart subtype registry is maintained by this project as a versioned document alongside this specification. Each published version of this specification corresponds to a specific revision of the registry.</p>
-   <p>Generators should use registry-defined tokens when applicable. Generators may emit tokens not present in the registry; when doing so, generators should use <code>other</code> if interoperability is required, or should use a prefixed token (for example <code>vendorname:clustered-stacked</code>) to avoid collisions.</p>
-   <p>Consumers may accept tokens not present in the registry. Consumers that validate <code>representation.subtype</code> against the registry should treat unrecognized tokens as non-fatal and may emit a warning.</p>
-   <p>Consumers must not infer required data structures, rendering behavior, interaction affordances, or accessibility semantics solely from representation.subtype.</p>
-   <h6 class="heading settled" data-level="4.1.7.2.2" id="registry_token_format"><span class="secno">4.1.7.2.2. </span><span class="content">Registry token format</span><a class="self-link" href="#registry_token_format"></a></h6>
-   <p>Registry tokens must be lowercase ASCII and must match the pattern:</p>
-   <p><code>^[a-z0-9]+(-[a-z0-9]+)*$</code></p>
-   <h6 class="heading settled" data-level="4.1.7.2.3" id="example_registry"><span class="secno">4.1.7.2.3. </span><span class="content">Example subtype registry (informative)</span><a class="self-link" href="#example_registry"></a></h6>
-   <p>This table shows a non-normative set of examples for the chart type registry. This table is included for reference only, and is not to be confused or conflated with the actual subtype registry.</p>
-   <table class="data">
-    <thead>
-     <tr>
-      <th>
-      token
-      
-      <th>
-      description
-      
-      <th>
-      type host
-      
-    <tbody>
-     <tr>
-      <td><code>bar</code>
-      <td>A chart family that encodes values using rectangular bars.
-      <td><code>chart</code>
-     <tr>
-      <td><code>line</code>
-      <td>A chart family that encodes values using line segments connecting ordered points.
-      <td><code>chart</code>
-     <tr>
-      <td><code>area</code>
-      <td>A chart family that encodes values using a filled region.
-      <td><code>chart</code>
-     <tr>
-      <td><code>point</code>
-      <td>A chart family that encodes values using discrete marks such as points or symbols.
-      <td><code>chart</code>
-     <tr>
-      <td><code>scatter</code>
-      <td>A chart family that encodes relationships using point marks positioned by two quantitative or ordered dimensions.
-      <td><code>chart</code>
-     <tr>
-      <td><code>histogram</code>
-      <td>A chart family that represents a distribution by binning a variable and encoding bin counts or densities.
-      <td><code>chart</code>
-     <tr>
-      <td><code>boxplot</code>
-      <td>A chart family that represents distributions using quartiles, median, and whiskers.
-      <td><code>chart</code>
-     <tr>
-      <td><code>heatmap</code>
-      <td>A chart family that encodes values using a color scale across a two-dimensional grid of categories or bins.
-      <td><code>chart</code>
-     <tr>
-      <td><code>pie</code>
-      <td>A chart family that encodes part-to-whole proportions as angular segments of a circle.
-      <td><code>chart</code>
-     <tr>
-      <td><code>donut</code>
-      <td>A pie-like chart family with a central hole.
-      <td><code>chart</code>
-     <tr>
-      <td><code>waterfall</code>
-      <td>A chart family that encodes additive or subtractive contributions to a running total.
-      <td><code>chart</code>
-     <tr>
-      <td><code>funnel</code>
-      <td>A chart family that encodes stage-based quantities decreasing through a process.
-      <td><code>chart</code>
-     <tr>
-      <td><code>radar</code>
-      <td>A chart family that encodes values along multiple radial axes.
-      <td><code>chart</code>
-     <tr>
-      <td><code>other</code>
-      <td>A fallback value used when none of the defined chart subtypes apply.
-      <td><code>chart</code>
-     <tr>
-      <td><code>flowchart</code>
-      <td>A diagram family that represents a process or workflow using nodes and directed connections.
-      <td><code>diagram</code>
-     <tr>
-      <td><code>venn</code>
-      <td>A diagram family that represents set relationships using overlapping regions.
-      <td><code>diagram</code>
-   </table>
-   <p>Generators should use the chart subtype tokens defined above when applicable. If none apply, generators should use <code>other</code> and may provide additional specialization using extensions.</p>
-   <p>Consumers that render charts should treat <code>representation.subtype</code> as a primary chart-family discriminator when present, and should use <code>facets</code>, <code>series</code>, and other dataset content to determine specifics.</p>
-   <h5 class="heading settled" data-level="4.1.7.3" id="representation_structure"><span class="secno">4.1.7.3. </span><span class="content">The <code>structure</code> key</span><a class="self-link" href="#representation_structure"></a></h5>
-   <p>The <code>structure</code> key of the <code>representation</code> block is an optional ordered array that describes how a consumer may group, nest, or otherwise organize a representation using one or more facets. It is intended to provide declarative guidance for common organization patterns without defining a complete rendering grammar.</p>
-   <p>Each entry in <code>representation.structure</code> is a structure step.</p>
-   <p>Each structure step must be an object with the following members:</p>
-   <table class="data">
-    <thead>
-     <tr>
-      <th>
-      key
-      
-      <th>
-      value type
-      
-      <th>
-      description
-      
-      <th>
-      requirement
-      
-    <tbody>
-     <tr>
-      <td><code>role</code>
-      <td>string
-      <td>A lowercase ASCII token naming the intended organizational role of the step. This specification may define common roles for interoperability, but generators may use additional role values
-      <td>required if the <code>structure</code> block is present
-     <tr>
-      <td><code>facet-keys</code>
-      <td>array of strings
-      <td>A non-empty array of facet key strings. Each string must correspond to a key present in <code>facets</code>
-      <td>required if the <code>structure</code> block is present
-   </table>
-   <p>The order of entries in <code>representation.structure</code> is significant and defines a nesting sequence from outer to inner organization steps.</p>
-   <p>The meaning of a structure step depends on <code>representation.type</code> and, when present, <code>representation.subtype</code>. Consumers may ignore unknown <code>role</code> values, may ignore <code>representation.structure</code> entirely, and should not treat it as an error if <code>representation.structure</code> is present but not understood.</p>
-   <p>Consumers must not treat <code>representation.structure</code> as an authorization signal or as a trigger for privileged or unsafe behavior.</p>
-   <div class="example" id="xmp_representation">
-    <a class="self-link" href="#xmp_representation"></a>
-An example of a <code>representation</code> block with two <code>structure</code> steps, <code>"cluster"</code> and <code>"stack"</code>. The values <code>"cluster"</code> and <code>"stack"</code> each match a <code>facet-string</code>. The result, in a supporting chart system, would be a multi-series bar chart with <code>"brand"</code> clusters, stacked by <code>"region"</code>.
-
-
-<pre class="highlight"><c- p>{</c->
-  <c- f>"representation"</c-><c- p>:</c-> <c- p>{</c->
-    <c- f>"type"</c-><c- p>:</c-> <c- u>"chart"</c-><c- p>,</c->
-    <c- f>"subtype"</c-><c- p>:</c-> <c- u>"bar"</c-><c- p>,</c->
-    <c- f>"structure"</c-><c- p>:</c-> <c- p>[</c->
-      <c- p>{</c-> <c- f>"role"</c-><c- p>:</c-> <c- u>"cluster"</c-><c- p>,</c-> <c- f>"facet-keys"</c-><c- p>:</c-> <c- p>[</c-><c- u>"brand"</c-><c- p>]</c-> <c- p>},</c->
-      <c- p>{</c-> <c- f>"role"</c-><c- p>:</c-> <c- u>"stack"</c-><c- p>,</c-> <c- f>"facet-keys"</c-><c- p>:</c-> <c- p>[</c-><c- u>"region"</c-><c- p>]</c-> <c- p>}</c->
-    <c- p>]</c->
-  <c- p>}</c->
-<c- p>}</c->
-</pre>
-   </div>
    <h4 class="heading settled" data-level="4.1.8" id="facets_data_block"><span class="secno">4.1.8. </span><span class="content">The <code>facets</code> key</span><a class="self-link" href="#facets_data_block"></a></h4>
-   <p>The <code>facets</code> block contains details of each facet in the dataset, such as <code>x</code> and <code>y</code> axes or <code>legend</code> keys, for structured and semi-structured data.</p>
+   <p>The <code>facets</code> block contains details of each facet in the dataset, such as x and y axes or legend keys, for structured and semi-structured data.</p>
    <p>The <code>facets</code> object contains one or more <code>[facet-string]</code> keys. A <code>[facet-string]</code> key may be any value allowed by the schema for the representation type, and will normally represent the axes (e.g. <code>"x"</code> and <code>"y"</code>), a legend (i.e. '"legend"'), a magnitude, or any other type of recorded data being represented. Each <code>[facet-string]</code> is the key to an object which defines the parameters, value type, and descriptors for the corresponding key in the child objects of the <code>records</code> array in the <code>series</code> array.</p>
    <p>These <code>[facet-string]</code> keys must consist of a string of ASCII letters, digits, '_', and '-', with no whitespace. Each <code>[facet-string]</code> key must be a unique value.</p>
    <div class="example" id="xmp_facets">
@@ -2904,11 +2682,6 @@ An example of a <code>facets</code> block with two <code>[facet-string]</code> o
       <td>The title for the facet
       <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
-      <td><code>datatype</code>
-      <td>non-empty string
-      <td>The data type of the facet. Allowed values are: <code>string</code>, <code>number</code>, <code>boolean</code>, and <code>date</code>
-      <td>optional for unstructured data, required for structured and semi-structured data
-     <tr>
       <td><code>variableType</code>
       <td>string
       <td>The type of measure for that facet. Allowed values are: <code>independent</code> and <code>dependent</code>
@@ -2929,43 +2702,6 @@ An example of a <code>facets</code> block with two <code>[facet-string]</code> o
       <td>The multiplier for numeric values, e.g. <code>1000</code> for "(in thousands)", <code>1000000</code> for "(in millions)"
       <td>optional for unstructured data, required for structured and semi-structured data
    </table>
-   <h5 class="heading settled" data-level="4.1.8.2" id="datatype"><span class="secno">4.1.8.2. </span><span class="content">The <code>datatype</code> key</span><a class="self-link" href="#datatype"></a></h5>
-   <p>A facet object may include a <code>datatype</code> member. When present, <code>datatype</code> must be a string identifying the semantic type used to interpret facet values.</p>
-   <p>The value of <code>datatype</code> defines how facet values are interpreted for the purposes of comparison, ordering, filtering, and validation. Implementations must apply the semantics defined by the declared <code>datatype</code> when evaluating facet behavior. <code>datatype</code> is normative and is not merely a presentation hint.</p>
-   <p>If <code>datatype</code> is not present, implementations must treat facet values as having the <code>"string"</code> datatype.</p>
-   <h6 class="heading settled" data-level="4.1.8.2.1" id="datatype_values"><span class="secno">4.1.8.2.1. </span><span class="content">core datatype values</span><a class="self-link" href="#datatype_values"></a></h6>
-   <p>A conforming implementation must recognize and support the following core datatype values:</p>
-   <table class="data">
-    <thead>
-     <tr>
-      <th>
-      value
-      
-      <th>
-      description
-      
-    <tbody>
-     <tr>
-      <td><code>string</code>
-      <td>Facet values are interpreted as Unicode strings and compared using code point-based lexical ordering.
-     <tr>
-      <td><code>number</code>
-      <td>Facet values are interpreted as numeric values. Implementations must attempt to parse values as finite real numbers. Comparison and ordering must be numeric rather than lexical.
-     <tr>
-      <td><code>boolean</code>
-      <td>Facet values are interpreted as boolean values. Implementations must recognize <code>true</code> and <code>false</code>. Other values must be treated as invalid.
-     <tr>
-      <td><code>date</code>
-      <td>Facet values are interpreted as temporal values. Implementations must parse values using a well-defined, implementation-documented date or date-time format and must compare values according to their temporal ordering.
-   </table>
-   <h6 class="heading settled" data-level="4.1.8.2.2" id="datatype_coercion"><span class="secno">4.1.8.2.2. </span><span class="content">value coercion and validity</span><a class="self-link" href="#datatype_coercion"></a></h6>
-   <p>When evaluating facet values, implementations may perform type coercion consistent with the declared <code>datatype</code>. If coercion fails, the value must be treated as invalid for the purposes of facet evaluation.</p>
-   <p>Invalid, missing, or unparsable values must not cause evaluation failure of the containing facet. Such values may be ignored, grouped separately, or surfaced as warnings, but implementations must behave consistently for a given <code>datatype</code>.</p>
-   <h6 class="heading settled" data-level="4.1.8.2.3" id="datatype_extensibility"><span class="secno">4.1.8.2.3. </span><span class="content">extensibility</span><a class="self-link" href="#datatype_extensibility"></a></h6>
-   <p>Implementations may support additional, non-core <code>datatype</code> values. Unknown <code>datatype</code> values must not cause a facet to be rejected. If an implementation does not recognize a declared <code>datatype</code>, it must treat facet values as having the <code>"string"</code> datatype.</p>
-   <p>Specifications or profiles may define additional datatypes and their associated semantics.</p>
-   <h6 class="heading settled" data-level="4.1.8.2.4" id="datatype_conformance"><span class="secno">4.1.8.2.4. </span><span class="content">conformance</span><a class="self-link" href="#datatype_conformance"></a></h6>
-   <p>A conforming implementation must apply the semantics defined by the declared <code>datatype</code> when the value is recognized. An implementation that ignores a recognized <code>datatype</code> when evaluating facet behavior does not conform to this specification.</p>
    <h4 class="heading settled" data-level="4.1.9" id="series_data_block"><span class="secno">4.1.9. </span><span class="content">The <code>series</code> key</span><a class="self-link" href="#series_data_block"></a></h4>
    <p>The <code>series</code> block contains the information about each series of the dataset for structured and semi-structured data, including the raw data values of each record in each series.</p>
    <p>The <code>series</code> object contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
@@ -2991,6 +2727,11 @@ An example of a <code>facets</code> block with two <code>[facet-string]</code> o
       <td>The name for this series, normally used as the series label
       <td>optional for unstructured data, required for structured and semi-structured data
      <tr>
+      <td><code>type</code>
+      <td>non-empty string
+      <td>The type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>datasets</code>
+      <td>optional for unstructured data, required for structured and semi-structured data
+     <tr>
       <td><code>records</code>
       <td>array
       <td>The raw data values for each facet of each record of this series
@@ -2998,13 +2739,15 @@ An example of a <code>facets</code> block with two <code>[facet-string]</code> o
    </table>
    <h5 class="heading settled" data-level="4.1.9.1" id="series_name_data_block"><span class="secno">4.1.9.1. </span><span class="content">The <code>name</code> key</span><a class="self-link" href="#series_name_data_block"></a></h5>
    <p>The <code>name</code> key has a value that is a string that is the name for this series, normally used as the series label.</p>
-   <h5 class="heading settled" data-level="4.1.9.2" id="series_records_data_block"><span class="secno">4.1.9.2. </span><span class="content">The <code>records</code> key</span><a class="self-link" href="#series_records_data_block"></a></h5>
+   <h5 class="heading settled" data-level="4.1.9.2" id="series_type_data_block"><span class="secno">4.1.9.2. </span><span class="content">The <code>type</code> key</span><a class="self-link" href="#series_type_data_block"></a></h5>
+   <p>The <code>type</code> key has a value that is a string defining the type of representation for this series. Allowed values conform to the schema for the type of representation, as defined in the <code>chartType</code> key of the <code>representation</code> block of the parent <code>datasets</code>.</p>
+   <h5 class="heading settled" data-level="4.1.9.3" id="series_records_data_block"><span class="secno">4.1.9.3. </span><span class="content">The <code>records</code> key</span><a class="self-link" href="#series_records_data_block"></a></h5>
    <p>The <code>records</code> block contains the raw data values for each facet of each record of this series.</p>
    <p>The <code>series</code> array contains one or more objects, each of which contains one or more <code>[facet-string]</code> keys, each with a corresponding value. Each <code>[facet-string]</code> key in a <code>series</code> array object must be defined in the <code>facets</code> block, and the value for that <code>[facet-string]</code> key must conform to the datatype and other properties defined for it in the <code>facets</code> block.</p>
-   <h5 class="heading settled" data-level="4.1.9.3" id="items_data_block"><span class="secno">4.1.9.3. </span><span class="content">The <code>items</code> key</span><a class="self-link" href="#items_data_block"></a></h5>
+   <h5 class="heading settled" data-level="4.1.9.4" id="items_data_block"><span class="secno">4.1.9.4. </span><span class="content">The <code>items</code> key</span><a class="self-link" href="#items_data_block"></a></h5>
    <p>A loosely organized collection of items for unstructured data, such as labels, values, and descriptions for diagrams.</p>
    <p>TODO: describe the <code>items</code> object</p>
-   <h5 class="heading settled" data-level="4.1.9.4" id="source_data_block"><span class="secno">4.1.9.4. </span><span class="content">The <code>source</code> key</span><a class="self-link" href="#source_data_block"></a></h5>
+   <h5 class="heading settled" data-level="4.1.9.5" id="source_data_block"><span class="secno">4.1.9.5. </span><span class="content">The <code>source</code> key</span><a class="self-link" href="#source_data_block"></a></h5>
    <p>The provenance of the dataset.</p>
    <p>TODO: describe the <code>source</code> object</p>
    <h4 class="heading settled" data-level="4.1.10" id="href_data_block"><span class="secno">4.1.10. </span><span class="content">The <code>href</code> key in a <code>datasets</code> block</span><a class="self-link" href="#href_data_block"></a></h4>
@@ -3708,11 +3451,11 @@ An example of a default implicit announcment based on a <code>selectors</code> b
   <c- p>}</c->
 <c- p>}</c->
 </pre>
-   <h4 class="heading settled" data-level="6.3.3" id="announcement_details"><span class="secno">6.3.3. </span><span class="content">Announcement details</span><a class="self-link" href="#announcement_details"></a></h4>
-   <p>The <b>announcement details</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.</p>
+   <h4 class="heading settled" data-level="6.3.3" id="announcement_detail"><span class="secno">6.3.3. </span><span class="content">Announcement detail</span><a class="self-link" href="#announcement_detail"></a></h4>
+   <p>The <b>announcement detail</b> is a longer text passage that provides supplemental information for an element based on a specified user interaction with the element.</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"announcement"</c-><c- p>:</c-> <c- p>{</c->
-    <c- f>"details"</c-><c- p>:</c-> <c- u>"supplemental information for element interaction"</c->
+    <c- f>"detail"</c-><c- p>:</c-> <c- u>"supplemental information for element interaction"</c->
   <c- p>}</c->
 <c- p>}</c->
 </pre>
